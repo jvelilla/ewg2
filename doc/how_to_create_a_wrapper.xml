@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+
+<!--
+description:
+
+"How to Create a wrapper"
+
+copyright: "Copyright (c) 2004-2008, Andreas Leitner and others"
+license: "Eiffel Forum License v2 (see forum.txt)"
+date: "$Date$"
+revision: "$Revision$"
+
+-->
+
+<chapter xmlns="http://www.gobosoft.com/eiffel/gobo/documentation" id="ewg/how_to_create_a_wrapper">
+  <chapterinfo>
+    <copyright>
+      <year>2004-2005</year>
+      <holder>Andreas Leitner</holder>
+    </copyright>
+    <author>
+      <firstname>Andreas</firstname><surname>Leitner</surname>
+    </author>
+    <email>aleitner@raboof.at</email>
+    <date>8 March 2005</date>
+  </chapterinfo>
+
+  <title>How to create your own Wrapper</title>
+  <para>
+    TODO:
+    * Initial dir structure and files
+    * commands to execute
+    * how to redistribute the ewg runtime
+  </para>
+  <section>
+    <title>Initial directory structure and files</title>
+    <para>
+      You need to create the following files and directories:
+    </para>
+    <variablelist>
+      <varlistentry>
+	<term>build.eant</term>
+	<listitem>
+	  <para>
+	    Geant configuration file for building the library.
+	  </para>
+	  <para>
+	    This should normally inherit from ${EWG}/misc/ewg_library.eant. A number of variables
+	    can be set in it. Be careful <emphasis>not</emphasis> to set system_dir to the single character ., as this
+	    will cause the generation procedure not to work.
+	  </para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>library.xace</term>
+	<listitem>
+	  <para>
+	    Gexace configuration file for using the wrapped library. You will probably
+	    write this after finishing generating the wrappers.
+	  </para>
+	  <para>
+	    This should define the clusters of generated Eiffel classes, and the header and link options
+	    to pull in the C glue code.
+	  </para>
+	</listitem>
+      </varlistentry>
+     <varlistentry>
+	<term>config.ewg</term>
+	<listitem>
+	  <para>
+	    EWG configuration file for specifying what gets wrapped.
+	  </para>
+	</listitem>
+      </varlistentry>
+     <varlistentry>
+	<term>manual_wrapper</term>
+	<listitem>
+	  <para>
+	    This is a directory that you must create by hand. This should have a sub-directory
+	    named c, which in turn should have sub-directories named include and src.
+	  </para>
+	  <para>
+	    In the include directory, you write the header file you need. You should point to it by setting the
+	    ewg.short_header_name and ewg.full_header_name variables in the init_ewg target of your build.eant file.
+	  </para>
+	  <para>
+	    In the src directory, you write any c files you need.
+	  </para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+</chapter>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<project name="test_application" default="help">
+
+	<description>
+		description: "Eiffel Ant file for 'test_application'"
+		system: "Eiffel Wrapper Generator Test with callback test cases"
+		copyright: "Copyright (c) 2001-2002, Andreas Leitner and others"
+		license: "Eiffel Forum License v2 (see forum.txt)"
+		date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
+		revision: "$Revision: 3 $"
+	</description>
+
+	<inherit>
+		<parent location="${EWG}/misc/ewg_application.eant">
+			<redefine target="init_system"/>
+		</parent>
+	</inherit>
+
+
+<!-- Implementation -->
+
+	<target name="init_system">
+		<set name="system" value="test_application"/>
+		<set name="system_dir" value="${EWG}/test/test_application"/>
+	</target>
+
+</project>

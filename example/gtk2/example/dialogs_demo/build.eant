@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<project name="gtk_dialogs_demo" default="help">
+
+	<description>
+		description: "Eiffel Ant file for 'gtk_dialogs_demo'"
+		copyright: "Copyright (c) 2004, Paolo Redaelli"
+		license: "Eiffel Forum License v2 (see forum.txt)"
+		date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
+		revision: "$Revision: 3 $"
+	</description>
+
+	<inherit>
+		<parent location="${EWG}/misc/ewg_application.eant">
+			<redefine target="init_system"/>
+		</parent>
+	</inherit>
+
+
+<!-- Implementation -->
+
+	<target name="init_system">
+		<set name="system" value="gtk_dialogs_demo"/>
+		<set name="system_dir" value="${EWG}/example/gtk2/example/dialogs_demo"/>
+	</target>
+
+</project>
