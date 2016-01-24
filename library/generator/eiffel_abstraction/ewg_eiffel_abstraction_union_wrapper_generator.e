@@ -38,7 +38,7 @@ feature -- Generation
 				cs.off
 			loop
 				file_name := file_system.pathname (directory_structure.eiffel_abstraction_union_directory_name,
-															  STRING_.as_lower (cs.item.mapped_eiffel_name)
+															  cs.item.mapped_eiffel_name.as_lower
 															  + "_union.e")
 
 				create file.make (file_name)

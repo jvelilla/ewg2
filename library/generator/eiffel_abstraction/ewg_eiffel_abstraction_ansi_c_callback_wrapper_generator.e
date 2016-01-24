@@ -48,7 +48,7 @@ feature -- Generation
 				if ansi_c_callback_wrapper /= Void then
 
 					file_name := file_system.pathname (directory_structure.eiffel_abstraction_callback_directory_name,
-																  STRING_.as_lower (eiffel_class_name_from_c_callback_name (ansi_c_callback_wrapper.mapped_eiffel_name) + "_CALLBACK") + ".e")
+																  (eiffel_class_name_from_c_callback_name (ansi_c_callback_wrapper.mapped_eiffel_name) + "_CALLBACK").as_lower + ".e")
 
 					create file.make (file_name)
 					file.recursive_open_write

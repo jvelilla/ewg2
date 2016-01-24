@@ -97,7 +97,7 @@ feature
 			a_n_greater_equal_zero: a_n >= 0
 		do
 			if a_n > 0 then
-				Result := STRING_.make_filled (a_char, a_n)
+				create Result.make_filled (a_char, a_n)
 			else
 				Result := clone ("")
 			end
@@ -111,7 +111,7 @@ feature
 		local
 			i: INTEGER
 		do
-			Result := STRING_.make (a_string.count * a_n)
+			create Result.make (a_string.count * a_n)
 			from
 				i := 1
 			until
@@ -130,7 +130,7 @@ feature
 			a_file_name_not_void: a_file_name /= Void
 		do
 			Result := file_system.basename (clone (a_file_name))
-			STRING_.remove_tail (Result, file_system.extension (a_file_name).count)
+			Result.remove_tail (file_system.extension (a_file_name).count)
 		ensure
 			result_not_void: Result /= Void
 		end

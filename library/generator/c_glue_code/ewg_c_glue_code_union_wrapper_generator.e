@@ -94,7 +94,7 @@ feature {NONE} -- Implementation
 			declaration_printer: EWG_C_DECLARATION_PRINTER
 			cast_printer: EWG_C_TYPE_CAST_PRINTER
 		do
-			type_name := STRING_.make (20)
+			create type_name.make (20)
 			create declaration_printer.make_string (type_name)
 			declaration_printer.print_declaration_from_type (a_union_wrapper.c_union_type, "")
 			escaped_union_name := clone (type_name)
@@ -124,7 +124,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 
 			if a_union_wrapper.c_union_type.is_complete then
-				cast_with_one_pointer_indirection := STRING_.make (20)
+				create cast_with_one_pointer_indirection.make (20)
 				create cast_printer.make_string (cast_with_one_pointer_indirection)
 				cast_printer.enable_additional_pointer_indirection
 				cast_printer.print_declaration_from_type (a_union_wrapper.c_union_type, "")

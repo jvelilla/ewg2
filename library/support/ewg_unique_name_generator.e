@@ -46,7 +46,7 @@ feature {NONE} -- Initialisation
 		local
 		do
 			make (a_prefix)
-			output_string := STRING_.make (20)
+			create output_string.make (20)
 			create {KL_STRING_OUTPUT_STREAM} output_stream.make (output_string)
 		ensure
 			prefix_set: prefixx = a_prefix

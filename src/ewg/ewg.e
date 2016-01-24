@@ -1,10 +1,7 @@
 indexing
-
 	description:
-
 		"Command line tool that parses an (already preprocessed) C header file "
 		"and generates Eiffel wrappers for it"
-
 	copyright: "Copyright (c) 2004, Andreas Leitner and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
 	date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"

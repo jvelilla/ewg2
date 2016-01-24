@@ -135,7 +135,7 @@ feature
 		local
 			cs: DS_LINEAR_CURSOR [EWG_C_PHASE_1_POINTER]
 		do
-			Result := STRING_.make (10)
+			create Result.make (10)
 			from
 				cs := pointers.new_cursor
 				cs.start

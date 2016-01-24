@@ -63,7 +63,7 @@ feature {NONE} -- Implementation
 
 			file_name := file_system.pathname (directory_structure.eiffel_external_function_directory_name, "spec")
 			file_name := file_system.pathname (file_name, eiffel_compiler_mode.eiffel_compiler_name)
-			file_name := file_system.pathname (file_name, STRING_.as_lower (class_name) + ".e")
+			file_name := file_system.pathname (file_name, class_name.as_lower + ".e")
 			create file.make (file_name)
 			file.recursive_open_write
 			if file.is_open_write then

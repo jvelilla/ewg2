@@ -60,7 +60,7 @@ feature {NONE} -- Initialization
 	make_internal is
 		do
 			Precursor
-			declarator_prefix := STRING_.make (0)
+			create declarator_prefix.make (0)
 		end
 
 feature -- Status
@@ -100,7 +100,7 @@ feature -- Formatting
 					if parameter_name_generator = Void then
 						create parameter_name_generator.make ("anonymous_")
 					end
-					declarator := STRING_.make (parameter_name_generator.prefixx.count + 3)
+					create declarator.make (parameter_name_generator.prefixx.count + 3)
 					create string_stream.make (declarator)
 					parameter_name_generator.set_output_stream (string_stream)
 					parameter_name_generator.generate_new_name

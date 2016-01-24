@@ -89,7 +89,7 @@ feature {NONE}
 			output_stream.put_new_line
 			output_stream.put_new_line
 
-			escaped_enum_name := STRING_.make (20)
+			create escaped_enum_name.make (20)
 			create string_printer.make_string (escaped_enum_name)
 			string_printer.print_declaration_from_type (a_enum_wrapper.c_enum_type, "")
 			escape_type_name_to_be_c_identifier (escaped_enum_name)

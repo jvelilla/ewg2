@@ -20,9 +20,9 @@ inherit
 		end
 
 create
-	
+
 	make
-	
+
 feature {NONE} -- Initialization
 
 	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING;
@@ -67,25 +67,25 @@ feature
 			setter_name: STRING
 			list: DS_LINKED_LIST [STRING]
 		do
-			getter_name := STRING_.make (mapped_eiffel_name.count + 7)
+			create getter_name.make (mapped_eiffel_name.count + 7)
 			getter_name.append_string (mapped_eiffel_name)
 			getter_name.append_string ("_struct")
-			
-			setter_name := STRING_.make (mapped_eiffel_name.count + 11)
+
+			create setter_name.make (mapped_eiffel_name.count + 11)
 			setter_name.append_string ("set_")
 			setter_name.append_string (mapped_eiffel_name)
 			setter_name.append_string ("_struct")
-			
+
 			create list.make
 			list.put_last (getter_name)
 			list.put_last (setter_name)
 			Result := list
 		end
-	
+
 invariant
 
 	struct_wrapper_not_void: struct_wrapper /= Void
-	
+
 	c_declaration_not_void: c_declaration /= Void
 
 	struct_wrapper_wrapps_c_declaration_type: c_declaration.type.based_type_recursive = struct_wrapper.c_struct_type

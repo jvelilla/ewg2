@@ -60,7 +60,7 @@ feature {NONE} -- Implementation
 		do
 			class_name := clone (a_class_name)
 
-			file_name := file_system.pathname (directory_structure.eiffel_abstraction_function_directory_name, STRING_.as_lower (class_name) + ".e")
+			file_name := file_system.pathname (directory_structure.eiffel_abstraction_function_directory_name, class_name.as_lower + ".e")
 			create file.make (file_name)
 			file.recursive_open_write
 			if file.is_open_write then

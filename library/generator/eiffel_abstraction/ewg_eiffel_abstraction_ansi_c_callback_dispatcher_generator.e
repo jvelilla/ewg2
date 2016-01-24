@@ -45,7 +45,7 @@ feature -- Generation
 			loop
 				if cs.item /= Void then
 
-					file_name := file_system.pathname (directory_structure.eiffel_abstraction_callback_directory_name, STRING_.as_lower (eiffel_class_name_from_c_callback_name (cs.item.mapped_eiffel_name) + "_DISPATCHER") + ".e")
+					file_name := file_system.pathname (directory_structure.eiffel_abstraction_callback_directory_name, (eiffel_class_name_from_c_callback_name (cs.item.mapped_eiffel_name) + "_DISPATCHER").as_lower + ".e")
 
 					create file.make (file_name)
 					file.recursive_open_write

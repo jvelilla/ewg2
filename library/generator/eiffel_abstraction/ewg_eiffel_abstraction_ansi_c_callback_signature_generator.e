@@ -32,7 +32,7 @@ feature
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_MEMBER_WRAPPER]
 		do
-			Result := STRING_.make (100)
+			create Result.make (100)
 			Result.append_string (on_callback_signature (a_callback_wrapper, a_feature_name))
 			Result.append_character ('%N')
 			Result.append_string ("%T%Tdo%N%T%T%T")
@@ -69,7 +69,7 @@ feature
 			cs: DS_BILINEAR_CURSOR [EWG_MEMBER_WRAPPER]
 			native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER
 		do
-			Result := STRING_.make (100)
+			create Result.make (100)
 			Result.append_string (a_feature_name)
 			Result.append_character (' ')
 			if a_callback_wrapper.members.count > 0 then

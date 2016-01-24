@@ -63,10 +63,10 @@ feature -- Generation
 				output_stream := file
 				make_printers
 				output_stream.put_string ("#ifndef EWG_CALLBACK_")
-				output_stream.put_string (STRING_.as_upper(directory_structure.config_system.name))
+				output_stream.put_string (directory_structure.config_system.name.as_upper)
 				output_stream.put_line ("___")
 				output_stream.put_string ("#define EWG_CALLBACK_")
-				output_stream.put_string (STRING_.as_upper(directory_structure.config_system.name))
+				output_stream.put_string (directory_structure.config_system.name.as_upper)
 				output_stream.put_line ("___")
 				output_stream.put_new_line
 				from

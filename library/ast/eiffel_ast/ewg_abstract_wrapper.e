@@ -104,7 +104,7 @@ feature {NONE}
 			a_rename_overhead_greater_equal_zero: a_rename_overhead >= 0
 		do
 			if mapped_eiffel_name.count + a_rename_overhead > Max_mapped_eiffel_name_size then
-				STRING_.keep_head (mapped_eiffel_name, Max_mapped_eiffel_name_size - a_rename_overhead)
+				mapped_eiffel_name.keep_head (Max_mapped_eiffel_name_size - a_rename_overhead)
 			end
 		end
 

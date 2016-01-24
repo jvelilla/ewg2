@@ -269,7 +269,7 @@ feature
 			array_cs: DS_LINEAR_CURSOR [EWG_C_PHASE_1_ARRAY]
 			param_cs: DS_LINEAR_CURSOR [EWG_C_PHASE_1_DECLARATION]
 		do
-			Result := STRING_.make (10)
+			create Result.make (10)
 			if name /= Void then
 				Result.append_string (name)
 			end

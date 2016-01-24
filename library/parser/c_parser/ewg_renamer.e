@@ -132,7 +132,7 @@ feature
 			--	     but weird things happen if I don't !
 			Result := file_system.basename (clone (a_header_file_name))
 			a_ext := file_system.extension (Result)
-			STRING_.remove_tail (Result, a_ext.count)
+			Result.remove_tail (a_ext.count)
 			Result.to_upper
 
 			from
@@ -162,7 +162,7 @@ feature
 			--	     but weird things happen if I don't !
 			Result := file_system.basename (clone (a_header_file_name))
 			a_ext := file_system.extension (Result)
-			STRING_.remove_tail (Result, a_ext.count)
+			Result.remove_tail (a_ext.count)
 			Result.to_upper
 
 			from
@@ -226,7 +226,7 @@ feature
 			declaration_printer: EWG_C_ANONYMOUS_DECLARATION_PRINTER
 			declaration_list_printer: EWG_C_DECLARATION_LIST_PRINTER
 		do
-			Result := STRING_.make (40)
+			create Result.make (40)
 			create declaration_printer.make_string (Result)
 			declaration_printer.print_declaration_from_type (a_function_type.return_type, "")
 			create declaration_list_printer.make_string (Result, declaration_printer)
@@ -258,10 +258,10 @@ feature
 		local
 			escaped_name: STRING
 		do
-			Result := STRING_.as_lower (a_name)
+			Result := a_name.as_lower
 			remove_leading_underscores_from_string (Result)
 			if eiffel_keywords.has (Result) then
-				escaped_name := STRING_.make (2 + Result.count)
+				create escaped_name.make (2 + Result.count)
 				escaped_name.append_string ("a_")
 				escaped_name.append_string (Result)
 				Result := escaped_name
@@ -290,7 +290,7 @@ feature {NONE} -- Implementation
 		local
 			i: INTEGER
 		do
-			Result := STRING_.make (a_name.count)
+			create Result.make (a_name.count)
 			-- first skip all '_' characters
 			from
 				i := 1
@@ -488,7 +488,7 @@ feature {NONE} -- Implementation
 			i: INTEGER
 			last_was_lower: BOOLEAN
 		do
-			Result := STRING_.make (a_name.count + 5)
+			create Result.make (a_name.count + 5)
 			from
 				i := 1
 			until

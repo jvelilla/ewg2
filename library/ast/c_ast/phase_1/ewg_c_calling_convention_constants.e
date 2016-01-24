@@ -1,15 +1,14 @@
 indexing
-
-	description:
-
-		"Constans identifieng the various calling conventions of functions"
-
+	description: "[
+		Constants identifieng the various calling conventions of functions
+		
+		For further details see http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vclang/html/_core_argument_passing_and_naming_conventions.asp
+		]"
 	library: "Eiffel Wrapper Generator Library"
 	copyright: "Copyright (c) 1999, Andreas Leitner and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
 	date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
 	revision: "$Revision: 3 $"
-	note: "For further details see http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vclang/html/_core_argument_passing_and_naming_conventions.asp"
 
 class EWG_C_CALLING_CONVENTION_CONSTANTS
 

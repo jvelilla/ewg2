@@ -113,7 +113,7 @@ feature
 
 	c_code: STRING is
 		do
-			Result := STRING_.make (10)
+			create Result.make (10)
 			if is_enum then
 				Result.append_string ("enum ")
 			elseif is_struct then

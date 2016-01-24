@@ -40,7 +40,7 @@ feature
 
 				file_name := file_system.pathname (directory_structure.eiffel_external_enum_directory_name, "spec")
 				file_name := file_system.pathname (file_name, eiffel_compiler_mode.eiffel_compiler_name)
-				file_name := file_system.pathname (file_name, STRING_.as_lower (cs.item.mapped_eiffel_name) + "_enum_external.e")
+				file_name := file_system.pathname (file_name, cs.item.mapped_eiffel_name.as_lower + "_enum_external.e")
 				create file.make (file_name)
 				file.recursive_open_write
 				if file.is_open_write then
@@ -66,7 +66,7 @@ feature {NONE}
 			declaration_printer: EWG_C_ANONYMOUS_DECLARATION_PRINTER
 			declaration: STRING
 		do
-			declaration := STRING_.make (20)
+			create declaration.make (20)
 			create declaration_printer.make_string (declaration)
 			declaration_printer.print_declaration_from_type (an_enum_wrapper.c_enum_type, "")
 			escape_type_name_to_be_c_identifier (declaration)

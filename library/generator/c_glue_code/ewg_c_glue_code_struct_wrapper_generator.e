@@ -94,7 +94,7 @@ feature {NONE} -- Implementation
 			declaration_printer: EWG_C_DECLARATION_PRINTER
 			cast_printer: EWG_C_TYPE_CAST_PRINTER
 		do
-			type_name := STRING_.make (20)
+			create type_name.make (20)
 			create declaration_printer.make_string (type_name)
 			if declaration_printer.can_be_printed_from_type (a_struct_wrapper.c_struct_type, "") then
 				declaration_printer.print_declaration_from_type (a_struct_wrapper.c_struct_type, "")
@@ -135,7 +135,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 
 			if a_struct_wrapper.c_struct_type.is_complete then
-				cast_with_one_pointer_indirection := STRING_.make (20)
+				create cast_with_one_pointer_indirection.make (20)
 				create cast_printer.make_string (cast_with_one_pointer_indirection)
 				cast_printer.enable_additional_pointer_indirection
 				cast_printer.print_declaration_from_type (a_struct_wrapper.c_struct_type, "")

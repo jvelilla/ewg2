@@ -177,7 +177,7 @@ feature {NONE}
 			wrappable_type: EWG_C_AST_TYPE
 		do
 			if a_parameter.declarator = Void then
-				mapped_eiffel_name := STRING_.make (("anonymous_").count + 3)
+				create mapped_eiffel_name.make (("anonymous_").count + 3)
 				mapped_eiffel_name.append_string ("anonymous_")
 				mapped_eiffel_name.append_string (a_index.out)
 			else

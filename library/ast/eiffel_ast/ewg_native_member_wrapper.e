@@ -23,9 +23,9 @@ inherit
 		export {NONE} all end
 
 create
-	
+
 	make
-	
+
 feature {NONE} -- Initialization
 
 	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING;
@@ -53,14 +53,14 @@ feature
 			setter_name: STRING
 			list: DS_LINKED_LIST [STRING]
 		do
-			old_getter_name := STRING_.make (mapped_eiffel_name.count + 4)
+			create old_getter_name.make (mapped_eiffel_name.count + 4)
 			old_getter_name.append_string ("get_")
 			old_getter_name.append_string (mapped_eiffel_name)
-			
-			setter_name := STRING_.make (mapped_eiffel_name.count + 4)
+
+			create setter_name.make (mapped_eiffel_name.count + 4)
 			setter_name.append_string ("set_")
 			setter_name.append_string (mapped_eiffel_name)
-			
+
 			create list.make
 			list.put_last (mapped_eiffel_name)
 			list.put_last (old_getter_name)
@@ -81,5 +81,5 @@ feature
 invariant
 
 	c_declaration_not_void: c_declaration /= Void
-	
+
 end

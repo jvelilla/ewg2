@@ -44,7 +44,7 @@ feature {NONE} -- Initialization
 			make_standard
 			set_info_null
 			set_warning_null
-			current_line := STRING_.make (0)
+			create current_line.make (0)
 		ensure
 			error_file_set: error_file = std.error
 			warning_file_set: warning_file = null_output_stream
@@ -217,7 +217,7 @@ feature -- Reporting errors
 			str: STRING
 		do
 			if a_message.has ('%N') then
-				STRING_.remove_tail (a_message, 1)
+				a_message.remove_tail (1)
 			end
 			str := current_line
 			update_current_line (a_message)
@@ -452,7 +452,7 @@ feature {NONE} -- Progress bar implementation
 		local
 			str: STRING
 		do
-			str := STRING_.make_filled ('%B', n)
+			create str.make_filled ('%B', n)
 			info_file.put_string (str)
 		end
 
@@ -464,7 +464,7 @@ feature {NONE} -- Progress bar implementation
 			if current_task_total_ticks > 0 then
 				percent := DOUBLE_.floor_to_integer ((current_task_ticks * 100) / current_task_total_ticks)
 			end
-			Result := STRING_.make (12 + current_task_name.count)
+			create Result.make (12 + current_task_name.count)
 			Result.append_character ('[')
 			if percent < 10 then
 				Result.append_string (" ")
@@ -499,7 +499,7 @@ feature {NONE} -- Progress bar implementation
 			remove_characters (current_line.count)
 			info_file.put_string (a_string)
 			if a_string.count < current_line.count then
-				blanks := STRING_.make_filled (' ', current_line.count - a_string.count)
+				create blanks.make_filled (' ', current_line.count - a_string.count)
 				info_file.put_string (blanks)
 				remove_characters (current_line.count - a_string.count)
 			end

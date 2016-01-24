@@ -533,7 +533,7 @@ feature
 			buffer: STRING
 		do
 			if not has_hash_code_cached then
-				buffer := STRING_.make (Default_hash_string_cache_size)
+				create buffer.make (Default_hash_string_cache_size)
 				append_hash_string_to_string (buffer)
 				hash_code_cache := buffer.hash_code
 				has_hash_code_cached := True
@@ -546,7 +546,7 @@ feature
 
 	hash_string: STRING is
 		do
-			Result := STRING_.make (20)
+			create Result.make (20)
 			append_hash_string_to_string (Result)
 		end
 

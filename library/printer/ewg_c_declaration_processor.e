@@ -248,7 +248,7 @@ feature {NONE}
 		local
 			new_text_before_declarator: STRING
 		do
-			new_text_before_declarator := STRING_.make (a_string.count + text_before_declarator.count)
+			create new_text_before_declarator.make (a_string.count + text_before_declarator.count)
 			new_text_before_declarator.append_string (a_string)
 			new_text_before_declarator.append_string (text_before_declarator)
 			text_before_declarator := new_text_before_declarator

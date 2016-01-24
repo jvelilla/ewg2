@@ -25,7 +25,7 @@ inherit
 		undefine
 			out
 		end
-	
+
 create
 
 	make
@@ -44,14 +44,14 @@ feature
 		ensure
 			set_is_const: is_const
 		end
-	
+
 	set_volatile is
 		do
 			is_volatile := True
 		ensure
 			set_is_volatile: is_volatile
 		end
-	
+
 feature
 
 	none_set: BOOLEAN is
@@ -87,16 +87,16 @@ feature
 			if is_volatile then
 				count := count + 9
 			end
-			Result := STRING_.make (count)
+			create Result.make (count)
 			if is_const then
 				Result.append_string ("const ")
 			end
 			if is_volatile then
 				Result.append_string ("volatile ")
 			end
-			
+
 		end
-	
+
 	out: STRING is
 		do
 			Result := ""
@@ -107,6 +107,6 @@ feature
 				Result := Result + "volatile "
 			end
 		end
-	
+
 
 end

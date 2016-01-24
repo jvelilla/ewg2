@@ -37,7 +37,7 @@ feature {ANY} -- Access
 		end
 
 feature {ANY} -- Basic Routines
-	
+
 	shallow_wrap_type (a_type: EWG_C_AST_TYPE;
 							 a_include_header_file_name: STRING;
 							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
@@ -52,7 +52,7 @@ feature {ANY} -- Basic Routines
 				end
 			create member_list.make_default
 
-			
+
 
 			create {EWG_ANSI_C_CALLBACK_WRAPPER} callback_wrapper.make (eiffel_identifier_for_type (pointer_type),
 																							a_include_header_file_name,
@@ -61,7 +61,7 @@ feature {ANY} -- Basic Routines
 
 			a_eiffel_wrapper_set.add_wrapper (callback_wrapper)
 		end
-	
+
 	shallow_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 									  a_include_header_file_name: STRING;
 									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
@@ -146,7 +146,7 @@ feature {NONE}
 			wrappable_type: EWG_C_AST_TYPE
 		do
 			if a_parameter.declarator = Void then
-				mapped_eiffel_name := STRING_.make (("anonymous_").count + 3)
+				create mapped_eiffel_name.make (("anonymous_").count + 3)
 				mapped_eiffel_name.append_string ("anonymous_")
 				mapped_eiffel_name.append_string (a_index.out)
 			else
@@ -162,7 +162,7 @@ feature {NONE}
 																					  a_parameter)
 			a_callback_wrapper.add_member (member_wrapper)
 		end
-	
+
 	wrap_callback_return_type (a_callback_wrapper: EWG_CALLBACK_WRAPPER;
 										a_include_header_file_name: STRING;
 										a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
@@ -220,4 +220,4 @@ feature {NONE}
 end
 
 
-	
+

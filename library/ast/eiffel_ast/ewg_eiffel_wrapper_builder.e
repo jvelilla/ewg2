@@ -257,7 +257,7 @@ feature {NONE}
 					check
 						getter_not_void: getter /= Void
 					end
-				name := STRING_.make (4 + callback.mapped_eiffel_name.count + 5)
+				create name.make (4 + callback.mapped_eiffel_name.count + 5)
 				name.append_string ("get_")
 				name.append_string (callback.mapped_eiffel_name)
 				name.append_string ("_stub")
@@ -300,7 +300,7 @@ feature {NONE}
 					check
 						setter_not_void: setter /= Void
 					end
-				name := STRING_.make (4 + callback.mapped_eiffel_name.count + 6)
+				create name.make (4 + callback.mapped_eiffel_name.count + 6)
 				name.append_string ("set_")
 				name.append_string (callback.mapped_eiffel_name)
 				name.append_string ("_entry")
@@ -344,7 +344,7 @@ feature {NONE}
 					check
 						caller_not_void: caller /= Void
 					end
-				name := STRING_.make (5 + callback.mapped_eiffel_name.count)
+				create name.make (5 + callback.mapped_eiffel_name.count)
 				name.append_string ("call_")
 				name.append_string (callback.mapped_eiffel_name)
 				c_system.add_top_level_declaration_from_type_and_name (caller,

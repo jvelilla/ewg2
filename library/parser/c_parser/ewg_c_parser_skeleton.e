@@ -203,7 +203,7 @@ feature
 			qualifier: EWG_C_PHASE_1_TYPE_QUALIFIER
 		do
 			from
-				Result := STRING_.make (5)
+				create Result.make (5)
 				cs := a_list.new_cursor
 				cs.start
 			until

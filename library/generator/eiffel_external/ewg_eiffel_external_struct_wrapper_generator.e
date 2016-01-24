@@ -63,7 +63,7 @@ feature
 				file_name := file_system.pathname (directory_structure.eiffel_external_struct_directory_name,
 															  "spec")
 				file_name := file_system.pathname (file_name, eiffel_compiler_mode.eiffel_compiler_name)
-				file_name := file_system.pathname (file_name, STRING_.as_lower (cs.item.mapped_eiffel_name) + "_struct_external.e")
+				file_name := file_system.pathname (file_name, cs.item.mapped_eiffel_name.as_lower + "_struct_external.e")
 
 				create file.make (file_name)
 				file.recursive_open_write
@@ -93,7 +93,7 @@ feature {NONE} -- Implementation
 			cs: DS_BILINEAR_CURSOR [EWG_C_AST_DECLARATION]
 			cast_with_one_pointer_indirection: STRING
 		do
-			type_name := STRING_.make (20)
+			create type_name.make (20)
 			create c_declaration_printer.make_string (type_name)
 			if c_declaration_printer.can_be_printed_from_type (a_struct_wrapper.c_struct_type, "") then
 				c_declaration_printer.print_declaration_from_type (a_struct_wrapper.c_struct_type, "")
@@ -139,7 +139,7 @@ feature {NONE} -- Implementation
 			end
 			output_stream.put_new_line
 
-			cast_with_one_pointer_indirection := STRING_.make (20)
+			create cast_with_one_pointer_indirection.make (20)
 			create eiffel_to_c_cast_printer.make_string (cast_with_one_pointer_indirection, eiffel_compiler_mode)
 			eiffel_to_c_cast_printer.enable_additional_pointer_indirection
 			eiffel_to_c_cast_printer.print_declaration_from_type (a_struct_wrapper.c_struct_type, "")
