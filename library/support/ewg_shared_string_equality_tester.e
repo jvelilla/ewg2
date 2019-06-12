@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -16,7 +16,7 @@ class EWG_SHARED_STRING_EQUALITY_TESTER
 
 feature -- Access
 
-	string_equality_tester: EWG_STRING_EQUALITY_TESTER is
+	string_equality_tester: EWG_STRING_EQUALITY_TESTER 
 			-- String equality tester
 		once
 			create Result

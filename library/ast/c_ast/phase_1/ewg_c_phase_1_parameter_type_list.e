@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -20,7 +20,7 @@ create
 
 feature {NONE} -- Initialisation
 
-	make (a_parameter_list: like parameter_list) is
+	make (a_parameter_list: like parameter_list)
 			-- Create new parameter type list with `a_parameter_list' as
 			-- parameter list.
 		require
@@ -32,7 +32,7 @@ feature {NONE} -- Initialisation
 			doesnt_have_ellipsis_parameter: not has_ellipsis_parameter
 		end
 
-	make_with_ellipsis (a_parameter_list: like parameter_list) is
+	make_with_ellipsis (a_parameter_list: like parameter_list)
 			-- Create new parameter type list with `a_parameter_list' as
 			-- parameter list plus the last parameter will be the special
 			-- "..." parameter.
@@ -46,7 +46,7 @@ feature {NONE} -- Initialisation
 			has_ellipsis_parameter: has_ellipsis_parameter
 		end
 
-	make_empty_with_ellipsis is
+	make_empty_with_ellipsis
 			-- Create new parameter type with arbitrary many parameters.
 		do
 			create parameter_list.make
@@ -66,7 +66,7 @@ feature -- Access
 
 feature -- Element change
 
-	set_ellipsis_parameter (a_value: BOOLEAN) is
+	set_ellipsis_parameter (a_value: BOOLEAN) 
 			-- Set `has_ellipsis_parameter' to `a_value'.
 		do
 			has_ellipsis_parameter := a_value

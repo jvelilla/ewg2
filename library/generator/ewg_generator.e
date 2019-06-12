@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -31,7 +31,7 @@ feature
 	make (a_raw_header_file_name: STRING;
 			a_error_handler: like error_handler;
 			a_directory_structure: EWG_DIRECTORY_STRUCTURE;
-			a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+			a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Create new EWG_GENERATOR object
 		require
 			a_raw_header_file_name_not_void: a_raw_header_file_name /= Void
@@ -52,7 +52,7 @@ feature
 
 feature {ANY}
 
-	generate is
+	generate
 		do
 			if eiffel_wrapper_set.enum_wrapper_count > 0 then
 				error_handler.start_task ("phase 4: generating enum wrappers")
@@ -87,7 +87,7 @@ feature {ANY}
 
 feature {NONE} -- Implementation
 
-	generate_enum_wrappers is
+	generate_enum_wrappers
 		local
 			c_glue_code_generator: EWG_C_GLUE_CODE_ENUM_WRAPPER_GENERATOR
 			eiffel_external_generator: EWG_EIFFEL_EXTERNAL_ENUM_WRAPPER_GENERATOR
@@ -100,7 +100,7 @@ feature {NONE} -- Implementation
 			eiffel_external_generator.generate_for_all_compilers (eiffel_wrapper_set)
 		end
 
-	generate_struct_wrappers is
+	generate_struct_wrappers
 		local
 			c_glue_code_generator: EWG_C_GLUE_CODE_STRUCT_WRAPPER_GENERATOR
 			c_glue_header_generator: EWG_C_GLUE_HEADER_STRUCT_WRAPPER_GENERATOR
@@ -122,7 +122,7 @@ feature {NONE} -- Implementation
 			eiffel_abstraction_generator.generate (eiffel_wrapper_set)
 		end
 
-	generate_union_wrappers is
+	generate_union_wrappers
 		local
 			c_glue_code_generator: EWG_C_GLUE_CODE_UNION_WRAPPER_GENERATOR
 			c_glue_header_generator: EWG_C_GLUE_HEADER_UNION_WRAPPER_GENERATOR
@@ -144,7 +144,7 @@ feature {NONE} -- Implementation
 			eiffel_abstraction_generator.generate (eiffel_wrapper_set)
 		end
 
-	generate_function_wrappers is
+	generate_function_wrappers
 		local
 			c_glue_code_generator: EWG_C_GLUE_CODE_FUNCTION_WRAPPER_GENERATOR
 			c_glue_header_generator: EWG_C_GLUE_HEADER_FUNCTION_WRAPPER_GENERATOR
@@ -161,7 +161,7 @@ feature {NONE} -- Implementation
 			eiffel_abstraction_generator.generate (eiffel_wrapper_set)
 		end
 
-	generate_callback_wrappers is
+	generate_callback_wrappers 
 		local
 			c_glue_code_generator: EWG_C_GLUE_CODE_ANSI_C_CALLBACK_WRAPPER_GENERATOR
 			c_glue_header_generator: EWG_C_GLUE_HEADER_ANSI_C_CALLBACK_WRAPPER_GENERATOR

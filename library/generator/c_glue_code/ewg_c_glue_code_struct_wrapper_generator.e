@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -34,13 +34,13 @@ create
 
 feature {NONE} -- Implementation
 
-	make_internal is
+	make_internal
 		do
 			Precursor
 			make_printers
 		end
 
-	make_printers is
+	make_printers
 		do
 			create c_to_eiffel_declaration_printer.make (output_stream, eiffel_compiler_mode)
 			create c_to_eiffel_cast_printer.make (output_stream, eiffel_compiler_mode)
@@ -50,7 +50,7 @@ feature {NONE} -- Implementation
 
 feature
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_STRUCT_WRAPPER]
 			file_name: STRING
@@ -83,7 +83,7 @@ feature
 
 feature {NONE} -- Implementation
 
-	generate_struct_wrapper (a_struct_wrapper: EWG_STRUCT_WRAPPER) is
+	generate_struct_wrapper (a_struct_wrapper: EWG_STRUCT_WRAPPER)
 		require
 			a_struct_wrapper_not_void: a_struct_wrapper /= Void
 		local
@@ -104,7 +104,7 @@ feature {NONE} -- Implementation
 					end
 				declaration_printer.print_declaration_from_type (a_struct_wrapper.c_struct_type.closest_alias_type, "")
 			end
-			escaped_struct_name := clone (type_name)
+			escaped_struct_name := type_name.twin
 			escape_type_name_to_be_c_identifier (escaped_struct_name)
 
 			output_stream.put_string ("// glue code for struct `")
@@ -156,7 +156,7 @@ feature {NONE} -- Implementation
 
 	generate_member (a_struct_member: EWG_C_AST_DECLARATION;
 						  a_escaped_struct_name: STRING;
-						  a_cast_with_one_pointer_indirection: STRING) is
+						  a_cast_with_one_pointer_indirection: STRING)
 		require
 			a_struct_member_not_void: a_struct_member /= Void
 			a_escaped_struct_name_not_void: a_escaped_struct_name /= Void
@@ -172,7 +172,7 @@ feature {NONE} -- Implementation
 
 	generate_member_getter (a_struct_member: EWG_C_AST_DECLARATION;
 									a_escaped_struct_name: STRING;
-									a_cast_with_one_pointer_indirection: STRING) is
+									a_cast_with_one_pointer_indirection: STRING)
 		require
 			a_struct_member_not_void: a_struct_member /= Void
 			a_escaped_struct_name_not_void: a_escaped_struct_name /= Void
@@ -208,7 +208,7 @@ feature {NONE} -- Implementation
 
 	generate_member_setter (a_struct_member: EWG_C_AST_DECLARATION;
 									a_escaped_struct_name: STRING;
-									a_cast_with_one_pointer_indirection: STRING) is
+									a_cast_with_one_pointer_indirection: STRING)
 		require
 			a_struct_member_not_void: a_struct_member /= Void
 			a_escaped_struct_name_not_void: a_escaped_struct_name /= Void
@@ -242,7 +242,7 @@ feature {NONE} -- Implementation
 
 feature {NONE}
 
-	get_sizeof_template: STRING is
+	get_sizeof_template: STRING
 			-- ${1} ... type name
 			-- ${2} ... type name escaped to fit requirements of c identifier
 		once
@@ -252,7 +252,7 @@ feature {NONE}
 							"}%N"
 		end
 
-	get_sizeof_incomplete_template: STRING is
+	get_sizeof_incomplete_template: STRING
 			-- ${1} ... type name escaped to fit requirements of c identifier
 		once
 			Result := "int ewg_struct_sizeof_${1} ()%N" +

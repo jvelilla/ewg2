@@ -1,4 +1,4 @@
-indexing
+note
 	description: "Scan C header file for macro prototypes"
 	status: "See notice at end of class"
 	author: "Sam O'Connor and others"
@@ -37,17 +37,15 @@ feature {NONE} -- Implementation
 	yy_execute_action (yy_act: INTEGER)
 			-- Execute semantic action.
 		do
-if yy_act <= 6 then
-if yy_act <= 3 then
-if yy_act <= 2 then
-if yy_act = 1 then
+			inspect yy_act
+when 1 then
 	yy_column := yy_column + yy_end - yy_start - yy_more_len
 --|#line 33 "ewg_c_macro_scanner.l"
 debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 33")
 end
  set_start_condition (SC_DEFINE) 
-else
+when 2 then
 	yy_column := yy_column + yy_end - yy_start - yy_more_len
 --|#line 35 "ewg_c_macro_scanner.l"
 debug ("GELEX")
@@ -57,8 +55,7 @@ end
 					  last_value := text;
 					  set_start_condition (SC_MACRO_DEFINITION); 
 					
-end
-else
+when 3 then
 	yy_end := yy_end - 1
 	yy_column := yy_column + yy_end - yy_start - yy_more_len
 --|#line 39 "ewg_c_macro_scanner.l"
@@ -69,62 +66,49 @@ end
 					  last_value := text; 
 					  set_start_condition (SC_MACRO_ARGUMENTS); 
 					
-end
-else
-if yy_act <= 5 then
-if yy_act = 4 then
+when 4 then
 	yy_column := yy_column + yy_end - yy_start - yy_more_len
 --|#line 44 "ewg_c_macro_scanner.l"
 debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 44")
 end
  last_token := TOK_ID; last_value := text 
-else
+when 5 then
 	yy_column := yy_column + 1
 --|#line 45 "ewg_c_macro_scanner.l"
 debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 45")
 end
  last_token := TOK_LPAREN 
-end
-else
+when 6 then
 	yy_column := yy_column + 1
 --|#line 46 "ewg_c_macro_scanner.l"
 debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 46")
 end
  last_token := TOK_RPAREN; set_start_condition (SC_MACRO_DEFINITION) 
-end
-end
-else
-if yy_act <= 9 then
-if yy_act <= 8 then
-if yy_act = 7 then
+when 7 then
 	yy_column := yy_column + 1
 --|#line 47 "ewg_c_macro_scanner.l"
 debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 47")
 end
  last_token := TOK_COMMA 
-else
+when 8 then
 	yy_column := yy_column + yy_end - yy_start - yy_more_len
 --|#line 48 "ewg_c_macro_scanner.l"
 debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 48")
 end
  
-end
-else
+when 9 then
 	yy_column := yy_column + yy_end - yy_start - yy_more_len
 --|#line 49 "ewg_c_macro_scanner.l"
 debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 49")
 end
  last_token := TOK_DEFINITION; last_value := text 
-end
-else
-if yy_act <= 11 then
-if yy_act = 10 then
+when 10 then
 	yy_line := yy_line + 1
 	yy_column := 1
 --|#line 50 "ewg_c_macro_scanner.l"
@@ -132,24 +116,24 @@ debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 50")
 end
  set_start_condition (INITIAL) 
-else
+when 11 then
 yy_set_line_column
 --|#line 53 "ewg_c_macro_scanner.l"
 debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 53")
 end
  
-end
-else
+when 12 then
 yy_set_line_column
 --|#line 0 "ewg_c_macro_scanner.l"
 debug ("GELEX")
 	std.error.put_line ("Executing scanner user-code from file 'ewg_c_macro_scanner.l' at line 0")
 end
 default_action
-end
-end
-end
+			else
+				last_token := yyError_token
+				fatal_error ("fatal scanner internal error: no action found")
+			end
 			yy_set_beginning_of_line
 		end
 
@@ -213,8 +197,19 @@ feature {NONE} -- Table templates
 
 	yy_ec_template: SPECIAL [INTEGER]
 			-- Template for `yy_ec'
+		local
+			an_array: ARRAY [INTEGER]
 		once
-			Result := yy_fixed_array (<<
+			create an_array.make_filled (0, 0, 256)
+			yy_ec_template_1 (an_array)
+			yy_ec_template_2 (an_array)
+			Result := yy_fixed_array (an_array)
+		end
+
+	yy_ec_template_1 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #1 of template for `yy_ec'.
+		do
+			yy_array_subcopy (an_array, <<
 			    0,    1,    1,    1,    1,    1,    1,    1,    1,    2,
 			    3,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -235,14 +230,21 @@ feature {NONE} -- Table templates
 			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1, yy_Dummy>>,
+			1, 200, 0)
+		end
 
+	yy_ec_template_2 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #2 of template for `yy_ec'.
+		do
+			yy_array_subcopy (an_array, <<
 			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 			    1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-			    1,    1,    1,    1,    1,    1,    1, yy_Dummy>>)
+			    1,    1,    1,    1,    1,    1,    1, yy_Dummy>>,
+			1, 57, 200)
 		end
 
 	yy_meta_template: SPECIAL [INTEGER]

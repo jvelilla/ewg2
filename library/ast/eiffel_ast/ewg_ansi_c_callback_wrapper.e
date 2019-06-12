@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -15,11 +15,11 @@ class EWG_ANSI_C_CALLBACK_WRAPPER
 inherit
 
 	EWG_CALLBACK_WRAPPER
-	
+
 create
 
 	make
-	
+
 feature {NONE}
 
 end

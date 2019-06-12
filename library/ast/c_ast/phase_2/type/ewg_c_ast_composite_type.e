@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,7 +26,7 @@ inherit
 
 feature
 
-	make (a_name: STRING; a_header_file_name: STRING; a_members: like members) is
+	make (a_name: STRING; a_header_file_name: STRING; a_members: like members)
 		do
 			make_type (a_name, a_header_file_name)
 			members := a_members
@@ -38,7 +38,7 @@ feature
 
 feature
 
-	set_members (a_members: like members) is
+	set_members (a_members: like members)
 		do
 			members := a_members
 		ensure
@@ -49,7 +49,7 @@ feature
 
 	members: DS_ARRAYED_LIST [EWG_C_AST_DECLARATION]
 
-	append_members_hash_code_to_string (a_string: STRING) is
+	append_members_hash_code_to_string (a_string: STRING)
 		require
 			members_not_void: members /= Void
 			a_string_not_void: a_string /= Void
@@ -72,7 +72,7 @@ feature
 			end
 		end
 
-	append_anonymous_hash_string_to_string (a_string: STRING) is
+	append_anonymous_hash_string_to_string (a_string: STRING)
 		do
 			append_members_hash_code_to_string (a_string)
 		end
@@ -80,7 +80,7 @@ feature
 
 feature
 
-	is_complete: BOOLEAN is
+	is_complete: BOOLEAN
 			-- Has the type been defined with a body?
 			-- An incomplete type looks like this:
 			-- struct foo;
@@ -88,7 +88,7 @@ feature
 			Result := members /= Void and then members.count > 0
 		end
 
-	is_same_composite_type (other: EWG_C_AST_COMPOSITE_TYPE): BOOLEAN is
+	is_same_composite_type (other: EWG_C_AST_COMPOSITE_TYPE): BOOLEAN
 		require
 			other_not_void: other /= Void
 		do
@@ -99,7 +99,7 @@ feature
 			end
 		end
 
-	is_members_equal (other: EWG_C_AST_COMPOSITE_TYPE): BOOLEAN is
+	is_members_equal (other: EWG_C_AST_COMPOSITE_TYPE): BOOLEAN
 		require
 			other_not_void: other /= Void
 			other_not_current: other /= Current
@@ -127,7 +127,7 @@ feature
 			end
 		end
 
-	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE] is
+	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE]
 		local
 			a_cs: DS_BILINEAR_CURSOR [EWG_C_AST_DECLARATION]
 		do
@@ -145,7 +145,7 @@ feature
 			end
 		end
 
-	is_composite_type: BOOLEAN is
+	is_composite_type: BOOLEAN 
 		do
 			Result := True
 		end

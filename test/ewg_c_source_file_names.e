@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -13,7 +13,7 @@ class EWG_C_SOURCE_FILE_NAMES
 
 feature
 
-	test_001_c: STRING is "data/c_source/test_001.c"
-	test_002_c: STRING is "data/c_source/test_002.c"
+	test_001_c: STRING = "data/c_source/test_001.c"
+	test_002_c: STRING = "data/c_source/test_002.c"
 
 end

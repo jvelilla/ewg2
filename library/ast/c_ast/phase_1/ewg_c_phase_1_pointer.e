@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -19,13 +19,13 @@ create
 
 feature
 
-	make is
+	make
 			-- Create pointer without type qualifiers
 		do
 			create type_qualifier.make
 		end
 
-	make_with_type_qualifier_list (a_type_qualifier_list: DS_LINKED_LIST [EWG_C_PHASE_1_TYPE_QUALIFIER]) is
+	make_with_type_qualifier_list (a_type_qualifier_list: DS_LINKED_LIST [EWG_C_PHASE_1_TYPE_QUALIFIER]) 
 			-- Create pointer with type qualifiers
 		require
 			a_type_qualifer_list_not_void: a_type_qualifier_list /= Void
@@ -45,7 +45,7 @@ feature
 				cs.forth
 			end
 		end
-	
+
 feature
 
 	type_qualifier: EWG_C_PHASE_1_TYPE_QUALIFIER

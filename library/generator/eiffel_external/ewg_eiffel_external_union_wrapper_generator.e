@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -34,13 +34,13 @@ create
 
 feature {NONE} -- Initialization
 
-	make_internal is
+	make_internal
 		do
 			Precursor
 			make_printers
 		end
 
-	make_printers is
+	make_printers
 		do
 			create cast_printer.make (output_stream)
 			cast_printer.enable_additional_pointer_indirection
@@ -48,7 +48,7 @@ feature {NONE} -- Initialization
 
 feature
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_UNION_WRAPPER]
 			file_name: STRING
@@ -84,7 +84,7 @@ feature
 
 feature {NONE} -- Implementation
 
-	generate_union_wrapper (a_union_wrapper: EWG_UNION_WRAPPER) is
+	generate_union_wrapper (a_union_wrapper: EWG_UNION_WRAPPER)
 		local
 			c_declaration_printer: EWG_C_DECLARATION_PRINTER
 			eiffel_to_c_cast_printer: EWG_EIFFEL_TO_C_TYPE_CAST_PRINTER
@@ -175,7 +175,7 @@ feature {NONE} -- Implementation
 									an_escaped_union_name: STRING;
 									a_header_file_name: STRING;
 									a_declaration: STRING;
-									a_cast_with_one_pointer_indirection: STRING) is
+									a_cast_with_one_pointer_indirection: STRING)
 		require
 			a_union_member_not_void: a_union_member /= Void
 			an_escaped_union_name_not_void: an_escaped_union_name /= Void
@@ -240,7 +240,7 @@ feature {NONE} -- Implementation
 									an_escaped_union_name: STRING;
 									a_header_file_name: STRING;
 									a_declaration: STRING;
-									a_cast_with_one_pointer_indirection: STRING) is
+									a_cast_with_one_pointer_indirection: STRING)
 		require
 			a_union_member_not_void: a_union_member /= Void
 			an_escaped_union_name_not_void: an_escaped_union_name /= Void
@@ -314,7 +314,7 @@ feature {NONE} -- Implementation
 
 	generate_sizeof_feature (a_header_file_name: STRING;
 									 a_type_name: STRING;
-									 an_escaped_union_name: STRING) is
+									 an_escaped_union_name: STRING) 
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
 			a_type_name_not_void: a_type_name /= Void

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -20,14 +20,14 @@ create
 
 feature
 
-	make is
+	make
 			-- Create new array without a defined size
 		do
 		ensure
 			size_not_defined: not is_size_defined
 		end
 
-	make_with_size (a_size: STRING) is
+	make_with_size (a_size: STRING)
 			-- Create a new array with the size `a_size'
 		require
 			a_size_not_void: a_size /= Void
@@ -44,7 +44,7 @@ feature
 	size: STRING
 			-- Size of current array as unparsed string
 
-	is_size_defined: BOOLEAN is
+	is_size_defined: BOOLEAN 
 			-- Does current array have a defined size ?
 		do
 			Result := size /= Void
@@ -53,7 +53,7 @@ feature
 invariant
 
 	size_defined_equals_size_not_void: is_size_defined = (size /= Void)
-	
+
 	size_defined_implies_size_not_empty: is_size_defined implies size.count > 0
-	
+
 end

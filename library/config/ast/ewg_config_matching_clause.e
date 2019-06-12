@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -24,7 +24,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make is
+	make
 		do
 			construct_type_code := construct_type_names.any_code
 		end
@@ -37,7 +37,7 @@ feature {ANY} -- Access
 
 feature {ANY} -- Setting
 
-	set_header_file_name_regexp (a_header_file_name_regexp: STRING) is
+	set_header_file_name_regexp (a_header_file_name_regexp: STRING)
 		require
 			a_header_file_name_regexp_not_void: a_header_file_name_regexp /= Void
 		do
@@ -52,7 +52,7 @@ feature {ANY} -- Setting
 --			header_file_name_regexp_set: header_file_name_regexp = a_header_file_name_regexp
 		end
 
-	set_c_identifier_regexp (a_c_identifier_regexp: STRING) is
+	set_c_identifier_regexp (a_c_identifier_regexp: STRING) 
 		require
 			a_c_identifier_regexp_not_void: a_c_identifier_regexp /= Void
 		do
@@ -67,7 +67,7 @@ feature {ANY} -- Setting
 --			c_identifier_regexp_set: c_identifier_regexp = a_c_identifier_regexp
 		end
 
-	set_construct_type_code (a_construct_type_code: like construct_type_code) is
+	set_construct_type_code (a_construct_type_code: like construct_type_code)
 			-- Make `a_construct_type_code' the new `construct_type_code'.
 		require
 			valid_a_construct_type_code: construct_type_names.is_valid_construct_type_code (a_construct_type_code)
@@ -79,7 +79,7 @@ feature {ANY} -- Setting
 
 feature {ANY} -- Operations
 
-	is_matching_type (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	is_matching_type (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Does `a_type' match the matching criteria from `Current'?
 		require
 			a_type_not_void: a_type /= Void
@@ -131,7 +131,7 @@ feature {ANY} -- Operations
 
 		end
 
-	is_matching_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	is_matching_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN
 			-- Does `a_declaration' match the matching criteria from `Current'?
 		require
 			a_declaration_not_void: a_declaration /= Void
@@ -176,7 +176,7 @@ feature {ANY} -- Operations
 
 feature {NONE}
 
-	match_text (a_text: STRING; a_regexp: RX_PCRE_REGULAR_EXPRESSION): BOOLEAN is
+	match_text (a_text: STRING; a_regexp: RX_PCRE_REGULAR_EXPRESSION): BOOLEAN
 		do
 			if a_regexp /= Void then
 				if a_text /= Void then

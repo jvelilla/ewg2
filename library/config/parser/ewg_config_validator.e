@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -34,7 +34,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (an_error_handler: like error_handler) is
+	make (an_error_handler: like error_handler)
 			-- Create new EWG config file validator.
 		require
 			an_error_handler_not_void: an_error_handler /= Void
@@ -57,7 +57,7 @@ feature {ANY} -- Access
 
 feature {ANY} -- Validation
 
-	validate_config_system_doc (a_doc: XM_DOCUMENT; a_position_table: XM_POSITION_TABLE) is
+	validate_config_system_doc (a_doc: XM_DOCUMENT; a_position_table: XM_POSITION_TABLE)
 			-- Check whether `a_doc' is a valid XML EWG config system.
 			-- Set `has_error' to `True' if not.
 		require
@@ -75,7 +75,7 @@ feature {ANY} -- Validation
 
 feature {NONE} -- Validation
 
-	validate_config_system (a_config_system: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	validate_config_system (a_config_system: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Check whether `a_config_system' is a valid EWG config "ewg_config" element.
 			-- Set `has_error' to `True' if not.
 		require
@@ -102,7 +102,7 @@ feature {NONE} -- Validation
 			end
 		end
 
-	validate_rule_list (a_rule_list: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	validate_rule_list (a_rule_list: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Check whether `a_rule_list' is a valid EWG config "rule_list" element.
 			-- Set `has_error' to `True' if not.
 		require
@@ -129,7 +129,7 @@ feature {NONE} -- Validation
 			end
 		end
 
-	validate_rule (a_rule: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	validate_rule (a_rule: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Check whether `a_rule' is a valid EWG config "rule" element.
 			-- Set `has_error' to `True' if not.
 		require
@@ -176,7 +176,7 @@ feature {NONE} -- Validation
 			end
 		end
 
-	validate_match (a_match: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	validate_match (a_match: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Check whether `a_match' is a valid EWG config "match" element.
 			-- Set `has_error' to `True' if not.
 		require
@@ -209,7 +209,7 @@ feature {NONE} -- Validation
 			end
 		end
 
-	validate_wrapper (a_wrapper: XM_ELEMENT; a_position_table: XM_POSITION_TABLE; a_construct_type_code: INTEGER) is
+	validate_wrapper (a_wrapper: XM_ELEMENT; a_position_table: XM_POSITION_TABLE; a_construct_type_code: INTEGER)
 			-- Check whether `a_wrapper' is a valid EWG config "wrapper" element.
 			-- Set `has_error' to `True' if not.
 		require
@@ -251,7 +251,7 @@ feature {NONE} -- Validation
 			end
 		end
 
-	validate_header (a_header: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	validate_header (a_header: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Check whether `a_header' is a valid EWG config "header" element.
 			-- Set `has_error' to `True' if not.
 		require
@@ -291,7 +291,7 @@ feature {NONE} -- Validation
 			end
 		end
 
-	validate_identifier (a_identifier: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	validate_identifier (a_identifier: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Check whether `a_identifier' is a valid EWG config "identifier" element.
 			-- Set `has_error' to `True' if not.
 		require
@@ -331,7 +331,7 @@ feature {NONE} -- Validation
 			end
 		end
 
-	validate_match_type (a_type: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	validate_match_type (a_type: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Check whether `a_type' is a valid EWG config "type" element.
 			-- Set `has_error' to `True' if not.
 		require
@@ -369,7 +369,7 @@ feature {NONE} -- Validation
 			end
 		end
 
-	validate_class_name (a_class_name: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	validate_class_name (a_class_name: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) 
 			-- Check whether `a_class_name' is a valid EWG config "class_name" element.
 			-- Set `has_error' to `True' if not.
 		require

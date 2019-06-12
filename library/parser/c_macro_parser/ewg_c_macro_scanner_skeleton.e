@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -42,7 +42,7 @@ feature
 			make_compressed_scanner_skeleton
 			last_header_file_name := a_header_file_name
 		end
-	
+
 feature -- Access
 
 	last_value: ANY
@@ -85,27 +85,27 @@ feature -- Access
 		end
 
 	set_header_line_number (a_line_number: INTEGER) is
-		require	
+		require
 			a_line_number_greater_zero: a_line_number > 0
 		do
 			last_header_line_numer := a_line_number
-		end	
+		end
 
 	set_header_file_name (a_file_name: STRING) is
-		require	
+		require
 			a_file_name_not_void: a_file_name /= Void
 		do
 			last_header_file_name := a_file_name
-		end	
+		end
 
 feature
 
 	last_header_line_numer: INTEGER
 
 	last_header_file_name: STRING
-	
+
 invariant
 
 	last_header_file_name_not_void: last_header_file_name /= Void
-	
+
 end

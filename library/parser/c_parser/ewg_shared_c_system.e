@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -13,9 +13,9 @@ indexing
 class EWG_SHARED_C_SYSTEM
 feature
 
-	c_system: EWG_C_SYSTEM is
+	c_system: EWG_C_SYSTEM 
 		once
 			create Result.make
 		end
-	
+
 end

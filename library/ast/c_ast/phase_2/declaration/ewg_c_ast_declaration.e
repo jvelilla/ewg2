@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -27,7 +27,7 @@ create
 
 feature {NONE} -- Initialisation
 
-	make (a_declarator: STRING; a_type: EWG_C_AST_TYPE; a_header_file_name: STRING) is
+	make (a_declarator: STRING; a_type: EWG_C_AST_TYPE; a_header_file_name: STRING) 
 			-- Create a new declaration with the
 			-- declarator `a_declarator' and the type resp. signature
 			-- `a_type'.
@@ -58,7 +58,7 @@ feature {ANY} -- Access
 			-- Name of header file the declaration comes from
 
 
-	hash_code: INTEGER is
+	hash_code: INTEGER
 			-- Hash code for current type.
 		do
 			Result := type.hash_code
@@ -66,7 +66,7 @@ feature {ANY} -- Access
 
 feature {ANY} -- Setting
 
-	set_type (a_type: EWG_C_AST_TYPE) is
+	set_type (a_type: EWG_C_AST_TYPE)
 			-- Make `a_type' the new `type'.
 		require
 			a_type_not_void: a_type /= Void
@@ -78,7 +78,7 @@ feature {ANY} -- Setting
 
 feature {ANY}
 
-	is_anonymous: BOOLEAN is
+	is_anonymous: BOOLEAN
 			-- Is this declaration anonymous?
 			-- I.e. Does it not have a declarator?
 		do
@@ -87,7 +87,7 @@ feature {ANY}
 			declarator_void_equals_anonymous: (declarator = Void) = Result
 		end
 
-	is_function_declaration: BOOLEAN is
+	is_function_declaration: BOOLEAN
 			-- Is this a function declaration ?
 		do
 			Result := False
@@ -95,7 +95,7 @@ feature {ANY}
 
 feature {ANY} -- Comparsion
 
-	is_same_declaration  (other: EWG_C_AST_DECLARATION): BOOLEAN is
+	is_same_declaration  (other: EWG_C_AST_DECLARATION): BOOLEAN
 			-- Two declarations are considered equal if their name is
 			-- equal.
 		local

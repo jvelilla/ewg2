@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -24,7 +24,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make is
+	make
 		do
 			make_config_wrapper_clause
 			create struct_wrapper_clause.make
@@ -36,7 +36,7 @@ feature {NONE} -- Initialization
 
 feature {ANY} -- Access
 
-	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN
 		local
 			skipped_type: EWG_C_AST_TYPE
 		do
@@ -56,7 +56,7 @@ feature {ANY} -- Access
 			end
 		end
 
-	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN
 		do
 			Result := function_wrapper_clause.accepts_declaration (a_declaration)
 		end
@@ -65,7 +65,7 @@ feature {ANY} -- Basic Routines
 
 	shallow_wrap_type (a_type: EWG_C_AST_TYPE;
 							 a_include_header_file_name: STRING;
-							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			skipped_type: EWG_C_AST_TYPE
 		do
@@ -95,7 +95,7 @@ feature {ANY} -- Basic Routines
 
 	shallow_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 									  a_include_header_file_name: STRING;
-									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		do
 			function_wrapper_clause.shallow_wrap_declaration (a_declaration,
 																			  a_include_header_file_name,
@@ -105,7 +105,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_type (a_type: EWG_C_AST_TYPE;
 						 a_include_header_file_name: STRING;
 						 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-						 a_config_system: EWG_CONFIG_SYSTEM) is
+						 a_config_system: EWG_CONFIG_SYSTEM)
 		local
 			skipped_type: EWG_C_AST_TYPE
 		do
@@ -140,7 +140,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 								  a_include_header_file_name: STRING;
 								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-								  a_config_system: EWG_CONFIG_SYSTEM) is
+								  a_config_system: EWG_CONFIG_SYSTEM)
 		do
 			function_wrapper_clause.deep_wrap_declaration (a_declaration,
 																		  a_include_header_file_name,
@@ -150,14 +150,14 @@ feature {ANY} -- Basic Routines
 
 feature {NONE}
 
-	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING is
+	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING
 		do
 				check
 					dead_end: False
 				end
 		end
 
-	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING is
+	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING 
 		do
 				check
 					dead_end: False

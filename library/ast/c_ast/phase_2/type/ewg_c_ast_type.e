@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -33,7 +33,7 @@ inherit
 
 feature {NONE}
 
-	make (a_name: STRING; a_header_file_name: STRING) is
+	make (a_name: STRING; a_header_file_name: STRING)
 			-- Make a new c type with the name `a_name',
 			-- that was found in header `a_header_file_name'.
 			-- Name may be `Void' in which case the type is
@@ -80,7 +80,7 @@ feature {ANY} -- Basic Queries
 
 feature {ANY} -- Basic Commands
 
-	set_name (a_name: STRING) is
+	set_name (a_name: STRING)
 			-- Make `a_name' the new `name' of `Current'.
 		require
 			a_name_not_void: a_name /= Void
@@ -92,7 +92,7 @@ feature {ANY} -- Basic Commands
 			non_anonymous: not is_anonymous
 		end
 
-	set_anonymous is
+	set_anonymous
 			-- Make type anonymous.
 		do
 			name := Void
@@ -100,7 +100,7 @@ feature {ANY} -- Basic Commands
 			anonymous: is_anonymous
 		end
 
-	set_header_file_name (a_header_file_name: STRING) is
+	set_header_file_name (a_header_file_name: STRING)
 			-- Set 'header_file_name' to be `a_header_file_name'.
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
@@ -109,7 +109,7 @@ feature {ANY} -- Basic Commands
 		end
 
 
-	set_closest_alias_type (a_closest_alias_type: EWG_C_AST_ALIAS_TYPE) is
+	set_closest_alias_type (a_closest_alias_type: EWG_C_AST_ALIAS_TYPE)
 		require
 			a_closest_alias_type_better: closest_alias_type = Void or else
 				closest_alias_type_quality > a_closest_alias_type.number_of_pointer_or_arrays_between_current_and_type (Current)
@@ -125,7 +125,7 @@ feature {ANY} -- Basic Commands
 feature {ANY} -- Declaration Queries
 
 
-	skip_wrapper_irrelevant_types: EWG_C_AST_TYPE is
+	skip_wrapper_irrelevant_types: EWG_C_AST_TYPE 
 			-- Skip types that are not relevant for wrapping such as
 			-- "consts" "aliases", but sometimes also "arrays" and
 			-- "pointers"
@@ -136,7 +136,7 @@ feature {ANY} -- Declaration Queries
 			end
 		end
 
-	can_be_wrapped: BOOLEAN is
+	can_be_wrapped: BOOLEAN
 			-- Can `Current' type be wrapped by EWG?  Note that primitive
 			-- types (such as 'int') cannot be wrapped, but they can be
 			-- mapped nativly onto Eiffel types anyway.
@@ -147,7 +147,7 @@ feature {ANY} -- Declaration Queries
 				is_callback
 		end
 
-	has_built_in_wrapper: BOOLEAN is
+	has_built_in_wrapper: BOOLEAN
 			-- Does `Current' have a built in wrapper?
 			-- This is for example the case for the type 'int' which
 			-- maps nativly to INTEGER.
@@ -156,7 +156,7 @@ feature {ANY} -- Declaration Queries
 			Result := not based_type_recursive.is_composite_data_type
 		end
 
-	has_closest_alias_type: BOOLEAN is
+	has_closest_alias_type: BOOLEAN
 			-- Does `Current' have a closest alias type?
 		do
 			Result := closest_alias_type /= Void
@@ -164,7 +164,7 @@ feature {ANY} -- Declaration Queries
 			definition: Result = (closest_alias_type /= Void)
 		end
 
-	has_perfect_alias_type: BOOLEAN is
+	has_perfect_alias_type: BOOLEAN
 			-- Is `closest_alias_type' not `Void' and then
 			-- is also an alias with no pointer
 			-- or array indirections ?
@@ -176,7 +176,7 @@ feature {ANY} -- Declaration Queries
 								  closest_alias_type.has_type_as_base_with_no_pointer_or_array_types_inbetween_indirect (Current))
 		end
 
-	is_anonymous: BOOLEAN is
+	is_anonymous: BOOLEAN
 			-- Is this an anonymous type?
 			-- It is anonymous if it does not have a name.
 			-- Otherwise it is considered to be "named".
@@ -189,7 +189,7 @@ feature {ANY} -- Declaration Queries
 			Result := name = Void
 		end
 
-	is_named_recursive: BOOLEAN is
+	is_named_recursive: BOOLEAN
 			-- Is this type named, or any of it's base types ?
 		do
 			if not is_anonymous then
@@ -199,7 +199,7 @@ feature {ANY} -- Declaration Queries
 
 feature
 
-	skip_consts_and_aliases: EWG_C_AST_TYPE is
+	skip_consts_and_aliases: EWG_C_AST_TYPE
 			-- If `Current' is of type EWG_C_AST_CONST_TYPE or EWG_C_AST_ALIAS_TYPE,
 			-- return the first non alias and non const base, otherwise `Current'
 			-- TODO: rename to `skip_const_and_alias_types'
@@ -209,7 +209,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	skip_aliases: EWG_C_AST_TYPE is
+	skip_aliases: EWG_C_AST_TYPE
 			-- If `Current' is of type EWG_C_AST_ALIAS_TYPE,
 			-- return the first non alias base, otherwise `Current'
 			-- TODO: rename to `skip_alias_types'
@@ -219,7 +219,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	skip_consts: EWG_C_AST_TYPE is
+	skip_consts: EWG_C_AST_TYPE
 			-- If `Current' is of type EWG_C_AST_CONST_TYPE,
 			-- return the first non const base, otherwise `Current'
 			-- TODO: rename to `skip_const_types'
@@ -230,7 +230,7 @@ feature
 		end
 
 
-	skip_consts_and_pointers: EWG_C_AST_TYPE is
+	skip_consts_and_pointers: EWG_C_AST_TYPE
 			-- If `Current' is of type EWG_C_AST_CONST_TYPE or EWG_C_AST_POINTER_TYPE,
 			-- return the first non const and non pointer base, otherwise `Current'
 			-- TODO: rename to `skip_const_and_pointer_types'
@@ -240,7 +240,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	skip_const_pointer_and_array_types: EWG_C_AST_TYPE is
+	skip_const_pointer_and_array_types: EWG_C_AST_TYPE
 			-- If `Current' is of type EWG_C_AST_CONST_TYPE,
 			-- EWG_C_AST_POINTER_TYPE, or EWG_C_AST_ARRAY_TYPE, return
 			-- the first non const, non pointer, and non array type,
@@ -251,7 +251,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	skip_consts_aliases_and_arrays: EWG_C_AST_TYPE is
+	skip_consts_aliases_and_arrays: EWG_C_AST_TYPE
 			-- If `Current' is of type EWG_C_AST_CONST_TYPE, EWG_C_AST_ALIAS_TYPE or
 			-- EWG_C_AST_ARRAY_TYPE return the first non const, non alias, non array
 			-- base, otherwise `Current'
@@ -261,7 +261,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	skip_consts_aliases_and_pointers: EWG_C_AST_TYPE is
+	skip_consts_aliases_and_pointers: EWG_C_AST_TYPE
 			-- If `Current' is of type EWG_C_AST_CONST_TYPE, EWG_C_AST_ALIAS_TYPE or
 			-- EWG_C_AST_POINTER_TYPE return the first non const, non alias, non array
 			-- base, otherwise `Current'
@@ -271,7 +271,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	based_type_recursive: EWG_C_AST_TYPE is
+	based_type_recursive: EWG_C_AST_TYPE
 			-- If `Current' is not a based type return `Current'.
 			-- if `Current' is a based type return `base.based_type_recursive'.
 			-- I.e. return the type that stands at the end of the chain.
@@ -284,7 +284,7 @@ feature
 			based_implies_result_is_end_of_chain: -- TODO
 		end
 
-	corresponding_eiffel_type: STRING is
+	corresponding_eiffel_type: STRING
 			-- Returns a string that contains the Eiffel
 			-- type name which corresponds with this C type.
 			-- TODO: make feature deferred
@@ -293,7 +293,7 @@ feature
 			Result := "POINTER"
 		end
 
-	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE] is
+	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE]
 			-- List of all types directly nested by `Current'.
 			-- A nested type can be for example: function parameter type
 			-- function return type, struct/union member or alias base.
@@ -303,7 +303,7 @@ feature
 			result_has_no_void: not Result.has (Void)
 		end
 
-	total_pointer_and_array_indirections: INTEGER is
+	total_pointer_and_array_indirections: INTEGER
 			-- Number of total pointer and array indirections
 		do
 			Result := 0
@@ -311,7 +311,7 @@ feature
 			result_greater_equal_zero: Result >= 0
 		end
 
-	total_pointer_indirections: INTEGER is
+	total_pointer_indirections: INTEGER
 			-- Number of total pointer indirections
 		do
 			Result := 0
@@ -319,7 +319,7 @@ feature
 			result_greater_equal_zero: Result >= 0
 		end
 
-	conforms_to_void_pointer_type: BOOLEAN is
+	conforms_to_void_pointer_type: BOOLEAN
 			-- Does `Current' conform to "void*" (`c_system.types.void_pointer_type')?
 			-- I.e. can it be cast to one?
 		do
@@ -333,7 +333,7 @@ feature
 
 feature {ANY} -- Comparsion
 
-	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN is
+	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
 			-- Is `Current' the same type as `other'?
 			-- Comparsion is based on the premise that
 			-- nested types can be compared via its
@@ -346,7 +346,7 @@ feature {ANY} -- Comparsion
 			symmetric: Result implies other.is_same_type (Current)
 		end
 
-	eiffel_compatible_type: EWG_C_AST_TYPE is
+	eiffel_compatible_type: EWG_C_AST_TYPE
 			-- Returns either `Current' or if `Current' is a problematic type
 			-- to wrap in Eiffel (such as anonymous callbacks), return a compatible
 			-- type (such as "void*"). Compatible means that `Current' is assignable
@@ -366,7 +366,7 @@ feature {ANY} -- Comparsion
 
 feature {ANY} -- Assertion helpers
 
-	is_array_type: BOOLEAN is
+	is_array_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_ARRAY_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -375,7 +375,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_const_type: BOOLEAN is
+	is_const_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_CONST_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -384,7 +384,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_pointer_type: BOOLEAN is
+	is_pointer_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_POINTER_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -393,7 +393,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_alias_type: BOOLEAN is
+	is_alias_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_ALIAS_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -402,7 +402,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_function_type: BOOLEAN is
+	is_function_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_FUNCTION_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -411,7 +411,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_struct_type: BOOLEAN is
+	is_struct_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_STRUCT_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -420,7 +420,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_enum_type: BOOLEAN is
+	is_enum_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_ENUM_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -429,7 +429,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_union_type: BOOLEAN is
+	is_union_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_UNION_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -438,7 +438,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_composite_type: BOOLEAN is
+	is_composite_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_COMPOSITE_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -447,7 +447,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_composite_data_type: BOOLEAN is
+	is_composite_data_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_COMPOSITE_DATA_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -456,7 +456,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_simple_type: BOOLEAN is
+	is_simple_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_SIMPLE_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -465,7 +465,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_primitive_type: BOOLEAN is
+	is_primitive_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_PRIMITIVE_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -474,12 +474,12 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_eiffel_object_type: BOOLEAN is
+	is_eiffel_object_type: BOOLEAN
 		do
 			Result := False
 		end
 
-	is_based_type: BOOLEAN is
+	is_based_type: BOOLEAN
 			-- Is `Current' of type EWG_C_AST_BASED_TYPE?
 			-- Note: This is just a shortcut, which I think
 			-- is justified since this C AST is _very_ static
@@ -488,7 +488,7 @@ feature {ANY} -- Assertion helpers
 			Result := False
 		end
 
-	is_callback: BOOLEAN is
+	is_callback: BOOLEAN
 			-- Is `Current' a pointer to a function?
 			-- This routine should be polymorph, but
 			-- due to a SE (v1.1) bug, it's not ):
@@ -505,7 +505,7 @@ feature {ANY} -- Assertion helpers
 			end
 		end
 
-	is_char_pointer_type: BOOLEAN is
+	is_char_pointer_type: BOOLEAN
 			-- Is the current type a pointer to char ?
 			-- (Note aliases and consts are ignored)
 		do
@@ -514,7 +514,7 @@ feature {ANY} -- Assertion helpers
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) is
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR)
 			-- Process `Current' using `a_processor'.
 		require
 			a_processor_not_void: a_processor /= Void
@@ -526,7 +526,7 @@ feature
 		-- TODO: For some reason se 1.0 on windows requires DS_HASH_SET here,
 		-- even though DS_SPARSE_CONTAINER should be sufficient
 
-	hash_code: INTEGER is
+	hash_code: INTEGER
 			-- Hash code for current type.
 			-- Implemented via the `hash_code' of `hash_string'.
 		local
@@ -544,13 +544,13 @@ feature
 			hash_hash_code_cached: has_hash_code_cached
 		end
 
-	hash_string: STRING is
+	hash_string: STRING
 		do
 			create Result.make (20)
 			append_hash_string_to_string (Result)
 		end
 
-	append_hash_string_to_string (a_string: STRING) is
+	append_hash_string_to_string (a_string: STRING)
 			-- Append string that serves as source for the hash code of the current type.
 		require
 			a_string_not_void: a_string /= Void
@@ -571,7 +571,7 @@ feature
 			end
 		end
 
-	append_anonymous_hash_string_to_string (a_string: STRING) is
+	append_anonymous_hash_string_to_string (a_string: STRING)
 			-- Append string that serves as source for the hash code of the current type,
 			-- if the current type is anonymous. This feature has to be implemented
 			-- in an adequate way by descendants.
@@ -581,7 +581,7 @@ feature
 		deferred
 		end
 
-	append_non_anonymous_hash_string_to_string (a_string: STRING) is
+	append_non_anonymous_hash_string_to_string (a_string: STRING)
 			-- Append string that serves as source for the hash code of the current type,
 			-- if the current type is named
 		require
@@ -601,16 +601,16 @@ feature {NONE} -- Implementation
 
 feature {NONE} -- Implementation Constants
 
-	Default_declaration_without_declarator_size: INTEGER is 12
+	Default_declaration_without_declarator_size: INTEGER = 12
 			-- Default STRING size for `declaration_without_declarator'
 
-	Default_declaration_size: INTEGER is 17
+	Default_declaration_size: INTEGER = 17
 			-- Default STRING size for `declaration'
 
-	Default_cast_size: INTEGER is 12
+	Default_cast_size: INTEGER = 12
 			-- Default STRING size for `cast'
 
-	Default_hash_string_cache_size: INTEGER is 30
+	Default_hash_string_cache_size: INTEGER = 30
 			-- Default STRING size for `hash_string'
 
 invariant

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -25,7 +25,7 @@ create
 
 feature -- Declaring
 
-	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) is
+	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) 
 		do
 			reset
 			declarator := a_declarator

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -14,7 +14,7 @@ class EWG_UNKNOWN_WRAPPER_TYPE_ERROR
 inherit
 
 	UT_ERROR
-	
+
 	EWG_CONFIG_ELEMENT_NAMES
 		export {NONE} all end
 
@@ -27,7 +27,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (an_element: XM_ELEMENT; a_position: XM_POSITION) is
+	make (an_element: XM_ELEMENT; a_position: XM_POSITION)
 			-- Create an error reporting that the value of the attribute "type"
 			-- in the "wrapper" elment `an_element' is unknown.
 		require
@@ -44,10 +44,10 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	default_template: STRING is "wrapper type name '$1' in wrapper-element is unknown $2"
+	default_template: STRING = "wrapper type name '$1' in wrapper-element is unknown $2"
 			-- Default template used to built the error message
 
-	code: STRING is "EWG0004"
+	code: STRING = "EWG0004"
 			-- Error code
 
 end

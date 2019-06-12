@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -33,7 +33,7 @@ inherit
 
 feature
 
-	make (a_header_file_name: STRING) is
+	make (a_header_file_name: STRING) 
 			-- Create a new scanner.
 			-- `a_header_file_name' will only be used until
 			-- the first header file name directive has been found.
@@ -69,7 +69,7 @@ feature {ANY} -- Status report
 
 feature {ANY} -- Status setting
 
-	enable_msc_extensions is
+	enable_msc_extensions
 			-- Scanner will recognize and report Visual C specific keywords.
 			-- Note that turning on these extensions should only be used
 			-- for header really meant to be parsed by Visual C.
@@ -86,7 +86,7 @@ feature {ANY} -- Status setting
 
 feature {ANY}
 
-	read_token is
+	read_token
 		do
 			if position - error_handler.current_task_ticks > 20 then
 				error_handler.set_ticks (position)
@@ -96,7 +96,7 @@ feature {ANY}
 
 feature {NONE} -- Debug
 
-	print_last_token is
+	print_last_token
 			-- Print to standard error debug information
 			-- about the last token read. Can be redefined
 			-- in descendant classes to print more information.
@@ -135,7 +135,7 @@ feature {NONE} -- Debug
 
 feature {NONE}
 
-	is_type_name_reporting_enabled: BOOLEAN is
+	is_type_name_reporting_enabled: BOOLEAN
 			-- Is TOK_TYPE_NAME reporting turned on?
 			-- NOTE: `is_type_name_reporting = True' does not mean
 			-- that any identifier will be reported as TOK_TYPE_NAME.
@@ -163,7 +163,7 @@ feature {NONE}
 			-- we need to remember for which scope type name reporting is
 			-- enabled and for which it isn't.
 
-	is_type_name (a_token: STRING): BOOLEAN is
+	is_type_name (a_token: STRING): BOOLEAN
 			-- Has `a_token' been declared to be a type name?
 			-- If `True' the lexer will report tokens that would
 			-- otherwise be reported as TOK_IDENTIFIER, as TOK_TYPE_NAME
@@ -191,13 +191,13 @@ feature {NONE}
 	msc_declspec_bracket_counter: INTEGER
 			-- Bracket counter for msc __declspec (...) constructs.
 
-	INITIAL: INTEGER is
+	INITIAL: INTEGER
 			-- Code for the scanners start condition.
 			-- Will be effected by C_SCANNER.
 		deferred
 		end
 
-	SC_IMPL: INTEGER is
+	SC_IMPL: INTEGER
 			-- Code for the scanners impementation condition.
 			-- Will be effected by C_SCANNER.
 		deferred
@@ -205,11 +205,11 @@ feature {NONE}
 
 feature {NONE}
 
-	error_handler: EWG_ERROR_HANDLER is
+	error_handler: EWG_ERROR_HANDLER
 		deferred
 		end
 
-	set_header_line_number (a_line_number: INTEGER) is
+	set_header_line_number (a_line_number: INTEGER)
 			-- Make `a_line_number' the new `last_header_line_number' of
 			-- `Current'.
 		require
@@ -218,7 +218,7 @@ feature {NONE}
 			last_header_line_numer := a_line_number
 		end
 
-	set_header_file_name (a_file_name: STRING) is
+	set_header_file_name (a_file_name: STRING)
 			-- Make `a_file_name' the new `last_header_file_name' of
 			-- `Current'.
 		require
@@ -227,7 +227,7 @@ feature {NONE}
 			last_header_file_name := file_system.pathname_from_file_system (a_file_name, unix_file_system)
 		end
 
-	report_type_or_identifier (a_text: STRING) is
+	report_type_or_identifier (a_text: STRING)
 			-- Decide if `a_text' is either a TOK_IDENTIFIER or
 			-- a TOK_TYPE_NAME, and report the right token type to the parser
 			-- (together with `a_text' as it's value)
@@ -256,7 +256,7 @@ feature {NONE}
 			last_string_value := a_text
 		end
 
-	push_reporting_type_name_scope is
+	push_reporting_type_name_scope
 			-- Add another type name scope on top of the type name scope stack.
 			-- Make the newly added scope report type names.
 		do
@@ -268,7 +268,7 @@ feature {NONE}
 			-- `type_name_scope_stack.count' increased by one
 		end
 
-	push_non_reporting_type_name_scope is
+	push_non_reporting_type_name_scope
 			-- Add another type name scope on top of the type name scope stack.
 			-- Make the newly added scope not report type names.
 		do
@@ -280,7 +280,7 @@ feature {NONE}
 			-- `type_name_scope_stack.count' increased by one
 		end
 
-	pop_type_name_scope is
+	pop_type_name_scope
 			-- Remove the top type name scope of the type name scope stack.
 		require
 			type_name_scope_stack_not_empty: type_name_scope_stack.count > 0
@@ -298,7 +298,7 @@ feature {NONE}
 			-- `type_name_scope_stack.count' decreased by one
 		end
 
-	disable_type_name_reporting_for_this_scope is
+	disable_type_name_reporting_for_this_scope
 			-- Disable reporting of TOK_TYPE_NAME for the lifetime of the
 			-- stacks top type name scope.
 		require
@@ -310,7 +310,7 @@ feature {NONE}
 			type_name_scope_stack.replace (False)
 		end
 
-	enable_type_name_reporting_for_this_scope is
+	enable_type_name_reporting_for_this_scope
 			-- Enable reporting of TOK_TYPE_NAME for the lifetime of the
 			-- stacks top type name scope.
 		require
@@ -322,7 +322,7 @@ feature {NONE}
 			type_name_scope_stack.replace (True)
 		end
 
-	enable_implementation_mode is
+	enable_implementation_mode
 			-- Mark function body beginning.
 			-- Scanner will cease to report tokens except brackets.
 		require
@@ -336,7 +336,7 @@ feature {NONE}
 			implementation_bracket_counter_is_one: implementation_bracket_counter = 1
 		end
 
-	disable_implementation_mode is
+	disable_implementation_mode
 			-- Mark function body end.
 			-- Scanner will report all tokens again.
 		require

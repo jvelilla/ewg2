@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -18,7 +18,7 @@ inherit
 
 feature -- Status
 
-	can_be_printed (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	can_be_printed (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN 
 		require
 			a_declaration_not_void: a_declaration /= Void
 		do
@@ -29,7 +29,7 @@ feature -- Status
 			end
 		end
 
-	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN is
+	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN
 		require
 			a_type_not_void: a_type /= Void
 			a_declarator_not_void: a_declarator /= Void
@@ -39,7 +39,7 @@ feature -- Status
 
 feature -- Declaring
 
-	print_declaration (a_declaration: EWG_C_AST_DECLARATION) is
+	print_declaration (a_declaration: EWG_C_AST_DECLARATION)
 			-- Print the declaration `a_declaration'.
 		require
 			a_declaration_not_void: a_declaration /= Void
@@ -52,7 +52,7 @@ feature -- Declaring
 			end
 		end
 
-	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) is
+	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING)
 			-- Print a declaration declaring `a_declarator' to be of type `a_type'.
 		require
 			a_type_not_void: a_type /= Void

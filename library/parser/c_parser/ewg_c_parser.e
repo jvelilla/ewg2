@@ -1,9 +1,10 @@
-indexing
+note
 	description: "Parse type definitions from a C header file"
 	status: "See notice at end of class"
 	author: "Based on http://www.lysator.liu.se/c"
 	date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
 	revision: "$Revision: 3 $"
+	info: "Based on http://www.lysator.liu.se/c"
 
 class EWG_C_PARSER
 
@@ -276,7 +277,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -288,7 +289,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -300,7 +301,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -314,7 +315,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2)
 			yyval2.prepend ("(")
 			yyval2.append_character (')')
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
@@ -327,7 +328,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -342,7 +343,7 @@ end
 			yyval2.append_character ('[')
 			yyval2.append_string (yyvs2.item (yyvsp2))
 			yyval2.append_character (']')
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp2 := yyvsp2 -1
@@ -357,7 +358,7 @@ end
 
 			yyval2 := yyvs2.item (yyvsp2)
 			yyval2.append_string ("()")
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
@@ -373,7 +374,7 @@ end
 			yyval2.append_character ('(')
 			yyval2.append_string (yyvs2.item (yyvsp2))
 			yyval2.append_character (')')
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp2 := yyvsp2 -1
@@ -389,7 +390,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('.')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -405,7 +406,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -419,7 +420,7 @@ end
 
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
@@ -433,7 +434,7 @@ end
 
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
@@ -446,7 +447,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -460,7 +461,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character (',')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -474,7 +475,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -487,7 +488,7 @@ end
 
 			yyval2 := clone (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
@@ -501,7 +502,7 @@ end
 
 			yyval2 := clone (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
@@ -515,7 +516,7 @@ end
 
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
@@ -529,7 +530,7 @@ end
 
 			yyval2 := clone (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
@@ -545,7 +546,7 @@ end
 			yyval2.append_character ('(')
 			yyval2.append_string (yyvs2.item (yyvsp2))
 			yyval2.append_character (')')
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp2 := yyvsp2 -1
@@ -559,7 +560,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone ("&")
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp2 := yyvsp2 + 1
@@ -580,7 +581,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone ("*")
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp2 := yyvsp2 + 1
@@ -601,7 +602,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone ("+")
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp2 := yyvsp2 + 1
@@ -622,7 +623,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone ("-")
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp2 := yyvsp2 + 1
@@ -643,7 +644,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone ("~")
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp2 := yyvsp2 + 1
@@ -664,7 +665,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone ("!")
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp2 := yyvsp2 + 1
@@ -685,7 +686,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -700,7 +701,7 @@ end
 			yyval2.prepend ("(")
 			yyval2.append_character (')')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp2 := yyvsp2 -1
@@ -714,7 +715,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -728,7 +729,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('*')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -744,7 +745,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('/')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -760,7 +761,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('%%')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -774,7 +775,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -788,7 +789,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('+')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -804,7 +805,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('-')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -818,7 +819,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -832,7 +833,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -847,7 +848,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -860,7 +861,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -874,7 +875,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('<')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -890,7 +891,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('>')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -906,7 +907,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -921,7 +922,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -934,7 +935,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -948,7 +949,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -963,7 +964,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -976,7 +977,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -990,7 +991,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('&')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -1004,7 +1005,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1018,7 +1019,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('^')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -1032,7 +1033,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1046,7 +1047,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character ('|')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -1060,7 +1061,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1074,7 +1075,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -1087,7 +1088,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1101,7 +1102,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -1114,7 +1115,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1130,7 +1131,7 @@ end
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_character (':')
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp2 := yyvsp2 -2
@@ -1144,7 +1145,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1158,7 +1159,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 2)
 			yyval2.append_string (yyvs2.item (yyvsp2 - 1))
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -2
@@ -1171,7 +1172,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone ("=")
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp2 := yyvsp2 + 1
@@ -1192,7 +1193,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1204,7 +1205,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1216,7 +1217,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1228,7 +1229,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1240,7 +1241,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1252,7 +1253,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1264,7 +1265,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1276,7 +1277,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1288,7 +1289,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1300,7 +1301,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := clone (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1312,7 +1313,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1326,7 +1327,7 @@ end
 			yyval2 := yyvs2.item (yyvsp2 - 1)
 			yyval2.append_character (',')
 			yyval2.append_string (yyvs2.item (yyvsp2))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
@@ -1340,7 +1341,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := yyvs2.item (yyvsp2)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines2.force (yyvs2, yyval2, yyvsp2)
@@ -1351,7 +1352,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 621")
 end
 
-create yyval16.make; yyval16.put_last (yyvs17.item (yyvsp17))
+create yyval16.make; yyval16.put_last (yyvs17.item (yyvsp17)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp16 := yyvsp16 + 1
@@ -1371,7 +1372,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 623")
 end
 
-yyval16 := yyvs16.item (yyvsp16); yyval16.put_last (yyvs17.item (yyvsp17))
+yyval16 := yyvs16.item (yyvsp16); yyval16.put_last (yyvs17.item (yyvsp17)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp17 := yyvsp17 -1
@@ -1383,7 +1384,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 629")
 end
 
-yyval17 := cl_attribute_asm
+yyval17 := cl_attribute_asm 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp17 := yyvsp17 + 1
@@ -1403,7 +1404,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 631")
 end
 
-yyval17 := cl_attribute_fastcall
+yyval17 := cl_attribute_fastcall 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp17 := yyvsp17 + 1
@@ -1423,7 +1424,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 633")
 end
 
-yyval17 := cl_attribute_based
+yyval17 := cl_attribute_based 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp17 := yyvsp17 + 1
@@ -1443,7 +1444,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 635")
 end
 
-yyval17 := cl_attribute_inline
+yyval17 := cl_attribute_inline 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp17 := yyvsp17 + 1
@@ -1463,7 +1464,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 637")
 end
 
-yyval17 := cl_attribute_cdecl
+yyval17 := cl_attribute_cdecl 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp17 := yyvsp17 + 1
@@ -1483,7 +1484,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 639")
 end
 
-yyval17 := cl_attribute_stdcall
+yyval17 := cl_attribute_stdcall 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp17 := yyvsp17 + 1
@@ -1505,7 +1506,7 @@ end
 
 			create yyval3.make (yyvs7.item (yyvsp7), new_declarator_list, last_header_file_name)
 			add_top_level_declaration (yyval3)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp3 := yyvsp3 + 1
@@ -1529,7 +1530,7 @@ end
 			update_type_names (yyvs7.item (yyvsp7), yyvs4.item (yyvsp4))
 			create yyval3.make (yyvs7.item (yyvsp7), yyvs4.item (yyvsp4), last_header_file_name)
 			add_top_level_declaration (yyval3)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp3 := yyvsp3 + 1
@@ -1551,7 +1552,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 658")
 end
 
-yyval7 := yyvs7.item (yyvsp7)
+yyval7 := yyvs7.item (yyvsp7) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
@@ -1563,7 +1564,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 660")
 end
 
-yyval7 := yyvs7.item (yyvsp7)
+yyval7 := yyvs7.item (yyvsp7) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp16 := yyvsp16 -1
@@ -1576,7 +1577,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 668")
 end
 
-create yyval7.make; yyval7.put_last (yyvs11.item (yyvsp11))
+create yyval7.make; yyval7.put_last (yyvs11.item (yyvsp11)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp7 := yyvsp7 + 1
@@ -1596,7 +1597,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 670")
 end
 
-yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs11.item (yyvsp11))
+yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs11.item (yyvsp11)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp11 := yyvsp11 -1
@@ -1608,7 +1609,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 672")
 end
 
-create yyval7.make; yyval7.put_last (yyvs10.item (yyvsp10))
+create yyval7.make; yyval7.put_last (yyvs10.item (yyvsp10)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp7 := yyvsp7 + 1
@@ -1628,7 +1629,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 674")
 end
 
-yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs10.item (yyvsp10))
+yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs10.item (yyvsp10)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp10 := yyvsp10 -1
@@ -1640,7 +1641,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 676")
 end
 
-create yyval7.make; yyval7.put_last (yyvs9.item (yyvsp9))
+create yyval7.make; yyval7.put_last (yyvs9.item (yyvsp9)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp7 := yyvsp7 + 1
@@ -1660,7 +1661,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 678")
 end
 
-yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs9.item (yyvsp9))
+yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs9.item (yyvsp9)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp9 := yyvsp9 -1
@@ -1672,7 +1673,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 683")
 end
 
-create yyval4.make; yyval4.put_last (yyvs5.item (yyvsp5))
+create yyval4.make; yyval4.put_last (yyvs5.item (yyvsp5)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp4 := yyvsp4 + 1
@@ -1692,7 +1693,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 685")
 end
 
-yyvs4.item (yyvsp4).put_last (yyvs5.item (yyvsp5)); yyval4 := yyvs4.item (yyvsp4)
+yyvs4.item (yyvsp4).put_last (yyvs5.item (yyvsp5)); yyval4 := yyvs4.item (yyvsp4) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
@@ -1705,7 +1706,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 690")
 end
 
-yyval5 := yyvs5.item (yyvsp5)
+yyval5 := yyvs5.item (yyvsp5) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines5.force (yyvs5, yyval5, yyvsp5)
@@ -1716,7 +1717,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 692")
 end
 
-yyval5 := yyvs5.item (yyvsp5)
+yyval5 := yyvs5.item (yyvsp5) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
@@ -1728,7 +1729,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 697")
 end
 
-create yyval11.make; yyval11.set_typedef
+create yyval11.make; yyval11.set_typedef 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp11 := yyvsp11 + 1
@@ -1748,7 +1749,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 699")
 end
 
-create yyval11.make; yyval11.set_extern
+create yyval11.make; yyval11.set_extern 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp11 := yyvsp11 + 1
@@ -1768,7 +1769,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 701")
 end
 
-create yyval11.make; yyval11.set_static
+create yyval11.make; yyval11.set_static 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp11 := yyvsp11 + 1
@@ -1788,7 +1789,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 703")
 end
 
-create yyval11.make; yyval11.set_auto
+create yyval11.make; yyval11.set_auto 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp11 := yyvsp11 + 1
@@ -1808,7 +1809,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 705")
 end
 
-create yyval11.make; yyval11.set_register
+create yyval11.make; yyval11.set_register 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp11 := yyvsp11 + 1
@@ -1828,7 +1829,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 707")
 end
 
-create yyval11.make; yyval11.set_inline
+create yyval11.make; yyval11.set_inline 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp11 := yyvsp11 + 1
@@ -1848,7 +1849,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 712")
 end
 
-yyval10 := yyvs10.item (yyvsp10)
+yyval10 := yyvs10.item (yyvsp10) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
@@ -1860,7 +1861,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 714")
 end
 
-yyval10 := yyvs10.item (yyvsp10)
+yyval10 := yyvs10.item (yyvsp10) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
@@ -1872,7 +1873,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 719")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -1892,7 +1893,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 721")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -1912,7 +1913,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 723")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -1932,7 +1933,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 725")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -1952,7 +1953,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 727")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -1972,7 +1973,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 729")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -1992,7 +1993,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 731")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -2012,7 +2013,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 733")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -2032,7 +2033,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 735")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -2052,7 +2053,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 737")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -2072,7 +2073,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 739")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -2092,7 +2093,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 741")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -2112,7 +2113,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 743")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -2132,7 +2133,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 748")
 end
 
-yyval10 := yyvs10.item (yyvsp10)
+yyval10 := yyvs10.item (yyvsp10) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines10.force (yyvs10, yyval10, yyvsp10)
@@ -2143,7 +2144,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 750")
 end
 
-yyval10 := yyvs10.item (yyvsp10)
+yyval10 := yyvs10.item (yyvsp10) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines10.force (yyvs10, yyval10, yyvsp10)
@@ -2154,7 +2155,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 752")
 end
 
-create yyval10.make (yyvs2.item (yyvsp2))
+create yyval10.make (yyvs2.item (yyvsp2)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp10 := yyvsp10 + 1
@@ -2179,7 +2180,7 @@ if yyvs12.item (yyvsp12) then
 		  else
 			create yyval10.make_union (yyvs2.item (yyvsp2), yyvs13.item (yyvsp13))
 		  end
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 7
 	yyvsp10 := yyvsp10 + 1
@@ -2207,7 +2208,7 @@ if yyvs12.item (yyvsp12) then
 		  else
 			create yyval10.make_union (Void, yyvs13.item (yyvsp13))
 		  end
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 6
 	yyvsp10 := yyvsp10 + 1
@@ -2234,7 +2235,7 @@ if yyvs12.item (yyvsp12) then
 		  else
 			create yyval10.make_union (yyvs2.item (yyvsp2), Void)
 		  end
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp10 := yyvsp10 + 1
@@ -2260,7 +2261,7 @@ if yyvs12.item (yyvsp12) then
 		  else
 			create yyval10.make_union (yyvs2.item (yyvsp2), Void)
 		  end
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp10 := yyvsp10 + 1
@@ -2281,7 +2282,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 788")
 end
 
-yyval12 := True
+yyval12 := True 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp12 := yyvsp12 + 1
@@ -2301,7 +2302,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 790")
 end
 
-yyval12 := False
+yyval12 := False 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp12 := yyvsp12 + 1
@@ -2321,7 +2322,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 795")
 end
 
-create yyval13.make; yyval13.put_last (yyvs3.item (yyvsp3))
+create yyval13.make; yyval13.put_last (yyvs3.item (yyvsp3)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp13 := yyvsp13 + 1
@@ -2341,7 +2342,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 797")
 end
 
-yyvs13.item (yyvsp13).put_last (yyvs3.item (yyvsp3)); yyval13 := yyvs13.item (yyvsp13)
+yyvs13.item (yyvsp13).put_last (yyvs3.item (yyvsp3)); yyval13 := yyvs13.item (yyvsp13) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp3 := yyvsp3 -1
@@ -2353,7 +2354,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 802")
 end
 
-create yyval3.make (yyvs7.item (yyvsp7), yyvs4.item (yyvsp4), last_header_file_name)
+create yyval3.make (yyvs7.item (yyvsp7), yyvs4.item (yyvsp4), last_header_file_name) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp3 := yyvsp3 + 1
@@ -2375,7 +2376,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 804")
 end
 
-create yyval3.make_without_declarator (yyvs7.item (yyvsp7), last_header_file_name)
+create yyval3.make_without_declarator (yyvs7.item (yyvsp7), last_header_file_name) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp3 := yyvsp3 + 1
@@ -2396,7 +2397,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 814")
 end
 
-yyval7 := yyvs7.item (yyvsp7)
+yyval7 := yyvs7.item (yyvsp7) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
@@ -2408,7 +2409,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 818")
 end
 
-yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs10.item (yyvsp10))
+yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs10.item (yyvsp10)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp10 := yyvsp10 -1
@@ -2420,7 +2421,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 820")
 end
 
-create yyval7.make; yyval7.put_last (yyvs10.item (yyvsp10))
+create yyval7.make; yyval7.put_last (yyvs10.item (yyvsp10)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp7 := yyvsp7 + 1
@@ -2440,7 +2441,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 822")
 end
 
-yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs9.item (yyvsp9))
+yyval7 := yyvs7.item (yyvsp7); yyval7.put_first (yyvs9.item (yyvsp9)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp9 := yyvsp9 -1
@@ -2452,7 +2453,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 824")
 end
 
-create yyval7.make; yyval7.put_last (yyvs9.item (yyvsp9))
+create yyval7.make; yyval7.put_last (yyvs9.item (yyvsp9)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp7 := yyvsp7 + 1
@@ -2476,7 +2477,7 @@ end
 			if yyvs5.item (yyvsp5) /= Void then
 				yyval4.put_last (yyvs5.item (yyvsp5))
 			end
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp4 := yyvsp4 + 1
@@ -2500,7 +2501,7 @@ end
 			if yyvs5.item (yyvsp5) /= Void then
 				yyvs4.item (yyvsp4).put_last (yyvs5.item (yyvsp5))
 			end
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
@@ -2513,7 +2514,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 848")
 end
 
-yyval5 := yyvs5.item (yyvsp5)
+yyval5 := yyvs5.item (yyvsp5) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyspecial_routines5.force (yyvs5, yyval5, yyvsp5)
@@ -2545,7 +2546,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 855")
 end
 
-yyval5 := yyvs5.item (yyvsp5)
+yyval5 := yyvs5.item (yyvsp5) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
@@ -2558,7 +2559,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 860")
 end
 
-create yyval10.make_enum (Void, yyvs13.item (yyvsp13))
+create yyval10.make_enum (Void, yyvs13.item (yyvsp13)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp10 := yyvsp10 + 1
@@ -2580,7 +2581,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 862")
 end
 
-create yyval10.make_enum (yyvs2.item (yyvsp2), yyvs13.item (yyvsp13))
+create yyval10.make_enum (yyvs2.item (yyvsp2), yyvs13.item (yyvsp13)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp10 := yyvsp10 + 1
@@ -2602,7 +2603,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 864")
 end
 
-create yyval10.make_enum (yyvs2.item (yyvsp2), Void)
+create yyval10.make_enum (yyvs2.item (yyvsp2), Void) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp10 := yyvsp10 + 1
@@ -2622,7 +2623,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 871")
 end
 
-yyval13 := yyvs13.item (yyvsp13)
+yyval13 := yyvs13.item (yyvsp13) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
@@ -2634,7 +2635,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 876")
 end
 
-create yyval13.make; yyval13.put_last (yyvs3.item (yyvsp3))
+create yyval13.make; yyval13.put_last (yyvs3.item (yyvsp3)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp13 := yyvsp13 + 1
@@ -2654,7 +2655,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 878")
 end
 
-yyvs13.item (yyvsp13).put_last (yyvs3.item (yyvsp3)); yyval13 := yyvs13.item (yyvsp13)
+yyvs13.item (yyvsp13).put_last (yyvs3.item (yyvsp3)); yyval13 := yyvs13.item (yyvsp13) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
@@ -2697,7 +2698,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 888")
 end
 
-yyval3 := new_enum_declaration (yyvs2.item (yyvsp2), last_header_file_name)
+yyval3 := new_enum_declaration (yyvs2.item (yyvsp2), last_header_file_name) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp3 := yyvsp3 + 1
@@ -2717,7 +2718,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 890")
 end
 
-yyval3 := new_enum_declaration (yyvs2.item (yyvsp2 - 1), last_header_file_name)
+yyval3 := new_enum_declaration (yyvs2.item (yyvsp2 - 1), last_header_file_name) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp3 := yyvsp3 + 1
@@ -2738,7 +2739,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 895")
 end
 
-create yyval9.make; yyval9.set_const
+create yyval9.make; yyval9.set_const 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp9 := yyvsp9 + 1
@@ -2758,7 +2759,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 897")
 end
 
-create yyval9.make; yyval9.set_volatile
+create yyval9.make; yyval9.set_volatile 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp9 := yyvsp9 + 1
@@ -2821,7 +2822,7 @@ end
 
 			create yyval5.make_with_pointers (yyvs6.item (yyvsp6), yyvs14.item (yyvsp14), last_header_file_name)
 			yyval5.direct_declarator.set_calling_convention_from_attribute_sequence (yyvs16.item (yyvsp16))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp5 := yyvsp5 + 1
@@ -2845,7 +2846,7 @@ end
 
 		  create yyval5.make_with_pointers (yyvs6.item (yyvsp6), yyvs14.item (yyvsp14), last_header_file_name)
 		  yyval5.direct_declarator.set_calling_convention_from_attribute_sequence (yyvs16.item (yyvsp16))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp5 := yyvsp5 + 1
@@ -2869,7 +2870,7 @@ end
 
 			create yyval5.make (yyvs6.item (yyvsp6), last_header_file_name)
 			yyval5.direct_declarator.set_calling_convention_from_attribute_sequence (yyvs16.item (yyvsp16))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp5 := yyvsp5 + 1
@@ -2910,7 +2911,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 929")
 end
 
-create yyval6.make_anonymous (yyvs5.item (yyvsp5))
+create yyval6.make_anonymous (yyvs5.item (yyvsp5)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp6 := yyvsp6 + 1
@@ -2931,7 +2932,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 931")
 end
 
-yyval6 := yyvs6.item (yyvsp6); yyval6.add_array_last (new_array_with_size (yyvs2.item (yyvsp2)));
+yyval6 := yyvs6.item (yyvsp6); yyval6.add_array_last (new_array_with_size (yyvs2.item (yyvsp2))); 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 6
 	yyvsp1 := yyvsp1 -4
@@ -2944,7 +2945,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 935")
 end
 
-yyval6 := yyvs6.item (yyvsp6); yyval6.add_array_last (new_array)
+yyval6 := yyvs6.item (yyvsp6); yyval6.add_array_last (new_array) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp1 := yyvsp1 -4
@@ -2956,7 +2957,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 937")
 end
 
-yyval6 := yyvs6.item (yyvsp6); yyval6.set_parameters (yyvs15.item (yyvsp15))
+yyval6 := yyvs6.item (yyvsp6); yyval6.set_parameters (yyvs15.item (yyvsp15)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 6
 	yyvsp1 := yyvsp1 -4
@@ -2969,7 +2970,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 939")
 end
 
-yyval6 := yyvs6.item (yyvsp6); yyval6.set_parameters (new_empty_elipsis_parameter_type_list)
+yyval6 := yyvs6.item (yyvsp6); yyval6.set_parameters (new_empty_elipsis_parameter_type_list) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 6
 	yyvsp1 := yyvsp1 -5
@@ -2981,7 +2982,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 941")
 end
 
-yyval6 := yyvs6.item (yyvsp6); yyval6.set_parameters (new_empty_elipsis_parameter_type_list)
+yyval6 := yyvs6.item (yyvsp6); yyval6.set_parameters (new_empty_elipsis_parameter_type_list) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp1 := yyvsp1 -4
@@ -2993,7 +2994,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 946")
 end
 
-create yyval14.make; yyval14.put_last (new_pointer)
+create yyval14.make; yyval14.put_last (new_pointer) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp14 := yyvsp14 + 1
@@ -3013,7 +3014,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 948")
 end
 
-create yyval14.make; yyval14.put_last (new_pointer_with_type_qualifier_list (yyvs8.item (yyvsp8)))
+create yyval14.make; yyval14.put_last (new_pointer_with_type_qualifier_list (yyvs8.item (yyvsp8))) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp14 := yyvsp14 + 1
@@ -3034,7 +3035,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 950")
 end
 
-yyval14 := yyvs14.item (yyvsp14); yyval14.put_first (new_pointer)
+yyval14 := yyvs14.item (yyvsp14); yyval14.put_first (new_pointer) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
@@ -3046,7 +3047,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 952")
 end
 
-yyval14 := yyvs14.item (yyvsp14); yyval14.put_first (new_pointer_with_type_qualifier_list (yyvs8.item (yyvsp8)))
+yyval14 := yyvs14.item (yyvsp14); yyval14.put_first (new_pointer_with_type_qualifier_list (yyvs8.item (yyvsp8))) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
@@ -3059,7 +3060,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 957")
 end
 
-create yyval8.make; yyval8.put_last (yyvs9.item (yyvsp9))
+create yyval8.make; yyval8.put_last (yyvs9.item (yyvsp9)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp8 := yyvsp8 + 1
@@ -3079,7 +3080,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 959")
 end
 
-yyval8 := yyvs8.item (yyvsp8); yyval8.put_last (yyvs9.item (yyvsp9))
+yyval8 := yyvs8.item (yyvsp8); yyval8.put_last (yyvs9.item (yyvsp9)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp9 := yyvsp9 -1
@@ -3091,7 +3092,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 964")
 end
 
-create yyval15.make (yyvs13.item (yyvsp13))
+create yyval15.make (yyvs13.item (yyvsp13)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp15 := yyvsp15 + 1
@@ -3111,7 +3112,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 966")
 end
 
-create yyval15.make_with_ellipsis (yyvs13.item (yyvsp13))
+create yyval15.make_with_ellipsis (yyvs13.item (yyvsp13)) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp15 := yyvsp15 + 1
@@ -3139,7 +3140,7 @@ end
 										yyvs3.item (yyvsp3).type_specifier.is_void
 			end
 			yyval13.put_last (yyvs3.item (yyvsp3))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp13 := yyvsp13 + 1
@@ -3164,7 +3165,7 @@ end
 				every_parameter_has_exactly_one_name: yyvs3.item (yyvsp3).declarators.count = 1
 			end
 			yyval13.put_last (yyvs3.item (yyvsp3))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
@@ -3177,7 +3178,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 991")
 end
 
-create yyval3.make_with_one_declarator (yyvs7.item (yyvsp7), yyvs5.item (yyvsp5), last_header_file_name)
+create yyval3.make_with_one_declarator (yyvs7.item (yyvsp7), yyvs5.item (yyvsp5), last_header_file_name) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp3 := yyvsp3 + 1
@@ -3199,7 +3200,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 993")
 end
 
-create yyval3.make_with_one_declarator (yyvs7.item (yyvsp7), yyvs5.item (yyvsp5), last_header_file_name)
+create yyval3.make_with_one_declarator (yyvs7.item (yyvsp7), yyvs5.item (yyvsp5), last_header_file_name) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp3 := yyvsp3 + 1
@@ -3221,7 +3222,7 @@ debug ("GEYACC")
 	std.error.put_line ("Executing parser user-code from file 'ewg_c_parser.y' at line 995")
 end
 
-create yyval3.make_with_one_declarator (yyvs7.item (yyvsp7), new_abstract_declarator (last_header_file_name), last_header_file_name)
+create yyval3.make_with_one_declarator (yyvs7.item (yyvsp7), new_abstract_declarator (last_header_file_name), last_header_file_name) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp3 := yyvsp3 + 1
@@ -3276,7 +3277,7 @@ debug ("GEYACC")
 end
 
 			yyval2 := c_code_from_specifier_qualifier_list (yyvs7.item (yyvsp7))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp2 := yyvsp2 + 1
@@ -3298,7 +3299,7 @@ end
 
 			yyval2 := c_code_from_specifier_qualifier_list (yyvs7.item (yyvsp7))
 			yyval2.append_string (yyvs5.item (yyvsp5).c_code)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 + 1
@@ -3321,7 +3322,7 @@ end
 
 			create yyval5.make_with_pointers (new_direct_abstract_declarator,
 							yyvs14.item (yyvsp14), last_header_file_name)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp5 := yyvsp5 + 1
@@ -3342,7 +3343,7 @@ debug ("GEYACC")
 end
 
 			create yyval5.make (yyvs6.item (yyvsp6), last_header_file_name)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
 	yyvsp5 := yyvsp5 + 1
@@ -3363,7 +3364,7 @@ debug ("GEYACC")
 end
 
 			create yyval5.make_with_pointers (yyvs6.item (yyvsp6), yyvs14.item (yyvsp14), last_header_file_name)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp5 := yyvsp5 + 1
@@ -3386,7 +3387,7 @@ end
 
 			create yyval5.make_with_pointers (yyvs6.item (yyvsp6), yyvs14.item (yyvsp14), last_header_file_name)
 			yyvs6.item (yyvsp6).set_calling_convention_from_attribute_sequence (yyvs16.item (yyvsp16))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp5 := yyvsp5 + 1
@@ -3410,7 +3411,7 @@ end
 
 			create yyval5.make_with_pointers (yyvs6.item (yyvsp6), yyvs14.item (yyvsp14), last_header_file_name)
 			yyvs6.item (yyvsp6).set_calling_convention_from_attribute_sequence (yyvs16.item (yyvsp16))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp5 := yyvsp5 + 1
@@ -3434,7 +3435,7 @@ end
 
 			create yyval5.make (yyvs6.item (yyvsp6), last_header_file_name)
 			yyvs6.item (yyvsp6).set_calling_convention_from_attribute_sequence (yyvs16.item (yyvsp16))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp5 := yyvsp5 + 1
@@ -3457,7 +3458,7 @@ end
 
 			create yyval5.make_with_pointers (new_direct_abstract_declarator,
 								 yyvs14.item (yyvsp14), last_header_file_name)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp5 := yyvsp5 + 1
@@ -3482,7 +3483,7 @@ end
 			check
 				is_abstract: yyval6.is_abstract
 			end
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp6 := yyvsp6 + 1
@@ -3505,7 +3506,7 @@ end
 
 			create yyval6.make_abstract
 			yyval6.add_array_last (new_array)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp6 := yyvsp6 + 1
@@ -3527,7 +3528,7 @@ end
 
 			create yyval6.make_abstract
 			yyval6.add_array_last (new_array_with_size (yyvs2.item (yyvsp2)))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp6 := yyvsp6 + 1
@@ -3550,7 +3551,7 @@ end
 
 			yyval6 := yyvs6.item (yyvsp6)
 			yyval6.add_array_last (new_array)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp1 := yyvsp1 -4
@@ -3564,7 +3565,7 @@ end
 
 			yyval6 := yyvs6.item (yyvsp6)
 			yyval6.add_array_last (new_array_with_size (yyvs2.item (yyvsp2)))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 6
 	yyvsp1 := yyvsp1 -4
@@ -3579,7 +3580,7 @@ end
 
 			create yyval6.make_abstract
 			yyval6.set_parameters (new_empty_elipsis_parameter_type_list)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp6 := yyvsp6 + 1
@@ -3601,7 +3602,7 @@ end
 
 			create yyval6.make_abstract
 			yyval6.set_parameters (yyvs15.item (yyvsp15))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp6 := yyvsp6 + 1
@@ -3624,7 +3625,7 @@ end
 
 			yyval6 := yyvs6.item (yyvsp6)
 			yyval6.set_parameters (new_empty_elipsis_parameter_type_list)
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp1 := yyvsp1 -4
@@ -3638,7 +3639,7 @@ end
 
 			yyval6 := yyvs6.item (yyvsp6)
 			yyval6.set_parameters (yyvs15.item (yyvsp15))
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 6
 	yyvsp1 := yyvsp1 -4
@@ -3947,7 +3948,7 @@ debug ("GEYACC")
 end
 
 			push_reporting_type_name_scope
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 0
 	yyvsp1 := yyvsp1 + 1
@@ -3974,7 +3975,7 @@ end
 				-- because there is no TOK_TYPE_NAME / TOK_IDENTIFIER
 				-- ambiguity in the global scope.
 			end
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 0
 	yyvsp1 := yyvsp1 + 1
@@ -3994,7 +3995,7 @@ debug ("GEYACC")
 end
 
 			pop_type_name_scope
-
+		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 0
 	yyvsp1 := yyvsp1 + 1
@@ -4034,8 +4035,19 @@ feature {NONE} -- Table templates
 
 	yytranslate_template: SPECIAL [INTEGER]
 			-- Template for `yytranslate'
+		local
+			an_array: ARRAY [INTEGER]
 		once
-			Result := yyfixed_array (<<
+			create an_array.make_filled (0, 0, 326)
+			yytranslate_template_1 (an_array)
+			yytranslate_template_2 (an_array)
+			Result := yyfixed_array (an_array)
+		end
+
+	yytranslate_template_1 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #1 of template for `yytranslate'.
+		do
+			yyarray_subcopy (an_array, <<
 			    0,    2,    2,    2,    2,    2,    2,    2,    2,    2,
 			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
 			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
@@ -4056,8 +4068,14 @@ feature {NONE} -- Table templates
 			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
 			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
 			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
+			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2, yyDummy>>,
+			1, 200, 0)
+		end
 
+	yytranslate_template_2 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #2 of template for `yytranslate'.
+		do
+			yyarray_subcopy (an_array, <<
 			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
 			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
 			    2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
@@ -4071,13 +4089,25 @@ feature {NONE} -- Table templates
 
 			   45,   46,   47,   48,   49,   50,   51,   52,   53,   54,
 			   55,   56,   57,   58,   59,   60,   61,   62,   63,   64,
-			   65,   66,   67,   68,   69,   70,   71, yyDummy>>)
+			   65,   66,   67,   68,   69,   70,   71, yyDummy>>,
+			1, 127, 200)
 		end
 
 	yyr1_template: SPECIAL [INTEGER]
 			-- Template for `yyr1'
+		local
+			an_array: ARRAY [INTEGER]
 		once
-			Result := yyfixed_array (<<
+			create an_array.make_filled (0, 0, 220)
+			yyr1_template_1 (an_array)
+			yyr1_template_2 (an_array)
+			Result := yyfixed_array (an_array)
+		end
+
+	yyr1_template_1 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #1 of template for `yyr1'.
+		do
+			yyarray_subcopy (an_array, <<
 			    0,  146,  146,  146,  146,  145,  145,  145,  145,  145,
 			  145,  145,  145,  147,  147,  144,  144,  144,  144,  144,
 			  144,  149,  149,  149,  149,  149,  149,  143,  143,  142,
@@ -4098,17 +4128,35 @@ feature {NONE} -- Table templates
 			  100,  100,  100,  100,  100,  123,  123,  123,  123,  104,
 			  104,  124,  124,  125,  125,  126,  126,  126,  156,  156,
 			  150,  150,  101,  101,  101,  101,  101,  101,  101,  102,
-			  102,  102,  102,  102,  102,  102,  102,  102,  153,  153,
+			  102,  102,  102,  102,  102,  102,  102,  102,  153,  153, yyDummy>>,
+			1, 200, 0)
+		end
 
+	yyr1_template_2 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #2 of template for `yyr1'.
+		do
+			yyarray_subcopy (an_array, <<
 			  153,  157,  157,  158,  159,  159,  160,  160,  161,  161,
 			  162,  163,  162,  164,  162,  165,  162,  166,  152,  154,
-			  151, yyDummy>>)
+			  151, yyDummy>>,
+			1, 21, 200)
 		end
 
 	yytypes1_template: SPECIAL [INTEGER]
 			-- Template for `yytypes1'
+		local
+			an_array: ARRAY [INTEGER]
 		once
-			Result := yyfixed_array (<<
+			create an_array.make_filled (0, 0, 358)
+			yytypes1_template_1 (an_array)
+			yytypes1_template_2 (an_array)
+			Result := yyfixed_array (an_array)
+		end
+
+	yytypes1_template_1 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #1 of template for `yytypes1'.
+		do
+			yyarray_subcopy (an_array, <<
 			    1,    1,    1,    2,    2,    2,    2,    2,    2,    2,
 			    3,    5,    6,    7,   14,   16,   17,    1,    1,    1,
 			    1,    2,    2,    8,    9,   14,    5,   16,    3,    7,
@@ -4129,8 +4177,14 @@ feature {NONE} -- Table templates
 			    2,    1,    2,    1,    1,    2,    2,    1,    1,    1,
 			    2,    2,    1,    1,    2,    2,    2,    2,    1,    1,
 			    1,    1,    1,    1,    1,    1,    2,    2,    2,    2,
-			    1,    1,    5,    5,    6,   14,   16,    1,    1,    1,
+			    1,    1,    5,    5,    6,   14,   16,    1,    1,    1, yyDummy>>,
+			1, 200, 0)
+		end
 
+	yytypes1_template_2 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #2 of template for `yytypes1'.
+		do
+			yyarray_subcopy (an_array, <<
 			    1,    1,    1,    1,    1,    1,    1,    2,    2,    2,
 			    2,    2,    2,    2,    2,    2,    2,    2,    1,    1,
 			    2,    3,   13,   13,    1,    1,    1,    1,    5,   14,
@@ -4147,7 +4201,8 @@ feature {NONE} -- Table templates
 			    1,   13,    3,    1,    1,    5,    4,    5,    1,    2,
 			    1,    2,    2,    2,    1,   15,    1,    1,    1,    1,
 			    1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
-			    1,    1,    2,    5,    1,    1,    1,    1,    1, yyDummy>>)
+			    1,    1,    2,    5,    1,    1,    1,    1,    1, yyDummy>>,
+			1, 159, 200)
 		end
 
 	yytypes2_template: SPECIAL [INTEGER]
@@ -4168,8 +4223,19 @@ feature {NONE} -- Table templates
 
 	yydefact_template: SPECIAL [INTEGER]
 			-- Template for `yydefact'
+		local
+			an_array: ARRAY [INTEGER]
 		once
-			Result := yyfixed_array (<<
+			create an_array.make_filled (0, 0, 358)
+			yydefact_template_1 (an_array)
+			yydefact_template_2 (an_array)
+			Result := yyfixed_array (an_array)
+		end
+
+	yydefact_template_1 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #1 of template for `yydefact'.
+		do
+			yyarray_subcopy (an_array, <<
 			  218,  165,    0,   77,   80,   82,   81,   79,   78,  158,
 			  209,  218,  218,  220,    0,  218,   75,  219,  218,  206,
 			  208,  152,  151,  166,  169,  167,    0,    0,  204,  220,
@@ -4190,8 +4256,14 @@ feature {NONE} -- Table templates
 			   16,  218,   19,    0,    0,    0,    0,    0,    0,    0,
 			    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
 			    0,    0,    0,    0,    0,    0,   12,   11,    0,   18,
-			  161,  218,  220,  220,  218,  218,  218,  177,    0,    0,
+			  161,  218,  220,  220,  218,  218,  218,  177,    0,    0, yyDummy>>,
+			1, 200, 0)
+		end
 
+	yydefact_template_2 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #2 of template for `yydefact'.
+		do
+			yyarray_subcopy (an_array, <<
 			  218,  164,    0,    0,  201,    0,   61,   71,   70,   69,
 			   68,   67,   66,   65,   64,   63,   62,    0,    0,  212,
 			  149,  145,    0,  147,    0,    0,  218,  218,  181,  218,
@@ -4208,7 +4280,8 @@ feature {NONE} -- Table templates
 			  142,  220,  128,    0,    0,  138,  220,  136,    0,   28,
 			   20,   58,   14,  220,    0,  220,    0,    0,  190,    0,
 			  122,  139,    0,    0,    0,  130,    0,  192,    0,  196,
-			  191,  121,  140,  137,  129,  193,  197,    0,    0, yyDummy>>)
+			  191,  121,  140,  137,  129,  193,  197,    0,    0, yyDummy>>,
+			1, 159, 200)
 		end
 
 	yydefgoto_template: SPECIAL [INTEGER]
@@ -4227,8 +4300,19 @@ feature {NONE} -- Table templates
 
 	yypact_template: SPECIAL [INTEGER]
 			-- Template for `yypact'
+		local
+			an_array: ARRAY [INTEGER]
 		once
-			Result := yyfixed_array (<<
+			create an_array.make_filled (0, 0, 358)
+			yypact_template_1 (an_array)
+			yypact_template_2 (an_array)
+			Result := yyfixed_array (an_array)
+		end
+
+	yypact_template_1 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #1 of template for `yypact'.
+		do
+			yyarray_subcopy (an_array, <<
 			  630,   28,  630, -32768, -32768, -32768, -32768, -32768, -32768, -32768,
 			 -32768,  790, 1070,  630,  471,   50,  434,  466,  650, -32768,
 			 -32768, -32768, -32768,   28, -32768, -32768,  272,   50, -32768,  630,
@@ -4249,8 +4333,14 @@ feature {NONE} -- Table templates
 			 -32768,  632, -32768,  242,  632,  632,  632,  632,  632,  632,
 			  632,  632,  632,  632,  632,  632,  632,  632,  632,  632,
 			  632,  632,  632,  313,  632,  604, -32768, -32768,  312, -32768,
-			 -32768,  482, -32768, -32768,  137,  194,   44, -32768,  238,  234,
+			 -32768,  482, -32768, -32768,  137,  194,   44, -32768,  238,  234, yyDummy>>,
+			1, 200, 0)
+		end
 
+	yypact_template_2 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #2 of template for `yypact'.
+		do
+			yyarray_subcopy (an_array, <<
 			  175, -32768,  303,  229, -32768,  -50, -32768, -32768, -32768, -32768,
 			 -32768, -32768, -32768, -32768, -32768, -32768, -32768,  632,  207, -32768,
 			  203, -32768,  193,  204,  216,  182, -32768, 1101, -32768,  533,
@@ -4267,7 +4357,8 @@ feature {NONE} -- Table templates
 			 -32768, 1214, -32768,   82,  632,   56,  109, -32768,   64, -32768,
 			 -32768, -32768, -32768, -32768,   63, -32768,   52,   34, -32768,   -4,
 			 -32768, -32768,  632,  283,  -24, -32768,   -3, -32768,  -37, -32768,
-			 -32768, -32768, -32768, -32768, -32768, -32768, -32768,    6, -32768, yyDummy>>)
+			 -32768, -32768, -32768, -32768, -32768, -32768, -32768,    6, -32768, yyDummy>>,
+			1, 159, 200)
 		end
 
 	yypgoto_template: SPECIAL [INTEGER]
@@ -4292,6 +4383,11 @@ feature {NONE} -- Table templates
 			create an_array.make_filled (0, 0, 1311)
 			yytable_template_1 (an_array)
 			yytable_template_2 (an_array)
+			yytable_template_3 (an_array)
+			yytable_template_4 (an_array)
+			yytable_template_5 (an_array)
+			yytable_template_6 (an_array)
+			yytable_template_7 (an_array)
 			Result := yyfixed_array (an_array)
 		end
 
@@ -4319,8 +4415,14 @@ feature {NONE} -- Table templates
 			 -188,  163,  195,  188,  187,  186, -185,  179,  178,  157,
 			 -185,  144,  144,  -95,  285, -187,  329,  340,   60, -187,
 			  197,  199,  229, -184,  284,  203,  343, -184,   68,  -95,
-			   26,  267,   65,  338,   64,  273,  234,    9,  298,  268,
+			   26,  267,   65,  338,   64,  273,  234,    9,  298,  268, yyDummy>>,
+			1, 200, 0)
+		end
 
+	yytable_template_2 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #2 of template for `yytable'.
+		do
+			yyarray_subcopy (an_array, <<
 			  177,  176,  271,  233,  144,   38,   40,  306,   17,  330,
 			 -183,  305,  232,   29, -183,  227,  231,  320,  144,  220,
 			  195,  115,  308,  278,  307,  275,  169,  295,  185,  296,
@@ -4341,8 +4443,14 @@ feature {NONE} -- Table templates
 			  244,  337,    1,  241,  243,  240,   22,   21,  339,  279,
 			  290,  321,  319,  344,  324,  139,  353,  107,    0,    0,
 			  346,    0,  348,  106,  105,  104,  103,  102,  101,    0,
-			 -133, -133, -133, -133, -133, -133, -133, -133, -133,  141,
+			 -133, -133, -133, -133, -133, -133, -133, -133, -133,  141, yyDummy>>,
+			1, 200, 200)
+		end
 
+	yytable_template_3 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #3 of template for `yytable'.
+		do
+			yyarray_subcopy (an_array, <<
 			  316,  107, -123, -133,    0,    0,    0,  106,  105,  104,
 			  103,  102,  101,    0,    0, -133,    0, -133,    0,    0,
 			    0,    0,    0,  141,    0,    0,    0, -123, -123, -123,
@@ -4363,8 +4471,14 @@ feature {NONE} -- Table templates
 			    0,    1,    0,    0,   44,    0,    0,    0,    0,  -89,
 			  -89,  -89,  -89,  -89,  -89,  -89,  -89,  -89,    0,    0,
 			  -89,    0,  -89,    0,   49,   48,   47,   46,   45,    0,
-			    0, -135,    0,    0,    0,    0,  -89,   22,   21,    8,
+			    0, -135,    0,    0,    0,    0,  -89,   22,   21,    8, yyDummy>>,
+			1, 200, 400)
+		end
 
+	yytable_template_4 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #4 of template for `yytable'.
+		do
+			yyarray_subcopy (an_array, <<
 			    7,    6,    5,    4,    3,  227, -182,  113,  112,  111,
 			  110,    0,  109,  108,    0,    0,   44,    0,    0,    0,
 			    0,  -91,  -91,  -91,  -91,  -91,  -91,  -91,  -91,  -91,
@@ -4385,8 +4499,14 @@ feature {NONE} -- Table templates
 			    0,  132,    0,  106,  105,  104,  103,  102,  101,    8,
 			    7,    6,    5,    4,    3,  191,    0, -218,    0,    0,
 			    0,    0,    1,    0,    0,    0, -218, -218, -218, -218,
-			 -218, -218, -218, -218, -218, -218, -218, -218, -218, -218,
+			 -218, -218, -218, -218, -218, -218, -218, -218, -218, -218, yyDummy>>,
+			1, 200, 600)
+		end
 
+	yytable_template_5 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #5 of template for `yytable'.
+		do
+			yyarray_subcopy (an_array, <<
 			 -218, -218, -218, -218, -218, -218,    0,    0,    0,    0,
 			    0,    0,    0,    0,    0,    0,    0,    0,  206, -218,
 			 -218, -218, -218, -218,    8,    7,    6,    5,    4,    3,
@@ -4408,11 +4528,11 @@ feature {NONE} -- Table templates
 			 -157, -157, -157, -157, -157, -157, -157, -157, -157, -157,
 			 -157, -157, -157, -157,    0,    0,    0,    0,    0,    0,
 			    0,    0,    0,    0,    0,    0,    0, -157, -157, -157, yyDummy>>,
-			1, 1000, 0)
+			1, 200, 800)
 		end
 
-	yytable_template_2 (an_array: ARRAY [INTEGER])
-			-- Fill chunk #2 of template for `yytable'.
+	yytable_template_6 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #6 of template for `yytable'.
 		do
 			yyarray_subcopy (an_array, <<
 			 -157, -157, -157, -157, -157, -157, -157, -157,    0, -157,
@@ -4435,8 +4555,14 @@ feature {NONE} -- Table templates
 			    0, -154, -154, -154, -154,   22,   21,    8,    7,    6,
 			    5,    4,    3,  227,  264,    0,    0,    0,    0,    0,
 			    1,    0,    0,    0,   44,    0,    0,    0,    0,    0,
-			    0,    0,    0,    0,    0,    0,    0,  276, -218, -218,
+			    0,    0,    0,    0,    0,    0,    0,  276, -218, -218, yyDummy>>,
+			1, 200, 1000)
+		end
 
+	yytable_template_7 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #7 of template for `yytable'.
+		do
+			yyarray_subcopy (an_array, <<
 			 -218, -218, -218, -218, -218, -218, -218, -218, -218, -218,
 			 -218, -218, -218, -218, -218, -218, -218, -218,    0,    0,
 			    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -4450,7 +4576,7 @@ feature {NONE} -- Table templates
 
 			    0,    0,    0,    0,    0,    0,    0,    0,   80,   79,
 			   78,   77, yyDummy>>,
-			1, 312, 1000)
+			1, 112, 1200)
 		end
 
 	yycheck_template: SPECIAL [INTEGER]
@@ -4461,6 +4587,11 @@ feature {NONE} -- Table templates
 			create an_array.make_filled (0, 0, 1311)
 			yycheck_template_1 (an_array)
 			yycheck_template_2 (an_array)
+			yycheck_template_3 (an_array)
+			yycheck_template_4 (an_array)
+			yycheck_template_5 (an_array)
+			yycheck_template_6 (an_array)
+			yycheck_template_7 (an_array)
 			Result := yyfixed_array (an_array)
 		end
 
@@ -4488,8 +4619,14 @@ feature {NONE} -- Table templates
 			   77,  114,  133,    7,    8,    9,   73,   80,   81,  161,
 			   77,  184,  185,   77,  218,   73,  299,   95,  146,   77,
 			  133,  134,  153,   73,  217,  138,   77,   77,   92,   93,
-			  191,  191,   72,   75,   74,  195,  157,    3,  231,  191,
+			  191,  191,   72,   75,   74,  195,  157,    3,  231,  191, yyDummy>>,
+			1, 200, 0)
+		end
 
+	yycheck_template_2 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #2 of template for `yycheck'.
+		do
+			yyarray_subcopy (an_array, <<
 			   10,   11,  194,  156,  217,  195,  196,   73,  200,   73,
 			   73,   77,   73,  146,   77,   72,   77,   95,  231,    3,
 			  191,  276,   73,   48,   73,  196,   78,  227,   72,  229,
@@ -4510,8 +4647,14 @@ feature {NONE} -- Table templates
 			  169,  314,   79,  166,  168,  165,   42,   43,  321,  200,
 			  224,  291,  288,  326,   91,   66,  343,   72,   -1,   -1,
 			  333,   -1,  335,   78,   79,   80,   81,   82,   83,   -1,
-			   66,   67,   68,   69,   70,   71,   72,   73,   74,   94,
+			   66,   67,   68,   69,   70,   71,   72,   73,   74,   94, yyDummy>>,
+			1, 200, 200)
+		end
 
+	yycheck_template_3 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #3 of template for `yycheck'.
+		do
+			yyarray_subcopy (an_array, <<
 			   95,   72,    3,   79,   -1,   -1,   -1,   78,   79,   80,
 			   81,   82,   83,   -1,   -1,   91,   -1,   93,   -1,   -1,
 			   -1,   -1,   -1,   94,   -1,   -1,   -1,   28,   29,   30,
@@ -4532,8 +4675,14 @@ feature {NONE} -- Table templates
 			   -1,   79,   -1,   -1,   61,   -1,   -1,   -1,   -1,   66,
 			   67,   68,   69,   70,   71,   72,   73,   74,   -1,   -1,
 			   77,   -1,   79,   -1,   29,   30,   31,   32,   33,   -1,
-			   -1,    3,   -1,   -1,   -1,   -1,   93,   42,   43,   66,
+			   -1,    3,   -1,   -1,   -1,   -1,   93,   42,   43,   66, yyDummy>>,
+			1, 200, 400)
+		end
 
+	yycheck_template_4 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #4 of template for `yycheck'.
+		do
+			yyarray_subcopy (an_array, <<
 			   67,   68,   69,   70,   71,   72,   73,    3,    4,    5,
 			    6,   -1,    8,    9,   -1,   -1,   61,   -1,   -1,   -1,
 			   -1,   66,   67,   68,   69,   70,   71,   72,   73,   74,
@@ -4554,8 +4703,14 @@ feature {NONE} -- Table templates
 			   -1,    3,   -1,   78,   79,   80,   81,   82,   83,   66,
 			   67,   68,   69,   70,   71,   72,   -1,   74,   -1,   -1,
 			   -1,   -1,   79,   -1,   -1,   -1,   28,   29,   30,   31,
-			   32,   33,   34,   35,   36,   37,   38,   39,   40,   41,
+			   32,   33,   34,   35,   36,   37,   38,   39,   40,   41, yyDummy>>,
+			1, 200, 600)
+		end
 
+	yycheck_template_5 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #5 of template for `yycheck'.
+		do
+			yyarray_subcopy (an_array, <<
 			   42,   43,   44,   45,   46,   47,   -1,   -1,   -1,   -1,
 			   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   92,   61,
 			   62,   63,   64,   65,   66,   67,   68,   69,   70,   71,
@@ -4577,11 +4732,11 @@ feature {NONE} -- Table templates
 			   34,   35,   36,   37,   38,   39,   40,   41,   42,   43,
 			   44,   45,   46,   47,   -1,   -1,   -1,   -1,   -1,   -1,
 			   -1,   -1,   -1,   -1,   -1,   -1,   -1,   61,   62,   63, yyDummy>>,
-			1, 1000, 0)
+			1, 200, 800)
 		end
 
-	yycheck_template_2 (an_array: ARRAY [INTEGER])
-			-- Fill chunk #2 of template for `yycheck'.
+	yycheck_template_6 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #6 of template for `yycheck'.
 		do
 			yyarray_subcopy (an_array, <<
 			   64,   65,   66,   67,   68,   69,   70,   71,   -1,   73,
@@ -4604,8 +4759,14 @@ feature {NONE} -- Table templates
 			   -1,   91,   92,   93,   94,   42,   43,   66,   67,   68,
 			   69,   70,   71,   72,   73,   -1,   -1,   -1,   -1,   -1,
 			   79,   -1,   -1,   -1,   61,   -1,   -1,   -1,   -1,   -1,
-			   -1,   -1,   -1,   -1,   -1,   -1,   -1,   74,   28,   29,
+			   -1,   -1,   -1,   -1,   -1,   -1,   -1,   74,   28,   29, yyDummy>>,
+			1, 200, 1000)
+		end
 
+	yycheck_template_7 (an_array: ARRAY [INTEGER])
+			-- Fill chunk #7 of template for `yycheck'.
+		do
+			yyarray_subcopy (an_array, <<
 			   30,   31,   32,   33,   34,   35,   36,   37,   38,   39,
 			   40,   41,   42,   43,   44,   45,   46,   47,   -1,   -1,
 			   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -4619,7 +4780,7 @@ feature {NONE} -- Table templates
 
 			   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   62,   63,
 			   64,   65, yyDummy>>,
-			1, 312, 1000)
+			1, 112, 1200)
 		end
 
 feature {NONE} -- Semantic value stacks

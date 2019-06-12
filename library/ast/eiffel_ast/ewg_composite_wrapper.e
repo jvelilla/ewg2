@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -24,7 +24,7 @@ inherit
 
 feature {NONE} -- Initialization
 
-	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING; a_members: like members) is
+	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING; a_members: like members)
 		require
 			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
 			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty
@@ -55,7 +55,7 @@ feature
 
 feature {ANY}
 
-	extend_members (a_members: DS_BILINEAR [EWG_MEMBER_WRAPPER]) is
+	extend_members (a_members: DS_BILINEAR [EWG_MEMBER_WRAPPER])
 			-- Extend `members' with `a_members'
 		require
 			a_members_not_void: a_members /= Void
@@ -67,7 +67,7 @@ feature {ANY}
 			a_members_have_current_as_composite: True -- TODO:
 		end
 
-	add_member (a_member: EWG_MEMBER_WRAPPER) is
+	add_member (a_member: EWG_MEMBER_WRAPPER)
 			-- Extend `members' with `a_member'
 		require
 			a_member_not_void: a_member /= Void
@@ -79,7 +79,7 @@ feature {ANY}
 			a_member_has_current_as_composite: a_member.composite_wrapper = Current
 		end
 
-	resolve_feature_name_clashes is
+	resolve_feature_name_clashes
 			-- Make sure no two features of the Eiffel class(es) this
 			-- class generates will have equal names.
 		local
@@ -107,7 +107,7 @@ feature {ANY}
 			end
 		end
 
-	has_set_name_from_list (a_set: DS_SET [STRING]; a_list: DS_LINEAR [STRING]): BOOLEAN is
+	has_set_name_from_list (a_set: DS_SET [STRING]; a_list: DS_LINEAR [STRING]): BOOLEAN
 			-- Does `a_set' have an item name equal to an item name from `a_list' ?
 		require
 			a_set_not_void: a_set /= Void
@@ -134,7 +134,7 @@ feature {ANY}
 
 feature {NONE}
 
-	adopt_members (a_members: DS_BILINEAR [EWG_MEMBER_WRAPPER]) is
+	adopt_members (a_members: DS_BILINEAR [EWG_MEMBER_WRAPPER])
 		require
 			a_members_not_void: a_members /= Void
 		local
@@ -156,7 +156,7 @@ feature {NONE}
 
 feature {ANY} -- Assertions
 
-	members_have_current_as_composite_wrapper (a_members: DS_BILINEAR [EWG_MEMBER_WRAPPER]): BOOLEAN is
+	members_have_current_as_composite_wrapper (a_members: DS_BILINEAR [EWG_MEMBER_WRAPPER]): BOOLEAN 
 			-- All items in `members' have member.composite_wrapper = Current
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_MEMBER_WRAPPER]

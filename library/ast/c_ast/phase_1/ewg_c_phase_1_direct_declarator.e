@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -34,7 +34,7 @@ create
 
 feature {NONE}
 
-	make (a_name: STRING) is
+	make (a_name: STRING)
 		require
 			a_name_not_void: a_name /= Void
 		do
@@ -44,7 +44,7 @@ feature {NONE}
 			not_is_abstract: not is_abstract
 		end
 
-	make_anonymous (a_declarator: EWG_C_PHASE_1_DECLARATOR) is
+	make_anonymous (a_declarator: EWG_C_PHASE_1_DECLARATOR)
 		do
 			make_internal
 			declarator := a_declarator
@@ -52,36 +52,36 @@ feature {NONE}
 			is_abstract_when_a_declarator_is_abstract: a_declarator.is_abstract = is_abstract
 		end
 
-	make_abstract is
+	make_abstract
 		do
 			make_internal
 		ensure
 			is_abstract: is_abstract
 		end
 
-	make_internal is
+	make_internal
 		do
 			create arrays.make
 		end
 
 feature
 
-	add_array_last (a_array: EWG_C_PHASE_1_ARRAY) is
+	add_array_last (a_array: EWG_C_PHASE_1_ARRAY)
 		do
 			arrays.put_last (a_array)
 		end
 
-	set_name (a_name: STRING) is
+	set_name (a_name: STRING)
 		do
 			name := a_name
 		end
 
-	set_declarator (a_declarator: EWG_C_PHASE_1_DECLARATOR) is
+	set_declarator (a_declarator: EWG_C_PHASE_1_DECLARATOR)
 		do
 			declarator := a_declarator
 		end
 
-	set_parameters (a_value: like parameters) is
+	set_parameters (a_value: like parameters)
 		require
 			-- TODO: doesn't seem to work always
 --			parameters_is_void: parameters = Void
@@ -95,7 +95,7 @@ feature
 	arrays: DS_LINKED_LIST [EWG_C_PHASE_1_ARRAY]
 			-- zero or more
 
-	arrays_indirect: DS_LINKED_LIST [EWG_C_PHASE_1_ARRAY] is
+	arrays_indirect: DS_LINKED_LIST [EWG_C_PHASE_1_ARRAY]
 			-- arrays from this direct declarator and (possibly recursivly nested)
 			-- direct declarators
 		do
@@ -107,7 +107,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	pointers_indirect: DS_LINKED_LIST [EWG_C_PHASE_1_POINTER] is
+	pointers_indirect: DS_LINKED_LIST [EWG_C_PHASE_1_POINTER]
 			-- pointers from this direct declarator and (possibly recursivly nested)
 			-- direct declarators
 		do
@@ -132,7 +132,7 @@ feature
 	declarator: EWG_C_PHASE_1_DECLARATOR
 			-- can be Void
 
-	is_abstract: BOOLEAN is
+	is_abstract: BOOLEAN
 			-- Direct abstract declarators have no name.
 			-- NOTE: A direct declarator is also abstract if it has a
 			-- parameter which has an abstract declarator
@@ -141,7 +141,7 @@ feature
 							(declarator = Void or else declarator.is_abstract)
 		end
 
-	has_abstract_parameter_declaration: BOOLEAN is
+	has_abstract_parameter_declaration: BOOLEAN
 		require
 			parameters_not_void: parameters /= Void
 		local
@@ -162,13 +162,13 @@ feature
 			end
 		end
 
-	is_function_direct_declarator: BOOLEAN is
+	is_function_direct_declarator: BOOLEAN
 			-- Does this direct declarator represent a function ?
 		do
 			Result := parameters /= Void
 		end
 
-	calling_convention: INTEGER is
+	calling_convention: INTEGER
 		do
 			if has_calling_convention_set then
 				Result := calling_convention_internal
@@ -179,7 +179,7 @@ feature
 			end
 		end
 
-	set_calling_convention (a_value: INTEGER) is
+	set_calling_convention (a_value: INTEGER)
 			-- Sets the calling conventions used for this function type.
 			-- See `calling_convention' for details.
 		require
@@ -193,7 +193,7 @@ feature
 			calling_convention_set: calling_convention_internal = a_value
 		end
 
-	set_calling_convention_from_attribute_sequence (a_list: DS_LINKED_LIST[INTEGER]) is
+	set_calling_convention_from_attribute_sequence (a_list: DS_LINKED_LIST[INTEGER])
 		require
 			a_list_not_void: a_list /= Void
 			a_list_not_empty: not a_list.is_empty
@@ -221,7 +221,7 @@ feature
 
 feature
 
-	nested_name: STRING is
+	nested_name: STRING
 			-- Name of `Current' or (if `name = Void')
 			-- name of nested declarator
 		require
@@ -236,7 +236,7 @@ feature
 
 feature
 
-	make_concrete (a_name: STRING) is
+	make_concrete (a_name: STRING)
 			-- Give the direct (abstract) declarator a (pseudo) name.
 		require
 			is_abstract: is_abstract
@@ -264,7 +264,7 @@ feature {NONE} -- Implementation
 
 feature
 
-	c_code: STRING is
+	c_code: STRING 
 		local
 			array_cs: DS_LINEAR_CURSOR [EWG_C_PHASE_1_ARRAY]
 			param_cs: DS_LINEAR_CURSOR [EWG_C_PHASE_1_DECLARATION]

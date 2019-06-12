@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -25,7 +25,7 @@ create
 
 feature {NONE}
 
-	make (a_error_handler: EWG_ERROR_HANDLER) is
+	make (a_error_handler: EWG_ERROR_HANDLER)
 		require
 			a_error_handler_not_void: a_error_handler /= Void
 		do
@@ -36,7 +36,7 @@ feature {NONE}
 
 feature {ANY} -- Basic Routines
 
-	post_process is
+	post_process
 			-- Post process main C AST
 		do
 			if c_system.types.alias_types_count > 0 then
@@ -49,7 +49,7 @@ feature {ANY} -- Basic Routines
 
 feature {NONE}
 
-	resolve_aliases_for_anonymous_types is
+	resolve_aliases_for_anonymous_types
 			-- For all anonymous types find an alias
 		local
 			cs: DS_HASH_TABLE_CURSOR [EWG_C_AST_ALIAS_TYPE, STRING]
@@ -73,7 +73,7 @@ feature {NONE}
 			end
 		end
 
-	set_closest_alias (a_top_alias_type: EWG_C_AST_ALIAS_TYPE; a_base: EWG_C_AST_TYPE) is
+	set_closest_alias (a_top_alias_type: EWG_C_AST_ALIAS_TYPE; a_base: EWG_C_AST_TYPE) 
 		require
 			a_top_alias_type_not_void: a_top_alias_type /= Void
 			a_base_not_void: a_base /= Void

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-20-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-20-0 http://www.eiffel.com/developers/xml/configuration-1-20-0.xsd" name="simple_library" uuid="8D356A65-69E9-409B-BA5F-3A8CAF0758FD" library_target="simple_library">
+	<target name="simple_library">
+		<root all_classes="true"/>
+		<option warning="true" full_class_checking="false" is_attached_by_default="false" manifest_array_type="mismatch_warning">
+			<assertions precondition="true"/>
+		</option>
+		<setting name="console_application" value="true"/>
+		<setting name="inlining_size" value="0"/>
+		<setting name="msil_classes_per_module" value="5"/>
+		<setting name="dead_code_removal" value="feature"/>
+		<capability>
+			<concurrency support="none" use="none"/>
+			<void_safety support="none" use="none"/>
+		</capability>
+		<external_include location="$(EWG)/example/simple/library/generated_wrapper/c/include"/>
+		<external_include location="$(EWG)/example/simple/library/generated_wrapper/c/include/spec/ise"/>
+		<external_library location="$(EWG)/example/simple/library/simple_c_eiffel_glue_library_ise_$(GOBO_CC).a"/>
+		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
+		<library name="ewg" location="C:\home\test\ewg\library\library.ecf"/>
+		<library name="runtime" location="C:\home\test\ewg\library\runtime\eiffel\library.ecf"/>
+		<cluster name="simple_library_wrapper" location="${EWG}\example\simple\library\generated_wrapper\">
+			<cluster name="eiffel" location="$|eiffel\">
+				<cluster name="simple_external_external" location="$|external\">
+					<cluster name="simple_external_struct" location="$|struct\">
+						<cluster name="simple_external_struct_spec" location="$|spec\">
+							<cluster name="simple_external_struct_ise" location="$|ise\"/>
+						</cluster>
+					</cluster>
+					<cluster name="simple_external_enum" location="$|enum\">
+						<cluster name="simple_external_enum_spec" location="$|spec\">
+							<cluster name="simple_external_enum_ise" location="$|ise\"/>
+						</cluster>
+					</cluster>
+					<cluster name="simple_external_union" location="$|union\">
+						<cluster name="simple_external_union_spec" location="$|spec\">
+							<cluster name="simple_external_union_ise" location="$|ise\"/>
+						</cluster>
+					</cluster>
+					<cluster name="simple_external_function" location="$|function\">
+						<cluster name="simple_external_function_spec" location="$|spec\">
+							<cluster name="simple_external_function_ise" location="$|ise\"/>
+						</cluster>
+					</cluster>
+					<cluster name="simple_external_callback_callback" location="$|callback\">
+						<cluster name="simple_external_callback_spec" location="$|spec\">
+							<cluster name="simple_external_callback_ise" location="$|ise\"/>
+						</cluster>
+					</cluster>
+				</cluster>
+				<cluster name="simple_abstraction_abstraction" location="$|abstraction\">
+					<cluster name="simple_abstraction_struct" location="$|struct\"/>
+					<cluster name="simple_abstraction_enum" location="$|enum\"/>
+					<cluster name="simple_abstraction_union" location="$|union\"/>
+					<cluster name="simple_abstraction_function" location="$|function\"/>
+					<cluster name="simple_abstraction_callback" location="$|callback\"/>
+				</cluster>
+			</cluster>
+		</cluster>
+	</target>
+</system>

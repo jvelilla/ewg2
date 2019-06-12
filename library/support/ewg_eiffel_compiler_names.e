@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -25,25 +25,25 @@ create {EWG_SHARED_EIFFEL_COMPILER_NAMES}
 
 feature {NONE} -- Initialization
 
-	make is
+	make
 		do
 		end
 
 feature {ANY} -- Eiffel compiler names
 
-	se_name: STRING is "se"
-	ise_name: STRING is "ise"
-	ve_name: STRING is "ve"
+	se_name: STRING = "se"
+	ise_name: STRING = "ise"
+	ve_name: STRING = "ve"
 
 feature {ANY} -- Eiffel compiler codes
 
-	se_code: INTEGER is unique
-	ise_code: INTEGER is unique
-	ve_code: INTEGER is unique
+	se_code: INTEGER = unique
+	ise_code: INTEGER = unique
+	ve_code: INTEGER = unique
 
 feature {ANY} -- Status
 
-	is_valid_eiffel_compiler_name (a_name: STRING): BOOLEAN is
+	is_valid_eiffel_compiler_name (a_name: STRING): BOOLEAN
 			-- Is `a_name' a valid Eiffel compiler name?
 		require
 			a_name_not_void: a_name /= Void
@@ -51,13 +51,13 @@ feature {ANY} -- Status
 			Result := eiffel_compiler_name_table.has (a_name)
 		end
 
-	is_valid_eiffel_compiler_code (a_code: INTEGER): BOOLEAN is
+	is_valid_eiffel_compiler_code (a_code: INTEGER): BOOLEAN
 			-- Is `a_code' a valid Eiffel compiler code?
 		do
 			Result := eiffel_compiler_name_table.has_item (a_code)
 		end
 
-	eiffel_compiler_code_from_mode_name (a_name: STRING): INTEGER is
+	eiffel_compiler_code_from_mode_name (a_name: STRING): INTEGER
 			-- Eiffel compiler code from Eiffel compiler name `a_name'
 		require
 			a_name_not_void: a_name /= Void
@@ -68,7 +68,7 @@ feature {ANY} -- Status
 			valid_eiffel_compiler_code: is_valid_eiffel_compiler_code (Result)
 		end
 
-	eiffel_compiler_name_from_code (a_code: INTEGER): STRING is
+	eiffel_compiler_name_from_code (a_code: INTEGER): STRING
 			-- Eiffel compiler name from eiffel compiler code `a_code'
 		require
 			a_code_valid: is_valid_eiffel_compiler_code (a_code)
@@ -93,7 +93,7 @@ feature {ANY} -- Status
 
 feature {NONE} -- Implementation
 
-	eiffel_compiler_name_table: DS_HASH_TABLE [INTEGER, STRING] is
+	eiffel_compiler_name_table: DS_HASH_TABLE [INTEGER, STRING]
 			-- Mapping Eiffel compiler names -> Eiffel compiler codes
 		once
 			create Result.make_map (3)

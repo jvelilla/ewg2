@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -18,7 +18,7 @@ inherit
 		redefine
 			out
 		end
-	
+
 create
 
 	make,
@@ -78,7 +78,7 @@ feature
 
 	arguments: DS_LINKED_LIST [STRING]
 			-- arguments of the macro
-	
+
 	definition: STRING
 			-- definition of macro
 
@@ -108,15 +108,15 @@ feature
 
 			Result := Result + " -> " + definition
 		end
-	
+
 invariant
 
 	name_not_void: name /= Void
 
 	definition_not_void: definition /= Void
-	
+
 	arguments_not_void: arguments /= Void
-	
+
 	arguments_has_no_void_item: not arguments.has (Void)
-	
+
 end

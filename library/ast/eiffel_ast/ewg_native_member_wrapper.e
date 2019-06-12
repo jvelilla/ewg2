@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -29,7 +29,7 @@ create
 feature {NONE} -- Initialization
 
 	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING;
-			a_c_declaration: EWG_C_AST_DECLARATION) is
+			a_c_declaration: EWG_C_AST_DECLARATION)
 		require
 			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
 			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty
@@ -47,7 +47,7 @@ feature {NONE} -- Initialization
 
 feature
 
-	proposed_feature_name_list: DS_LINEAR [STRING] is
+	proposed_feature_name_list: DS_LINEAR [STRING]
 		local
 			old_getter_name: STRING
 			setter_name: STRING
@@ -71,7 +71,7 @@ feature
 	c_declaration: EWG_C_AST_DECLARATION
 			-- C declaration to wrap
 
-	eiffel_type: STRING is
+	eiffel_type: STRING 
 		do
 			Result := c_declaration.type.corresponding_eiffel_type
 		ensure

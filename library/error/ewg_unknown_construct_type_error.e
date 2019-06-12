@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -27,7 +27,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (an_element: XM_ELEMENT; a_position: XM_POSITION) is
+	make (an_element: XM_ELEMENT; a_position: XM_POSITION)
 			-- Create an error reporting that the value of the attribute "name"
 			-- in the "type" elmement `an_element' is unknown.
 		require
@@ -44,10 +44,10 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	default_template: STRING is "construct type '$1' in type-element is unknown $2"
+	default_template: STRING = "construct type '$1' in type-element is unknown $2"
 			-- Default template used to built the error message
 
-	code: STRING is "EWG0005"
+	code: STRING = "EWG0005"
 			-- Error code
 
 end

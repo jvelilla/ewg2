@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -25,14 +25,14 @@ create
 
 feature {NONE} -- Initialisation
 
-	make is
+	make
 			-- Create a new C system.
 		do
 			reset
 			create {EWG_C_AST_DECLARATION_NULL_PROCESSOR} declaration_processor.make
 		end
 
-	make_with_processor (a_declaration_processor: like declaration_processor) is
+	make_with_processor (a_declaration_processor: like declaration_processor)
 			-- Create new C system using `a_declaration_processor' as
 			-- declaration processor.
 		require
@@ -44,7 +44,7 @@ feature {NONE} -- Initialisation
 			declaration_processor_set: declaration_processor = a_declaration_processor
 		end
 
-	add_builtin_types is
+	add_builtin_types
 			-- Add compiler built in types to the system.
 		local
 			builtin_va_list_alias: EWG_C_AST_ALIAS_TYPE
@@ -72,7 +72,7 @@ feature {NONE} -- Initialisation
 
 feature {ANY} -- Initialisation
 
-	reset is
+	reset
 			-- Reset the C System
 		do
 			last_type := Void
@@ -111,7 +111,7 @@ feature {ANY}
 
 feature {EWG_C_PARSER_SKELETON}
 
-	add_top_level_declaration (a_declaration: EWG_C_PHASE_1_DECLARATION) is
+	add_top_level_declaration (a_declaration: EWG_C_PHASE_1_DECLARATION)
 			-- Split `a_declaration' into it's parts and add
 			-- it's types and it's contained declarations into the C system
 			-- Adds all types it finds on the way to the C system.
@@ -150,7 +150,7 @@ feature {EWG_C_PARSER_SKELETON}
 
 feature {ANY} -- Add to the system
 
-	add_alias (a_type: EWG_C_AST_TYPE; a_name: STRING; a_header_file_name: STRING) is
+	add_alias (a_type: EWG_C_AST_TYPE; a_name: STRING; a_header_file_name: STRING)
 			-- Add alias to `types', where 'a_name' is the
 			-- the name of the alias, and 'a_type' its base.
 			-- Make the new alias availabel via `last_type'
@@ -173,7 +173,7 @@ feature {ANY} -- Add to the system
 		end
 
 
-	add_top_level_declaration_from_type_and_name (a_type: EWG_C_AST_TYPE; a_name: STRING; a_header_file_name: STRING) is
+	add_top_level_declaration_from_type_and_name (a_type: EWG_C_AST_TYPE; a_name: STRING; a_header_file_name: STRING)
 			-- Add declaration to the system, where 'a_name' is the
 			-- the name of the declaration, and 'a_type' its type.
 			-- If the declaration is a function declaration make
@@ -216,7 +216,7 @@ feature {NONE} -- Implementation
 	make_type_from_declaration_specifiers_available (a_storage_class_specifiers: EWG_C_PHASE_1_STORAGE_CLASS_SPECIFIERS;
 																	 a_type_qualifier: EWG_C_PHASE_1_TYPE_QUALIFIER;
 																	 a_type_specifier: EWG_C_PHASE_1_TYPE_SPECIFIER;
-																	 a_header_file_name: STRING) is
+																	 a_header_file_name: STRING)
 			-- Merge the specifiers and qualifers and create a resulting type.
 			-- Add it to the C system.
 			-- Make it available via `last_type'.
@@ -304,7 +304,7 @@ feature {NONE} -- Implementation
 			last_type__in_system: types.has (last_type)
 		end
 
-	make_declaration_list_from_declarations_available (a_declarations: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATION])  is
+	make_declaration_list_from_declarations_available (a_declarations: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATION])
 			-- Puts each declarator together with its type into a list and makes it
 			-- available via `last_declaration_list'.
 			-- Adds all types it finds on the way to the C system.
@@ -348,7 +348,7 @@ feature {NONE} -- Implementation
 		end
 
 	make_declaration_from_type_and_declarator_available (a_type: EWG_C_AST_TYPE;
-																		  a_declarator: EWG_C_PHASE_1_DECLARATOR) is
+																		  a_declarator: EWG_C_PHASE_1_DECLARATOR)
 			-- Find type name pair of `a_type' and `a_declarator' and make
 			-- it available via `last_declaration'.
 			-- Adds all new types it find on your way to the C system.
@@ -389,7 +389,7 @@ feature {NONE} -- Implementation
 			type_of_last_declaration_in_system: types.has (last_declaration.type)
 		end
 
-	make_pointer_types_available (a_type: EWG_C_AST_TYPE; a_declarator: EWG_C_PHASE_1_DECLARATOR) is
+	make_pointer_types_available (a_type: EWG_C_AST_TYPE; a_declarator: EWG_C_PHASE_1_DECLARATOR)
 			-- Create a chain of pointer types based on `a_type'.
 			-- The chain will contain as many pointers as there are in `a_declarator'.
 			-- Make top of chain available as `last_pointer'.
@@ -436,7 +436,7 @@ feature {NONE} -- Implementation
 
 	make_array_types_available (a_type: EWG_C_AST_TYPE;
 										 a_direct_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR;
-										 a_header_file_name: STRING) is
+										 a_header_file_name: STRING)
 			-- Creates a chain of array types based on `a_type'.
 			-- The chain contains as many arrays as there are in
 			-- `a_direct_declarator'. Make top of chain available
@@ -482,7 +482,7 @@ feature {NONE} -- Implementation
 
 	make_function_type_available (a_type: EWG_C_AST_TYPE;
 											a_direct_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR;
-											a_header_file_name: STRING) is
+											a_header_file_name: STRING)
 			-- If `a_direct_declarator' indicated a function, create a new function type
 			-- whos return type is `a_type'. Make the new function type available as
 			-- `last_type'. If `a_direct_declarator' does not indicate a function,
@@ -525,7 +525,7 @@ feature {NONE} -- Implementation
 
 feature {NONE} -- Status checks
 
-	member_types_in_types (a_list: DS_BILINEAR [EWG_C_AST_DECLARATION]): BOOLEAN is
+	member_types_in_types (a_list: DS_BILINEAR [EWG_C_AST_DECLARATION]): BOOLEAN
 			-- Result := for each `x' in `a_list' | types.has (x.type)
 		require
 			a_list_not_void: a_list /= Void
@@ -549,7 +549,7 @@ feature {NONE} -- Status checks
 
 feature {NONE} -- Implementation
 
-	should_exclude_function_declaration_with_name (a_function_name: STRING): BOOLEAN is
+	should_exclude_function_declaration_with_name (a_function_name: STRING): BOOLEAN
 			-- Returns `True' if `a_function_declaration' should not be wrapped.
 			-- This is a dirty hack to prevent compiler internal functions from beeing wrapped
 			-- until there is a better mechanism to prevent this
@@ -561,7 +561,7 @@ feature {NONE} -- Implementation
 			Result := excluded_function_names.has (a_function_name)
 		end
 
-	excluded_function_names: DS_HASH_SET [STRING] is
+	excluded_function_names: DS_HASH_SET [STRING]
 			-- C functions that are known to have problems
 		once
 			create Result.make (11)
@@ -585,7 +585,7 @@ feature {NONE} -- Implementation
 
 feature
 
-	set_declaration_processor (a_declaration_processor: like declaration_processor) is
+	set_declaration_processor (a_declaration_processor: like declaration_processor) 
 			-- Make `a_declaration_processor' the new `declaration_processor'.
 		require
 			a_declaration_processor_not_void: a_declaration_processor /= Void

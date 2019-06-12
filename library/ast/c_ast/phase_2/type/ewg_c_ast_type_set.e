@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -31,7 +31,7 @@ create
 
 feature {NONE} -- Initialisation
 
-	make is
+	make
 		do
 			create type_table.make (Initial_type_table_size)
 			type_table.set_equality_tester (type_equality_tester)
@@ -56,7 +56,7 @@ feature {NONE} -- Initialisation
 			add_common_types
 		end
 
-	add_common_types is
+	add_common_types
 		do
 			-- TODO: what to do with header names?
 			create void_type.make ("void", "void_needs_no_header.h")
@@ -80,7 +80,7 @@ feature {ANY} -- Basic Access
 
 feature {ANY} -- Status checkers
 
-	has (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	has (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Is `a_type' in the set?
 		require
 			a_type_not_void: a_type /= Void
@@ -90,7 +90,7 @@ feature {ANY} -- Status checkers
 		end
 
 
-	find_struct_by_name (a_name: STRING): EWG_C_AST_STRUCT_TYPE is
+	find_struct_by_name (a_name: STRING): EWG_C_AST_STRUCT_TYPE
 			-- Looks if a struct with the name `a_name' is already
 			-- in the set. If this is the case, return that type.
 			-- otherwise return `Void'.
@@ -103,7 +103,7 @@ feature {ANY} -- Status checkers
 			end
 		end
 
-	find_enum_by_name (a_name: STRING): EWG_C_AST_ENUM_TYPE is
+	find_enum_by_name (a_name: STRING): EWG_C_AST_ENUM_TYPE
 			-- Looks if a enum with the name `a_name' is already
 			-- in the set. If this is the case, return that type.
 			-- otherwise return `Void'.
@@ -116,7 +116,7 @@ feature {ANY} -- Status checkers
 			end
 		end
 
-	find_union_by_name (a_name: STRING): EWG_C_AST_UNION_TYPE is
+	find_union_by_name (a_name: STRING): EWG_C_AST_UNION_TYPE
 			-- Looks if a union with the name `a_name' is already
 			-- in the set. If this is the case, return that type.
 			-- otherwise return `Void'.
@@ -129,7 +129,7 @@ feature {ANY} -- Status checkers
 			end
 		end
 
-	find_primitive_by_name (a_name: STRING): EWG_C_AST_PRIMITIVE_TYPE is
+	find_primitive_by_name (a_name: STRING): EWG_C_AST_PRIMITIVE_TYPE
 			-- Looks if a primitive with the name `a_name' is already
 			-- in the set. If this is the case, return that type.
 			-- otherwise return `Void'.
@@ -143,7 +143,7 @@ feature {ANY} -- Status checkers
 		end
 
 
-	find_alias_by_name (a_name: STRING): EWG_C_AST_ALIAS_TYPE is
+	find_alias_by_name (a_name: STRING): EWG_C_AST_ALIAS_TYPE
 			-- Looks if a alias with the name `a_name' is already
 			-- in the set. If this is the case, return that type.
 			-- otherwise return `Void'.
@@ -156,7 +156,7 @@ feature {ANY} -- Status checkers
 			end
 		end
 
-	find_function_by_name (a_name: STRING): EWG_C_AST_FUNCTION_TYPE is
+	find_function_by_name (a_name: STRING): EWG_C_AST_FUNCTION_TYPE
 			-- Looks if a function with the name `a_name' is already
 			-- in the set. If this is the case, return that type.
 			-- otherwise return `Void'.
@@ -169,7 +169,7 @@ feature {ANY} -- Status checkers
 			end
 		end
 
-	count: INTEGER is
+	count: INTEGER
 			-- Number of types in set
 		do
 			Result := type_table.count
@@ -177,7 +177,7 @@ feature {ANY} -- Status checkers
 			count_greater_equal_zero: Result >= 0
 		end
 
-	new_cursor: DS_BILINEAR_CURSOR [EWG_C_AST_TYPE] is
+	new_cursor: DS_BILINEAR_CURSOR [EWG_C_AST_TYPE]
 			-- Return a new curser over all types in the set
 		do
 			Result := type_table.new_cursor
@@ -185,7 +185,7 @@ feature {ANY} -- Status checkers
 			result_not_void: Result /= Void
 		end
 
-	new_alias_cursor: DS_HASH_TABLE_CURSOR [EWG_C_AST_ALIAS_TYPE, STRING] is
+	new_alias_cursor: DS_HASH_TABLE_CURSOR [EWG_C_AST_ALIAS_TYPE, STRING]
 			-- Return a new cursor over all aliases in the set
 			-- TODO: return DS_BILINEAR_CURSOR or similar
 			-- TODO: add iterator factory for other types as well
@@ -195,7 +195,7 @@ feature {ANY} -- Status checkers
 			result_not_void: Result /= Void
 		end
 
-	alias_types_count: INTEGER is
+	alias_types_count: INTEGER
 			-- Number of alias types in system
 		do
 			Result := named_alias_table.count
@@ -225,7 +225,7 @@ feature {ANY} -- Common types
 
 feature {ANY} -- Properties of types, TODO: refactore to be in EWG_C_AST_TYPE
 
-	is_type_alive (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	is_type_alive (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Does anybody refere to `a_type'?
 			-- If not, the type is considered to be dead.
 			-- Notice, that this does not count references from
@@ -258,7 +258,7 @@ feature {ANY} -- Properties of types, TODO: refactore to be in EWG_C_AST_TYPE
 			end
 		end
 
-	is_type_removable (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	is_type_removable (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Can `a_type' be removed without rendering the set
 			-- inconsistent?
 			-- This usually menas, if the type in question is considered
@@ -274,7 +274,7 @@ feature {ANY} -- Properties of types, TODO: refactore to be in EWG_C_AST_TYPE
 
 feature {ANY} -- Expensive Status checkers that may be disabled
 
-	has_recursive (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	has_recursive (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Is `a_type' in the set and are all types
 			-- recursivly contained in `a_type' in the
 			-- set as well?
@@ -296,7 +296,7 @@ feature {ANY} -- Expensive Status checkers that may be disabled
 			end
 		end
 
-	nested_types_in_set_recursive: BOOLEAN is
+	nested_types_in_set_recursive: BOOLEAN
 			-- Check if for every type in the set
 			-- it's subtypes are in the set as well.
 			-- This is a very expensive check, performance wise.
@@ -313,7 +313,7 @@ feature {ANY} -- Expensive Status checkers that may be disabled
 			end
 		end
 
-	nested_types_of_type_in_set_recursive (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	nested_types_of_type_in_set_recursive (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Check if the subtypes of `a_type'
 			-- are in the set.
 		require
@@ -326,7 +326,7 @@ feature {ANY} -- Expensive Status checkers that may be disabled
 																	  a_already_checked)
 		end
 
-	types_in_list_recursive (a_list: DS_BILINEAR [EWG_C_AST_TYPE]): BOOLEAN is
+	types_in_list_recursive (a_list: DS_BILINEAR [EWG_C_AST_TYPE]): BOOLEAN
 			-- Is every element of `a_list' in the set?
 			-- Check for every type contained in every element (recursivly)
 			-- that it is in the set as well?
@@ -347,7 +347,7 @@ feature {ANY} -- Expensive Status checkers that may be disabled
 			end
 		end
 
-	has_void_type: BOOLEAN is
+	has_void_type: BOOLEAN
 			-- Is the type `void' in the set?
 			-- This is a very expensive check, performance wise.
 			-- It will only be executed with
@@ -360,7 +360,7 @@ feature {ANY} -- Expensive Status checkers that may be disabled
 			end
 		end
 
-	has_void_pointer_type: BOOLEAN is
+	has_void_pointer_type: BOOLEAN
 			-- Is the type `void*' in the set?
 			-- This is a very expensive check, performance wise.
 			-- It will only be executed with
@@ -375,7 +375,7 @@ feature {ANY} -- Expensive Status checkers that may be disabled
 
 feature {ANY} -- Add/Remove types
 
-	add_type (a_type: EWG_C_AST_TYPE) is
+	add_type (a_type: EWG_C_AST_TYPE)
 			-- Add `a_type' to set if
 			-- not another equal type is already in the set.
 			-- Set `last_type' to `a_type' if it has been added,
@@ -458,7 +458,7 @@ feature {ANY} -- Add/Remove types
 			last_type_equal_to_a_type: type_equality_tester.test (last_type, a_type)
 		end
 
-	remove_type (a_type: EWG_C_AST_TYPE) is
+	remove_type (a_type: EWG_C_AST_TYPE)
 			-- Remove `a_type' from system.
 			-- Note that `a_type' must be in the system
 			-- in order for it to be removed.
@@ -526,7 +526,7 @@ feature {ANY} -- Add/Remove types
 
 feature {NONE} -- Implementation helpers for queries
 
-	all_named_items_of_type_table_in_named_table: BOOLEAN is
+	all_named_items_of_type_table_in_named_table: BOOLEAN
 			-- are all items of `type_table' in some named table as well?
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_C_AST_TYPE]
@@ -555,7 +555,7 @@ feature {NONE} -- Implementation helpers for queries
 			end
 		end
 
-	all_items_of_all_named_tables_in_type_table: BOOLEAN is
+	all_items_of_all_named_tables_in_type_table: BOOLEAN
 			-- Are all items of all named tables in the `type_table' as well?
 		do
 			Result := all_items_of_named_table_in_type_table (named_struct_table) and
@@ -566,7 +566,7 @@ feature {NONE} -- Implementation helpers for queries
 							all_items_of_named_table_in_type_table (named_function_table)
 		end
 
-	all_items_of_named_table_in_type_table (a_table: DS_HASH_TABLE[EWG_C_AST_TYPE, STRING]): BOOLEAN is
+	all_items_of_named_table_in_type_table (a_table: DS_HASH_TABLE[EWG_C_AST_TYPE, STRING]): BOOLEAN
 			-- Are all items of the named table `a_table' in `type_table'
 			-- as well?
 		require
@@ -589,7 +589,7 @@ feature {NONE} -- Implementation helpers for queries
 			end
 		end
 
-	nested_types_in_set_with_already_checked_list (a_already_checked: DS_LINKED_LIST [EWG_C_AST_TYPE]): BOOLEAN is
+	nested_types_in_set_with_already_checked_list (a_already_checked: DS_LINKED_LIST [EWG_C_AST_TYPE]): BOOLEAN
 			-- Check if for every type in `types'
 			-- it's subtypes are in `types' as well.
 			-- `a_already_checked' is a list of types that are known to be in
@@ -619,7 +619,7 @@ feature {NONE} -- Implementation helpers for queries
 			end
 		end
 
-	types_of_list_in_set_with_already_checked_list (a_list: DS_BILINEAR [EWG_C_AST_TYPE]; a_already_checked: DS_LINKED_LIST [EWG_C_AST_TYPE]): BOOLEAN is
+	types_of_list_in_set_with_already_checked_list (a_list: DS_BILINEAR [EWG_C_AST_TYPE]; a_already_checked: DS_LINKED_LIST [EWG_C_AST_TYPE]): BOOLEAN
 			-- Is every element of `a_list' in `types'?
 			-- Check for every type contained in every element (recursivly)
 			-- that it is in the set as well?
@@ -697,10 +697,10 @@ feature {NONE} -- Implementation
 			-- name to its type. This table exists to speed up the time
 			-- required to find a function type via its name.
 
-	Initial_type_table_size: INTEGER is 20000
+	Initial_type_table_size: INTEGER = 20000
 			-- Initial size of the `type_table.
 
-	Initial_named_type_table_size: INTEGER is 6000
+	Initial_named_type_table_size: INTEGER = 6000
 			-- Initial size of the `named_*_table's.
 
 invariant

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -42,7 +42,7 @@ inherit
 
 feature
 
-	is_valid_eiffel_identifier (a_identifier: STRING): BOOLEAN is
+	is_valid_eiffel_identifier (a_identifier: STRING): BOOLEAN
 			-- Is `a_identifier' a valid Eiffel identifier?
 		require
 			a_identifier_not_void: a_identifier /= Void
@@ -69,7 +69,7 @@ feature
 			end
 		end
 
-	is_valid_c_identifier (a_identifier: STRING): BOOLEAN is
+	is_valid_c_identifier (a_identifier: STRING): BOOLEAN
 			-- Is `a_identifier' a valid Eiffel identifier?
 		require
 			a_identifier_not_void: a_identifier /= Void
@@ -79,7 +79,7 @@ feature
 
 feature
 
-	eiffel_class_name_from_c_type (a_type: EWG_C_AST_TYPE): STRING is
+	eiffel_class_name_from_c_type (a_type: EWG_C_AST_TYPE): STRING
 		require
 			a_type_not_void: a_type /= Void
 			a_type_not_anonymous: not a_type.is_anonymous
@@ -93,7 +93,7 @@ feature
 			result_is_valid_eiffel_identifier: is_valid_eiffel_identifier (Result)
 		end
 
-	eiffel_class_name_from_c_type_name (a_type_name: STRING): STRING is
+	eiffel_class_name_from_c_type_name (a_type_name: STRING): STRING
 		require
 			a_type_name_not_void: a_type_name /= Void
 		do
@@ -106,7 +106,7 @@ feature
 			result_is_valid_c_identifier: is_valid_eiffel_identifier (Result)
 		end
 
-	eiffel_class_name_from_c_callback_name (a_type_name: STRING): STRING is
+	eiffel_class_name_from_c_callback_name (a_type_name: STRING): STRING
 		require
 			a_type_name_not_void: a_type_name /= Void
 		do
@@ -119,7 +119,7 @@ feature
 			result_is_valid_eiffel_identifier: is_valid_eiffel_identifier (Result)
 		end
 
-	c_define_constant_from_c_header_file_name (a_header_file_name: STRING): STRING is
+	c_define_constant_from_c_header_file_name (a_header_file_name: STRING): STRING
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
 			a_header_has_extension: a_header_file_name.has ('.')
@@ -148,7 +148,7 @@ feature
 			Result.append_string ("__")
 		end
 
-	c_header_file_name_to_eiffel_class_name (a_header_file_name: STRING): STRING is
+	c_header_file_name_to_eiffel_class_name (a_header_file_name: STRING): STRING
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
 			a_header_has_extension: a_header_file_name.has ('.')
@@ -186,7 +186,7 @@ feature
 			result_is_valid_eiffel_identifier: is_valid_eiffel_identifier (Result)
 		end
 
-	c_eiffel_callbacks_glue_header_name_from_callback_header_name (a_header_file_name: STRING): STRING is
+	c_eiffel_callbacks_glue_header_name_from_callback_header_name (a_header_file_name: STRING): STRING
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
 		do
@@ -194,7 +194,7 @@ feature
 			Result.append_string ("_c_eiffel_callbacks_glue")
 		end
 
-	eiffel_feature_name_from_c_function (a_function_declaration: EWG_C_AST_FUNCTION_DECLARATION): STRING is
+	eiffel_feature_name_from_c_function (a_function_declaration: EWG_C_AST_FUNCTION_DECLARATION): STRING
 		require
 			a_function_declaration_not_void: a_function_declaration /= Void
 		do
@@ -206,7 +206,7 @@ feature
 			result_is_valid_eiffel_identifier: is_valid_eiffel_identifier (Result)
 		end
 
-	eiffel_feature_name_from_c_function_name (a_function_name: STRING): STRING is
+	eiffel_feature_name_from_c_function_name (a_function_name: STRING): STRING
 		require
 			a_function_name_not_void: a_function_name /= Void
 		do
@@ -219,7 +219,7 @@ feature
 		end
 
 
-	eiffel_feature_name_from_c_function_parameters (a_function_type: EWG_C_AST_FUNCTION_TYPE): STRING is
+	eiffel_feature_name_from_c_function_parameters (a_function_type: EWG_C_AST_FUNCTION_TYPE): STRING
 		require
 			a_function_type_not_void: a_function_type /= Void
 		local
@@ -251,7 +251,7 @@ feature
 			result_is_valid_eiffel_identifier: is_valid_eiffel_identifier (Result)
 		end
 
-	eiffel_parameter_name_from_c_parameter_name (a_name: STRING): STRING is
+	eiffel_parameter_name_from_c_parameter_name (a_name: STRING): STRING
 		require
 			a_name_not_void: a_name /= Void
 			a_name_not_empty: not (a_name.count = 0)
@@ -272,7 +272,7 @@ feature
 			result_is_valid_eiffel_identifier: is_valid_eiffel_identifier (Result)
 		end
 
-	append_eiffel_parameter_name_from_c_parameter_name_to_stream (a_stream: KI_CHARACTER_OUTPUT_STREAM; a_c_parameter_name: STRING) is
+	append_eiffel_parameter_name_from_c_parameter_name_to_stream (a_stream: KI_CHARACTER_OUTPUT_STREAM; a_c_parameter_name: STRING)
 		require
 			a_stream_not_void: a_stream /= Void
 			a_c_parameter_name_not_void: a_c_parameter_name /= Void
@@ -283,7 +283,7 @@ feature
 
 feature {NONE} -- Implementation
 
-	remove_leading_underscores (a_name: STRING): STRING is
+	remove_leading_underscores (a_name: STRING): STRING
 		require
 			a_name_not_void: a_name /= Void
 			a_name_not_empty: not (a_name.count = 0)
@@ -313,7 +313,7 @@ feature {NONE} -- Implementation
 			resupt_not_empty: not (Result.count = 0)
 		end
 
-	remove_leading_underscores_from_string (a_name: STRING) is
+	remove_leading_underscores_from_string (a_name: STRING)
 		require
 			a_name_not_void: a_name /= Void
 			a_name_not_empty: not (a_name.count = 0)
@@ -338,7 +338,7 @@ feature {NONE} -- Implementation
 			a_name.remove_head (j)
 		end
 
-	escape_keywords (a_name: STRING): STRING is
+	escape_keywords (a_name: STRING): STRING
 			-- TODO: does not only escape keyowords
 		require
 			a_name_not_void: a_name /= Void
@@ -365,7 +365,7 @@ feature {NONE} -- Implementation
 			resupt_not_empty: not (Result.count = 0)
 		end
 
-	escaped_struct_feature_name (a_name: STRING): STRING is
+	escaped_struct_feature_name (a_name: STRING): STRING
 			-- Escaped version of `a_name' so that it does not clash with
 			-- an Eiffel keyword a feature from class ANY or class
 			-- EWG_STRUCT
@@ -395,7 +395,7 @@ feature {NONE} -- Implementation
 			result_not_empty: not (Result.count = 0)
 		end
 
-	eiffel_keywords: DS_HASH_SET [STRING] is
+	eiffel_keywords: DS_HASH_SET [STRING]
 			-- TODO: Create class like EWG_ANY_FEATURE_NAMES
 		once
 			create Result.make (73)
@@ -476,9 +476,10 @@ feature {NONE} -- Implementation
 			Result.put ("integer_32")
 			Result.put ("integer_64")
 			Result.put ("reference")
+			Result.put ("note")
 		end
 
-	upper_lower_to_underscore (a_name: STRING): STRING is
+	upper_lower_to_underscore (a_name: STRING): STRING
 			-- Insert an underscore character between
 			-- to sibling characters of different case
 		require
@@ -512,7 +513,7 @@ feature {NONE} -- Implementation
 			resupt_not_empty: not (a_name.count = 0)
 		end
 
-	is_letter (ch: CHARACTER): BOOLEAN is
+	is_letter (ch: CHARACTER): BOOLEAN
 		do
 			inspect ch
 			when 'A' then Result := True
@@ -571,7 +572,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	is_digit_non_gobo (ch: CHARACTER): BOOLEAN is
+	is_digit_non_gobo (ch: CHARACTER): BOOLEAN
 			-- Is `ch' a digit?
 			-- Note: Once Gobo 3.5 is released use
 			-- `KL_CHARACTER_ROUTINES.is_digit' instead.
@@ -591,17 +592,17 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	is_lower (ch: CHARACTER): BOOLEAN is
+	is_lower (ch: CHARACTER): BOOLEAN
 		do
 			Result := CHARACTER_.as_lower (ch) = ch
 		end
 
-	is_upper (ch: CHARACTER): BOOLEAN is
+	is_upper (ch: CHARACTER): BOOLEAN
 		do
 			Result := CHARACTER_.as_upper (ch) = ch
 		end
 
-	escape_type_name_to_be_c_identifier (a_type_name: STRING) is
+	escape_type_name_to_be_c_identifier (a_type_name: STRING)
 		require
 			a_type_name_not_void: a_type_name /= Void
 		do
@@ -610,7 +611,7 @@ feature {NONE} -- Implementation
 
 feature
 
-	average_c_parameter_length: INTEGER is 5
+	average_c_parameter_length: INTEGER = 5
 			-- Based on absolutely no evidence (;
 
 end

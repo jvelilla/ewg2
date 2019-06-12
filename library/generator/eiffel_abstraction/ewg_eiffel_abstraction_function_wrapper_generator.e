@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -28,7 +28,7 @@ create
 
 feature -- Generation
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_HASH_TABLE_CURSOR [DS_LINKED_LIST [EWG_FUNCTION_WRAPPER], STRING]
 		do
@@ -46,7 +46,7 @@ feature -- Generation
 feature {NONE} -- Implementation
 
 	generate_function_wrappers_for_class (a_class_name: STRING;
-											a_function_declaration_list: DS_LINKED_LIST [EWG_FUNCTION_WRAPPER]) is
+											a_function_declaration_list: DS_LINKED_LIST [EWG_FUNCTION_WRAPPER])
 		require
 			a_class_name_not_void: a_class_name /= Void
 			a_function_declaration_list_not_void: a_function_declaration_list /= Void
@@ -100,7 +100,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	generate_function_wrapper (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_wrapper (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
@@ -109,7 +109,7 @@ feature {NONE} -- Implementation
 
 feature
 
-	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
@@ -147,7 +147,7 @@ feature
 			output_stream.put_new_line
 		end
 
-	generate_routine_signature (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_routine_signature (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		local
@@ -190,7 +190,7 @@ feature
 			output_stream.put_new_line
 		end
 
-	generate_signature_parameter_for_native_member_wrapper (a_native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER) is
+	generate_signature_parameter_for_native_member_wrapper (a_native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER)
 		require
 			a_native_member_wrapper_not_void: a_native_member_wrapper /= Void
 		do
@@ -199,7 +199,7 @@ feature
 			output_stream.put_string (a_native_member_wrapper.eiffel_type)
 		end
 
-	generate_signature_parameter_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER) is
+	generate_signature_parameter_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER)
 		require
 			a_zero_terminated_string_member_wrapper_not_void: a_zero_terminated_string_member_wrapper /= Void
 		do
@@ -210,7 +210,7 @@ feature
 
 feature
 
-	generate_routine_call (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_routine_call (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		local
@@ -247,14 +247,14 @@ feature
 			output_stream.put_new_line
 		end
 
-	generate_routine_call_parameter_for_native_member_wrapper (a_native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER) is
+	generate_routine_call_parameter_for_native_member_wrapper (a_native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER)
 		require
 			a_native_member_wrapper_not_void: a_native_member_wrapper /= Void
 		do
 			output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
 		end
 
-	generate_routine_call_parameter_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER) is
+	generate_routine_call_parameter_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER)
 		require
 			a_zero_terminated_string_member_wrapper_not_void: a_zero_terminated_string_member_wrapper /= Void
 		do
@@ -264,7 +264,7 @@ feature
 
 feature
 
-	generate_routine_call_preparation (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_routine_call_preparation (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		local
@@ -292,14 +292,14 @@ feature
 			end
 		end
 
-	generate_routine_call_preparation_for_native_member_wrapper (a_native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER) is
+	generate_routine_call_preparation_for_native_member_wrapper (a_native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER)
 		require
 			a_native_member_wrapper_not_void: a_native_member_wrapper /= Void
 		do
 			-- Nothing to do
 		end
 
-	generate_routine_call_preparation_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER) is
+	generate_routine_call_preparation_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER)
 		require
 			a_zero_terminated_string_member_wrapper_not_void: a_zero_terminated_string_member_wrapper /= Void
 		do
@@ -313,7 +313,7 @@ feature
 
 feature
 
-	generate_locals (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_locals (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		local
@@ -343,14 +343,14 @@ feature
 			end
 		end
 
-	generate_local_for_native_member_wrapper (a_native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER) is
+	generate_local_for_native_member_wrapper (a_native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER)
 		require
 			a_native_member_wrapper_not_void: a_native_member_wrapper /= Void
 		do
 			-- Nothing to do
 		end
 
-	generate_local_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER) is
+	generate_local_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER) 
 		require
 			a_zero_terminated_string_member_wrapper_not_void: a_zero_terminated_string_member_wrapper /= Void
 		do

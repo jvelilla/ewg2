@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,7 +21,7 @@ inherit
 
 feature -- Tests
 
-	test_primitive_type is
+	test_primitive_type
 		do
 			assert_declaration_from_source ("char foo", "char foo;")
 			assert_declaration_from_source ("int foo", "int foo;")
@@ -31,7 +31,7 @@ feature -- Tests
 			assert_declaration_from_source ("short foo", "short foo;")
 		end
 
-	test_alias_type is
+	test_alias_type
 		do
 			assert_declaration_from_source ("foo bar", "typedef char foo; foo bar;")
 			assert_declaration_from_source ("foo_struct bar",
@@ -42,13 +42,13 @@ feature -- Tests
 													  "enum foo; typedef enum foo foo_enum; foo_enum bar;")
 		end
 
-	test_pointer_type is
+	test_pointer_type
 		do
 			assert_declaration_from_source ("void *foo", "void *foo;")
 			assert_declaration_from_source ("void (*foo) (void)", "void (*foo) (void);")
 		end
 
-	test_const_type is
+	test_const_type
 		do
 			assert_declaration_from_source ("void const *foo", "void const *foo;")
 			assert_declaration_from_source ("void const *foo", "const void *foo;")
@@ -62,21 +62,21 @@ feature -- Tests
 													  "const enum foo {i} bar;")
 		end
 
-	test_struct_type is
+	test_struct_type
 		do
 			assert_declaration_from_source ("struct foo bar", "struct foo bar;")
 			assert_declaration_from_source ("struct foo bar", "struct foo {int i;} bar;")
 			assert_declaration_from_source ("struct foo bar", "struct foo {int i;}; struct foo bar;")
 		end
 
-	test_union_type is
+	test_union_type
 		do
 			assert_declaration_from_source ("union foo bar", "union foo bar;")
 			assert_declaration_from_source ("union foo bar", "union foo {int i;} bar;")
 			assert_declaration_from_source ("union foo bar", "union foo {int i;}; union foo bar;")
 		end
 
-	test_enum_type is
+	test_enum_type
 		do
 			assert_declaration_from_source ("enum foo bar", "enum foo bar;")
 			assert_declaration_from_source ("enum foo bar", "enum foo {i} bar;")
@@ -84,14 +84,14 @@ feature -- Tests
 			assert_declaration_from_source ("enum foo bar", "enum foo {i,j,k}; enum foo bar;")
 		end
 
-	test_array_type is
+	test_array_type
 		do
 			assert_declaration_from_source ("int foo[32]", "int foo[32];")
 			assert_declaration_from_source ("int foo[sizeof(int)]", "int foo[sizeof(int)];")
 			assert_declaration_from_source ("int (*foo[30]) (void)", "int (*foo[30]) (void);")
 		end
 
-	test_function_type is
+	test_function_type 
 		do
 			assert_declaration_from_source ("void foo (void)", "void foo (void);")
 			assert_declaration_from_source ("void foo (int i)", "void foo (int i);")

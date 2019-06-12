@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -24,7 +24,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (a_header_file_name: STRING) is
+	make (a_header_file_name: STRING)
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
 			a_header_file_name_not_empty: a_header_file_name.count > 0
@@ -58,7 +58,7 @@ feature {ANY} -- Access
 
 feature {ANY}
 
-	has_wrapper_clause (a_wrapper_clause: EWG_CONFIG_WRAPPER_CLAUSE): BOOLEAN is
+	has_wrapper_clause (a_wrapper_clause: EWG_CONFIG_WRAPPER_CLAUSE): BOOLEAN
 			-- Does `Current' contain the wrapper clause `a_wrapper_clause' ?
 		require
 			a_wrapper_clause_not_void: a_wrapper_clause /= Void
@@ -80,7 +80,7 @@ feature {ANY}
 			end
 		end
 
-	has_rule (a_rule: EWG_CONFIG_RULE): BOOLEAN is
+	has_rule (a_rule: EWG_CONFIG_RULE): BOOLEAN
 			-- Does `Current' contain the rule `a_rule' ?
 		require
 			a_rule_not_void: a_rule /= Void
@@ -88,13 +88,13 @@ feature {ANY}
 			Result := rule_list.has (a_rule)
 		end
 
-	does_type_need_deep_wrapping (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	does_type_need_deep_wrapping (a_type: EWG_C_AST_TYPE): BOOLEAN
 		do
 			Result := shallow_wrapped_type_table.has (a_type) and then
 								shallow_wrapped_type_table.item (a_type) = False
 		end
 
-	has_type_been_deeply_wrapped (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	has_type_been_deeply_wrapped (a_type: EWG_C_AST_TYPE): BOOLEAN
 		do
 			Result := shallow_wrapped_type_table.has (a_type) and then
 								shallow_wrapped_type_table.item (a_type) = True
@@ -102,7 +102,7 @@ feature {ANY}
 
 feature {ANY}
 
-	set_output_directory_name (a_output_directory_name: STRING) is
+	set_output_directory_name (a_output_directory_name: STRING)
 		require
 			a_output_directory_name_not_void: a_output_directory_name /= Void
 		do
@@ -111,7 +111,7 @@ feature {ANY}
 			output_directory_name_set: output_directory_name = a_output_directory_name
 		end
 
-	set_name (a_name: STRING) is
+	set_name (a_name: STRING)
 		require
 			a_name_not_void: a_name /= Void
 			a_name_not_empty: a_name.count > 0
@@ -123,7 +123,7 @@ feature {ANY} -- Operations
 
 	try_shallow_wrap_type (a_type: EWG_C_AST_TYPE;
 								  a_include_header_file_name: STRING;
-								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Create an Eiffel wrapper for `a_type' acording to the
 			-- users configuration and add it to `eiffel_wrapper_set'
 			-- (but only if the user didn't specify to ignore
@@ -179,7 +179,7 @@ feature {ANY} -- Operations
 
 	try_shallow_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 											a_include_header_file_name: STRING;
-											a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+											a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Create an Eiffel wrapper for `a_declaration' and add it to
 			-- `eiffel_wrapper_set' (but only if the user didn't
 			-- specify to ignore `a_declaration'). Wrappers for members
@@ -221,7 +221,7 @@ feature {ANY} -- Operations
 
 	force_shallow_wrap_type (a_type: EWG_C_AST_TYPE;
 									 a_include_header_file_name: STRING;
-									 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+									 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Create an Eiffel wrapper for `a_type' acording to the
 			-- users configuration and add it to `eiffel_wrapper_set'.
 			-- Wrappers for members (if any) are not created (hence the
@@ -258,7 +258,7 @@ feature {ANY} -- Operations
 
 	force_shallow_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 											  a_include_header_file_name: STRING;
-											  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+											  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Create an Eiffel wrapper for `a_declaration' and add it to
 			-- `eiffel_wrapper_set'. Wrappers for members (if any) are
 			-- not created (hence the "shallow" in the name). Because
@@ -287,7 +287,7 @@ feature {ANY} -- Operations
 
 	deep_wrap_type (a_type: EWG_C_AST_TYPE;
 						 a_include_header_file_name: STRING;
-						 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+						 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Once `shallow_wrap_type' has been called on `a_type',
 			-- `deep_wrap_type' can be called to wrap `a_type's members
 			-- if any exist.
@@ -343,7 +343,7 @@ feature {ANY} -- Operations
 
 	deep_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 								  a_include_header_file_name: STRING;
-								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Once `shallow_wrap_declaration' has been called on `a_declaration',
 			-- `deep_wrap_declaration' can be called to wrap `a_declaration's members
 			-- if any exist.
@@ -385,7 +385,7 @@ feature {ANY} -- Operations
 
 	default_deep_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 											 a_include_header_file_name: STRING;
-											 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+											 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Once `force_shallow_wrap_declaration' has been called on
 			-- `a_declaration', `default_deep_wrap_declaration' can be
 			-- called to wrap `a_declaration's members if any exist.
@@ -411,7 +411,7 @@ feature {ANY} -- Operations
 		end
 
 
-	append_rule (a_rule: EWG_CONFIG_RULE) is
+	append_rule (a_rule: EWG_CONFIG_RULE)
 			-- Add `a_rule' at the end of the rule list.
 		require
 			a_rule_not_void: a_rule /= Void
@@ -435,7 +435,7 @@ feature {NONE} -- Implementation
 
 	deeply_wrapped_table: DS_HASH_SET [EWG_C_AST_TYPE]
 
-	all_members_of_all_types_wrapped: BOOLEAN is
+	all_members_of_all_types_wrapped: BOOLEAN
 			-- Have all members of all types been wrapped yet?
 		local
 			cs: DS_HASH_TABLE_CURSOR [BOOLEAN, EWG_C_AST_TYPE]
@@ -456,7 +456,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	make_sure_type_will_be_deeply_wrapped (a_type: EWG_C_AST_TYPE) is
+	make_sure_type_will_be_deeply_wrapped (a_type: EWG_C_AST_TYPE)
 		require
 			a_type_not_void: a_type /= Void
 		do
@@ -469,7 +469,7 @@ feature {NONE} -- Implementation
 
 feature {EWG_CONFIG_WRAPPER_CLAUSE}
 
-	mark_type_completely_wrapped (a_type: EWG_C_AST_TYPE) is
+	mark_type_completely_wrapped (a_type: EWG_C_AST_TYPE)
 		require
 			a_type_not_void: a_type /= Void
 			type_needs_deep_wrapping: does_type_need_deep_wrapping (a_type)
@@ -480,14 +480,14 @@ feature {EWG_CONFIG_WRAPPER_CLAUSE}
 
 feature {EWG_EIFFEL_WRAPPER_BUILDER}
 
-	new_shallow_wrapped_type_table_cursor: DS_HASH_TABLE_CURSOR [BOOLEAN, EWG_C_AST_TYPE] is
+	new_shallow_wrapped_type_table_cursor: DS_HASH_TABLE_CURSOR [BOOLEAN, EWG_C_AST_TYPE]
 		do
 			Result := shallow_wrapped_type_table.new_cursor
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	number_of_types_whose_members_have_not_been_wrapped_yet: INTEGER is
+	number_of_types_whose_members_have_not_been_wrapped_yet: INTEGER 
 			-- Number of types, whose members have yet to be wrapped
 		local
 			cs: DS_HASH_TABLE_CURSOR [BOOLEAN, EWG_C_AST_TYPE]

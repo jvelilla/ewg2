@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,7 +21,7 @@ inherit
 
 feature {NONE} -- Initialization
 
-	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING) is
+	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING)
 		require
 			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
 			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty
@@ -36,7 +36,7 @@ feature {NONE} -- Initialization
 
 feature {EWG_COMPOSITE_WRAPPER}
 
-	set_composite_wrapper (a_composite_wrapper: EWG_COMPOSITE_WRAPPER) is
+	set_composite_wrapper (a_composite_wrapper: EWG_COMPOSITE_WRAPPER)
 		require
 			a_composite_wrapper_not_void: a_composite_wrapper /= Void
 			composite_wrapper_is_void: composite_wrapper = Void
@@ -46,7 +46,7 @@ feature {EWG_COMPOSITE_WRAPPER}
 			composite_wrapper_set: composite_wrapper = a_composite_wrapper
 		end
 
-	proposed_feature_name_list: DS_LINEAR [STRING] is
+	proposed_feature_name_list: DS_LINEAR [STRING]
 			-- List of Eiffel feature names this member wrapper is planing to generate
 		deferred
 		ensure
@@ -57,7 +57,7 @@ feature {EWG_COMPOSITE_WRAPPER}
 
 feature {ANY} -- Assertion helpers
 
-	are_names_unique (a_list: DS_LINEAR [STRING]): BOOLEAN is
+	are_names_unique (a_list: DS_LINEAR [STRING]): BOOLEAN 
 			-- Are there no two items in `a_list' who have equal names?
 		require
 			a_list_not_void: a_list /= Void

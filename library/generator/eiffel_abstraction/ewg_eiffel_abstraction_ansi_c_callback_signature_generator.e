@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -24,7 +24,7 @@ inherit
 
 feature
 
-	on_callback (a_callback_wrapper: EWG_CALLBACK_WRAPPER; a_feature_name: STRING; a_delegation_feature_name: STRING): STRING is
+	on_callback (a_callback_wrapper: EWG_CALLBACK_WRAPPER; a_feature_name: STRING; a_delegation_feature_name: STRING): STRING
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 			a_feature_name_not_void: a_feature_name /= Void
@@ -61,7 +61,7 @@ feature
 			Result.append_string ("%N%T%Tend%N")
 		end
 
-	on_callback_signature (a_callback_wrapper: EWG_CALLBACK_WRAPPER; a_feature_name: STRING): STRING is
+	on_callback_signature (a_callback_wrapper: EWG_CALLBACK_WRAPPER; a_feature_name: STRING): STRING 
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 			a_feature_name_not_void: a_feature_name /= Void

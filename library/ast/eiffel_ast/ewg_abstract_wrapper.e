@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,7 +21,7 @@ inherit
 
 feature {NONE} -- Initialization
 
-	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING) is
+	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING)
 			-- Create a new wrapper with the mapped name `a_mapped_eiffel_name'
 			-- and "#include" `a_header_file_name' when needed to make wrapped
 			-- types available to the C compiler.
@@ -52,7 +52,7 @@ feature
 
 feature
 
-	rename_mapped_eiffel_name is
+	rename_mapped_eiffel_name
 			-- Rename Eiffel name of wrapper.
 			-- Currently a very simplisitc implementation is provided,
 			-- which just appends a number (and increases it on multiple calls)
@@ -75,7 +75,7 @@ feature {NONE} -- Implementation
 			-- It might differ from `mapped_eiffel_name' because of a clash
 			-- that had to be resolved.
 
-	update_mapped_eiffel_name is
+	update_mapped_eiffel_name
 			-- Update `mapped_eiffel_name' according to `renaming_status' and
 			-- `proposed_eiffel_name'.
 		local
@@ -99,7 +99,7 @@ feature {NONE} -- Implementation
 
 feature {NONE}
 
-	trim_mapped_eiffel_name_size (a_rename_overhead: INTEGER) is
+	trim_mapped_eiffel_name_size (a_rename_overhead: INTEGER)
 		require
 			a_rename_overhead_greater_equal_zero: a_rename_overhead >= 0
 		do
@@ -108,7 +108,7 @@ feature {NONE}
 			end
 		end
 
-	Max_mapped_eiffel_name_size: INTEGER is 120
+	Max_mapped_eiffel_name_size: INTEGER = 120
 
 invariant
 

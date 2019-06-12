@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,7 +21,7 @@ inherit
 
 feature
 
-	test_msc_attributes_and_storage_class_extensions is
+	test_msc_attributes_and_storage_class_extensions  
 		do
 			assert_no_syntax_error_with_msc_extensions ("__w64 should parse with msc extenstions", test_043_hpp)
 			assert_no_syntax_error_with_msc_extensions ("__cdecl should parse with msc extenstions", test_044_hpp)
@@ -36,12 +36,12 @@ feature
 			assert_no_syntax_error_with_msc_extensions ("__declspec for structs should parse with msc extensions", test_096_hpp)
 		end
 
-	test_msc_inline_asm is
+	test_msc_inline_asm
 		do
 			assert_no_syntax_error_with_msc_extensions ("__asm should parse with cl extenstions", test_047_hpp)
 		end
 
-	test_anonymous_function_type_parameter is
+	test_anonymous_function_type_parameter
 		do
 			assert_no_syntax_error_with_msc_extensions ("__cdecl as part of anonymous parameter of type function pointer must parse", test_053_hpp)
 			assert_no_syntax_error_with_msc_extensions ("anonymous function-type function parameter with type alias as parameter must parse", test_069_hpp)

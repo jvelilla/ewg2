@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -29,7 +29,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (an_output_stream: like output_stream; an_eiffel_compiler_mode: like eiffel_compiler_mode) is
+	make (an_output_stream: like output_stream; an_eiffel_compiler_mode: like eiffel_compiler_mode)
 			-- Create new printer with `a_output_stream' as output stream.
 		require
 			an_output_stream_not_void: an_output_stream /= Void
@@ -42,7 +42,7 @@ feature {NONE} -- Initialization
 			eiffel_compiler_mode_set: eiffel_compiler_mode = an_eiffel_compiler_mode
 		end
 
-	make_string (an_output_string: STRING; an_eiffel_compiler_mode: like eiffel_compiler_mode) is
+	make_string (an_output_string: STRING; an_eiffel_compiler_mode: like eiffel_compiler_mode)
 			-- Create new printer which appends to `an_output_string'.
 		require
 			an_output_string_not_void: an_output_string /= Void
@@ -58,14 +58,14 @@ feature -- Status
 
 	eiffel_compiler_mode: EWG_EIFFEL_COMPILER_MODE
 
-	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN is
+	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN
 		do
 			Result := True
 		end
 
 feature -- Printing
 
-	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) is
+	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) 
 		do
 			if
 				a_type.skip_consts_and_aliases.is_struct_type or

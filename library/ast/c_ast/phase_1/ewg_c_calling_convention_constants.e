@@ -1,4 +1,4 @@
-indexing
+note
 	description: "[
 		Constants identifieng the various calling conventions of functions
 		
@@ -15,12 +15,12 @@ class EWG_C_CALLING_CONVENTION_CONSTANTS
 
 feature {ANY}
 
-	cdecl: INTEGER is 0
+	cdecl: INTEGER = 0
 			-- Default C calling convention.
 			-- Stack is cleaned up by caller.
 			-- "varargs" possible.
 
-	stdcall: INTEGER is 1
+	stdcall: INTEGER = 1
 			-- Visual C extension.
 			-- Used to call Win32 API functions.
 			-- Callee cleans up the stack.
@@ -28,14 +28,14 @@ feature {ANY}
 			-- require a function prototype.
 			-- Compiler makes "varargs" functions `cdecl'.
 
-	fastcall: INTEGER is 2
+	fastcall: INTEGER = 2
 			-- Visual C extension.
 			-- Arguments to functions are passed in registers when possible.
 
 
 feature
 
-	is_valid_calling_convention_constant (a_value: INTEGER): BOOLEAN is
+	is_valid_calling_convention_constant (a_value: INTEGER): BOOLEAN 
 		do
 			Result := a_value >= 0 and a_value <= 2
 		ensure

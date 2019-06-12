@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -34,7 +34,7 @@ feature -- Acccess
 
 feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 
-	process_primitive_type (a_type: EWG_C_AST_PRIMITIVE_TYPE) is
+	process_primitive_type (a_type: EWG_C_AST_PRIMITIVE_TYPE) 
 		do
 			output_stream.put_string (a_type.name)
 			if should_print_const then
@@ -47,12 +47,12 @@ feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 			print_declarator
 		end
 
-	process_eiffel_object_type (a_type: EWG_C_AST_EIFFEL_OBJECT_TYPE) is
+	process_eiffel_object_type (a_type: EWG_C_AST_EIFFEL_OBJECT_TYPE)
 		do
 			process (c_system.types.void_pointer_type)
 		end
 
-	process_alias_type (a_type: EWG_C_AST_ALIAS_TYPE) is
+	process_alias_type (a_type: EWG_C_AST_ALIAS_TYPE)
 		do
 			output_stream.put_string (a_type.name)
 			if should_print_const then
@@ -65,7 +65,7 @@ feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 			print_declarator
 		end
 
-	process_pointer_type (a_type: EWG_C_AST_POINTER_TYPE) is
+	process_pointer_type (a_type: EWG_C_AST_POINTER_TYPE)
 		do
 			if last_type /= Void and then last_type.is_const_type then
 				prepend_to_declarator ("*const ")
@@ -77,7 +77,7 @@ feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 			process (a_type.base)
 		end
 
-	process_array_type (a_type: EWG_C_AST_ARRAY_TYPE) is
+	process_array_type (a_type: EWG_C_AST_ARRAY_TYPE)
 		do
 			append_to_declarator ("[")
 			if a_type.is_size_defined then
@@ -92,13 +92,13 @@ feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 			process (a_type.base)
 		end
 
-	process_const_type (a_type: EWG_C_AST_CONST_TYPE) is
+	process_const_type (a_type: EWG_C_AST_CONST_TYPE)
 		do
 			last_type := a_type
 			process (a_type.base)
 		end
 
-	process_function_type (a_type: EWG_C_AST_FUNCTION_TYPE) is
+	process_function_type (a_type: EWG_C_AST_FUNCTION_TYPE)
 		local
 			declaration_printer: EWG_C_DECLARATION_PRINTER
 			declaration_list_printer: EWG_C_DECLARATION_LIST_PRINTER
@@ -140,7 +140,7 @@ feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 			declaration_printer.print_declaration_from_type (a_type.return_type, l_declarator)
 		end
 
-	process_struct_type (a_type: EWG_C_AST_STRUCT_TYPE) is
+	process_struct_type (a_type: EWG_C_AST_STRUCT_TYPE)
 		do
 			if a_type.is_anonymous then
 					check
@@ -161,7 +161,7 @@ feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 			end
 		end
 
-	process_union_type (a_type: EWG_C_AST_UNION_TYPE) is
+	process_union_type (a_type: EWG_C_AST_UNION_TYPE)
 		do
 			if a_type.is_anonymous then
 					check
@@ -182,7 +182,7 @@ feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 			end
 		end
 
-	process_enum_type (a_type: EWG_C_AST_ENUM_TYPE) is
+	process_enum_type (a_type: EWG_C_AST_ENUM_TYPE)
 		do
 			if a_type.is_anonymous then
 					check
@@ -211,7 +211,7 @@ feature {NONE}
 	text_after_declarator: STRING
 			-- Text to output after  `declarator'
 
-	reset is
+	reset
 		do
 			declarator := clone ("")
 			text_before_declarator := clone ("")
@@ -229,7 +229,7 @@ feature {NONE}
 	last_type: EWG_C_AST_TYPE
 			-- Last type that was processed
 
-	process (a_type: EWG_C_AST_TYPE) is
+	process (a_type: EWG_C_AST_TYPE)
 			-- Process `a_type'.
 		require
 			a_type_not_void: a_type /= Void
@@ -239,7 +239,7 @@ feature {NONE}
 			a_type.process (Current)
 		end
 
-	prepend_to_declarator (a_string: STRING) is
+	prepend_to_declarator (a_string: STRING)
 			-- Prepend `a_string' to `text_before_declarator'.
 		require
 			a_string_not_void: a_string /= Void
@@ -258,7 +258,7 @@ feature {NONE}
 			old_string_follows: STRING_.same_string (text_before_declarator.substring (a_string.count + 1, text_before_declarator.count), old clone(text_before_declarator))
 		end
 
-	append_to_declarator (a_string: STRING) is
+	append_to_declarator (a_string: STRING)
 			-- Append `a_string' to `text_after_declarator'.
 		require
 			a_string_not_void: a_string /= Void
@@ -270,7 +270,7 @@ feature {NONE}
 			text_after_declarator_size: text_after_declarator.count = a_string.count + old text_after_declarator.count
 		end
 
-	print_declarator is
+	print_declarator
 		require
 			text_before_declarator_not_void: text_before_declarator /= Void
 			text_after_declarator_not_void: text_after_declarator /= Void
@@ -281,7 +281,7 @@ feature {NONE}
 			output_stream.put_string (text_after_declarator)
 		end
 
-	print_const is
+	print_const
 			-- Print "const".
 		require
 			should_print_const
@@ -289,12 +289,12 @@ feature {NONE}
 			output_stream.put_string ("const")
 		end
 
-	should_print_const: BOOLEAN is
+	should_print_const: BOOLEAN
 		do
 			Result := last_type /= Void and then last_type.is_const_type
 		end
 
-	has_declarator: BOOLEAN is
+	has_declarator: BOOLEAN
 		require
 			declarator_not_void: declarator /= Void
 		do

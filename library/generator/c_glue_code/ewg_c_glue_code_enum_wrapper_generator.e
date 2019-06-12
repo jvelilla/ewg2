@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -31,20 +31,20 @@ create
 
 feature {NONE} -- Initialization
 
-	make_internal is
+	make_internal
 		do
 			Precursor
 			make_printers
 		end
 
-	make_printers is
+	make_printers
 		do
 			create c_declaration_printer.make (output_stream)
 		end
 
 feature
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_ENUM_WRAPPER]
 			file_name: STRING
@@ -73,7 +73,7 @@ feature
 
 feature {NONE}
 
-	generate_enum_wrapper (a_enum_wrapper: EWG_ENUM_WRAPPER) is
+	generate_enum_wrapper (a_enum_wrapper: EWG_ENUM_WRAPPER)
 		require
 			a_enum_wrapper_not_void: a_enum_wrapper /= Void
 		local
@@ -107,7 +107,7 @@ feature {NONE}
 			end
 		end
 
-	generate_member (a_member: EWG_C_AST_DECLARATION; a_escaped_enum_name: STRING) is
+	generate_member (a_member: EWG_C_AST_DECLARATION; a_escaped_enum_name: STRING)
 		require
 			a_member_not_void: a_member /= Void
 			a_escaped_enum_name_not_void: a_escaped_enum_name /= Void
@@ -121,7 +121,7 @@ feature {NONE}
 
 feature {NONE}
 
-	enum_member_getter_template: STRING is
+	enum_member_getter_template: STRING 
 			-- ${1} ... enum member name
 			-- ${2} ... enum name
 		once

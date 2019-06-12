@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,7 +21,7 @@ inherit
 
 feature {NONE} -- Initialization
 
-	make_internal is
+	make_internal 
 		do
 			create eiffel_compiler_mode.make
 		end

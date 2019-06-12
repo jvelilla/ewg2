@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,28 +21,28 @@ create
 
 feature {ANY} -- Access
 
-	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN
 		do
 			Result := True
 		end
 
-	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN
 		do
 			Result := True
 		end
 
 feature {ANY} -- Basic Routines
-	
+
 	shallow_wrap_type (a_type: EWG_C_AST_TYPE;
 							 a_include_header_file_name: STRING;
-							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		do
 			-- Do nothing
 		end
-	
+
 	shallow_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 									  a_include_header_file_name: STRING;
-									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		do
 			-- Do nothing
 		end
@@ -50,7 +50,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_type (a_type: EWG_C_AST_TYPE;
 						 a_include_header_file_name: STRING;
 						 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-						 a_config_system: EWG_CONFIG_SYSTEM) is
+						 a_config_system: EWG_CONFIG_SYSTEM)
 		do
 			-- Do nothing
 		end
@@ -58,21 +58,21 @@ feature {ANY} -- Basic Routines
 	deep_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 								  a_include_header_file_name: STRING;
 								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-								  a_config_system: EWG_CONFIG_SYSTEM) is
+								  a_config_system: EWG_CONFIG_SYSTEM)
 		do
 			-- Do nothing
 		end
 
 feature {NONE}
 
-	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING is
+	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING
 		do
 				check
 					dead_end: False
 				end
 		end
 
-	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING is
+	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING 
 		do
 				check
 					dead_end: False
@@ -82,4 +82,4 @@ feature {NONE}
 end
 
 
-	
+

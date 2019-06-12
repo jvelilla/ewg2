@@ -2,13 +2,13 @@
 
 <system name="ewg_test_suite">
 	<root class="EWG_TEST_SUITE" creation="make"/>
-	<option name="assertion" value="none"/>
-	<option name="finalize" value="true"/>
 	<option name="garbage_collector" value="none"/>
+	<option name="finalize" value="true"/>
+	<option name="assertion" value="none"/>
 	<cluster name="ewg_test_suite" location="${EWG}/test">
 		<option name="header" value="${EWG}/test/generated_wrapper/c/include"/>
 		<option name="header" value="${EWG}/test/generated_wrapper/c/include/spec/ge"/>
-		<option name="link" value="${EWG}\test\ewg_runtime_test_c_eiffel_glue_library_ge_${GOBO_CC}.lib"/>
+		<option name="link" value="${EWG}\test\ewg_runtime_test_c_eiffel_glue_library_ge_msc.lib"/>
 		<cluster name="ewg_test_suite_testgen" location="TESTGEN"/>
 	</cluster>
 	<cluster name="library" location="${EWG}/library" prefix="ewg_">
@@ -47,20 +47,17 @@
 		</cluster>
 	</cluster>
 	<cluster name="ge" location="${GOBO}/library"/>
-	<cluster name="argument" location="${GOBO}/library/argument" prefix="ap_"/>
-	<cluster name="kernel" location="${GOBO}/library/kernel" prefix="kl_">
+	<cluster name="argument" location="${GOBO}/library/argument/src" prefix="ap_"/>
+	<cluster name="kernel" location="${GOBO}/library/kernel/src" prefix="kl_">
 		<option name="abstract" value="true"/>
 		<cluster name="basic"/>
 		<cluster name="io"/>
 		<cluster name="misc"/>
 		<cluster name="unicode"/>
 		<cluster name="support"/>
-		<cluster name="spec">
-			<option name="abstract" value="true"/>
-			<cluster name="ge" prefix="kl_spec_"/>
-		</cluster>
+		<cluster name="time"/>
 	</cluster>
-	<cluster name="lexical" location="${GOBO}/library/lexical" prefix="lx_">
+	<cluster name="lexical" location="${GOBO}/library/lexical/src" prefix="lx_">
 		<option name="abstract" value="true"/>
 		<cluster name="automaton"/>
 		<cluster name="error"/>
@@ -70,11 +67,11 @@
 		<cluster name="scanner"/>
 		<cluster name="support"/>
 	</cluster>
-	<cluster name="math" location="${GOBO}/library/math" prefix="ma_">
+	<cluster name="math" location="${GOBO}/library/math/src" prefix="ma_">
 		<option name="abstract" value="true"/>
 		<cluster name="decimal"/>
 	</cluster>
-	<cluster name="parse" location="${GOBO}/library/parse" prefix="pr_">
+	<cluster name="parse" location="${GOBO}/library/parse/src" prefix="pr_">
 		<option name="abstract" value="true"/>
 		<cluster name="error"/>
 		<cluster name="fsm"/>
@@ -84,18 +81,18 @@
 		<cluster name="support"/>
 		<cluster name="yacc"/>
 	</cluster>
-	<cluster name="pattern" location="${GOBO}/library/pattern" prefix="dp_">
+	<cluster name="pattern" location="${GOBO}/library/pattern/src" prefix="dp_">
 		<option name="abstract" value="true"/>
 		<cluster name="bridge"/>
 		<cluster name="command"/>
 	</cluster>
-	<cluster name="regexp" location="${GOBO}/library/regexp" prefix="rx_">
+	<cluster name="regexp" location="${GOBO}/library/regexp/src" prefix="rx_">
 		<option name="abstract" value="true"/>
 		<cluster name="interface"/>
 		<cluster name="pcre"/>
 		<cluster name="support"/>
 	</cluster>
-	<cluster name="string" location="${GOBO}/library/string" prefix="st_">
+	<cluster name="string" location="${GOBO}/library/string/src" prefix="st_">
 		<option name="abstract" value="true"/>
 		<cluster name="collation"/>
 		<cluster name="unicode"/>
@@ -107,7 +104,7 @@
 			<cluster name="parameter"/>
 		</cluster>
 	</cluster>
-	<cluster name="structure" location="${GOBO}/library/structure" prefix="ds_">
+	<cluster name="structure" location="${GOBO}/library/structure/src" prefix="ds_">
 		<option name="abstract" value="true"/>
 		<cluster name="container"/>
 		<cluster name="dispenser"/>
@@ -117,19 +114,21 @@
 		<cluster name="support"/>
 		<cluster name="table"/>
 	</cluster>
-	<cluster name="test" location="${GOBO}/library/test" prefix="ts_">
+	<cluster name="test" location="${GOBO}/library/test/src" prefix="ts_">
 		<option name="abstract" value="true"/>
 		<cluster name="generation"/>
-		<cluster name="harness"/>
 	</cluster>
-	<cluster name="time" location="${GOBO}/library/time" prefix="dt_">
+	<cluster name="thread" location="${GOBO}/library/thread/src" prefix="th_">
+		<cluster name="classic"/>
+	</cluster>
+	<cluster name="time" location="${GOBO}/library/time/src" prefix="dt_">
 		<option name="abstract" value="true"/>
 		<cluster name="clock"/>
 		<cluster name="date"/>
 		<cluster name="stopwatch"/>
 		<cluster name="time_zone"/>
 	</cluster>
-	<cluster name="tools" location="${GOBO}/library/tools" prefix="et_">
+	<cluster name="tools" location="${GOBO}/library/tools/src" prefix="et_">
 		<option name="abstract" value="true"/>
 		<cluster name="eiffel" prefix="et_eiffel_">
 			<option name="abstract" value="true"/>
@@ -164,6 +163,7 @@
 			<option name="abstract" value="true"/>
 			<cluster name="ast"/>
 			<cluster name="error"/>
+			<cluster name="generator"/>
 			<cluster name="parser"/>
 		</cluster>
 		<cluster name="xace" prefix="et_xace_">
@@ -176,7 +176,7 @@
 		</cluster>
 		<cluster name="support"/>
 	</cluster>
-	<cluster name="utility" location="${GOBO}/library/utility" prefix="ut_">
+	<cluster name="utility" location="${GOBO}/library/utility/src" prefix="ut_">
 		<option name="abstract" value="true"/>
 		<cluster name="error"/>
 		<cluster name="formatter"/>
@@ -185,34 +185,7 @@
 		<cluster name="transcoder"/>
 		<cluster name="uri"/>
 	</cluster>
-	<cluster name="free_elks" location="${GOBO}/library/free_elks" prefix="fe_">
-		<option name="abstract" value="true"/>
-		<cluster name="fake"/>
-		<cluster name="kernel">
-			<cluster name="string"/>
-		</cluster>
-		<cluster name="refactoring"/>
-		<cluster name="structures">
-			<cluster name="access"/>
-			<cluster name="cursor_tree"/>
-			<cluster name="cursors"/>
-			<cluster name="dispenser"/>
-			<cluster name="iteration"/>
-			<cluster name="list"/>
-			<cluster name="set">
-				<cluster name="strategies"/>
-			</cluster>
-			<cluster name="sort"/>
-			<cluster name="storage"/>
-			<cluster name="table"/>
-			<cluster name="traversing"/>
-			<cluster name="tree"/>
-		</cluster>
-		<cluster name="support"/>
-	</cluster>
-	<cluster name="skeleton" location="${GOBO}/library/lexical/skeleton" prefix="lx_"/>
-	<cluster name="skeleton" location="${GOBO}/library/parse/skeleton" prefix="pr_"/>
-	<cluster name="xml" location="${GOBO}/library/xml" prefix="xm_">
+	<cluster name="xml" location="${GOBO}/library/xml/src" prefix="xm_">
 		<option name="abstract" value="true"/>
 		<cluster name="position"/>
 		<cluster name="source"/>
@@ -233,27 +206,13 @@
 			<cluster name="eiffel"/>
 			<cluster name="no_expat"/>
 		</cluster>
-		<cluster name="xml_xpointer" location="${GOBO}/library/xml/xpointer">
+		<cluster name="xml_xpointer" location="${GOBO}/library/xml/src/xpointer">
 			<option name="abstract" value="true"/>
 			<cluster name="xpointer_common" location="common" relative="true"/>
 			<cluster name="xpointer_event" location="event" relative="true"/>
 		</cluster>
 	</cluster>
-	<cluster name="xml_xslt" location="${GOBO}/library/xml/xslt" prefix="xm_">
-		<option name="abstract" value="true"/>
-		<cluster name="pattern"/>
-		<cluster name="xslt_function" location="function" relative="true"/>
-		<cluster name="instruction"/>
-		<cluster name="style"/>
-		<cluster name="tracing"/>
-		<cluster name="number"/>
-		<cluster name="xslt_sort" location="sort" relative="true"/>
-		<cluster name="xslt_event" location="event" relative="true"/>
-		<cluster name="runtime"/>
-		<cluster name="xslt_core" location="core" relative="true"/>
-		<cluster name="xslt_serializer" location="serializer" relative="true"/>
-	</cluster>
-	<cluster name="xml_xpath" location="${GOBO}/library/xml/xpath" prefix="xm_">
+	<cluster name="xml_xpath" location="${GOBO}/library/xpath/src" prefix="xm_">
 		<option name="abstract" value="true"/>
 		<cluster name="data_model"/>
 		<cluster name="tinytree"/>
@@ -267,6 +226,59 @@
 		<cluster name="node_test"/>
 		<cluster name="type"/>
 		<cluster name="xpath_xpointer" location="xpointer" relative="true"/>
+		<cluster name="xpath_xslt" location="xslt" relative="true"/>
 		<cluster name="core"/>
 	</cluster>
+	<cluster name="xml_xslt" location="${GOBO}/library/xslt/src" prefix="xm_">
+		<option name="abstract" value="true"/>
+		<cluster name="pattern"/>
+		<cluster name="xslt_function" location="function" relative="true"/>
+		<cluster name="instruction"/>
+		<cluster name="style"/>
+		<cluster name="tracing"/>
+		<cluster name="number"/>
+		<cluster name="xslt_sort" location="sort" relative="true"/>
+		<cluster name="xslt_event" location="event" relative="true"/>
+		<cluster name="runtime"/>
+		<cluster name="xslt_core" location="core" relative="true"/>
+		<cluster name="xslt_serializer" location="serializer" relative="true"/>
+	</cluster>
+	<cluster name="free_elks" location="${GOBO}/library/free_elks/src" prefix="fe_">
+		<option name="abstract" value="true"/>
+		<cluster name="elks">
+			<cluster name="kernel">
+				<cluster name="exceptions"/>
+				<cluster name="string"/>
+			</cluster>
+			<cluster name="refactoring"/>
+			<cluster name="structures">
+				<cluster name="access"/>
+				<cluster name="cursor_tree"/>
+				<cluster name="cursors"/>
+				<cluster name="dispenser"/>
+				<cluster name="iteration"/>
+				<cluster name="list"/>
+				<cluster name="set">
+					<cluster name="strategies"/>
+				</cluster>
+				<cluster name="sort"/>
+				<cluster name="storage"/>
+				<cluster name="table"/>
+				<cluster name="traversing"/>
+				<cluster name="tree"/>
+			</cluster>
+			<cluster name="support"/>
+		</cluster>
+		<cluster name="ise">
+			<cluster name="kernel">
+				<cluster name="exceptions"/>
+			</cluster>
+			<cluster name="synchronization">
+				<cluster name="classic"/>
+			</cluster>
+		</cluster>
+	</cluster>
+	<cluster name="skeleton" location="${GOBO}/library/lexical/src/skeleton" prefix="lx_"/>
+	<cluster name="skeleton" location="${GOBO}/library/parse/src/skeleton" prefix="pr_"/>
+	<cluster name="harness" location="${GOBO}/library/test/src/harness" prefix="ts_"/>
 </system>

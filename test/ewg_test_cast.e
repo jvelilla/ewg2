@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,7 +21,7 @@ inherit
 
 feature -- Tests
 
-	test_primitive_type is
+	test_primitive_type
 		do
 			assert_cast_from_source ("(char)", "char foo;")
 			assert_cast_from_source ("(int)", "int foo;")
@@ -31,7 +31,7 @@ feature -- Tests
 			assert_cast_from_source ("(short)", "short foo;")
 		end
 
-	test_alias_type is
+	test_alias_type
 		do
 			assert_cast_from_source ("(foo)", "typedef char foo; foo bar;")
 			assert_cast_from_source ("(foo_struct)",
@@ -42,13 +42,13 @@ feature -- Tests
 													  "enum foo; typedef enum foo foo_enum; foo_enum bar;")
 		end
 
-	test_pointer_type is
+	test_pointer_type
 		do
 			assert_cast_from_source ("(void*)", "void *foo;")
 			assert_cast_from_source ("(void (*) (void))", "void (*foo) (void);")
 		end
 
-	test_const_type is
+	test_const_type
 		do
 			assert_cast_from_source ("(void const*)", "void const *foo;")
 			assert_cast_from_source ("(void const*)", "const void *foo;")
@@ -62,21 +62,21 @@ feature -- Tests
 													  "const enum foo {i} bar;")
 		end
 
-	test_struct_type is
+	test_struct_type
 		do
 			assert_cast_from_source ("(struct foo)", "struct foo bar;")
 			assert_cast_from_source ("(struct foo)", "struct foo {int i;} bar;")
 			assert_cast_from_source ("(struct foo)", "struct foo {int i;}; struct foo bar;")
 		end
 
-	test_union_type is
+	test_union_type
 		do
 			assert_cast_from_source ("(union foo)", "union foo bar;")
 			assert_cast_from_source ("(union foo)", "union foo {int i;} bar;")
 			assert_cast_from_source ("(union foo)", "union foo {int i;}; union foo bar;")
 		end
 
-	test_enum_type is
+	test_enum_type 
 		do
 			assert_cast_from_source ("(enum foo)", "enum foo bar;")
 			assert_cast_from_source ("(enum foo)", "enum foo {i} bar;")

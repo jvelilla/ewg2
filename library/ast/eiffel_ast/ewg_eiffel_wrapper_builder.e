@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -35,7 +35,7 @@ feature {NONE}
 			a_directory_structure: EWG_DIRECTORY_STRUCTURE;
 			a_include_header_file_name: STRING;
 			a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET
-			a_config_system: EWG_CONFIG_SYSTEM) is
+			a_config_system: EWG_CONFIG_SYSTEM)
 		require
 			a_error_handler_not_void: a_error_handler /= Void
 			a_directory_structure_not_void: a_directory_structure /= Void
@@ -58,7 +58,7 @@ feature {NONE}
 
 feature {ANY} -- Basic Routines
 
-	build is
+	build
 			-- Build Eiffel AST from C AST.
 		do
 			if c_system.declarations.function_declaration_count > 0 then
@@ -116,7 +116,7 @@ feature {ANY} -- Basic Routines
 
 feature {NONE} -- Wraping of declarations
 
-	wrap_declarations is
+	wrap_declarations
 			-- Go through all declarations in the C system and wrap them.
 			-- Add types which are needed by those declarations to
 			-- `members_for_type_wrapped_table'.
@@ -148,7 +148,7 @@ feature {NONE} -- Wraping of declarations
 
 feature {NONE}
 
-	find_types_to_wrap_according_to_config_file is
+	find_types_to_wrap_according_to_config_file
 			-- Go through all types in the C system.
 			-- And ask the config file what should be wrapped.
 			-- All types that should be added
@@ -175,7 +175,7 @@ feature {NONE}
 			end
 		end
 
-	wrap_members_of_types is
+	wrap_members_of_types
 			-- For each type in `members_for_type_wrapped_table' that has
 			-- its value set to `False' (meaning its members have not
 			-- been wrapped yet) wrap its members and set the value to
@@ -203,7 +203,7 @@ feature {NONE}
 			end
 		end
 
-	add_ffcall_callback_entry_struct is
+	add_ffcall_callback_entry_struct
 		local
 			struct_type: EWG_C_AST_STRUCT_TYPE
 			members: DS_ARRAYED_LIST [EWG_C_AST_DECLARATION]
@@ -224,7 +224,7 @@ feature {NONE}
 													 eiffel_wrapper_set)
 		end
 
-	resolve_externals_for_callback_glue is
+	resolve_externals_for_callback_glue
 			-- For every function callback add a stub setter and getter
 			-- function declaration.
 		local
@@ -368,7 +368,7 @@ feature {NONE}
 		end
 
 
-	resolve_feature_name_clashes is
+	resolve_feature_name_clashes 
 		local
 			cs: DS_LINEAR_CURSOR [EWG_COMPOSITE_WRAPPER]
 		do

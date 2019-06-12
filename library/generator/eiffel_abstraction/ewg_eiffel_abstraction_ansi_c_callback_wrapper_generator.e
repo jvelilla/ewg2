@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -31,7 +31,7 @@ create
 
 feature -- Generation
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_CALLBACK_WRAPPER]
 			ansi_c_callback_wrapper: EWG_ANSI_C_CALLBACK_WRAPPER
@@ -70,7 +70,7 @@ feature -- Generation
 
 feature {NONE} -- Implementation
 
-	generate_callback_wrapper (a_callback_wrapper: EWG_ANSI_C_CALLBACK_WRAPPER) is
+	generate_callback_wrapper (a_callback_wrapper: EWG_ANSI_C_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		local
@@ -87,7 +87,7 @@ feature {NONE} -- Implementation
 
 feature {NONE} -- Templates
 
-		  callback_class_template: STRING is
+		  callback_class_template: STRING 
 								-- $1 ... callback name in upper case
 								-- $2 ... on_callback signature
 					 once

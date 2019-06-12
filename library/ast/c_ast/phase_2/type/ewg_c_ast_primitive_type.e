@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,7 +26,7 @@ create
 
 feature
 
-	corresponding_eiffel_type: STRING is
+	corresponding_eiffel_type: STRING
 			-- TODO: not taking care of INTEGER_* yet (waiting for Visual Eiffel)
 		do
 			-- TODO: handle __int8, __int16, __int32 and __int64
@@ -52,52 +52,52 @@ feature
 			end
 		end
 
-	append_anonymous_hash_string_to_string (a_string: STRING) is
+	append_anonymous_hash_string_to_string (a_string: STRING)
 		do
 				check
 					primitive_type_always_named: False
 				end
 		end
 
-	is_primitive_type: BOOLEAN is
+	is_primitive_type: BOOLEAN
 		do
 			Result := True
 		end
 
-	is_char_type: BOOLEAN is
+	is_char_type: BOOLEAN
 			-- Is this type 'char'?
 		do
 			Result := name.has_substring ("char")
 		end
 
-	is_int_type: BOOLEAN is
+	is_int_type: BOOLEAN
 		do
 			Result := name.has_substring ("int")
 		end
 
-	is_long_type: BOOLEAN is
+	is_long_type: BOOLEAN
 		do
 			Result := name.has_substring ("long")
 		end
 
-	is_double_type: BOOLEAN is
+	is_double_type: BOOLEAN
 		do
 			Result := name.has_substring ("double")
 		end
 
-	is_float_type: BOOLEAN is
+	is_float_type: BOOLEAN
 		do
 			Result := name.has_substring ("float")
 		end
 
-	is_short_type: BOOLEAN is
+	is_short_type: BOOLEAN
 		do
 			Result := name.has_substring ("short")
 		end
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) is
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) 
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_primitive_type (Current)

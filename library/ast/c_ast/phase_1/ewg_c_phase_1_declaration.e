@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -22,7 +22,7 @@ feature
 
 	make (a_declaration_specifiers: DS_LINKED_LIST [ANY];
 		  a_declarators: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATOR];
-		  a_header_file_name: STRING) is
+		  a_header_file_name: STRING)
 		require
 			a_declaration_specifiers_not_void: a_declaration_specifiers /= Void
 			a_declarators_not_void: a_declarators /= Void
@@ -35,7 +35,7 @@ feature
 
 	make_with_one_declarator (a_declaration_specifiers: DS_LINKED_LIST [ANY];
 			  a_declarator: EWG_C_PHASE_1_DECLARATOR;
-			  a_header_file_name: STRING) is
+			  a_header_file_name: STRING)
 		require
 			a_declaration_specifiers_not_void: a_declaration_specifiers /= Void
 			a_declarator_not_void: a_declarator /= Void
@@ -48,7 +48,7 @@ feature
 		end
 
 	make_without_declarator (a_declaration_specifiers: DS_LINKED_LIST [ANY];
-			  a_header_file_name: STRING) is
+			  a_header_file_name: STRING)
 		require
 			a_declaration_specifiers_not_void: a_declaration_specifiers /= Void
 			a_header_file_name_not_void: a_header_file_name /= Void
@@ -77,12 +77,12 @@ feature
 
 feature {ANY}
 
-	first_declarator: EWG_C_PHASE_1_DECLARATOR is
+	first_declarator: EWG_C_PHASE_1_DECLARATOR
 		do
 			Result := declarators.first
 		end
 
-	has_abstract_declarator: BOOLEAN is
+	has_abstract_declarator: BOOLEAN
 			-- Does this declaration contain a declarator which is abstract?
 		local
 			cs: DS_LINKED_LIST_CURSOR [EWG_C_PHASE_1_DECLARATOR]
@@ -102,7 +102,7 @@ feature {ANY}
 			end
 		end
 
-	has_abstract_declarator_recursive: BOOLEAN is
+	has_abstract_declarator_recursive: BOOLEAN
 			-- Does this declaration or a declaration contained in this declaration contain
 			-- a declarator which is abstract?
 		local
@@ -128,7 +128,7 @@ feature {ANY}
 
 feature {NONE}
 
-	merge_specifiers (a_declaration_specifiers: DS_LINKED_LIST [ANY]) is
+	merge_specifiers (a_declaration_specifiers: DS_LINKED_LIST [ANY]) 
 			-- input is supposed to contain objects of type:
 			-- EWG_C_PHASE_1_STORAGE_CLASS_SPECIFIERS and
 			-- EWG_C_PHASE_1_TYPE_QUALIFIER and

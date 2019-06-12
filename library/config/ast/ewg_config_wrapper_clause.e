@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -13,20 +13,20 @@ deferred class EWG_CONFIG_WRAPPER_CLAUSE
 
 feature {NONE} -- Initialization
 
-	make is
+	make
 		do
 		end
 
 feature {ANY} -- Access
 
-	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Does `Current' accept `a_type'?
 		require
 			a_type_not_void: a_type /= Void
 		deferred
 		end
 
-	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN
 			-- Does `Current' accept `a_declaration'?
 		require
 			a_declaration_not_void: a_declaration /= Void
@@ -34,10 +34,10 @@ feature {ANY} -- Access
 		end
 
 feature {ANY} -- Basic Routines
-	
+
 	shallow_wrap_type (a_type: EWG_C_AST_TYPE;
 							 a_include_header_file_name: STRING;
-							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Create an Eiffel wrapper for `a_type' and add it to
 			-- `eiffel_wrapper_set' (but only if it is not contained in
 			-- this set already). Wrappers for members (if any) are not
@@ -51,10 +51,10 @@ feature {ANY} -- Basic Routines
 			a_eiffel_wrapper_set_not_void: a_eiffel_wrapper_set /= Void
 		deferred
 		end
-	
+
 	shallow_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 									  a_include_header_file_name: STRING;
-									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 			-- Create an Eiffel wrapper for `a_declaration' and add it to
 			-- `eiffel_wrapper_set' (but only if it is not contained in
 			-- this set already). Wrappers for members (if any) are not
@@ -69,11 +69,11 @@ feature {ANY} -- Basic Routines
 		deferred
 		end
 
-	
+
 	deep_wrap_type (a_type: EWG_C_AST_TYPE;
 						 a_include_header_file_name: STRING;
 						 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-						 a_config_system: EWG_CONFIG_SYSTEM) is
+						 a_config_system: EWG_CONFIG_SYSTEM)
 			-- Once `shallow_wrap_type' has been called on `a_type',
 			-- `deep_wrap_type' can be called to wrap `a_type's members
 			-- if any exist.
@@ -90,7 +90,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 								  a_include_header_file_name: STRING;
 								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-								  a_config_system: EWG_CONFIG_SYSTEM) is
+								  a_config_system: EWG_CONFIG_SYSTEM)
 			-- Once `shallow_wrap_declaration' has been called on `a_declaration',
 			-- `deep_wrap_declaration' can be called to wrap `a_declaration's members
 			-- if any exist.
@@ -112,7 +112,7 @@ feature {NONE} -- Implementation
 			-- wrapper for the type which is being wrapped.  If `Void'
 			-- the default name will be used.
 
-	eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING is
+	eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING
 			-- Eiffel identifier name for the wrapper of `a_type'
 		require
 			a_type_not_void: a_type /= Void
@@ -128,7 +128,7 @@ feature {NONE} -- Implementation
 			eiffel_identifier_not_empty: Result.count > 0
 		end
 
-	eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING is
+	eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING
 			-- Eiffel identifier name for the wrapper of `a_declaration'
 		require
 			a_declaration_not_void: a_declaration /= Void
@@ -144,7 +144,7 @@ feature {NONE} -- Implementation
 			eiffel_identifier_not_empty: Result.count > 0
 		end
 
-	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING is
+	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING
 			-- Default eiffel identifier to be used for the wrapper of `a_type'.
 			-- This identifier will be used if the user did not specify a custom
 			-- identifier via `eiffel_identifier_template'.
@@ -157,7 +157,7 @@ feature {NONE} -- Implementation
 			default_eiffel_identifier_not_empty: Result.count > 0
 		end
 
-	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING is
+	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING 
 			-- Default eiffel identifier to be used for the wrapper of `a_declaration'.
 			-- This identifier will be used if the user did not specify a custom
 			-- identifier via `eiffel_identifier_template'.
@@ -173,8 +173,8 @@ feature {NONE} -- Implementation
 invariant
 
 	eiffel_identifier_template_not_void_implies_not_empty: eiffel_identifier_template /= Void implies eiffel_identifier_template.count > 0
-	
+
 end
 
 
-	
+

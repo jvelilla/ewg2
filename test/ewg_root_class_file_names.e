@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -13,7 +13,7 @@ class EWG_ROOT_CLASS_FILE_NAMES
 
 feature
 
-	test_001_e: STRING is "data/root_class/test_001.e"
-	
+	test_001_e: STRING = "data/root_class/test_001.e"
+
 end
-	
+

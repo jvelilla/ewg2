@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -29,7 +29,7 @@ create
 
 feature -- Status
 
-	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN is
+	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN
 		require else
 			a_type_not_void: a_type /= Void
 			a_declarator_not_void: a_declarator /= Void
@@ -39,7 +39,7 @@ feature -- Status
 
 feature -- Printing
 
-	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) is
+	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) 
 			-- Format the cast for  `a_type'.
 		do
 			output_stream.put_string (a_declarator)

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -25,7 +25,7 @@ inherit
 
 feature -- Initialization
 
-	make (a_error_handler: like error_handler) is
+	make (a_error_handler: like error_handler)
 			-- Create a new parser.
 		require
 			a_error_handler_not_void: a_error_handler /= Void
@@ -36,7 +36,7 @@ feature -- Initialization
 			error_handler_set: error_handler = a_error_handler
 		end
 
-	parse_buffer (a_buffer: KI_CHARACTER_INPUT_STREAM) is
+	parse_buffer (a_buffer: KI_CHARACTER_INPUT_STREAM)
 		require
 			a_buffer_not_void: a_buffer /= Void
 			a_buffer_open_read: a_buffer.is_open_read
@@ -46,17 +46,17 @@ feature -- Initialization
 
 feature
 
-	input_buffer: YY_BUFFER	is
+	input_buffer: YY_BUFFER
 		deferred
 		end
 
-	line: INTEGER is
+	line: INTEGER
 		deferred
 		end
 
 feature
 
-	report_line_number_information (number: INTEGER; file_name: STRING) is
+	report_line_number_information (number: INTEGER; file_name: STRING)
 		do
 			print ("line dir: ")
 			print (number.out + " " + file_name + "%N")
@@ -68,7 +68,7 @@ feature
 
 feature
 
-	report_error (a_message: STRING) is
+	report_error (a_message: STRING)
 			-- Report a syntax error.
 		local
 			an_error: UT_SYNTAX_ERROR
@@ -81,7 +81,7 @@ feature
 			else
 				filename := "string"
 			end
-			!! an_error.make (filename, line)
+			create an_error.make (filename, line)
 			error_handler.report_error (an_error)
 		end
 

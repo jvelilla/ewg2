@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -24,7 +24,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (an_expected_element_name: STRING; an_element: XM_ELEMENT; a_position: XM_POSITION) is
+	make (an_expected_element_name: STRING; an_element: XM_ELEMENT; a_position: XM_POSITION) 
 			-- Create an error reporting that instead of `an_element' an
 			-- element with the name `an_expected_element_name' was
 			-- expected.
@@ -43,10 +43,10 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	default_template: STRING is "Found element '$2' but expected '$1' $3"
+	default_template: STRING = "Found element '$2' but expected '$1' $3"
 			-- Default template used to built the error message
 
-	code: STRING is "EWG0006"
+	code: STRING = "EWG0006"
 			-- Error code
 
 end

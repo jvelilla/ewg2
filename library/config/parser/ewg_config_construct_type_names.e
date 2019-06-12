@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,27 +21,27 @@ inherit
 
 feature -- Names
 
-	any_name: STRING is "any"
-	none_name: STRING is "none"
-	struct_name: STRING is "struct"
-	union_name: STRING is "union"
-	enum_name: STRING is "enum"
-	function_name: STRING is "function"
-	callback_name: STRING is "callback"
+	any_name: STRING = "any"
+	none_name: STRING = "none"
+	struct_name: STRING = "struct"
+	union_name: STRING = "union"
+	enum_name: STRING = "enum"
+	function_name: STRING = "function"
+	callback_name: STRING = "callback"
 
 feature -- Codes
 
-	any_code: INTEGER is unique
-	none_code: INTEGER is unique
-	struct_code: INTEGER is unique
-	union_code: INTEGER is unique
-	enum_code: INTEGER is unique
-	function_code: INTEGER is unique
-	callback_code: INTEGER is unique
+	any_code: INTEGER = unique
+	none_code: INTEGER = unique
+	struct_code: INTEGER = unique
+	union_code: INTEGER = unique
+	enum_code: INTEGER = unique
+	function_code: INTEGER = unique
+	callback_code: INTEGER = unique
 
 feature -- Status
 
-	is_valid_construct_type_name (a_name: STRING): BOOLEAN is
+	is_valid_construct_type_name (a_name: STRING): BOOLEAN
 			-- Is `a_name' a valid construct type name ?
 		require
 			a_name_not_void: a_name /= Void
@@ -49,13 +49,13 @@ feature -- Status
 			Result := construct_type_name_table.has (a_name)
 		end
 
-	is_valid_construct_type_code (a_code: INTEGER): BOOLEAN is
+	is_valid_construct_type_code (a_code: INTEGER): BOOLEAN
 			-- Is `a_code' a valid format code ?
 		do
 			Result := construct_type_name_table.has_item (a_code)
 		end
 
-	construct_type_code_from_name (a_name: STRING): INTEGER is
+	construct_type_code_from_name (a_name: STRING): INTEGER
 			-- Construct type code from construct type name
 		require
 			a_name_not_void: a_name /= Void
@@ -66,7 +66,7 @@ feature -- Status
 			valid_construct_type_code: is_valid_construct_type_code (Result)
 		end
 
-	construct_type_name_from_code (a_code: INTEGER): STRING is
+	construct_type_name_from_code (a_code: INTEGER): STRING
 			-- Construct type name from construct type code
 		require
 			a_code_valid_construct_type_code: is_valid_construct_type_code (a_code)
@@ -93,7 +93,7 @@ feature -- Status
 
 feature {NONE} -- Implementation
 
-	construct_type_name_table: DS_HASH_TABLE [INTEGER, STRING] is
+	construct_type_name_table: DS_HASH_TABLE [INTEGER, STRING]
 		once
 			create Result.make_map (7)
 			Result.set_key_equality_tester (string_equality_tester)

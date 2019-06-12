@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -28,7 +28,7 @@ create
 
 feature
 
-	make (a_direct_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR; a_header_file_name: STRING) is
+	make (a_direct_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR; a_header_file_name: STRING)
 		require
 			a_direct_declarator_not_void: a_direct_declarator /= Void
 			a_header_file_name_not_void: a_header_file_name /= Void
@@ -40,7 +40,7 @@ feature
 
 	make_with_pointers (a_direct_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR;
 						a_pointers: DS_LINKED_LIST [EWG_C_PHASE_1_POINTER];
-						a_header_file_name: STRING) is
+						a_header_file_name: STRING)
 		require
 			a_direct_declarator_not_void: a_direct_declarator /= Void
 			a_pointers_not_void: a_pointers /= Void
@@ -53,12 +53,12 @@ feature
 
 feature
 
-	add_pointers_front (a_pointers: DS_LINKED_LIST [EWG_C_PHASE_1_POINTER]) is
+	add_pointers_front (a_pointers: DS_LINKED_LIST [EWG_C_PHASE_1_POINTER])
 		do
 			pointers.extend_last (a_pointers)
 		end
 
-	set_direct_declarator (a_direct_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR) is
+	set_direct_declarator (a_direct_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR)
 		do
 			direct_declarator := a_direct_declarator
 		end
@@ -74,7 +74,7 @@ feature
 	direct_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR
 			-- direct_declarator nested inside
 
-	arrays_indirect: DS_LINKED_LIST [EWG_C_PHASE_1_ARRAY] is
+	arrays_indirect: DS_LINKED_LIST [EWG_C_PHASE_1_ARRAY]
 			-- arrays from a (possibly recursivly nested)
 			-- direct declarator
 		do
@@ -83,7 +83,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	pointers_indirect: DS_LINKED_LIST [EWG_C_PHASE_1_POINTER] is
+	pointers_indirect: DS_LINKED_LIST [EWG_C_PHASE_1_POINTER]
 			-- pointers from this declarator and (possibly recursivly nested)
 			-- direct declarators
 		do
@@ -95,20 +95,20 @@ feature
 
 feature
 
-	name: STRING is
+	name: STRING
 		require
 			not_abstract: not is_abstract
 		do
 			Result := direct_declarator.nested_name
 		end
 
-	is_abstract: BOOLEAN is
+	is_abstract: BOOLEAN
 			-- Abstract declarators have no name.
 		do
 			Result := direct_declarator.is_abstract
 		end
 
-	has_abstract_parameter_declarator: BOOLEAN is
+	has_abstract_parameter_declarator: BOOLEAN
 			-- Does this declaration contain parameters and is any of those parameters abstract?
 		do
 			Result := direct_declarator.parameters /= Void and then
@@ -117,7 +117,7 @@ feature
 
 feature
 
-	make_concrete (a_name: STRING) is
+	make_concrete (a_name: STRING)
 			-- Give the (abstract) declarator a (pseudo) name.
 		require
 			is_abstract: is_abstract
@@ -131,7 +131,7 @@ feature
 
 feature
 
-	c_code: STRING is
+	c_code: STRING 
 		local
 			cs: DS_LINEAR_CURSOR [EWG_C_PHASE_1_POINTER]
 		do

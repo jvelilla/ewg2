@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -29,7 +29,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make is
+	make
 		do
 			Precursor
 		end
@@ -38,12 +38,12 @@ feature {ANY} -- Access
 
 	class_name: STRING
 
-	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN
 		do
 			Result := False
 		end
 
-	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN
 		local
 			function_declaration: EWG_C_AST_FUNCTION_DECLARATION
 		do
@@ -53,7 +53,7 @@ feature {ANY} -- Access
 
 feature {ANY} -- Setting
 
-	set_class_name (a_class_name: STRING) is
+	set_class_name (a_class_name: STRING)
 		require
 			a_class_name_not_void: a_class_name /= Void
 			a_class_name_not_empty: a_class_name.count > 0
@@ -67,7 +67,7 @@ feature {ANY} -- Basic Routines
 
 	shallow_wrap_type (a_type: EWG_C_AST_TYPE;
 							 a_include_header_file_name: STRING;
-							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		do
 				check
 					dead_end: False
@@ -76,7 +76,7 @@ feature {ANY} -- Basic Routines
 
 	shallow_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 									  a_include_header_file_name: STRING;
-									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			member_list: DS_ARRAYED_LIST [EWG_MEMBER_WRAPPER]
 			function_wrapper: EWG_FUNCTION_WRAPPER
@@ -106,7 +106,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_type (a_type: EWG_C_AST_TYPE;
 						 a_include_header_file_name: STRING;
 						 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-						 a_config_system: EWG_CONFIG_SYSTEM) is
+						 a_config_system: EWG_CONFIG_SYSTEM)
 		do
 				check
 					dead_end: False
@@ -116,7 +116,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 								  a_include_header_file_name: STRING;
 								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-								  a_config_system: EWG_CONFIG_SYSTEM) is
+								  a_config_system: EWG_CONFIG_SYSTEM)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_C_AST_DECLARATION]
 			function_wrapper: EWG_FUNCTION_WRAPPER
@@ -160,7 +160,7 @@ feature {NONE}
 									 a_index: INTEGER;
 									 a_include_header_file_name: STRING;
 									 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-									 a_config_system: EWG_CONFIG_SYSTEM) is
+									 a_config_system: EWG_CONFIG_SYSTEM)
 			-- Add wrapper for `a_parameter' to `a_function_wrapper'.
 			-- `a_parameter' is supposed to be the `a_index'-th parameter in `a_function_declaration'.
 		require
@@ -206,7 +206,7 @@ feature {NONE}
 	wrap_function_return_type (a_function_wrapper: EWG_FUNCTION_WRAPPER;
 										a_include_header_file_name: STRING;
 										a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-										a_config_system: EWG_CONFIG_SYSTEM) is
+										a_config_system: EWG_CONFIG_SYSTEM)
 			-- Add wrapper for the return type of `a_function_wrapper.function_declaration' to
 			-- `a_function_wrapper'.
 		require
@@ -233,14 +233,14 @@ feature {NONE}
 			a_function_wrapper.set_return_type (member_wrapper)
 		end
 
-	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING is
+	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING
 		do
 				check
 					dead_end: False
 				end
 		end
 
-	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING is
+	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING 
 		local
 			function_declaration: EWG_C_AST_FUNCTION_DECLARATION
 		do

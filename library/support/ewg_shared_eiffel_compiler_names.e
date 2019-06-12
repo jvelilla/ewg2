@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -14,7 +14,7 @@ class EWG_SHARED_EIFFEL_COMPILER_NAMES
 
 feature -- Singleton access
 
-	eiffel_compiler_names: EWG_EIFFEL_COMPILER_NAMES is
+	eiffel_compiler_names: EWG_EIFFEL_COMPILER_NAMES 
 		once
 			create Result.make
 		end

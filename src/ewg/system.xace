@@ -31,7 +31,7 @@
 
   <cluster name="ewg_ve" location="." if="${GOBO_EIFFEL}=ve"/>
   <cluster name="ewg" location="${EWG}/src/ewg"/>
-  <cluster name="gexace" location="${GOBO}/src/gexace"/>
+  <!--<cluster name="gexace" location="${GOBO}/src/gexace"/> -->
 
   <mount location="${EWG}/library/library.xace"/>
   <mount location="${GOBO}/library/library.xace"/>

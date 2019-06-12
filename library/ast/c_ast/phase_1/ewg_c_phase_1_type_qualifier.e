@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -32,20 +32,20 @@ create
 
 feature
 
-	make is
+	make
 		do
 		end
 
 feature
 
-	set_const is
+	set_const
 		do
 			is_const := True
 		ensure
 			set_is_const: is_const
 		end
 
-	set_volatile is
+	set_volatile
 		do
 			is_volatile := True
 		ensure
@@ -54,12 +54,12 @@ feature
 
 feature
 
-	none_set: BOOLEAN is
+	none_set: BOOLEAN
 		do
 			Result := not is_const and not is_volatile
 		end
 
-	merge (other: EWG_C_PHASE_1_TYPE_QUALIFIER) is
+	merge (other: EWG_C_PHASE_1_TYPE_QUALIFIER)
 		do
 			if other.is_const then
 				set_const
@@ -77,7 +77,7 @@ feature
 
 feature
 
-	c_code: STRING is
+	c_code: STRING
 		local
 			count: INTEGER
 		do
@@ -97,7 +97,7 @@ feature
 
 		end
 
-	out: STRING is
+	out: STRING 
 		do
 			Result := ""
 			if is_const then

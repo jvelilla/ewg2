@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -31,7 +31,7 @@ create
 
 feature {NONE}
 
-	make is
+	make
 			-- Create new Eiffel wrapper set.
 		do
 			create enum_wrapper_table.make_map (Initial_enum_wrapper_table_size)
@@ -52,7 +52,7 @@ feature {NONE}
 
 feature {ANY}
 
-	is_ffcall_needed: BOOLEAN is
+	is_ffcall_needed: BOOLEAN
 			-- Returns true if at least one callback wrapper
 			-- should be generated using ffcall support
 		local
@@ -76,7 +76,7 @@ feature {ANY}
 
 feature {ANY} -- Statistical Queries
 
-	enum_wrapper_count: INTEGER is
+	enum_wrapper_count: INTEGER
 			-- Number of enum wrappers in this set
 		do
 			Result := enum_wrapper_table.count
@@ -84,7 +84,7 @@ feature {ANY} -- Statistical Queries
 			count_greater_equal_zero: Result >= 0
 		end
 
-	struct_wrapper_count: INTEGER is
+	struct_wrapper_count: INTEGER
 			-- Number of struct wrappers in this set
 		do
 			Result := struct_wrapper_table.count
@@ -92,7 +92,7 @@ feature {ANY} -- Statistical Queries
 			count_greater_equal_zero: Result >= 0
 		end
 
-	union_wrapper_count: INTEGER is
+	union_wrapper_count: INTEGER
 			-- Number of union wrappers in this set
 		do
 			Result := union_wrapper_table.count
@@ -100,7 +100,7 @@ feature {ANY} -- Statistical Queries
 			count_greater_equal_zero: Result >= 0
 		end
 
-	function_wrapper_count: INTEGER is
+	function_wrapper_count: INTEGER
 			-- Number of function wrappers in this set
 		do
 			Result := function_wrapper_table.count
@@ -108,7 +108,7 @@ feature {ANY} -- Statistical Queries
 			count_greater_equal_zero: Result >= 0
 		end
 
-	callback_wrapper_count: INTEGER is
+	callback_wrapper_count: INTEGER
 			-- Number of callback wrappers in this set
 		do
 			Result := callback_wrapper_table.count
@@ -116,14 +116,14 @@ feature {ANY} -- Statistical Queries
 			count_greater_equal_zero: Result >= 0
 		end
 
-	type_wrapper_count: INTEGER is
+	type_wrapper_count: INTEGER
 		do
 			Result := enum_wrapper_count + struct_wrapper_count + union_wrapper_count + callback_wrapper_count
 		ensure
 			count_positive: Result >= 0
 		end
 
-	function_wrapper_group_count: INTEGER is
+	function_wrapper_group_count: INTEGER
 			-- Number of function wrapper groups in this set
 		do
 			Result := function_wrapper_groups.count
@@ -131,7 +131,7 @@ feature {ANY} -- Statistical Queries
 			count_greater_equal_zero: Result >= 0
 		end
 
-	callback_wrapper_group_count: INTEGER is
+	callback_wrapper_group_count: INTEGER
 			-- Number of callback wrapper groups in this set
 		do
 			Result := callback_wrapper_groups.count
@@ -141,37 +141,37 @@ feature {ANY} -- Statistical Queries
 
 feature {ANY} -- Get cursors for wrappers
 
-	new_enum_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_ENUM_WRAPPER] is
+	new_enum_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_ENUM_WRAPPER]
 		do
 			Result := enum_wrapper_table.new_cursor
 		end
 
-	new_struct_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_STRUCT_WRAPPER] is
+	new_struct_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_STRUCT_WRAPPER]
 		do
 			Result := struct_wrapper_table.new_cursor
 		end
 
-	new_union_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_UNION_WRAPPER] is
+	new_union_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_UNION_WRAPPER]
 		do
 			Result := union_wrapper_table.new_cursor
 		end
 
-	new_function_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_FUNCTION_WRAPPER] is
+	new_function_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_FUNCTION_WRAPPER]
 		do
 			Result := function_wrapper_table.new_cursor
 		end
 
-	new_callback_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_CALLBACK_WRAPPER] is
+	new_callback_wrapper_cursor: DS_BILINEAR_CURSOR [EWG_CALLBACK_WRAPPER]
 		do
 			Result := callback_wrapper_table.new_cursor
 		end
 
-	new_function_wrapper_groups_cursor: DS_HASH_TABLE_CURSOR [DS_LINKED_LIST [EWG_FUNCTION_WRAPPER], STRING] is
+	new_function_wrapper_groups_cursor: DS_HASH_TABLE_CURSOR [DS_LINKED_LIST [EWG_FUNCTION_WRAPPER], STRING]
 		do
 			Result := function_wrapper_groups.new_cursor
 		end
 
-	new_callback_wrapper_groups_cursor: DS_HASH_TABLE_CURSOR [DS_LINKED_LIST [EWG_CALLBACK_WRAPPER], STRING] is
+	new_callback_wrapper_groups_cursor: DS_HASH_TABLE_CURSOR [DS_LINKED_LIST [EWG_CALLBACK_WRAPPER], STRING]
 		do
 			Result := callback_wrapper_groups.new_cursor
 		end
@@ -195,7 +195,7 @@ feature {ANY} -- Latest wrappers
 
 feature {ANY} -- Helper queries
 
-	has_wrapper_for_type (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	has_wrapper_for_type (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Does `Current' contain a wrapper for `a_type'?
 		require
 			a_type_not_void: a_type /= Void
@@ -225,7 +225,7 @@ feature {ANY} -- Helper queries
 			end
 		end
 
-	has_wrapper_for_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	has_wrapper_for_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN
 			-- Has `Current' a wrapper for `a_declaration'?
 		require
 			a_declaration_not_void: a_declaration /= Void
@@ -239,7 +239,7 @@ feature {ANY} -- Helper queries
 			Result := function_wrapper_table.has (function_declaration)
 		end
 
-	has_wrapper (a_wrapper: EWG_ABSTRACT_WRAPPER): BOOLEAN is
+	has_wrapper (a_wrapper: EWG_ABSTRACT_WRAPPER): BOOLEAN
 			-- Does this set already contain a wrapper for the type that `a_wrapper' wraps?
 		require
 			a_wrapper_not_void: a_wrapper /= Void
@@ -261,7 +261,7 @@ feature {ANY} -- Helper queries
 
 feature {ANY} -- Query existing wrappers
 
-	function_wrapper_from_function_declaration (a_function_declaration: EWG_C_AST_FUNCTION_DECLARATION): EWG_FUNCTION_WRAPPER is
+	function_wrapper_from_function_declaration (a_function_declaration: EWG_C_AST_FUNCTION_DECLARATION): EWG_FUNCTION_WRAPPER
 			-- Function wrapper for a given function declaration
 		require
 			has_wrapper_for_declaration (a_function_declaration)
@@ -272,7 +272,7 @@ feature {ANY} -- Query existing wrappers
 			function_wrapper_has_function_declaration: Result.function_declaration = a_function_declaration
 		end
 
-	wrapper_from_type (a_type: EWG_C_AST_TYPE): EWG_ABSTRACT_WRAPPER is
+	wrapper_from_type (a_type: EWG_C_AST_TYPE): EWG_ABSTRACT_WRAPPER
 		require
 			a_type_not_void: a_type /= Void
 			has_wrapper_for_a_type: has_wrapper_for_type (a_type)
@@ -308,7 +308,7 @@ feature {ANY} -- Query existing wrappers
 			result_not_void: Result /= Void
 		end
 
-	composite_data_wrapper_from_composite_data_type (a_composite_data_type: EWG_C_AST_COMPOSITE_DATA_TYPE): EWG_COMPOSITE_DATA_WRAPPER is
+	composite_data_wrapper_from_composite_data_type (a_composite_data_type: EWG_C_AST_COMPOSITE_DATA_TYPE): EWG_COMPOSITE_DATA_WRAPPER
 		require
 			a_composite_data_type_not_void: a_composite_data_type /= Void
 			has_wrapper_for_a_composite_type: has_wrapper_for_type (a_composite_data_type)
@@ -336,7 +336,7 @@ feature {ANY} -- Query existing wrappers
 			result_not_void: Result /= Void
 		end
 
-	callback_wrapper_from_callback (a_pointer_type: EWG_C_AST_POINTER_TYPE): EWG_CALLBACK_WRAPPER is
+	callback_wrapper_from_callback (a_pointer_type: EWG_C_AST_POINTER_TYPE): EWG_CALLBACK_WRAPPER
 		require
 			a_pointer_type_not_void: a_pointer_type /= Void
 				a_pointer_type_is_callback: a_pointer_type.is_callback
@@ -347,7 +347,7 @@ feature {ANY} -- Query existing wrappers
 			result_not_void: Result /= Void
 		end
 
-	struct_wrapper_from_struct_type (a_struct_type: EWG_C_AST_STRUCT_TYPE): EWG_STRUCT_WRAPPER is
+	struct_wrapper_from_struct_type (a_struct_type: EWG_C_AST_STRUCT_TYPE): EWG_STRUCT_WRAPPER
 		require
 			a_struct_type_not_void: a_struct_type /= Void
 			has_wrapper_for_a_struct_type: has_wrapper_for_type (a_struct_type)
@@ -359,7 +359,7 @@ feature {ANY} -- Query existing wrappers
 
 feature {ANY} -- Add new wrappers to set
 
-	add_wrapper (a_wrapper: EWG_ABSTRACT_WRAPPER) is
+	add_wrapper (a_wrapper: EWG_ABSTRACT_WRAPPER)
 		require
 			a_wrapper_not_void: a_wrapper /= Void
 			has_a_wrapper: not has_wrapper (a_wrapper)
@@ -420,13 +420,13 @@ feature {ANY} -- Add new wrappers to set
 
 feature {ANY} -- Resolve Name clashes
 
-	resolve_function_wrapper_name_clashes is
+	resolve_function_wrapper_name_clashes
 			-- Resolve any function wrapper name clashes.
 		do
 			rename_wrapper_names_in_group (new_function_wrapper_cursor)
 		end
 
-	resolve_callback_wrapper_name_clashes is
+	resolve_callback_wrapper_name_clashes
 			-- Resolve any callback wrapper name clashes.
 		do
 			rename_wrapper_names_in_group (new_callback_wrapper_cursor)
@@ -437,7 +437,7 @@ feature {NONE} -- Function declaration name clash resolving implementation
 
 	last_wrapper_clash_table: DS_HASH_TABLE [DS_LINKED_LIST [EWG_ABSTRACT_WRAPPER], STRING]
 
-	build_clash_table_for_wrapper_group (a_cs: DS_LINEAR_CURSOR [EWG_ABSTRACT_WRAPPER]) is
+	build_clash_table_for_wrapper_group (a_cs: DS_LINEAR_CURSOR [EWG_ABSTRACT_WRAPPER])
 		require
 			a_cs_not_void: a_cs /= Void
 		local
@@ -481,7 +481,7 @@ feature {NONE} -- Function declaration name clash resolving implementation
 			last_wrapper_clash_table_not_void: last_wrapper_clash_table /= Void
 		end
 
-	rename_wrapper_clashes is
+	rename_wrapper_clashes
 		require
 			last_wrapper_clash_table_not_void: last_wrapper_clash_table /= Void
 		local
@@ -501,7 +501,7 @@ feature {NONE} -- Function declaration name clash resolving implementation
 			end
 		end
 
-	rename_wrapper_names_in_group (a_cs: DS_LINEAR_CURSOR [EWG_ABSTRACT_WRAPPER]) is
+	rename_wrapper_names_in_group (a_cs: DS_LINEAR_CURSOR [EWG_ABSTRACT_WRAPPER])
 		require
 			a_cs_not_void: a_cs /= Void
 		do
@@ -548,14 +548,14 @@ feature {NONE} -- Grouping of function and callbacks by header file name
 
 feature {NONE} -- Implementation Constants
 
-	Initial_enum_wrapper_table_size: INTEGER is 1000
-	Initial_struct_wrapper_table_size: INTEGER is 1000
-	Initial_union_wrapper_table_size: INTEGER is 1000
-	Initial_function_wrapper_table_size: INTEGER is 1000
-	Initial_callback_wrapper_table_size: INTEGER is 1000
-	Initial_callback_wrapper_groups_size: INTEGER is 800
-	Initial_function_wrapper_groups_size: INTEGER is 800
-	Initial_wrapper_clash_table_size: INTEGER is 80
+	Initial_enum_wrapper_table_size: INTEGER = 1000
+	Initial_struct_wrapper_table_size: INTEGER = 1000
+	Initial_union_wrapper_table_size: INTEGER = 1000
+	Initial_function_wrapper_table_size: INTEGER = 1000
+	Initial_callback_wrapper_table_size: INTEGER = 1000
+	Initial_callback_wrapper_groups_size: INTEGER = 800
+	Initial_function_wrapper_groups_size: INTEGER = 800
+	Initial_wrapper_clash_table_size: INTEGER = 80
 
 invariant
 

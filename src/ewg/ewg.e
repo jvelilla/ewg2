@@ -1,7 +1,8 @@
-indexing
-	description:
-		"Command line tool that parses an (already preprocessed) C header file "
-		"and generates Eiffel wrappers for it"
+note
+	description:"[
+		Command line tool that parses an (already preprocessed) C header file 
+		and generates Eiffel wrappers for it
+		]"
 	copyright: "Copyright (c) 2004, Andreas Leitner and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
 	date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
@@ -39,7 +40,7 @@ create
 
 feature
 
-	make is
+	make
 			-- Create new EWG command line tool
 		do
 			Arguments.set_program_name ("ewg")
@@ -51,7 +52,7 @@ feature
 			run
 		end
 
-	parse_config_file is
+	parse_config_file
 		local
 			parser: EWG_CONFIG_PARSER
 			file: KL_TEXT_INPUT_FILE
@@ -82,7 +83,7 @@ feature
 			end
 		end
 
-	run is
+	run
 		do
 			create c_parser.make (error_handler)
 			if is_msc_extension_enabled then
@@ -119,7 +120,7 @@ feature
 			ewg_generator.generate
 		end
 
-	process_arguments is
+	process_arguments
 			-- Process command line arguments passed from the operating system
 			-- A simple recursive decendant parser is used (just as in gexace)
 		do
@@ -139,7 +140,7 @@ feature
 			process_other_arguments
 		end
 
-	process_msc_extension_options is
+	process_msc_extension_options
 		do
 			if operating_system.is_windows then
 				is_msc_extension_enabled := True
@@ -163,7 +164,7 @@ feature
 			end
 		end
 
-	process_other_arguments is
+	process_other_arguments
 			-- Process arguments (using the obsolete syntax)
 		local
 			header_file_name: STRING
@@ -237,7 +238,7 @@ feature
 
 		end
 
-	print_eiffel_wrapper_summary is
+	print_eiffel_wrapper_summary 
 			-- Print summary about Eiffel wrappers.
 		local
 			eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET

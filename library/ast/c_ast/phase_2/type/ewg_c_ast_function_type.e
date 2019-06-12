@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -36,7 +36,7 @@ create
 
 feature
 
-	make (a_header_file_name: STRING; a_return_type: EWG_C_AST_TYPE; a_members: like members) is
+	make (a_header_file_name: STRING; a_return_type: EWG_C_AST_TYPE; a_members: like members)
 		require
 			a_return_type_not_void: a_return_type /= Void
 			a_members_not_void: a_members /= Void
@@ -55,7 +55,7 @@ feature -- Basic Access
 	has_ellipsis_parameter: BOOLEAN
 			-- Does this function have take arbitrary many unnamed parameters after the regular ones?
 
-	is_variadic: BOOLEAN is
+	is_variadic: BOOLEAN
 			-- Is this function variadic?
 			-- I.e., either has the elipsis parameter or has the last parameter "va_list" from stdarg.h?
 		do
@@ -73,20 +73,20 @@ feature -- Basic Access
 
 feature
 
-	set_return_type (a_return_type: like return_type) is
+	set_return_type (a_return_type: like return_type)
 		require
 			a_return_type_not_void: a_return_type /= Void
 		do
 			return_type := a_return_type
 		end
 
-	set_members (a_members: like members) is
+	set_members (a_members: like members)
 		do
 			Precursor (a_members)
 			correct_parameter_types
 		end
 
-	set_ellipsis_parameter (a_value: BOOLEAN) is
+	set_ellipsis_parameter (a_value: BOOLEAN)
 			-- Set `has_ellipsis_parameter' to `a_value'.
 		do
 			has_ellipsis_parameter := a_value
@@ -96,7 +96,7 @@ feature
 
 feature
 
-	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN is
+	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
 		local
 			other_function: EWG_C_AST_FUNCTION_TYPE
 		do
@@ -115,7 +115,7 @@ feature
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) is
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR)
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_function_type (Current)
@@ -123,7 +123,7 @@ feature -- Visitor Pattern
 
 feature
 
-	has_callback_parameter: BOOLEAN is
+	has_callback_parameter: BOOLEAN
 			-- Is at least one parameter an anonymous callback ?
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_C_AST_DECLARATION]
@@ -145,7 +145,7 @@ feature
 
 feature
 
-	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE] is
+	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE]
 		do
 			Result := Precursor
 			if return_type /= Void then
@@ -153,7 +153,7 @@ feature
 			end
 		end
 
-	is_function_type: BOOLEAN is
+	is_function_type: BOOLEAN
 		do
 			Result := True
 		end
@@ -165,7 +165,7 @@ feature
 			-- See EWG_C_CALLING_CONVENTION_CONSTANTS for details.
 feature
 
-	set_calling_convention (a_value: INTEGER) is
+	set_calling_convention (a_value: INTEGER)
 			-- Sets the calling conventions used for this function type.
 			-- See `calling_convention' for details.
 		require
@@ -178,7 +178,7 @@ feature
 
 feature {NONE}
 
-	correct_parameter_types is
+	correct_parameter_types 
 			-- Correct parameter types.
 			-- Some C compilers support funcitons as function parameters
 			-- and give the parameter the semantic of a function pointer.

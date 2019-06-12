@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -15,11 +15,11 @@ class EWG_FFCALL_CALLBACK_WRAPPER
 inherit
 
 	EWG_CALLBACK_WRAPPER
-	
+
 create {EWG_EIFFEL_WRAPPER_SET}
 
 	make
-	
+
 feature {NONE}
 
 end

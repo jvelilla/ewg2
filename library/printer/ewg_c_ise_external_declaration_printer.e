@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -30,7 +30,7 @@ create
 
 feature -- Formatting
 
-	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) is
+	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING)
 		local
 			type: EWG_C_AST_TYPE
 		do
@@ -54,7 +54,7 @@ feature -- Formatting
 
 feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 
-	process_function_type (a_type: EWG_C_AST_FUNCTION_TYPE) is
+	process_function_type (a_type: EWG_C_AST_FUNCTION_TYPE) 
 			-- Nested function declarations confuse the ISE external parser.
 			-- Replacing the with a void pointer.
 		do

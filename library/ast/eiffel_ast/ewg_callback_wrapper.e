@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -27,7 +27,7 @@ inherit
 feature {NONE} -- Initialization
 
 	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING; a_c_pointer_type: EWG_C_AST_POINTER_TYPE;
-			a_members: like members) is
+			a_members: like members)
 		require
 			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
 			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty
@@ -51,7 +51,7 @@ feature
 	c_pointer_type: EWG_C_AST_POINTER_TYPE
 			-- C callback type to wrapp
 
-	type: EWG_C_AST_TYPE is
+	type: EWG_C_AST_TYPE
 		do
 			Result := c_pointer_type
 		end
@@ -60,7 +60,7 @@ feature
 
 	set_entry_struct: EWG_FUNCTION_WRAPPER
 
-	set_get_stub (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	set_get_stub (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
@@ -69,7 +69,7 @@ feature
 			get_stub_set: get_stub = a_function_wrapper
 		end
 
-	set_set_entry_struct (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	set_set_entry_struct (a_function_wrapper: EWG_FUNCTION_WRAPPER) 
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do

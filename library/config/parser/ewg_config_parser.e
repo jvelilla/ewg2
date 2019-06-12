@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -37,7 +37,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (an_error_handler: like error_handler) is
+	make (an_error_handler: like error_handler)
 			-- Create new EWG config file parser.
 		require
 			an_error_handler_not_void: an_error_handler /= Void
@@ -55,7 +55,7 @@ feature {NONE} -- Initialization
 
 feature {ANY} -- Parsing
 
-	parse_file (a_file: KI_CHARACTER_INPUT_STREAM; a_config_system: EWG_CONFIG_SYSTEM) is
+	parse_file (a_file: KI_CHARACTER_INPUT_STREAM; a_config_system: EWG_CONFIG_SYSTEM)
 			-- Parse EWG config file file `a_file'.
 		require
 			a_file_not_void: a_file /= Void
@@ -105,7 +105,7 @@ feature {NONE} -- Implementation
 
 feature {NONE} -- Implementation
 
-	fill_config_system (a_config_system: EWG_CONFIG_SYSTEM; an_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	fill_config_system (a_config_system: EWG_CONFIG_SYSTEM; an_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Fill EWG config system `a_config_system' with data found in `an_element'.
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -135,7 +135,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	fill_config_system_with_rule_list (a_config_system: EWG_CONFIG_SYSTEM; a_rule_list_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	fill_config_system_with_rule_list (a_config_system: EWG_CONFIG_SYSTEM; a_rule_list_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Fill EWG config system `a_config_system' with rule data found in `a_rule_list_element'.
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -162,7 +162,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	add_rule_to_config_system (a_config_system: EWG_CONFIG_SYSTEM; a_rule_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) is
+	add_rule_to_config_system (a_config_system: EWG_CONFIG_SYSTEM; a_rule_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Create a new rule out of `a_rule_element' and add it to `a_config_system'.
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -202,7 +202,7 @@ feature {NONE} -- Implementation
 			a_config_system.append_rule (rule)
 		end
 
-	new_matching_clause (a_config_system: EWG_CONFIG_SYSTEM; a_match_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_MATCHING_CLAUSE is
+	new_matching_clause (a_config_system: EWG_CONFIG_SYSTEM; a_match_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_MATCHING_CLAUSE
 			-- New matching clause from `a_match_element'
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -234,7 +234,7 @@ feature {NONE} -- Implementation
 
 		end
 
-	new_any_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE is
+	new_any_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE
 			-- New wrapper clause from `a_wrapper_element'
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -261,7 +261,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	new_none_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE is
+	new_none_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE
 			-- New wrapper clause from `a_wrapper_element'
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -272,7 +272,7 @@ feature {NONE} -- Implementation
 			create {EWG_CONFIG_NONE_WRAPPER_CLAUSE} Result.make
 		end
 
-	new_struct_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE is
+	new_struct_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE
 			-- New wrapper clause from `a_wrapper_element'
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -283,7 +283,7 @@ feature {NONE} -- Implementation
 			create {EWG_CONFIG_STRUCT_WRAPPER_CLAUSE} Result.make
 		end
 
-	new_union_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE is
+	new_union_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE
 			-- New wrapper clause from `a_wrapper_element'
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -294,7 +294,7 @@ feature {NONE} -- Implementation
 			create {EWG_CONFIG_UNION_WRAPPER_CLAUSE} Result.make
 		end
 
-	new_enum_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE is
+	new_enum_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE
 			-- New wrapper clause from `a_wrapper_element'
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -305,7 +305,7 @@ feature {NONE} -- Implementation
 			create {EWG_CONFIG_ENUM_WRAPPER_CLAUSE} Result.make
 		end
 
-	new_function_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_FUNCTION_WRAPPER_CLAUSE is
+	new_function_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_FUNCTION_WRAPPER_CLAUSE
 			-- New wrapper clause from `a_wrapper_element'
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -325,7 +325,7 @@ feature {NONE} -- Implementation
 
 		end
 
-	new_callback_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE is
+	new_callback_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE 
 			-- New wrapper clause from `a_wrapper_element'
 		require
 			a_config_system_not_void: a_config_system /= Void

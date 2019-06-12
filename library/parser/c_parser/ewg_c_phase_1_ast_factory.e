@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -14,7 +14,7 @@ class EWG_C_PHASE_1_AST_FACTORY
 
 feature -- C declarations
 
-	new_enum_declaration (a_name: STRING; a_header_file_name: STRING): EWG_C_PHASE_1_DECLARATION is
+	new_enum_declaration (a_name: STRING; a_header_file_name: STRING): EWG_C_PHASE_1_DECLARATION
 			-- New enum named `a_name' (without any members)
 		require
 			a_name_not_void: a_name /= Void
@@ -38,7 +38,7 @@ feature -- C declarations
 			enum_declaration_not_void: Result /= Void
 		end
 
-	new_declarator_list: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATOR] is
+	new_declarator_list: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATOR]
 			-- New (empty) declarator list
 		do
 			create Result.make
@@ -46,7 +46,7 @@ feature -- C declarations
 			declarator_list_not_void: Result /= Void
 		end
 
-	new_empty_elipsis_parameter_type_list: EWG_C_PHASE_1_PARAMETER_TYPE_LIST is
+	new_empty_elipsis_parameter_type_list: EWG_C_PHASE_1_PARAMETER_TYPE_LIST
 		do
 			create Result.make_empty_with_ellipsis
 		ensure
@@ -55,7 +55,7 @@ feature -- C declarations
 			list_has_ellipsis_parameter: Result.has_ellipsis_parameter
 		end
 
-	new_direct_abstract_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR is
+	new_direct_abstract_declarator: EWG_C_PHASE_1_DIRECT_DECLARATOR
 			-- New direct abstract declarator
 		do
 			create Result.make_abstract
@@ -64,7 +64,7 @@ feature -- C declarations
 			result_is_abstract: Result.is_abstract
 		end
 
-	new_abstract_declarator (a_header_file_name: STRING): EWG_C_PHASE_1_DECLARATOR is
+	new_abstract_declarator (a_header_file_name: STRING): EWG_C_PHASE_1_DECLARATOR
 			-- New abstract declarator
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
@@ -78,7 +78,7 @@ feature -- C declarations
 
 feature -- C types
 
-	new_pointer: EWG_C_PHASE_1_POINTER is
+	new_pointer: EWG_C_PHASE_1_POINTER
 			-- New pointer
 		do
 			create Result.make
@@ -86,7 +86,7 @@ feature -- C types
 			pointer_not_void: Result /= Void
 		end
 
-	new_pointer_with_type_qualifier_list (a_type_qualifier_list: DS_LINKED_LIST [EWG_C_PHASE_1_TYPE_QUALIFIER]): EWG_C_PHASE_1_POINTER is
+	new_pointer_with_type_qualifier_list (a_type_qualifier_list: DS_LINKED_LIST [EWG_C_PHASE_1_TYPE_QUALIFIER]): EWG_C_PHASE_1_POINTER
 			-- New pointer with type qualifiers taken from `a_type_qualifier_list'
 		do
 			create Result.make_with_type_qualifier_list (a_type_qualifier_list)
@@ -94,7 +94,7 @@ feature -- C types
 			pointer_not_void: Result /= Void
 		end
 
-	new_array: EWG_C_PHASE_1_ARRAY is
+	new_array: EWG_C_PHASE_1_ARRAY
 			-- New array
 		do
 			create Result.make
@@ -102,7 +102,7 @@ feature -- C types
 			array_not_void: Result /= Void
 		end
 
-	new_array_with_size (a_size: STRING): EWG_C_PHASE_1_ARRAY is
+	new_array_with_size (a_size: STRING): EWG_C_PHASE_1_ARRAY 
 			-- New array with the size `a_size'
 		require
 			a_size_not_void: a_size /= Void

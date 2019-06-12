@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -14,7 +14,7 @@ class EWG_SHARED_STRUCT_FEATURE_NAMES
 
 feature -- Singleton access
 
-	struct_feature_names: EWG_STRUCT_FEATURE_NAMES is
+	struct_feature_names: EWG_STRUCT_FEATURE_NAMES 
 			-- Singleton access to EWG_STRUCT_FEATURE_NAMES
 		once
 			create Result.make

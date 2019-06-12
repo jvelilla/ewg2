@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,7 +26,7 @@ feature {NONE} -- Initialization
 			an_attribute_name: STRING;
 			a_position: XM_POSITION;
 			a_error_message: STRING;
-			a_error_position: INTEGER) is
+			a_error_position: INTEGER)
 		require
 			a_containing_element_not_void: a_containing_element /= Void
 			an_attribute_name_not_void: an_attribute_name /= Void
@@ -46,10 +46,10 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	default_template: STRING is "The value '$4' of attribute '$2' of element '$1' is not a valid regular expression%N. Error '$5' at position $6 in string $3"
+	default_template: STRING = "The value '$4' of attribute '$2' of element '$1' is not a valid regular expression%N. Error '$5' at position $6 in string $3"
 			-- Default template used to built the error message
 
-	code: STRING is "EWG0005"
+	code: STRING = "EWG0005"
 			-- Error code
 
 end

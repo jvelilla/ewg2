@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -34,13 +34,13 @@ create
 
 feature {NONE} -- Implementation
 
-	make_internal is
+	make_internal
 		do
 			Precursor
 			make_printers
 		end
 
-	make_printers is
+	make_printers
 		do
 			create c_to_eiffel_declaration_printer.make (output_stream, eiffel_compiler_mode)
 			create c_to_eiffel_cast_printer.make (output_stream, eiffel_compiler_mode)
@@ -50,7 +50,7 @@ feature {NONE} -- Implementation
 
 feature
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_UNION_WRAPPER]
 			file_name: STRING
@@ -83,7 +83,7 @@ feature
 
 feature {NONE} -- Implementation
 
-	generate_union_wrapper (a_union_wrapper: EWG_UNION_WRAPPER) is
+	generate_union_wrapper (a_union_wrapper: EWG_UNION_WRAPPER)
 		require
 			a_union_wrapper_not_void: a_union_wrapper /= Void
 		local
@@ -145,7 +145,7 @@ feature {NONE} -- Implementation
 
 	generate_member (a_union_member: EWG_C_AST_DECLARATION;
 						  a_escaped_union_name: STRING;
-						  a_cast_with_one_pointer_indirection: STRING) is
+						  a_cast_with_one_pointer_indirection: STRING)
 		require
 			a_union_member_not_void: a_union_member /= Void
 			a_escaped_union_name_not_void: a_escaped_union_name /= Void
@@ -161,7 +161,7 @@ feature {NONE} -- Implementation
 
 	generate_member_getter (a_union_member: EWG_C_AST_DECLARATION;
 									a_escaped_union_name: STRING;
-									a_cast_with_one_pointer_indirection: STRING) is
+									a_cast_with_one_pointer_indirection: STRING)
 		require
 			a_union_member_not_void: a_union_member /= Void
 			a_escaped_union_name_not_void: a_escaped_union_name /= Void
@@ -197,7 +197,7 @@ feature {NONE} -- Implementation
 
 	generate_member_setter (a_union_member: EWG_C_AST_DECLARATION;
 									a_escaped_union_name: STRING;
-									a_cast_with_one_pointer_indirection: STRING) is
+									a_cast_with_one_pointer_indirection: STRING)
 		require
 			a_union_member_not_void: a_union_member /= Void
 			a_escaped_union_name_not_void: a_escaped_union_name /= Void
@@ -231,7 +231,7 @@ feature {NONE} -- Implementation
 
 feature {NONE}
 
-	get_sizeof_template: STRING is
+	get_sizeof_template: STRING
 			-- ${1} ... type name
 			-- ${2} ... type name escaped to fit requirements of c identifier
 		once
@@ -241,7 +241,7 @@ feature {NONE}
 							"}%N"
 		end
 
-	get_sizeof_incomplete_template: STRING is
+	get_sizeof_incomplete_template: STRING 
 			-- ${1} ... type name escaped to fit requirements of c identifier
 		once
 			Result := "int ewg_union_sizeof_${1} ()%N" +

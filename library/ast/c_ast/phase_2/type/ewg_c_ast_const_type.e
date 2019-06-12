@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -36,7 +36,7 @@ create
 
 feature {NONE} -- Creation
 
-	make (a_header_file_name: STRING; a_base: EWG_C_AST_TYPE) is
+	make (a_header_file_name: STRING; a_base: EWG_C_AST_TYPE)
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
 			a_base_not_void: a_base /= Void
@@ -49,7 +49,7 @@ feature {NONE} -- Creation
 
 feature
 
-	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN is
+	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
 		local
 			other_const: EWG_C_AST_CONST_TYPE
 		do
@@ -59,55 +59,55 @@ feature
 			end
 		end
 
-	append_anonymous_hash_string_to_string (a_string: STRING) is
+	append_anonymous_hash_string_to_string (a_string: STRING)
 		do
 			a_string.append_string ("const_")
 			base.append_hash_string_to_string (a_string)
 		end
 
-	skip_consts_and_aliases: EWG_C_AST_TYPE is
+	skip_consts_and_aliases: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts_and_aliases
 		end
 
-	skip_consts: EWG_C_AST_TYPE is
+	skip_consts: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts
 		end
 
-	skip_consts_and_pointers: EWG_C_AST_TYPE is
+	skip_consts_and_pointers: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts_and_pointers
 		end
 
-	skip_consts_aliases_and_arrays: EWG_C_AST_TYPE is
+	skip_consts_aliases_and_arrays: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts_aliases_and_arrays
 		end
 
-	skip_consts_aliases_and_pointers: EWG_C_AST_TYPE is
+	skip_consts_aliases_and_pointers: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts_aliases_and_pointers
 		end
 
-	skip_const_pointer_and_array_types: EWG_C_AST_TYPE is
+	skip_const_pointer_and_array_types: EWG_C_AST_TYPE
 		do
 			Result := base.skip_const_pointer_and_array_types
 		end
 
-	is_const_type: BOOLEAN is
+	is_const_type: BOOLEAN
 		do
 			Result := True
 		end
 
-	corresponding_eiffel_type: STRING is
+	corresponding_eiffel_type: STRING
 		do
 			Result := base.corresponding_eiffel_type
 		end
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) is
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) 
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_const_type (Current)

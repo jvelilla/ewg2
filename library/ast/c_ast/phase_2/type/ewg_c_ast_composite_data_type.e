@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,7 +21,7 @@ inherit
 
 feature
 
-	is_composite_data_type: BOOLEAN is
+	is_composite_data_type: BOOLEAN 
 		do
 			Result := True
 		end

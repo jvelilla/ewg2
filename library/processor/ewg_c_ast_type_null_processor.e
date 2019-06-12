@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -15,7 +15,7 @@ class EWG_C_AST_TYPE_NULL_PROCESSOR
 inherit
 
 	EWG_C_AST_TYPE_PROCESSOR
-	
+
 create
 
 	make
@@ -31,7 +31,7 @@ feature
 	process_primitive_type (a_type: EWG_C_AST_PRIMITIVE_TYPE) is
 		do
 		end
-	
+
 	process_eiffel_object_type (a_type: EWG_C_AST_EIFFEL_OBJECT_TYPE) is
 		do
 		end
@@ -39,33 +39,33 @@ feature
 	process_alias_type (a_type: EWG_C_AST_ALIAS_TYPE) is
 		do
 		end
-	
+
 	process_pointer_type (a_type: EWG_C_AST_POINTER_TYPE) is
 		do
 		end
-	
+
 	process_array_type (a_type: EWG_C_AST_ARRAY_TYPE) is
 		do
 		end
-	
+
 	process_const_type (a_type: EWG_C_AST_CONST_TYPE) is
 		do
 		end
-	
+
 	process_function_type (a_type: EWG_C_AST_FUNCTION_TYPE) is
 		do
 		end
-	
+
 	process_struct_type (a_type: EWG_C_AST_STRUCT_TYPE) is
 		do
 		end
-	
+
 	process_union_type (a_type: EWG_C_AST_UNION_TYPE) is
 		do
 		end
-	
+
 	process_enum_type (a_type: EWG_C_AST_ENUM_TYPE) is
 		do
 		end
-	
+
 end

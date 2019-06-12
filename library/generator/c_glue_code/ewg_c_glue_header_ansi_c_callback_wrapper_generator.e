@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -34,13 +34,13 @@ create
 
 feature {NONE} -- Initialization
 
-	make_internal is
+	make_internal
 		do
 			Precursor
 			make_printers
 		end
 
-	make_printers is
+	make_printers
 		do
 			create declaration_printer.make (output_stream)
 			create parameter_list_printer.make (output_stream, declaration_printer)
@@ -48,7 +48,7 @@ feature {NONE} -- Initialization
 
 feature -- Generation
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_CALLBACK_WRAPPER]
 			file_name: STRING
@@ -86,7 +86,7 @@ feature -- Generation
 
 feature {NONE} -- Implementation
 
-	generate_callback_wrapper (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_callback_wrapper (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		do
@@ -102,7 +102,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_typedef (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_typedef (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		local
@@ -142,7 +142,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_stub_getter_prototype (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_stub_getter_prototype (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		do
@@ -152,7 +152,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_entry_struct (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_entry_struct (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		do
@@ -168,7 +168,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_entry_setter_prototype (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_entry_setter_prototype (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		do
@@ -178,7 +178,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_caller_declaration_prototype (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_caller_declaration_prototype (a_callback_wrapper: EWG_CALLBACK_WRAPPER) 
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		local

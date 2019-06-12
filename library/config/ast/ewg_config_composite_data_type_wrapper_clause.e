@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -20,7 +20,7 @@ inherit
 
 feature {ANY} -- Access
 
-	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN
 		do
 			Result := False
 		end
@@ -29,7 +29,7 @@ feature {ANY} -- Basic Routines
 
 	shallow_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 									  a_include_header_file_name: STRING;
-									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		do
 				check
 					dead_end: False
@@ -39,7 +39,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_type (a_type: EWG_C_AST_TYPE;
 						 a_include_header_file_name: STRING;
 						 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-						 a_config_system: EWG_CONFIG_SYSTEM) is
+						 a_config_system: EWG_CONFIG_SYSTEM)
 		local
 			composite_data_type: EWG_C_AST_COMPOSITE_DATA_TYPE
 			composite_data_wrapper: EWG_COMPOSITE_DATA_WRAPPER
@@ -78,7 +78,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 								  a_include_header_file_name: STRING;
 								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-								  a_config_system: EWG_CONFIG_SYSTEM) is
+								  a_config_system: EWG_CONFIG_SYSTEM)
 		do
 				check
 					dead_end: False
@@ -92,7 +92,7 @@ feature {NONE}
 												a_index: INTEGER;
 												a_include_header_file_name: STRING;
 												a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-												a_config_system: EWG_CONFIG_SYSTEM) is
+												a_config_system: EWG_CONFIG_SYSTEM)
 			-- Add wrapper for `a_member' to `a_composite_data_wrapper'.
 			-- `a_member' is supposed to be the `a_index'-th member of `a_composite_data_type'.
 		require
@@ -149,7 +149,7 @@ feature {NONE}
 			end
 		end
 
-	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING is
+	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING
 		do
 			if a_type.is_anonymous then
 				Result := eiffel_class_name_from_c_type (a_type.closest_alias_type)
@@ -158,7 +158,7 @@ feature {NONE}
 			end
 		end
 
-	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING is
+	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING 
 		do
 				check
 					dead_end: False

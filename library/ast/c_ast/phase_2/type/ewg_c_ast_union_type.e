@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,7 +26,7 @@ create
 
 feature
 
-	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN is
+	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
 		local
 			other_union: EWG_C_AST_UNION_TYPE
 		do
@@ -36,14 +36,14 @@ feature
 			end
 		end
 
-	is_union_type: BOOLEAN is
+	is_union_type: BOOLEAN
 		do
 			Result := True
 		end
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) is
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) 
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_union_type (Current)

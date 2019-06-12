@@ -1,11 +1,11 @@
 %{
-indexing
+note
 	description: "Parse type definitions from a C header file"
 	status: "See notice at end of class"
 	author: "Based on http://www.lysator.liu.se/c"
 	date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
 	revision: "$Revision: 3 $"
-	note: "Based on http://www.lysator.liu.se/c"
+	info: "Based on http://www.lysator.liu.se/c"
 
 class EWG_C_PARSER
 

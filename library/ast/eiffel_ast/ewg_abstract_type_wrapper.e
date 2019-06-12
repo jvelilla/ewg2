@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -18,7 +18,7 @@ inherit
 
 feature
 
-	type: EWG_C_AST_TYPE is
+	type: EWG_C_AST_TYPE 
 		deferred
 		end
 

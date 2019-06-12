@@ -1,6 +1,6 @@
 %{
 
-indexing
+note
 	description: "Parse macros from a C header file"
 	status: "See notice at end of class"
 	author: "Sam O'Connor"

@@ -1,11 +1,11 @@
 %{
-indexing
+note
 	description: "Scan C header file for type definitions"
 	status: "See notice at end of class"
 	author: "Based on http://www.lysator.liu.se/c"
 	date: "$Date: 2006/05/30 13:22:26 $"
 	revision: "$Revision: 1.9 $"
-	note: "Based on: http://www.lysator.liu.se/c"
+	info: "Based on: http://www.lysator.liu.se/c"
 
 deferred class EWG_C_SCANNER
 

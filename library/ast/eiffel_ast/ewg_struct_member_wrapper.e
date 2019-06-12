@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -27,7 +27,7 @@ feature {NONE} -- Initialization
 
 	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING;
 			a_c_declaration: EWG_C_AST_DECLARATION;
-			a_struct_wrapper: EWG_STRUCT_WRAPPER) is
+			a_struct_wrapper: EWG_STRUCT_WRAPPER)
 		require
 			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
 			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty
@@ -54,14 +54,14 @@ feature
 	struct_wrapper: EWG_STRUCT_WRAPPER
 			-- struct wrapper that covers member
 
-	eiffel_type: STRING is
+	eiffel_type: STRING
 		do
 			Result := struct_wrapper.mapped_eiffel_name
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	proposed_feature_name_list: DS_LINEAR [STRING] is
+	proposed_feature_name_list: DS_LINEAR [STRING] 
 		local
 			getter_name: STRING
 			setter_name: STRING

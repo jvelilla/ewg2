@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,12 +21,12 @@ inherit
 
 feature
 
-	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE] is
+	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE]
 		do
 			create Result.make
 		end
 
-	is_simple_type: BOOLEAN is
+	is_simple_type: BOOLEAN 
 		do
 			Result := True
 		end

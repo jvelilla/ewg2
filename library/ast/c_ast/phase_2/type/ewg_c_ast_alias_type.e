@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -33,7 +33,7 @@ create
 
 feature
 
-	make (a_name: STRING; a_header_file_name: STRING; a_base: EWG_C_AST_TYPE) is
+	make (a_name: STRING; a_header_file_name: STRING; a_base: EWG_C_AST_TYPE)
 		require
 			a_name_not_void: a_name /= Void
 			a_name_not_empty: not a_name.is_empty
@@ -49,27 +49,27 @@ feature
 
 feature
 
-	skip_consts_and_aliases: EWG_C_AST_TYPE is
+	skip_consts_and_aliases: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts_and_aliases
 		end
 
-	skip_aliases: EWG_C_AST_TYPE is
+	skip_aliases: EWG_C_AST_TYPE
 		do
 			Result := base.skip_aliases
 		end
 
-	skip_consts_aliases_and_arrays: EWG_C_AST_TYPE is
+	skip_consts_aliases_and_arrays: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts_aliases_and_arrays
 		end
 
-	skip_consts_aliases_and_pointers: EWG_C_AST_TYPE is
+	skip_consts_aliases_and_pointers: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts_aliases_and_pointers
 		end
 
-	append_anonymous_hash_string_to_string (a_string: STRING) is
+	append_anonymous_hash_string_to_string (a_string: STRING)
 		do
 				check
 					alias_is_always_named: False
@@ -78,7 +78,7 @@ feature
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) is
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR)
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_alias_type (Current)
@@ -87,14 +87,14 @@ feature -- Visitor Pattern
 feature
 
 
-	corresponding_eiffel_type: STRING is
+	corresponding_eiffel_type: STRING
 			-- Return the name of the Eiffel type that
 			-- corresponds to `Current'.
 		do
 			Result := base.corresponding_eiffel_type
 		end
 
-	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN is
+	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
 		local
 			other_alias: EWG_C_AST_ALIAS_TYPE
 		do
@@ -105,7 +105,7 @@ feature
 			end
 		end
 
-	is_alias_type: BOOLEAN is
+	is_alias_type: BOOLEAN 
 		do
 			Result := True
 		end

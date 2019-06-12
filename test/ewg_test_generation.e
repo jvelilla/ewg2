@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -34,7 +34,7 @@ inherit
 
 feature
 
-	set_up is
+	set_up
 		local
 			a_command: DP_SHELL_COMMAND
 		do
@@ -43,7 +43,7 @@ feature
 			a_command.execute
 		end
 
-	tear_down is
+	tear_down
 		local
 			a_command: DP_SHELL_COMMAND
 		do
@@ -56,7 +56,7 @@ feature {NONE}
 
 	old_working_directory: STRING
 
-	process_generation is
+	process_generation
 		do
 			old_working_directory := file_system.current_working_directory
 			file_system.set_current_working_directory ("test_library")
@@ -68,22 +68,22 @@ feature {NONE}
 			file_system.set_current_working_directory (old_working_directory)
 		end
 
-	insert_target_header (a_file_name: STRING) is
+	insert_target_header (a_file_name: STRING)
 		do
 			file_system.copy_file (a_file_name, target_header_file_name)
 		end
 
-	insert_target_c_source (a_file_name: STRING) is
+	insert_target_c_source (a_file_name: STRING)
 		do
 			file_system.copy_file (a_file_name, target_c_source_file_name)
 		end
 
-	insert_target_root_class (a_file_name: STRING) is
+	insert_target_root_class (a_file_name: STRING)
 		do
 			file_system.copy_file (a_file_name, target_root_class_file_name)
 		end
 
-	target_header_file_name: STRING is
+	target_header_file_name: STRING
 		once
 			Result := file_system.pathname ("test_library", "manual_wrapper")
 			Result := file_system.pathname (Result, "c")
@@ -93,14 +93,14 @@ feature {NONE}
 			result_not_void: Result /= Void
 		end
 
-	target_root_class_file_name: STRING is
+	target_root_class_file_name: STRING
 		once
 			Result := file_system.pathname ("test_application", "test_application.e")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	target_c_source_file_name: STRING is
+	target_c_source_file_name: STRING
 		once
 			Result := file_system.pathname ("test_library", "manual_wrapper")
 			Result := file_system.pathname (Result, "c")
@@ -112,24 +112,24 @@ feature {NONE}
 
 feature
 
-	test_simple is
+	test_simple
 		do
 			process_generation
 		end
 
-	test_nested_callback is
+	test_nested_callback
 		do
 			insert_target_header (test_065_h)
 			process_generation
 		end
 
-	test_aliased_but_anonymous_struct is
+	test_aliased_but_anonymous_struct
 		do
 			insert_target_header (test_080_h)
 			process_generation
 		end
 
-	test_callback_as_function_parameter is
+	test_callback_as_function_parameter
 		do
 			insert_target_root_class (test_001_e)
 			insert_target_header (test_081_h)
@@ -137,55 +137,55 @@ feature
 			process_generation
 		end
 
-	test_callback_struct is
+	test_callback_struct
 		do
 			insert_target_header (test_082_h)
 			process_generation
 		end
 
-	test_nested_struct is
+	test_nested_struct
 		do
 			insert_target_header (test_083_h)
 			process_generation
 		end
 
-	test_enum_generation is
+	test_enum_generation
 		do
 			insert_target_header (test_087_h)
 			process_generation
 		end
 
-	test_array_generation is
+	test_array_generation
 		do
 			insert_target_header (test_089_h)
 			process_generation
 		end
 
-	test_function_returning_function_pointer is
+	test_function_returning_function_pointer
 		do
 			insert_target_header (test_090_h)
 			process_generation
 		end
 
-	test_recursive_function_returning_function_pointer is
+	test_recursive_function_returning_function_pointer
 		do
 			insert_target_header (test_091_h)
 			process_generation
 		end
 
-	test_array_as_struct_member is
+	test_array_as_struct_member
 		do
 			insert_target_header (test_092_h)
 			process_generation
 		end
 
-	test_redeclared_typename is
+	test_redeclared_typename 
 		do
 			insert_target_header (test_093_h)
 			process_generation
 		end
 
-	test_function_returning_struct is
+	test_function_returning_struct
 		do
 			insert_target_header (test_098_h)
 			insert_target_c_source (test_002_c)

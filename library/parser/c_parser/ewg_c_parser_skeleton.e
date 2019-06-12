@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -38,7 +38,7 @@ inherit
 
 feature {NONE} -- Initialization
 
-	make (a_error_handler: like error_handler) is
+	make (a_error_handler: like error_handler)
 			-- Create a new parser.
 		require
 			a_error_handler_not_void: a_error_handler /= Void
@@ -52,7 +52,7 @@ feature {NONE} -- Initialization
 
 feature {ANY}
 
-	parse_buffer (a_buffer: KI_CHARACTER_INPUT_STREAM) is
+	parse_buffer (a_buffer: KI_CHARACTER_INPUT_STREAM)
 			-- Parses the content of `a_buffer'. Adds to
 			-- `c_system' what it finds.
 		do
@@ -70,7 +70,7 @@ feature {ANY}
 			end
 		end
 
-	parse_file (a_file_name: STRING) is
+	parse_file (a_file_name: STRING) 
 			-- Parse the already preprocessed C header file `a_file_name'.
 		require
 			a_file_name_not_void: a_file_name /= Void
@@ -99,7 +99,7 @@ feature {ANY}
 			end
 		end
 
-	print_summary is
+	print_summary
 			-- Print summary about parsed system
 		do
 			error_handler.report_info_message ("  found:")
@@ -109,13 +109,13 @@ feature {ANY}
 
 feature {NONE}
 
-	Type_names_initial_size: INTEGER is 500
+	Type_names_initial_size: INTEGER = 500
 			-- Initial size of type name hash set.
 
 feature {NONE}
 
 	update_type_names (a_declaration_specifiers: DS_LINKED_LIST [ANY];
-						a_declarators: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATOR]) is
+						a_declarators: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATOR])
 			-- This is the semi complete (but fast) type table used
 			-- just by the lexer to distinguish `TOK_IDENTIFIE' from
 			-- `TOK_TYPE_NAME'.
@@ -157,14 +157,14 @@ feature {NONE}
 			end
 		end
 
-	is_type_name (a_token: STRING): BOOLEAN is
+	is_type_name (a_token: STRING): BOOLEAN
 			-- This feature is for the lexer to ask if a given
 			-- token is a regular TOK_IDENTIFIER or a TOK_TYPE_NAME
 		do
 			Result := type_names.has (a_token)
 		end
 
-	add_top_level_declaration (a_declaration: EWG_C_PHASE_1_DECLARATION) is
+	add_top_level_declaration (a_declaration: EWG_C_PHASE_1_DECLARATION)
 			-- Analyze `a_declaration' and add appropriate
 			-- objects to `c_system'.
 		require
@@ -173,7 +173,7 @@ feature {NONE}
 			c_system.add_top_level_declaration (a_declaration)
 		end
 
-	init_type_names is
+	init_type_names
 			-- Create `type_names' and add built in types.
 		do
 			create type_names.make (Type_names_initial_size)
@@ -194,7 +194,7 @@ feature
 
 feature
 
-	c_code_from_specifier_qualifier_list (a_list: DS_LINEAR[ANY]): STRING is
+	c_code_from_specifier_qualifier_list (a_list: DS_LINEAR[ANY]): STRING
 		require
 			a_list_not_void: a_list /= Void
 		local

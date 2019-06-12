@@ -24,9 +24,6 @@
   <target name="help">
     <echo message="usage:"/>
     <echo message="   geant install"/>
-    <echo message="   geant c_build_library"/>
-    <echo message="   geant c_build_library_all"/>
-    <echo message="   geant c_build_library_ge"/>
     <echo message="   geant c_build_library_ise"/>
     <echo message="   geant clean"/>
     <echo message="   geant clobber"/>

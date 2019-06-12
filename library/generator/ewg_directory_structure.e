@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,7 +26,7 @@ create
 
 feature {NONE}
 
-	make (a_config_system: like config_system) is
+	make (a_config_system: like config_system)
 			-- Create new directory structure.
 		require
 			a_config_system_not_void: a_config_system /= Void
@@ -43,95 +43,95 @@ feature
 
 feature
 
-	wrapper_directory_name: STRING is
+	wrapper_directory_name: STRING
 		do
 			Result := config_system.output_directory_name
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_default_output_directory: STRING is "generated_wrapper"
+	relative_default_output_directory: STRING = "generated_wrapper"
 
-	relative_eiffel_directory_name: STRING is "eiffel"
+	relative_eiffel_directory_name: STRING = "eiffel"
 
-	relative_eiffel_external_directory_name: STRING is
+	relative_eiffel_external_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_directory_name, "external")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_external_enum_directory_name: STRING is
+	relative_eiffel_external_enum_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_external_directory_name, "enum")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_external_function_directory_name: STRING is
+	relative_eiffel_external_function_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_external_directory_name, "function")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_external_struct_directory_name: STRING is
+	relative_eiffel_external_struct_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_external_directory_name, "struct")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_external_union_directory_name: STRING is
+	relative_eiffel_external_union_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_external_directory_name, "union")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_external_callback_directory_name: STRING is
+	relative_eiffel_external_callback_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_external_directory_name, "callback")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_abstraction_directory_name: STRING is
+	relative_eiffel_abstraction_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_directory_name, "abstraction")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_abstraction_enum_directory_name: STRING is
+	relative_eiffel_abstraction_enum_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_abstraction_directory_name, "enum")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_abstraction_function_directory_name: STRING is
+	relative_eiffel_abstraction_function_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_abstraction_directory_name, "function")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_abstraction_struct_directory_name: STRING is
+	relative_eiffel_abstraction_struct_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_abstraction_directory_name, "struct")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_abstraction_union_directory_name: STRING is
+	relative_eiffel_abstraction_union_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_abstraction_directory_name, "union")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_eiffel_abstraction_callback_directory_name: STRING is
+	relative_eiffel_abstraction_callback_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_eiffel_abstraction_directory_name, "callback")
 		ensure
@@ -139,16 +139,16 @@ feature
 		end
 
 
-	relative_c_directory_name: STRING is "c"
+	relative_c_directory_name: STRING = "c"
 
-	relative_c_src_directory_name: STRING is
+	relative_c_src_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_c_directory_name, "src")
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_c_include_directory_name: STRING is
+	relative_c_include_directory_name: STRING
 		do
 			Result := file_system.pathname (relative_c_directory_name, "include")
 		ensure
@@ -157,91 +157,91 @@ feature
 
 feature
 
-	eiffel_directory_name: STRING is
+	eiffel_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_external_directory_name: STRING is
+	eiffel_external_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_external_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_external_enum_directory_name: STRING is
+	eiffel_external_enum_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_external_enum_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_external_function_directory_name: STRING is
+	eiffel_external_function_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_external_function_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_external_struct_directory_name: STRING is
+	eiffel_external_struct_directory_name: STRING 
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_external_struct_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_external_union_directory_name: STRING is
+	eiffel_external_union_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_external_union_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_external_callback_directory_name: STRING is
+	eiffel_external_callback_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_external_callback_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_abstraction_directory_name: STRING is
+	eiffel_abstraction_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_abstraction_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_abstraction_enum_directory_name: STRING is
+	eiffel_abstraction_enum_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_abstraction_enum_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_abstraction_function_directory_name: STRING is
+	eiffel_abstraction_function_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_abstraction_function_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_abstraction_struct_directory_name: STRING is
+	eiffel_abstraction_struct_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_abstraction_struct_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_abstraction_union_directory_name: STRING is
+	eiffel_abstraction_union_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_abstraction_union_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	eiffel_abstraction_callback_directory_name: STRING is
+	eiffel_abstraction_callback_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_abstraction_callback_directory_name)
 		ensure
@@ -249,21 +249,21 @@ feature
 		end
 
 
-	c_directory_name: STRING is
+	c_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_c_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	c_src_directory_name: STRING is
+	c_src_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_c_src_directory_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	c_include_directory_name: STRING is
+	c_include_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_c_include_directory_name)
 		ensure
@@ -272,63 +272,63 @@ feature
 
 feature -- File names (to be moved out of here)
 
-	relative_function_c_glue_code_file_name: STRING is
+	relative_function_c_glue_code_file_name: STRING
 		do
 			Result := "ewg_" + config_system.name + "_function_c_glue_code.c"
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_function_c_glue_header_file_name: STRING is
+	relative_function_c_glue_header_file_name: STRING
 		do
 			Result := "ewg_" + config_system.name + "_function_c_glue_code.h"
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_struct_c_glue_code_file_name: STRING is
+	relative_struct_c_glue_code_file_name: STRING
 		do
 			Result := "ewg_" + config_system.name + "_struct_c_glue_code.c"
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_struct_c_glue_header_file_name: STRING is
+	relative_struct_c_glue_header_file_name: STRING
 		do
 			Result := "ewg_" + config_system.name + "_struct_c_glue_code.h"
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_union_c_glue_code_file_name: STRING is
+	relative_union_c_glue_code_file_name: STRING
 		do
 			Result := "ewg_" + config_system.name + "_union_c_glue_code.c"
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_union_c_glue_header_file_name: STRING is
+	relative_union_c_glue_header_file_name: STRING
 		do
 			Result := "ewg_" + config_system.name + "_union_c_glue_code.h"
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_enum_c_glue_code_file_name : STRING is
+	relative_enum_c_glue_code_file_name : STRING
 		do
 			Result := "ewg_" + config_system.name + "_enum_c_glue_code.c"
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_callback_c_glue_header_file_name: STRING is
+	relative_callback_c_glue_header_file_name: STRING
 		do
 			Result := "ewg_" + config_system.name + "_callback_c_glue_code.h"
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	relative_callback_c_glue_code_file_name: STRING is
+	relative_callback_c_glue_code_file_name: STRING
 		do
 			Result := "ewg_" + config_system.name + "_callback_c_glue_code.c"
 		ensure
@@ -337,14 +337,14 @@ feature -- File names (to be moved out of here)
 
 feature
 
-	default_output_directory: STRING is
+	default_output_directory: STRING
 		once
 			Result := file_system.pathname (file_system.current_working_directory, relative_default_output_directory)
 		ensure
 			result_not_void: Result /= Void
 		end
 
-	function_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING is
+	function_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING
 		require
 			valid_eiffel_compiler: eiffel_compiler_names.is_valid_eiffel_compiler_code (a_eiffel_compiler)
 		do
@@ -356,7 +356,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	function_c_glue_header_file_name (a_eiffel_compiler: INTEGER): STRING is
+	function_c_glue_header_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
 			Result := file_system.pathname (c_include_directory_name, "spec")
 			Result := file_system.pathname (Result,
@@ -366,7 +366,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	struct_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING is
+	struct_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
 			Result := file_system.pathname (c_src_directory_name, "spec")
 			Result := file_system.pathname (Result,
@@ -376,7 +376,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	struct_c_glue_header_file_name (a_eiffel_compiler: INTEGER): STRING is
+	struct_c_glue_header_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
 			Result := file_system.pathname (c_include_directory_name, "spec")
 			Result := file_system.pathname (Result,
@@ -386,7 +386,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	union_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING is
+	union_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
 			Result := file_system.pathname (c_src_directory_name, "spec")
 			Result := file_system.pathname (Result,
@@ -396,7 +396,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	union_c_glue_header_file_name (a_eiffel_compiler: INTEGER): STRING is
+	union_c_glue_header_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
 			Result := file_system.pathname (c_include_directory_name, "spec")
 			Result := file_system.pathname (Result,
@@ -406,7 +406,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	enum_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING is
+	enum_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
 			Result := file_system.pathname (c_src_directory_name, "spec")
 			Result := file_system.pathname (Result,
@@ -416,7 +416,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	callback_c_glue_header_file_name (a_eiffel_compiler: INTEGER): STRING is
+	callback_c_glue_header_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
 			Result := file_system.pathname (c_include_directory_name, "spec")
 			Result := file_system.pathname (Result,
@@ -426,7 +426,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	callback_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING is
+	callback_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
 			Result := file_system.pathname (c_src_directory_name, "spec")
 			Result := file_system.pathname (Result,

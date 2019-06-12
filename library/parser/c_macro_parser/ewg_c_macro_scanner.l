@@ -1,5 +1,5 @@
 %{
-indexing
+note
 	description: "Scan C header file for macro prototypes"
 	status: "See notice at end of class"
 	author: "Sam O'Connor and others"

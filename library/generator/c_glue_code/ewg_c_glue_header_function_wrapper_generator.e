@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -28,13 +28,13 @@ create
 
 feature {NONE} -- Initialization
 
-	make_internal is
+	make_internal
 		do
 			Precursor
 			make_printers
 		end
 
-	make_printers is
+	make_printers
 		do
 			create c_to_eiffel_declaration_printer.make (output_stream, eiffel_compiler_mode)
 			create eiffel_to_c_declaration_printer.make (output_stream, eiffel_compiler_mode)
@@ -55,7 +55,7 @@ feature {NONE} -- Initialization
 
 feature
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_FUNCTION_WRAPPER]
 			file_name: STRING
@@ -86,7 +86,7 @@ feature
 
 feature {NONE} -- Implementation
 
-	generate_function_wrapper (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_wrapper (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
@@ -95,7 +95,7 @@ feature {NONE} -- Implementation
 
 feature {NONE} -- Implementation
 
-	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER) 
 			-- Generate macro that calls function represented by `a_function_wrapper'.
 			-- Every parameter will be casted. This will allow us to use simplified
 			-- parameter types on the Eiffel side.

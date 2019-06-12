@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -41,8 +41,8 @@ feature -- Initialization
 			set_input_buffer (new_file_buffer (a_buffer))
 			parse
 		end
-	
-	
+
+
 invariant
 
 	error_handler_not_void: error_handler /= Void

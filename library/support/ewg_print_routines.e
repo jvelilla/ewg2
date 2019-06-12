@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -23,7 +23,7 @@ inherit
 		export {NONE} all end
 feature
 
-	print_char_multiple_times (a_output_stream: KI_TEXT_OUTPUT_STREAM; a_char: CHARACTER; a_n: INTEGER) is
+	print_char_multiple_times (a_output_stream: KI_TEXT_OUTPUT_STREAM; a_char: CHARACTER; a_n: INTEGER)
 		require
 			a_output_stream_not_void: a_output_stream /= Void
 			a_n_greater_equal_zero: a_n >= 0
@@ -40,7 +40,7 @@ feature
 			end
 		end
 
-	print_string_multiple_times (a_output_stream: KI_TEXT_OUTPUT_STREAM; a_string: STRING; a_n: INTEGER) is
+	print_string_multiple_times (a_output_stream: KI_TEXT_OUTPUT_STREAM; a_string: STRING; a_n: INTEGER)
 		require
 			a_output_stream_not_void: a_output_stream /= Void
 			a_n_greater_equal_zero: a_n >= 0
@@ -57,7 +57,7 @@ feature
 			end
 		end
 
-	append_char_multiple_times (a_string: STRING; a_char: CHARACTER; a_n: INTEGER) is
+	append_char_multiple_times (a_string: STRING; a_char: CHARACTER; a_n: INTEGER)
 		require
 			a_string_not_void: a_string /= Void
 			a_n_greater_equal_zero:  a_n >= 0
@@ -74,7 +74,7 @@ feature
 			end
 		end
 
-	append_string_multiple_times (a_string: STRING; a_s: STRING; a_n: INTEGER) is
+	append_string_multiple_times (a_string: STRING; a_s: STRING; a_n: INTEGER)
 		require
 			a_string_not_void: a_string /= Void
 			a_s_not_void: a_s /= Void
@@ -92,7 +92,7 @@ feature
 			end
 		end
 
-	char_multiple_times (a_char: CHARACTER; a_n: INTEGER): STRING is
+	char_multiple_times (a_char: CHARACTER; a_n: INTEGER): STRING
 		require
 			a_n_greater_equal_zero: a_n >= 0
 		do
@@ -105,7 +105,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	string_multiple_times (a_string: STRING; a_n: INTEGER): STRING is
+	string_multiple_times (a_string: STRING; a_n: INTEGER): STRING
 		require
 			a_n_greater_equal_zero: a_n >= 0
 		local
@@ -124,7 +124,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	file_name_without_extension_and_path (a_file_name: STRING): STRING is
+	file_name_without_extension_and_path (a_file_name: STRING): STRING
 			-- Return `a_file_name' without it's extension.
 		require
 			a_file_name_not_void: a_file_name /= Void
@@ -136,7 +136,7 @@ feature
 		end
 
 
-	replace_all (a_string: STRING; a_from: CHARACTER; a_to: CHARACTER) is
+	replace_all (a_string: STRING; a_from: CHARACTER; a_to: CHARACTER)
 		require
 			a_string_not_void: a_string /= Void
 		local
@@ -154,7 +154,7 @@ feature
 			end
 		end
 
-	remove_all (a_string: STRING; a_character: CHARACTER) is
+	remove_all (a_string: STRING; a_character: CHARACTER) 
 		require
 			a_string_not_void: a_string /= Void
 		local

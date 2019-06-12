@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -17,7 +17,7 @@ create
 
 feature {NONE}
 
-	make (a_matching_clause: EWG_CONFIG_MATCHING_CLAUSE; a_wrapper_clause: EWG_CONFIG_WRAPPER_CLAUSE) is
+	make (a_matching_clause: EWG_CONFIG_MATCHING_CLAUSE; a_wrapper_clause: EWG_CONFIG_WRAPPER_CLAUSE) 
 		require
 			a_matching_clause_not_void: a_matching_clause /= Void
 			a_wrapper_clause_not_void: a_wrapper_clause /= Void
@@ -28,15 +28,15 @@ feature {NONE}
 			matching_clause_set: matching_clause = a_matching_clause
 			wrapper_clause_set: wrapper_clause = a_wrapper_clause
 		end
-	
+
 feature
 
 	matching_clause: EWG_CONFIG_MATCHING_CLAUSE
 
 	wrapper_clause: EWG_CONFIG_WRAPPER_CLAUSE
-	
+
 invariant
-	
+
 	matching_clause_not_void: matching_clause /= Void
 
 	wrapper_clause_not_void: wrapper_clause /= Void
@@ -45,4 +45,4 @@ end
 
 
 
-	
+

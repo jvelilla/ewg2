@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -14,7 +14,7 @@ class EWG_PRINTER
 
 feature {NONE} -- Initialization
 
-	make (an_output_stream: like output_stream) is
+	make (an_output_stream: like output_stream) 
 			-- Create new printer with `a_output_stream' as output stream.
 		require
 			an_output_stream_not_void: an_output_stream /= Void
@@ -25,7 +25,7 @@ feature {NONE} -- Initialization
 			output_stream_set: output_stream = an_output_stream
 		end
 
-	make_string (an_output_string: STRING) is
+	make_string (an_output_string: STRING)
 			-- Create new printer which appends to `an_output_string'.
 		require
 			an_output_string_not_void: an_output_string /= Void
@@ -34,14 +34,14 @@ feature {NONE} -- Initialization
 			make_internal
 		end
 
-	make_internal is
+	make_internal
 			-- Redefine this routine in descendants if needed.
 		do
 		end
 
 feature -- Setting
 
-	set_output_stream (an_output_stream: like output_stream) is
+	set_output_stream (an_output_stream: like output_stream)
 			-- Make `an_output_stream' the new `output_stream'.
 		require
 			an_output_stream_not_void: an_output_stream /= Void
@@ -51,7 +51,7 @@ feature -- Setting
 			ssssoutput_stream_set: output_stream = an_output_stream
 		end
 
-	set_string (an_output_string: STRING) is
+	set_string (an_output_string: STRING)
 			-- Make this printer append its output to `an_output_string'.
 		require
 			an_output_string_not_void: an_output_string /= Void

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,12 +21,12 @@ inherit
 
 feature -- Constants
 
-	default_name: STRING is "default"
+	default_name: STRING = "default"
 
-	none_name: STRING is "none"
+	none_name: STRING = "none"
 
 
-	name_set: DS_HASH_SET [STRING] is
+	name_set: DS_HASH_SET [STRING]
 		once
 			create Result.make (2)
 			Result.set_equality_tester (string_equality_tester)
@@ -38,7 +38,7 @@ feature -- Constants
 		end
 
 
-	is_valid_wrapper_type_name (a_value: STRING): BOOLEAN is
+	is_valid_wrapper_type_name (a_value: STRING): BOOLEAN 
 		require
 			a_value_not_void: a_value /= Void
 		do

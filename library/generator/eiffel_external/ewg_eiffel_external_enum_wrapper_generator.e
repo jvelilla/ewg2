@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -25,7 +25,7 @@ create
 
 feature
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_ENUM_WRAPPER]
 			file_name: STRING
@@ -58,7 +58,7 @@ feature
 
 feature {NONE}
 
-	generate_enum_wrapper (an_enum_wrapper: EWG_ENUM_WRAPPER) is
+	generate_enum_wrapper (an_enum_wrapper: EWG_ENUM_WRAPPER)
 		require
 			an_enum_wrapper_not_void: an_enum_wrapper /= Void
 		local
@@ -95,7 +95,7 @@ feature {NONE}
 			output_stream.put_line ("end")
 		end
 
-	generate_is_valid_feature (an_enum_wrapper: EWG_ENUM_WRAPPER) is
+	generate_is_valid_feature (an_enum_wrapper: EWG_ENUM_WRAPPER)
 		require
 			an_enum_wrapper_not_void: an_enum_wrapper /= Void
 			members_not_void: an_enum_wrapper.members /= Void
@@ -126,7 +126,7 @@ feature {NONE}
 
 	generate_member (a_member: EWG_C_AST_DECLARATION;
 						  an_enum_declaration: STRING;
-						  a_header_file_name: STRING) is
+						  a_header_file_name: STRING) 
 		require
 			a_member_not_void: a_member /= Void
 			an_enum_declaration_not_void: an_enum_declaration /= Void

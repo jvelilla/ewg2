@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -27,7 +27,7 @@ create
 
 feature {NONE} -- Implementation
 
-	make_internal is
+	make_internal
 		do
 			Precursor
 			create {DS_LINKED_LIST[EWG_ABSTRACT_C_DECLARATION_PRINTER]} printer_list.make_default
@@ -39,7 +39,7 @@ feature -- Access
 
 feature -- Element Change
 
-	add_printer (a_printer: EWG_ABSTRACT_C_DECLARATION_PRINTER) is
+	add_printer (a_printer: EWG_ABSTRACT_C_DECLARATION_PRINTER)
 		require
 			a_printer_not_void: a_printer /= Void
 		do
@@ -50,7 +50,7 @@ feature -- Element Change
 
 feature -- Status
 
-	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN is
+	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN
 		local
 			cs: DS_LIST_CURSOR [EWG_ABSTRACT_C_DECLARATION_PRINTER]
 		do
@@ -71,7 +71,7 @@ feature -- Status
 
 feature -- Printing
 
-	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) is
+	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) 
 		local
 			cs: DS_LIST_CURSOR [EWG_ABSTRACT_C_DECLARATION_PRINTER]
 		do

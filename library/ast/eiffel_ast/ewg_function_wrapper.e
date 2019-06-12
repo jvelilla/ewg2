@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -34,7 +34,7 @@ feature {NONE} -- Initialization
 			a_header_file_name: STRING;
 			a_function_declaration: EWG_C_AST_FUNCTION_DECLARATION;
 			a_members: like members;
-			a_class_name: STRING) is
+			a_class_name: STRING)
 		require
 			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
 			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty
@@ -61,7 +61,7 @@ feature
 	function_declaration: EWG_C_AST_FUNCTION_DECLARATION
 			-- Function declaration to wrap
 
-	declaration: EWG_C_AST_DECLARATION is
+	declaration: EWG_C_AST_DECLARATION 
 		do
 			Result := function_declaration
 		end

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -28,7 +28,7 @@ create
 
 feature -- Generation
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_HASH_TABLE_CURSOR [DS_LINKED_LIST [EWG_FUNCTION_WRAPPER], STRING]
 		do
@@ -46,7 +46,7 @@ feature -- Generation
 feature {NONE} -- Implementation
 
 	generate_function_wrappers_for_class (a_class_name: STRING;
-														a_function_declaration_list: DS_LINKED_LIST [EWG_FUNCTION_WRAPPER]) is
+														a_function_declaration_list: DS_LINKED_LIST [EWG_FUNCTION_WRAPPER])
 		require
 			a_class_name_not_void: a_class_name /= Void
 			a_function_declaration_list_not_void: a_function_declaration_list /= Void
@@ -90,7 +90,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	generate_function_wrapper (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_wrapper (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
@@ -98,7 +98,7 @@ feature {NONE} -- Implementation
 			generate_function_address_accessor (a_function_wrapper)
 		end
 
-	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		local
@@ -175,7 +175,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_se_indirect_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_se_indirect_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
@@ -192,7 +192,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_se_direct_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_se_direct_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
@@ -208,7 +208,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_ise_indirect_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_ise_indirect_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		local
@@ -249,7 +249,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-  generate_ise_direct_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+  generate_ise_direct_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		local
@@ -290,7 +290,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_ve_indirect_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_ve_indirect_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		do
 			output_stream.put_line ("%T%T%T%"C%"")
 			output_stream.put_line ("%T%Talias")
@@ -300,7 +300,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_function_address_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_address_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER) 
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do

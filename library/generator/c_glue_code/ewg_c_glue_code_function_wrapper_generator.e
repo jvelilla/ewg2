@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -28,13 +28,13 @@ create
 
 feature {NONE} -- Initialization
 
-	make_internal is
+	make_internal
 		do
 			Precursor
 			make_printers
 		end
 
-	make_printers is
+	make_printers
 		do
 			create c_to_eiffel_declaration_printer.make (output_stream, eiffel_compiler_mode)
 			create eiffel_to_c_declaration_printer.make (output_stream, eiffel_compiler_mode)
@@ -55,7 +55,7 @@ feature {NONE} -- Initialization
 
 feature -- Generation
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_FUNCTION_WRAPPER]
 			file_name: STRING
@@ -85,7 +85,7 @@ feature -- Generation
 
 feature {NONE} -- Implementation
 
-	generate_function_wrapper (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_wrapper (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
@@ -97,7 +97,7 @@ feature {NONE} -- Implementation
 			generate_function_address_accessor (a_function_wrapper)
 		end
 
-	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		local
@@ -138,7 +138,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_function_address_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_function_address_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 			-- Generate function that returns pointer to function wrapped by
 			-- `a_function_wrapper'. This pointer can be used to register
 			-- the function wrapped by `a_function_wrapper' as a callback.
@@ -164,7 +164,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_call (a_function_wrapper: EWG_FUNCTION_WRAPPER) is
+	generate_call (a_function_wrapper: EWG_FUNCTION_WRAPPER) 
 			-- Generate a call to `a_function_wrapper'.
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void

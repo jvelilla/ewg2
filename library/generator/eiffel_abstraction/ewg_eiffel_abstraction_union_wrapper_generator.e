@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -25,7 +25,7 @@ create
 
 feature -- Generation
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_UNION_WRAPPER]
 			file_name: STRING
@@ -60,7 +60,7 @@ feature -- Generation
 
 feature
 
-	generate_union_wrapper (a_union_wrapper: EWG_UNION_WRAPPER) is
+	generate_union_wrapper (a_union_wrapper: EWG_UNION_WRAPPER)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_MEMBER_WRAPPER]
 		do
@@ -112,7 +112,7 @@ feature
 			output_stream.put_line ("end")
 		end
 
-	generate_member (a_union_member: EWG_MEMBER_WRAPPER) is
+	generate_member (a_union_member: EWG_MEMBER_WRAPPER)
 		local
 			native_wrapper: EWG_NATIVE_MEMBER_WRAPPER
 		do
@@ -133,7 +133,7 @@ feature
 	generate_native_wrapped_member (a_mapped_eiffel_name: STRING;
 											  a_composite_wrapper: EWG_COMPOSITE_WRAPPER;
 											  a_c_declaration: EWG_C_AST_DECLARATION;
-											  a_header_file_name: STRING) is
+											  a_header_file_name: STRING)
 		require
 			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
 			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty
@@ -224,7 +224,7 @@ feature
 	generate_obsolete_native_wrapped_getter (a_mapped_eiffel_name: STRING;
 														  a_composite_wrapper: EWG_COMPOSITE_WRAPPER;
 														  a_c_declaration: EWG_C_AST_DECLARATION;
-														  a_header_file_name: STRING) is
+														  a_header_file_name: STRING) 
 		require
 			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
 			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty

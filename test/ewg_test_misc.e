@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,13 +21,13 @@ inherit
 
 feature
 
-	anonymous_declaration (a_type: EWG_C_AST_TYPE): STRING is
+	anonymous_declaration (a_type: EWG_C_AST_TYPE): STRING
 		require
 			a_type_not_void: a_type /= Void
 		local
 			printer: EWG_C_DECLARATION_PRINTER
 		do
-			Result := STRING_.make (20)
+			Result := STRING_.make_buffer (20)
 			create printer.make_string (Result)
 			printer.print_declaration_from_type (a_type, "")
 		ensure
@@ -36,7 +36,7 @@ feature
 
 feature
 
-	test_same_struct_types is
+	test_same_struct_types
 		local
 			struct: EWG_C_AST_STRUCT_TYPE
 			members: DS_ARRAYED_LIST [EWG_C_AST_DECLARATION]
@@ -50,7 +50,7 @@ feature
 			assert_equal ("structs are the same", True, struct.is_same_type (struct))
 		end
 
-	test_same_recursive_struct_types is
+	test_same_recursive_struct_types
 		local
 			members: DS_ARRAYED_LIST [EWG_C_AST_DECLARATION]
 			declaration: EWG_C_AST_DECLARATION
@@ -64,7 +64,7 @@ feature
 			assert_equal ("recursive structs are the same", True, struct.is_same_type (struct))
 		end
 
-	test_type_set is
+	test_type_set
 		local
 			second_void_pointer: EWG_C_AST_POINTER_TYPE
 			old_count: INTEGER
@@ -76,19 +76,19 @@ feature
 			assert_equal ("last_type is void_pointer_type", c_system.types.void_pointer_type, c_system.types.last_type)
 		end
 
-	test_lexer_line_directive is
+	test_lexer_line_directive
 		do
 			assert_no_syntax_error ("line directive no syntax error", test_035_hpp)
 			assert_no_syntax_error ("line directive with extra space, no syntax error", test_077_hpp)
 		end
 
-	test_return_type_of_function_type is
+	test_return_type_of_function_type
 		do
 			process_correct (test_001_hpp)
 			assert_equal ("no callback", 0, eiffel_wrapper_set.callback_wrapper_count)
 		end
 
-	test_void_parameter is
+	test_void_parameter
 		local
 			first: EWG_FUNCTION_WRAPPER
 		do
@@ -98,7 +98,7 @@ feature
 			assert_equal ("parameter count zero", 0, first.members.count)
 		end
 
-	test_function_type_as_parameter is
+	test_function_type_as_parameter
 		local
 			first: EWG_CALLBACK_WRAPPER
 		do
@@ -109,12 +109,12 @@ feature
 			assert_equal ("callback c name", "void*", anonymous_declaration (first.c_pointer_type.eiffel_compatible_type))
 		end
 
-	test_builtin_gcc_types is
+	test_builtin_gcc_types
 		do
 			assert_no_syntax_error ("__builtin_va_list no syntax error", test_040_hpp)
 		end
 
-	test_keywords is
+	test_keywords
 		local
 			first: EWG_FUNCTION_WRAPPER
 		do
@@ -125,17 +125,17 @@ feature
 			assert_not_equal ("keyword renamed", "end" , first.members.first.mapped_eiffel_name)
 		end
 
-	test_comma_after_last_enum_member is
+	test_comma_after_last_enum_member
 		do
 			assert_no_syntax_error ("comma after last enum member is allowed in cl", test_042_hpp)
 		end
 
-	test_anonymous_bitfield is
+	test_anonymous_bitfield
 		do
 			assert_no_syntax_error ("anonymous bitfield should parse", test_049_hpp)
 		end
 
-	test_struct_member_is_type_name is
+	test_struct_member_is_type_name
 		local
 			first: EWG_STRUCT_WRAPPER
 		do
@@ -148,7 +148,7 @@ feature
 			assert_no_syntax_error ("struct member is type name should parse", test_051_hpp)
 		end
 
-	test_anonymous_function_parameters is
+	test_anonymous_function_parameters
 		local
 			first: EWG_FUNCTION_WRAPPER
 		do
@@ -161,19 +161,19 @@ feature
 			assert_no_syntax_error ("must parse", test_060_hpp)
 		end
 
-	test_compound is
+	test_compound
 		do
 			assert_no_syntax_error ("ignore compounds", test_055_hpp)
 		end
 
-	test_type_name_scope is
+	test_type_name_scope
 		do
 			assert_no_syntax_error ("tricky struct should parse", test_056_hpp)
 			assert_no_syntax_error ("tricky callback should parse", test_057_hpp)
 			assert_no_syntax_error ("tricky array", test_066_hpp)
 		end
 
-	test_anonymous_function_type_parameter is
+	test_anonymous_function_type_parameter
 		local
 			first: EWG_CALLBACK_WRAPPER
 		do
@@ -184,7 +184,7 @@ feature
 			assert_equal ("callback c name", "void*", anonymous_declaration (first.c_pointer_type.eiffel_compatible_type))
 		end
 
-	test_void_alias is
+	test_void_alias
 		local
 			a_alias: EWG_C_AST_ALIAS_TYPE
 		do
@@ -193,7 +193,7 @@ feature
 			assert ("void alias is void", a_alias.skip_consts_and_aliases = c_system.types.void_type)
 		end
 
-	test_void_alias_function is
+	test_void_alias_function
 		local
 			first: EWG_FUNCTION_WRAPPER
 		do
@@ -208,7 +208,7 @@ feature
 			assert ("return type is void", first.function_declaration.function_type.return_type.skip_consts_and_aliases = c_system.types.void_type)
 		end
 
-	test_void_alias_callback is
+	test_void_alias_callback
 		local
 			first: EWG_CALLBACK_WRAPPER
 		do
@@ -223,7 +223,7 @@ feature
 			assert ("return type is void", first.c_pointer_type.function_type.return_type.skip_consts_and_aliases = c_system.types.void_type)
 		end
 
-	test_array_as_struct_member is
+	test_array_as_struct_member
 		local
 			first: EWG_STRUCT_WRAPPER
 		do
@@ -234,22 +234,22 @@ feature
 			assert_equal ("member type is correct", "int[20]", anonymous_declaration (first.c_struct_type.members.first.type))
 		end
 
-	test_recursive_struct is
+	test_recursive_struct
 		do
 			assert_no_syntax_error ("struct with itself as member must parse", test_072_hpp)
 		end
 
-	test_struct_name_is_typedef_too is
+	test_struct_name_is_typedef_too
 		do
 			assert_no_syntax_error ("struct name is type name too must parse", test_073_hpp)
 		end
 
-	test_weird_typedef_redefinition is
+	test_weird_typedef_redefinition
 		do
 			assert_no_syntax_error ("cl allows weird typedef redefinition", test_075_hpp)
 		end
 
-	test_function_name_clash_resolver is
+	test_function_name_clash_resolver
 		local
 			first: EWG_FUNCTION_WRAPPER
 			second: EWG_FUNCTION_WRAPPER
@@ -267,7 +267,7 @@ feature
 			assert_not_equal ("functions have different eiffel names", first.mapped_eiffel_name, second.mapped_eiffel_name)
 		end
 
-	test_callback_as_parameter is
+	test_callback_as_parameter
 		local
 			function: EWG_FUNCTION_WRAPPER
 		do
@@ -275,7 +275,7 @@ feature
 			assert ("at least one function", eiffel_wrapper_set.function_wrapper_count >= 1)
 		end
 
-	test_double_consts is
+	test_double_consts
 		local
 			function: EWG_FUNCTION_WRAPPER
 		do
@@ -287,7 +287,7 @@ feature
 							  anonymous_declaration (function.function_declaration.function_type.members.first.type))
 		end
 
-	test_typedef_with_multiple_declarators is
+	test_typedef_with_multiple_declarators
 		local
 			y: EWG_C_AST_ALIAS_TYPE
 			y1: EWG_C_AST_ALIAS_TYPE
@@ -301,17 +301,17 @@ feature
 			assert ("`y1' is alias for int", y1.base.is_primitive_type)
 		end
 
-	test_inline_keyword is
+	test_inline_keyword
 		do
 			assert_no_syntax_error ("__inline must parse", test_086_hpp)
 		end
 
-	test_function_pointer_as_function_parameter is
+	test_function_pointer_as_function_parameter
 		do
 			assert_no_syntax_error ("function pointer as function parameter must parse", test_088_hpp)
 		end
 
-	test_c99_bool_type is
+	test_c99_bool_type
 		local
 			cs: DS_LINEAR_CURSOR [EWG_C_AST_FUNCTION_DECLARATION]
 			function_decl: EWG_C_AST_FUNCTION_DECLARATION
@@ -327,7 +327,7 @@ feature
 			assert_strings_equal ("Eiffel type of _Bool is INTEGER", "INTEGER", function_type.return_type.corresponding_eiffel_type)
 		end
 
-	test_cast_in_enum is
+	test_cast_in_enum 
 		local
 			cs: DS_LINEAR_CURSOR [EWG_C_AST_FUNCTION_DECLARATION]
 			function_decl: EWG_C_AST_FUNCTION_DECLARATION

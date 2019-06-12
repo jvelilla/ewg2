@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -22,7 +22,7 @@ create
 
 feature {NONE} -- Initialisation
 
-	make is
+	make
 			-- Create new declaration set
 		do
 			create declaration_storage.make (Default_declaration_storage_capacity)
@@ -36,7 +36,7 @@ feature {ANY} -- Access
 
 feature {ANY} -- Status checkers
 
-	has (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	has (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN
 			-- Is `a_declaration' in the set?
 		require
 			a_declaration_not_void: a_declaration /= Void
@@ -44,7 +44,7 @@ feature {ANY} -- Status checkers
 			Result := declaration_storage.has (a_declaration)
 		end
 
-	count: INTEGER is
+	count: INTEGER
 			-- Number of declarations in set
 		do
 			Result := declaration_storage.count
@@ -52,7 +52,7 @@ feature {ANY} -- Status checkers
 			count_greater_equal_zero: Result >= 0
 		end
 
-	function_declaration_count: INTEGER is
+	function_declaration_count: INTEGER
 			-- Number of function declarations in set
 		do
 			Result := function_declarations.count
@@ -60,7 +60,7 @@ feature {ANY} -- Status checkers
 			count_greater_equal_zero: Result >= 0
 		end
 
-	new_cursor: DS_LINEAR_CURSOR [EWG_C_AST_DECLARATION] is
+	new_cursor: DS_LINEAR_CURSOR [EWG_C_AST_DECLARATION]
 			-- New curser over all declaration in the set
 		do
 			Result := declaration_storage.new_cursor
@@ -68,7 +68,7 @@ feature {ANY} -- Status checkers
 			cursor_not_void: Result /= Void
 		end
 
-	new_function_declaration_cursor: DS_LINEAR_CURSOR [EWG_C_AST_FUNCTION_DECLARATION] is
+	new_function_declaration_cursor: DS_LINEAR_CURSOR [EWG_C_AST_FUNCTION_DECLARATION]
 			-- New curser over all function declarations in the set
 		do
 			Result := function_declarations.new_cursor
@@ -78,7 +78,7 @@ feature {ANY} -- Status checkers
 
 feature {EWG_C_SYSTEM} -- Add function declarations
 
-	add_declaration (a_declaration: EWG_C_AST_DECLARATION) is
+	add_declaration (a_declaration: EWG_C_AST_DECLARATION)
 			-- Add `a_declaration' to set if not another equal
 			-- declaration is already in the set.  Set `last_declaration'
 			-- to `a_declaration' if it has been added, otherwise set
@@ -99,7 +99,7 @@ feature {EWG_C_SYSTEM} -- Add function declarations
 			last_declaration_equal_to_a_function_declaration: declaration_equality_tester.test (last_declaration, a_declaration)
 		end
 
-	function_declarations: DS_LINEAR [EWG_C_AST_FUNCTION_DECLARATION] is
+	function_declarations: DS_LINEAR [EWG_C_AST_FUNCTION_DECLARATION]
 			-- List of all function declarations
 			-- TODO: slow implementation, find faster one
 		local
@@ -133,7 +133,7 @@ feature {NONE} -- Implementation
 
 feature {NONE} -- Constants
 
-	Default_declaration_storage_capacity: INTEGER is 10000
+	Default_declaration_storage_capacity: INTEGER = 10000
 			-- Default capacity of `declaration_storage'
 
 invariant

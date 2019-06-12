@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -18,69 +18,69 @@ inherit
 		redefine
 			out
 		end
-	
+
 create
 
 	make
 
 feature
 
-	make is
+	make
 		do
 		end
 
 feature
 
-	set_typedef is
+	set_typedef
 		do
 			is_typedef := True
 		ensure
-			set_is_typedef: is_typedef 
+			set_is_typedef: is_typedef
 		end
-	
-	set_extern is
+
+	set_extern
 		do
 			is_extern := True
 		ensure
-			set_is_extern: is_extern 
+			set_is_extern: is_extern
 		end
-	
-	set_static is
+
+	set_static
 		do
 			is_static := True
 		ensure
-			set_is_static: is_static 
+			set_is_static: is_static
 		end
-	
-	set_auto is
+
+	set_auto
 		do
 			is_auto := True
 		ensure
 			set_is_auto: is_auto
 		end
-	
-	set_register is
+
+	set_register
 		do
 			is_register := True
 		ensure
-			set_is_register: is_register 
+			set_is_register: is_register
 		end
-	
-	set_inline is
+
+	set_inline
 		do
 			is_inline := True
 		ensure
-			set_is_inline: is_inline 
+			set_is_inline: is_inline
 		end
 
 feature
 
-	none_set: BOOLEAN is
+	none_set: BOOLEAN
 		do
 			Result := not is_typedef and not is_extern and not is_static and not is_auto and not is_inline
 		end
 
-	merge (other: EWG_C_PHASE_1_STORAGE_CLASS_SPECIFIERS) is
+	merge (other: EWG_C_PHASE_1_STORAGE_CLASS_SPECIFIERS)
 		do
 			if other.is_typedef then
 				set_typedef
@@ -118,7 +118,7 @@ feature
 
 feature
 
-	out: STRING is
+	out: STRING 
 		do
 			Result := ""
 			if is_typedef then

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -28,7 +28,7 @@ inherit
 
 feature {NONE} -- Creation
 
-	make (a_name: STRING; a_header_file_name: STRING; a_base: EWG_C_AST_TYPE) is
+	make (a_name: STRING; a_header_file_name: STRING; a_base: EWG_C_AST_TYPE)
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
 			a_base_not_void: a_base /= Void
@@ -46,7 +46,7 @@ feature {ANY}
 	base: EWG_C_AST_TYPE
 			-- The base of the current type
 
-	is_named_recursive: BOOLEAN is
+	is_named_recursive: BOOLEAN
 		do
 			Result := Precursor
 			if not Result then
@@ -57,17 +57,17 @@ feature {ANY}
 
 feature {ANY}
 
-	total_pointer_and_array_indirections: INTEGER is
+	total_pointer_and_array_indirections: INTEGER
 		do
 			Result := base.total_pointer_and_array_indirections
 		end
 
-	total_pointer_indirections: INTEGER is
+	total_pointer_indirections: INTEGER
 		do
 			Result := base.total_pointer_indirections
 		end
 
-	is_same_based_type (other_based: EWG_C_AST_BASED_TYPE): BOOLEAN is
+	is_same_based_type (other_based: EWG_C_AST_BASED_TYPE): BOOLEAN
 		require
 			other_based_not_void: other_based /= Void
 		do
@@ -75,23 +75,23 @@ feature {ANY}
 				base = other_based.base
 		end
 
-	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE] is
+	directly_nested_types: DS_LINKED_LIST [EWG_C_AST_TYPE]
 		do
 			create Result.make
 			Result.put_last (base)
 		end
 
-	is_based_type: BOOLEAN is
+	is_based_type: BOOLEAN
 		do
 			Result := True
 		end
 
-	based_type_recursive: EWG_C_AST_TYPE is
+	based_type_recursive: EWG_C_AST_TYPE
 		do
 			Result := base.based_type_recursive
 		end
 
-	has_type_as_base_indirect (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	has_type_as_base_indirect (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Returns `True' iff `a_type' is a direct or
 			-- indirect base of `Current'.
 		require
@@ -111,7 +111,7 @@ feature {ANY}
 			a_type_is_base_implies_true: base = a_type implies Result
 		end
 
-	has_type_as_base_with_no_pointer_or_array_types_inbetween_indirect (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	has_type_as_base_with_no_pointer_or_array_types_inbetween_indirect (a_type: EWG_C_AST_TYPE): BOOLEAN
 			-- Returns `True' iff `a_type' is a direct or
 			-- indirect base of `Current' and there are no
 			-- array or pointer types "in between".
@@ -132,7 +132,7 @@ feature {ANY}
 			a_type_is_base_implies_true: base = a_type implies Result
 		end
 
-	number_of_pointer_or_arrays_between_current_and_type (a_type: EWG_C_AST_TYPE): INTEGER is
+	number_of_pointer_or_arrays_between_current_and_type (a_type: EWG_C_AST_TYPE): INTEGER
 			-- Returns the number of array or pointer indirections between `Current'
 			-- and `a_type'
 		require
@@ -155,7 +155,7 @@ feature {ANY}
 
 feature {EWG_C_AST_BASED_TYPE} -- Implementation
 
-	number_of_pointer_or_array_types_between_current_and_type_recursive (a_type: EWG_C_AST_TYPE; a_indirections: INTEGER): INTEGER is
+	number_of_pointer_or_array_types_between_current_and_type_recursive (a_type: EWG_C_AST_TYPE; a_indirections: INTEGER): INTEGER 
 		require
 			a_type_not_void: a_type /= Void
 			a_type_has_current_as_base_indirect: has_type_as_base_indirect (a_type)

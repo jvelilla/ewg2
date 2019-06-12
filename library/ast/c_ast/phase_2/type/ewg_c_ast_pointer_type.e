@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -43,7 +43,7 @@ create
 
 feature {NONE} -- Creation
 
-	make (a_header_file_name: STRING; a_base: EWG_C_AST_TYPE) is
+	make (a_header_file_name: STRING; a_base: EWG_C_AST_TYPE)
 		require
 			a_header_file_name_not_void: a_header_file_name /= Void
 			a_base_not_void: a_base /= Void
@@ -56,7 +56,7 @@ feature {NONE} -- Creation
 
 feature
 
-	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN is
+	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
 		local
 			other_pointer: EWG_C_AST_POINTER_TYPE
 		do
@@ -66,55 +66,55 @@ feature
 			end
 		end
 
-	append_anonymous_hash_string_to_string (a_string: STRING) is
+	append_anonymous_hash_string_to_string (a_string: STRING)
 		do
 			a_string.append_string ("pointer_")
 			base.append_hash_string_to_string (a_string)
 		end
 
-	total_pointer_and_array_indirections: INTEGER is
+	total_pointer_and_array_indirections: INTEGER
 			-- Number of total pointer and array indirections
 		do
 			Result := 1 + base.skip_consts_and_aliases.total_pointer_and_array_indirections
 		end
 
-	total_pointer_indirections: INTEGER is
+	total_pointer_indirections: INTEGER
 			-- Number of total pointer indirections
 		do
 			Result := 1 + base.skip_consts_and_aliases.total_pointer_indirections
 		end
 
-	is_pointer_type: BOOLEAN is
+	is_pointer_type: BOOLEAN
 		do
 			Result := True
 		end
 
-	corresponding_eiffel_type: STRING is
+	corresponding_eiffel_type: STRING
 		do
 			Result := "POINTER"
 		end
 
-	skip_consts_and_pointers: EWG_C_AST_TYPE is
+	skip_consts_and_pointers: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts_and_pointers
 		end
 
-	skip_consts_aliases_and_pointers: EWG_C_AST_TYPE is
+	skip_consts_aliases_and_pointers: EWG_C_AST_TYPE
 		do
 			Result := base.skip_consts_aliases_and_pointers
 		end
 
-	skip_const_pointer_and_array_types: EWG_C_AST_TYPE is
+	skip_const_pointer_and_array_types: EWG_C_AST_TYPE
 		do
 			Result := base.skip_const_pointer_and_array_types
 		end
 
-	has_type_as_base_with_no_pointer_or_array_types_inbetween_indirect (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	has_type_as_base_with_no_pointer_or_array_types_inbetween_indirect (a_type: EWG_C_AST_TYPE): BOOLEAN
 		do
 			Result := False
 		end
 
-	is_char_pointer_type: BOOLEAN is
+	is_char_pointer_type: BOOLEAN
 			-- Is the current type a pointer to char ?
 			-- (Note aliases and consts are ignored)
 		local
@@ -131,7 +131,7 @@ feature
 			end
 		end
 
-	function_type: EWG_C_AST_FUNCTION_TYPE is
+	function_type: EWG_C_AST_FUNCTION_TYPE
 			-- If `Current' is a callback, return the corresponding function type
 		require
 			is_callback: is_callback
@@ -143,7 +143,7 @@ feature
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) is
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR)
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_pointer_type (Current)
@@ -151,7 +151,7 @@ feature -- Visitor Pattern
 
 feature {EWG_C_AST_BASED_TYPE}
 
-	number_of_pointer_or_array_types_between_current_and_type_recursive (a_type: EWG_C_AST_TYPE; a_indirections: INTEGER): INTEGER is
+	number_of_pointer_or_array_types_between_current_and_type_recursive (a_type: EWG_C_AST_TYPE; a_indirections: INTEGER): INTEGER 
 		local
 			base_based_type: EWG_C_AST_BASED_TYPE
 		do

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,12 +26,12 @@ create
 
 feature {ANY} -- Access
 
-	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN
 		do
 			Result := a_type.skip_wrapper_irrelevant_types.is_callback
 		end
 
-	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN is
+	accepts_declaration (a_declaration: EWG_C_AST_DECLARATION): BOOLEAN
 		do
 			Result := False
 		end
@@ -40,7 +40,7 @@ feature {ANY} -- Basic Routines
 
 	shallow_wrap_type (a_type: EWG_C_AST_TYPE;
 							 a_include_header_file_name: STRING;
-							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) 
 		local
 			member_list: DS_ARRAYED_LIST [EWG_MEMBER_WRAPPER]
 			pointer_type: EWG_C_AST_POINTER_TYPE
@@ -64,7 +64,7 @@ feature {ANY} -- Basic Routines
 
 	shallow_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 									  a_include_header_file_name: STRING;
-									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+									  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		do
 				check
 					dead_end: False
@@ -74,7 +74,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_type (a_type: EWG_C_AST_TYPE;
 						 a_include_header_file_name: STRING;
 						 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-						 a_config_system: EWG_CONFIG_SYSTEM) is
+						 a_config_system: EWG_CONFIG_SYSTEM)
 		local
 			pointer_type: EWG_C_AST_POINTER_TYPE
 			callback_wrapper: EWG_CALLBACK_WRAPPER
@@ -117,7 +117,7 @@ feature {ANY} -- Basic Routines
 	deep_wrap_declaration (a_declaration: EWG_C_AST_DECLARATION;
 								  a_include_header_file_name: STRING;
 								  a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-								  a_config_system: EWG_CONFIG_SYSTEM) is
+								  a_config_system: EWG_CONFIG_SYSTEM)
 		do
 				check
 					dead_end: False
@@ -131,7 +131,7 @@ feature {NONE}
 									 a_index: INTEGER;
 									 a_include_header_file_name: STRING;
 									 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-									 a_config_system: EWG_CONFIG_SYSTEM) is
+									 a_config_system: EWG_CONFIG_SYSTEM)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 			a_parameter_not_void: a_parameter /= Void
@@ -166,7 +166,7 @@ feature {NONE}
 	wrap_callback_return_type (a_callback_wrapper: EWG_CALLBACK_WRAPPER;
 										a_include_header_file_name: STRING;
 										a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET;
-										a_config_system: EWG_CONFIG_SYSTEM) is
+										a_config_system: EWG_CONFIG_SYSTEM)
 			-- Add wrapper for the return type of callback `a_callback_wrapper.c_pointer_type' to
 			-- `a_callback_wrapper'.
 		require
@@ -195,7 +195,7 @@ feature {NONE}
 			a_callback_wrapper.set_return_type (member_wrapper)
 		end
 
-	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING is
+	default_eiffel_identifier_for_type (a_type: EWG_C_AST_TYPE): STRING
 		local
 			pointer_type: EWG_C_AST_POINTER_TYPE
 		do
@@ -210,7 +210,7 @@ feature {NONE}
 			end
 		end
 
-	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING is
+	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING
 		do
 				check
 					dead_end: False

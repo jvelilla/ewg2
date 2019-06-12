@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -28,26 +28,26 @@ create
 
 feature
 
-	make (a_name: STRING) is
+	make (a_name: STRING)
 		do
 			name := a_name
 		end
 
-	make_enum (a_name: STRING; a_members: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATION]) is
+	make_enum (a_name: STRING; a_members: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATION])
 		do
 			is_enum := True
 			make (a_name)
 			members := a_members
 		end
 
-	make_struct (a_name: STRING; a_members: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATION]) is
+	make_struct (a_name: STRING; a_members: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATION])
 		do
 			is_struct := True
 			make (a_name)
 			members := a_members
 		end
 
-	make_union (a_name: STRING; a_members: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATION]) is
+	make_union (a_name: STRING; a_members: DS_LINKED_LIST [EWG_C_PHASE_1_DECLARATION])
 		do
 			is_union := True
 			make (a_name)
@@ -56,7 +56,7 @@ feature
 
 feature
 
-	append_name (a_type: EWG_C_PHASE_1_TYPE_SPECIFIER) is
+	append_name (a_type: EWG_C_PHASE_1_TYPE_SPECIFIER)
 			-- Append `a_type.name' to `name'.
 			-- Example: `old name' = "unsigned"
 			--        : `a_type.name' = "int"
@@ -75,17 +75,17 @@ feature
 
 feature
 
-	has_members: BOOLEAN is
+	has_members: BOOLEAN
 		do
 			Result := members /= Void
 		end
 
-	is_composite_type: BOOLEAN is
+	is_composite_type: BOOLEAN
 		do
 			Result := is_struct or is_union or is_enum
 		end
 
-	is_void: BOOLEAN is
+	is_void: BOOLEAN
 			-- Is this the simple 'void' specifier?
 		do
 				-- TODO: put manifiest string in a constants class
@@ -111,7 +111,7 @@ feature
 
 feature
 
-	c_code: STRING is
+	c_code: STRING 
 		do
 			create Result.make (10)
 			if is_enum then

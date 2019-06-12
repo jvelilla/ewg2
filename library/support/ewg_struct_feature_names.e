@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -23,14 +23,14 @@ create {EWG_SHARED_STRUCT_FEATURE_NAMES}
 
 feature {NONE} -- Initialization
 
-	make is
+	make 
 			-- Create new feature name object.
 		do
 		end
 
 feature -- Status
 
-	has (a_name: STRING): BOOLEAN is
+	has (a_name: STRING): BOOLEAN
 			-- Is `a_name' a feature name in class ANY?
 		do
 			Result := names.has (a_name.as_lower)
@@ -38,7 +38,7 @@ feature -- Status
 
 feature {NONE} -- Implementation
 
-	names: DS_HASH_SET [STRING] is
+	names: DS_HASH_SET [STRING]
 			-- Set of names of features from class ANY
 		once
 			create Result.make (8)

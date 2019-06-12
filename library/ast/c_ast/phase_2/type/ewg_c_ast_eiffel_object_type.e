@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -32,7 +32,7 @@ create
 
 feature
 
-	make (a_eiffel_class_name: STRING) is
+	make (a_eiffel_class_name: STRING)
 		require
 			a_eiffel_class_name_not_void: a_eiffel_class_name /= Void
 		do
@@ -46,7 +46,7 @@ feature
 
 feature
 
-	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN is
+	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
 		local
 			other_eiffel: EWG_C_AST_EIFFEL_OBJECT_TYPE
 		do
@@ -56,14 +56,14 @@ feature
 			end
 		end
 
-	is_eiffel_object_type: BOOLEAN is
+	is_eiffel_object_type: BOOLEAN
 		do
 			Result := True
 		end
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) is
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR)
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_eiffel_object_type (Current)
@@ -71,12 +71,12 @@ feature -- Visitor Pattern
 
 feature
 
-	corresponding_eiffel_type: STRING is
+	corresponding_eiffel_type: STRING
 		do
 			Result := eiffel_class_name
 		end
 
-	append_anonymous_hash_string_to_string (a_string: STRING) is
+	append_anonymous_hash_string_to_string (a_string: STRING) 
 		do
 			a_string.append_string (eiffel_class_name)
 		end

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -28,7 +28,7 @@ create
 
 feature {NONE} -- Initialisation
 
-	make (a_declarator: STRING; a_function_type: EWG_C_AST_FUNCTION_TYPE; a_header_file_name: STRING) is
+	make (a_declarator: STRING; a_function_type: EWG_C_AST_FUNCTION_TYPE; a_header_file_name: STRING)
 			-- Create a new function declaration with the
 			-- declarator `a_declarator' and the type resp. signature
 			-- `a_type'
@@ -47,7 +47,7 @@ feature {NONE} -- Initialisation
 
 feature {ANY} -- Basic Access
 
-	function_type: EWG_C_AST_FUNCTION_TYPE is
+	function_type: EWG_C_AST_FUNCTION_TYPE
 			-- function type
 		do
 			Result ?= type
@@ -58,14 +58,14 @@ feature {ANY} -- Basic Access
 
 feature {ANY}
 
-	is_function_declaration: BOOLEAN is
+	is_function_declaration: BOOLEAN
 		do
 			Result := True
 		end
 
 feature {ANY} -- Comparsion
 
-	is_same_declaration  (other: EWG_C_AST_DECLARATION): BOOLEAN is
+	is_same_declaration  (other: EWG_C_AST_DECLARATION): BOOLEAN 
 			-- Two function declarations are considered equal if their name is
 			-- equal. This simplification can be made, because there is no
 			-- function overloading in C.

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -18,7 +18,7 @@ inherit
 
 feature
 
-	declaration: EWG_C_AST_DECLARATION is
+	declaration: EWG_C_AST_DECLARATION 
 		deferred
 		end
 

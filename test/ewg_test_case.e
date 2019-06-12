@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,7 +26,7 @@ feature -- EWG asserts
 
 feature {NONE} -- Test helpers
 
-	assert_no_syntax_error (a_tag: STRING; a_preprocessed_header_file_name: STRING) is
+	assert_no_syntax_error (a_tag: STRING; a_preprocessed_header_file_name: STRING)
 		require
 			a_tag_not_void: a_tag /= Void
 			a_preprocessed_header_file_name_not_void: a_preprocessed_header_file_name /= Void
@@ -35,7 +35,7 @@ feature {NONE} -- Test helpers
 			assert (a_tag, not c_parser.syntax_error)
 		end
 
-	assert_no_syntax_error_with_msc_extensions (a_tag: STRING; a_preprocessed_header_file_name: STRING) is
+	assert_no_syntax_error_with_msc_extensions (a_tag: STRING; a_preprocessed_header_file_name: STRING)
 		require
 			a_tag_not_void: a_tag /= Void
 			a_preprocessed_header_file_name_not_void: a_preprocessed_header_file_name /= Void
@@ -45,7 +45,7 @@ feature {NONE} -- Test helpers
 		end
 
 	assert_cast_from_type (an_expected_cast: STRING;
-								  a_type: EWG_C_AST_TYPE) is
+								  a_type: EWG_C_AST_TYPE)
 		require
 			an_expected_cast_not_void: an_expected_cast /= Void
 			an_expected_cast_not_empty: an_expected_cast.count > 0
@@ -54,14 +54,14 @@ feature {NONE} -- Test helpers
 			printer: EWG_C_TYPE_CAST_PRINTER
 			output: STRING
 		do
-			output := STRING_.make (an_expected_cast.count)
+			output := STRING_.make_buffer (an_expected_cast.count)
 			create printer.make_string (output)
 			printer.print_declaration_from_type (a_type, "")
 			assert_equal ("correct cast", an_expected_cast, output)
 		end
 
 	assert_declaration_from_type (an_expected_declaration: STRING;
-											a_type: EWG_C_AST_TYPE; a_declarator: STRING) is
+											a_type: EWG_C_AST_TYPE; a_declarator: STRING)
 		require
 			an_expected_declaration_not_void: an_expected_declaration /= Void
 			an_expected_declaration_not_empty: an_expected_declaration.count > 0
@@ -72,7 +72,7 @@ feature {NONE} -- Test helpers
 			printer: EWG_C_DECLARATION_PRINTER
 			output: STRING
 		do
-			output := STRING_.make (an_expected_declaration.count)
+			output := STRING_.make_buffer (an_expected_declaration.count)
 			create printer.make_string (output)
 			printer.print_declaration_from_type (a_type, a_declarator)
 			debug ("aleitner")
@@ -85,7 +85,7 @@ feature {NONE} -- Test helpers
 			assert_equal ("correct declaration", an_expected_declaration, output)
 		end
 
-	assert_cast_from_source (an_expected_cast: STRING; a_c_source: STRING) is
+	assert_cast_from_source (an_expected_cast: STRING; a_c_source: STRING)
 		require
 			an_expected_cast_not_void: an_expected_cast /= Void
 			an_expected_cast_not_empty: an_expected_cast.count > 0
@@ -97,7 +97,7 @@ feature {NONE} -- Test helpers
 										  c_system.declarations.last_declaration.type)
 		end
 
-	assert_declaration_from_source (an_expected_declaration: STRING; a_c_source: STRING) is
+	assert_declaration_from_source (an_expected_declaration: STRING; a_c_source: STRING)
 		require
 			an_expected_declaration_not_void: an_expected_declaration /= Void
 			an_expected_declaration_not_empty: an_expected_declaration.count > 0
@@ -128,7 +128,7 @@ feature {NONE} -- Parser
 	ewg_generator: EWG_GENERATOR
 			-- Generator for Eiffel wrappers
 
-	eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET is
+	eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET
 		require
 			config_system_not_void: config_system /= Void
 		do
@@ -137,7 +137,7 @@ feature {NONE} -- Parser
 			result_not_void: eiffel_wrapper_set /= Void
 		end
 
-	process_correct (a_file_name: STRING) is
+	process_correct (a_file_name: STRING)
 		require
 			a_file_name_not_void: a_file_name /= Void
 		do
@@ -145,7 +145,7 @@ feature {NONE} -- Parser
 			assert_no_syntax_error ("no syntax error", a_file_name)
 		end
 
-	process (a_file_name: STRING) is
+	process (a_file_name: STRING)
 		require
 			a_file_name_not_void: a_file_name /= Void
 		local
@@ -181,7 +181,7 @@ feature {NONE} -- Parser
 			end
 		end
 
-	process_with_msc_extensions (a_file_name: STRING) is
+	process_with_msc_extensions (a_file_name: STRING)
 		require
 			a_file_name_not_void: a_file_name /= Void
 		local
@@ -218,7 +218,7 @@ feature {NONE} -- Parser
 			end
 		end
 
-	create_new_config_system (a_file_name: STRING) is
+	create_new_config_system (a_file_name: STRING)
 		require
 			a_file_name_not_void: a_file_name /= Void
 		local
@@ -235,7 +235,7 @@ feature {NONE} -- Parser
 			config_system.append_rule (rule)
 		end
 
-	parse_string (a_c_source: STRING) is
+	parse_string (a_c_source: STRING) 
 		require
 			a_c_source_not_void: a_c_source /= Void
 			a_c_source_not_empty: a_c_source.count > 0

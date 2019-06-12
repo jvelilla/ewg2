@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,13 +26,13 @@ create
 
 feature {NONE} -- Initialisation
 
-	make is
+	make
 		do
 		end
 
 feature -- Access
 
-	expand_into_stream_from_array (a_stream: KI_TEXT_OUTPUT_STREAM; a_template: STRING; a_parameters: ARRAY [STRING]) is
+	expand_into_stream_from_array (a_stream: KI_TEXT_OUTPUT_STREAM; a_template: STRING; a_parameters: ARRAY [STRING])
 			-- expands special tokens with parameters in template string
 			--
 			-- returns a new string based on `a_tmpl'
@@ -157,7 +157,7 @@ feature -- Access
 		end
 
 
-	expand_from_array (a_template: STRING; a_parameters: ARRAY [STRING]): STRING is
+	expand_from_array (a_template: STRING; a_parameters: ARRAY [STRING]): STRING 
 			-- expands special tokens with parameters in template string
 			--
 			-- returns a new string based on `a_tmpl'

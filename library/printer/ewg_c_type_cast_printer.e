@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -29,7 +29,7 @@ feature -- Status
 	is_additional_pointer_indirection_enabeled: BOOLEAN
 			-- Should a pointer indirection be added to the cast?
 
-	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN is
+	can_be_printed_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING): BOOLEAN
 		do
 			Result := Precursor (a_type, a_declarator) and not a_type.skip_consts_and_pointers.is_array_type
 				or (is_additional_pointer_indirection_enabeled and a_type.has_closest_alias_type and then
@@ -40,7 +40,7 @@ feature -- Status
 
 feature -- Status Setting
 
-	enable_additional_pointer_indirection is
+	enable_additional_pointer_indirection
 		require
 			additional_pointer_indirection_disabled: not is_additional_pointer_indirection_enabeled
 		do
@@ -49,7 +49,7 @@ feature -- Status Setting
 
 feature -- Printing
 
-	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) is
+	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING)
 			-- Format the cast for  `a_type'.
 		local
 			type: EWG_C_AST_TYPE
@@ -73,7 +73,7 @@ feature -- Printing
 
  feature {NONE} -- Implentation
 
-	do_format (a_type: EWG_C_AST_TYPE) is
+	do_format (a_type: EWG_C_AST_TYPE) 
 			-- Format the cast for  `a_type'.
 		require
 			a_type_not_void: a_type /= Void

@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,7 +21,7 @@ create
 
 feature {ANY} -- Access
 
-	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN is
+	accepts_type (a_type: EWG_C_AST_TYPE): BOOLEAN
 		local
 			skipped_type: EWG_C_AST_TYPE
 		do
@@ -30,10 +30,10 @@ feature {ANY} -- Access
 		end
 
 feature {ANY} -- Basic Routines
-	
+
 	shallow_wrap_type (a_type: EWG_C_AST_TYPE;
 							 a_include_header_file_name: STRING;
-							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+							 a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) 
 		local
 			enum_type: EWG_C_AST_ENUM_TYPE
 			enum_wrapper: EWG_ENUM_WRAPPER
@@ -50,8 +50,8 @@ feature {ANY} -- Basic Routines
 											  member_list)
 			a_eiffel_wrapper_set.add_wrapper (enum_wrapper)
 		end
-	
+
 end
 
 
-	
+

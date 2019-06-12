@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -26,7 +26,7 @@ create
 feature {NONE} -- Initialization
 
 	make (a_mapped_eiffel_name: STRING; a_header_file_name: STRING;
-			a_c_enum_type: EWG_C_AST_ENUM_TYPE; a_members: like members) is
+			a_c_enum_type: EWG_C_AST_ENUM_TYPE; a_members: like members)
 		require
 			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
 			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty
@@ -46,7 +46,7 @@ feature {NONE} -- Initialization
 
 feature
 
-	c_enum_type: EWG_C_AST_ENUM_TYPE is
+	c_enum_type: EWG_C_AST_ENUM_TYPE 
 			-- C enum type to wrapp
 		do
 			Result ?= c_composite_data_type

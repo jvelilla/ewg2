@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -27,13 +27,13 @@ create
 
 feature
 
-	corresponding_eiffel_type: STRING is
+	corresponding_eiffel_type: STRING
 			-- An enum are represented as INTEGER in Eiffel.
 		do
 			Result := "INTEGER"
 		end
 
-	is_enum_type: BOOLEAN is
+	is_enum_type: BOOLEAN
 		do
 			Result := True
 		end
@@ -41,7 +41,7 @@ feature
 feature
 
 
-	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN is
+	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
 		local
 			other_enum: EWG_C_AST_ENUM_TYPE
 		do
@@ -53,7 +53,7 @@ feature
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) is
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) 
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_enum_type (Current)

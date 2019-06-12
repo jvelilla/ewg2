@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -13,7 +13,7 @@ indexing
 class EWG_DOUBLE_ARRAY
 
 inherit
-	
+
 	EWG_ARRAY
 
 create
@@ -46,7 +46,7 @@ feature {ANY} -- Access
 		end
 
 feature {NONE} -- Implementation
-	
+
 	item_size: INTEGER is
 		once
 			Result := EXTERNAL_MEMORY_.sizeof_double_external

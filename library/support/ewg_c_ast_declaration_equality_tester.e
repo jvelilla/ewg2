@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -21,7 +21,7 @@ inherit
 
 feature -- Status report
 
-	test (v, u: G): BOOLEAN is
+	test (v, u: G): BOOLEAN 
 			-- Are `v' and `u' considered equal?
 		do
 			if v = u then

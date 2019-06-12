@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -32,7 +32,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (an_output_stream: like output_stream; a_declaration_printer: like declaration_printer) is
+	make (an_output_stream: like output_stream; a_declaration_printer: like declaration_printer)
 			-- Create new formatter with `a_output_stream' as output stream.
 		require
 			an_output_stream_not_void: an_output_stream /= Void
@@ -45,7 +45,7 @@ feature {NONE} -- Initialization
 			declaration_printer_set: declaration_printer = a_declaration_printer
 		end
 
-	make_string (an_output_string: STRING; a_declaration_printer: like declaration_printer) is
+	make_string (an_output_string: STRING; a_declaration_printer: like declaration_printer)
 			-- Create new formatter which appends to `an_output_string'.
 		require
 			an_output_string_not_void: an_output_string /= Void
@@ -57,7 +57,7 @@ feature {NONE} -- Initialization
 			declaration_printer_set: declaration_printer = a_declaration_printer
 		end
 
-	make_internal is
+	make_internal
 		do
 			Precursor
 			create declarator_prefix.make (0)
@@ -69,7 +69,7 @@ feature -- Status
 
 feature -- Status Setting
 
-	set_declarator_prefix (a_declarator_prefix: like declarator_prefix) is
+	set_declarator_prefix (a_declarator_prefix: like declarator_prefix)
 		require
 			a_declarator_prefix_not_void: a_declarator_prefix /= Void
 		do
@@ -80,7 +80,7 @@ feature -- Status Setting
 
 feature -- Formatting
 
-	print_declaration_list (a_list: DS_LINEAR [EWG_C_AST_DECLARATION]) is
+	print_declaration_list (a_list: DS_LINEAR [EWG_C_AST_DECLARATION]) 
 		require
 			a_list_not_void: a_list /= Void
 			a_list_doesnt_have_void: not a_list.has (Void)
