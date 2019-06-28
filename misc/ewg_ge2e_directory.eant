@@ -20,7 +20,6 @@
 
 
     <geant target="ge2e_dir_ise"/>
-    <geant target="ge2e_dir_ge"/>
   </target>
 
   <!-- Implementation -->
@@ -36,20 +35,6 @@
       <define name="ISE_5_1" if="${ISE_5_1}"/>
       <define name="GOBO_DOTNET" if="${GOBO_DOTNET}"/>
       <fileset include="@(**/*.ge)" mapped_filename_directory="${spec_dir}/ise">
-	 <map type="glob" from="*.ge" to="*.e"/>
-      </fileset>
-    </gepp>
-  </target>
-
-  <target name="ge2e_dir_ge" dir="${gepp_dir}">
-    <description>
-      Generate Eiffel files to directory '${spec_dir}/ge'
-      from '${gepp_dir}'.
-      Create spec directories if necessary.
-    </description>
-    <gepp lines="true">
-      <define name="GE"/>
-      <fileset include="@(**/*.ge)" mapped_filename_directory="${spec_dir}/ge">
 	 <map type="glob" from="*.ge" to="*.e"/>
       </fileset>
     </gepp>

@@ -33,7 +33,7 @@ inherit
 
 feature
 
-	make (a_header_file_name: STRING) 
+	make (a_header_file_name: STRING)
 			-- Create a new scanner.
 			-- `a_header_file_name' will only be used until
 			-- the first header file name directive has been found.
@@ -213,7 +213,7 @@ feature {NONE}
 			-- Make `a_line_number' the new `last_header_line_number' of
 			-- `Current'.
 		require
-			a_line_number_greater_zero: a_line_number > 0
+			a_line_number_greater_zero: a_line_number >= 0
 		do
 			last_header_line_numer := a_line_number
 		end

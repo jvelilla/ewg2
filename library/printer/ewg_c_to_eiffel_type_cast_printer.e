@@ -71,7 +71,7 @@ feature -- Status
 
 feature {NONE} -- Implementation
 
-	do_format (a_type: EWG_C_AST_TYPE) 
+	do_format (a_type: EWG_C_AST_TYPE)
 			-- Format the cast for  `a_type'.
 		require else
 			a_type_not_void: a_type /= Void
@@ -79,15 +79,6 @@ feature {NONE} -- Implementation
 			if eiffel_compiler_mode.is_ise_mode then
 				if a_type.based_type_recursive.is_function_type then
 					Precursor (a_type)
-				end
-			end
-			if eiffel_compiler_mode.is_ve_mode then
-				if a_type.skip_consts_and_aliases = c_system.types.float_type then
-					if a_type.skip_aliases.is_const_type then
-						Precursor (c_system.types.const_double_type)
-					else
-						Precursor (c_system.types.double_type)
-					end
 				end
 			end
 		end

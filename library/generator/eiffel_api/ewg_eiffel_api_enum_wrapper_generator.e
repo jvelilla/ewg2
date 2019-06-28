@@ -1,16 +1,15 @@
 note
-
 	description:
 
 		"Generates Eiffel external wrappers for C enum types"
 
 	library: "Eiffel Wrapper Generator Library"
-	copyright: "Copyright (c) 1999, Andreas Leitner and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
-	revision: "$Revision: 3 $"
+	date: "$Date$"
+	revision: "$Revision$"
 
-class EWG_EIFFEL_EXTERNAL_ENUM_WRAPPER_GENERATOR
+class
+	EWG_EIFFEL_API_ENUM_WRAPPER_GENERATOR
 
 inherit
 
@@ -37,10 +36,7 @@ feature
 			until
 				cs.off
 			loop
-
-				file_name := file_system.pathname (directory_structure.eiffel_external_enum_directory_name, "spec")
-				file_name := file_system.pathname (file_name, eiffel_compiler_mode.eiffel_compiler_name)
-				file_name := file_system.pathname (file_name, cs.item.mapped_eiffel_name.as_lower + "_enum_external.e")
+				file_name := file_system.pathname (directory_structure.eiffel_directory_name.as_lower, cs.item.mapped_eiffel_name.as_lower + "_enum_api.e")
 				create file.make (file_name)
 				file.recursive_open_write
 				if file.is_open_write then
@@ -72,7 +68,7 @@ feature {NONE}
 			escape_type_name_to_be_c_identifier (declaration)
 			output_stream.put_string ("class ")
 			output_stream.put_string (an_enum_wrapper.mapped_eiffel_name)
-			output_stream.put_line ("_ENUM_EXTERNAL")
+			output_stream.put_line ("_ENUM_API")
 			output_stream.put_new_line
 			output_stream.put_line ("feature {ANY}")
 			output_stream.put_new_line

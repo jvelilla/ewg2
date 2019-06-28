@@ -52,6 +52,7 @@
 				<cluster name="ewg_c_glue_code" location="$|c_glue_code\"/>
 				<cluster name="ewg_eiffel_external" location="$|eiffel_external\"/>
 				<cluster name="ewg_eiffel_abstraction" location="$|eiffel_abstraction\"/>
+				<cluster name="ewg_eiffel_api" location="$|eiffel_api\"/>
 			</cluster>
 		</cluster>
 	</target>

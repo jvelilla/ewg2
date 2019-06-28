@@ -104,7 +104,8 @@ feature
 				error_handler.report_info_message ("expensive phase 2 assertions enabled")
 			end
 
-			-- parsing (creates C AST)
+			preprocess_file
+				-- parsing (creates C AST)
 			c_parser.parse_file (cpp_header_file_name)
 			c_parser.print_summary
 			c_parser := Void
@@ -118,6 +119,31 @@ feature
 
 			-- generating
 			ewg_generator.generate
+		end
+
+
+	preprocess_file
+		local
+			file: PLAIN_TEXT_FILE
+			l_data: STRING
+			regex: RX_PCRE_REGULAR_EXPRESSION
+			count: INTEGER
+		do
+			create file.make_open_read_write (cpp_header_file_name)
+			if file.exists then
+				file.read_stream (file.count)
+				l_data := file.last_string
+				create regex.make
+				regex.compile ("\t*__pragma.*")
+				regex.match (l_data)
+				count := regex.match_count
+				l_data := regex.replace_all ("")
+				file.wipe_out
+				file.open_write
+				file.put_string (l_data)
+				file.flush
+				file.close
+			end
 		end
 
 	process_arguments
@@ -238,7 +264,7 @@ feature
 
 		end
 
-	print_eiffel_wrapper_summary 
+	print_eiffel_wrapper_summary
 			-- Print summary about Eiffel wrappers.
 		local
 			eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET

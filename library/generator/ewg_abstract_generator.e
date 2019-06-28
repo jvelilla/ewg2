@@ -56,11 +56,7 @@ feature -- Generation
 		require
 			a_eiffel_wrapper_set_not_void: a_eiffel_wrapper_set /= Void
 		do
-			eiffel_compiler_mode.set_se_mode
-			generate (a_eiffel_wrapper_set)
 			eiffel_compiler_mode.set_ise_mode
-			generate (a_eiffel_wrapper_set)
-			eiffel_compiler_mode.set_ve_mode
 			generate (a_eiffel_wrapper_set)
 		end
 

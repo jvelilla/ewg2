@@ -22,12 +22,12 @@ create
 
 feature {NONE} -- Initialization
 
-	make 
-			-- Initialize to SmartEiffel mode.
+	make
+			-- Initialize ise compiler
 		do
-			eiffel_compiler_mode := eiffel_compiler_names.se_code
+			eiffel_compiler_mode := eiffel_compiler_names.ise_code
 		ensure
-			se_mode_set: eiffel_compiler_mode = eiffel_compiler_names.se_code
+			ise_mode_set: eiffel_compiler_mode = eiffel_compiler_names.ise_code
 		end
 
 feature -- Access
@@ -46,14 +46,6 @@ feature -- Access
 
 feature -- Setting
 
-	is_se_mode: BOOLEAN
-			-- Is current mode SmartEiffel mode?
-		do
-			Result := eiffel_compiler_mode = eiffel_compiler_names.se_code
-		ensure
-			definition: Result = (eiffel_compiler_mode = eiffel_compiler_names.se_code)
-		end
-
 	is_ise_mode: BOOLEAN
 			-- Is current mode ISE Eiffel mode?
 		do
@@ -62,13 +54,6 @@ feature -- Setting
 			definition: Result = (eiffel_compiler_mode = eiffel_compiler_names.ise_code)
 		end
 
-	is_ve_mode: BOOLEAN
-			-- Is current mode Visual Eiffel mode?
-		do
-			Result := eiffel_compiler_mode = eiffel_compiler_names.ve_code
-		ensure
-			definition: Result = (eiffel_compiler_mode = eiffel_compiler_names.ve_code)
-		end
 
 feature -- Status setting
 
@@ -83,14 +68,6 @@ feature -- Status setting
 			eiffel_compiler_mode_set: eiffel_compiler_mode = a_mode
 		end
 
-	set_se_mode
-			-- Set `eiffel_compiler_mode' to SmartEiffel mode.
-		do
-			set_eiffel_compiler_mode (eiffel_compiler_names.se_code)
-		ensure
-			mode_set: eiffel_compiler_mode = eiffel_compiler_names.se_code
-		end
-
 	set_ise_mode
 			-- Set `eiffel_compiler_mode' to ISE Eiffel mode.
 		do
@@ -99,13 +76,6 @@ feature -- Status setting
 			mode_set: eiffel_compiler_mode = eiffel_compiler_names.ise_code
 		end
 
-	set_ve_mode
-			-- Set `eiffel_compiler_mode' to Visual Eiffel mode.
-		do
-			set_eiffel_compiler_mode (eiffel_compiler_names.ve_code)
-		ensure
-			mode_set: eiffel_compiler_mode = eiffel_compiler_names.ve_code
-		end
 
 invariant
 

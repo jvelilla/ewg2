@@ -44,12 +44,8 @@ feature -- Access
 
 	item: G is
 		do
-			if mode.eiffel_compiler_mode = eiffel_compiler_names.se_code then
-				Result := se
-			elseif mode.eiffel_compiler_mode = eiffel_compiler_names.ise_code then
+			if mode.eiffel_compiler_mode = eiffel_compiler_names.ise_code then
 				Result := ise
-			elseif mode.eiffel_compiler_mode = eiffel_compiler_names.ve_code then
-				Result := ve
 			else
 					check
 						dead_end: False

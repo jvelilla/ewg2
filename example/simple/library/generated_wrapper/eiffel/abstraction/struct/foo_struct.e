@@ -71,7 +71,7 @@ feature {ANY} -- Member Access
 			a_value_set: a_value = b
 		end
 
-	pc: POINTER is
+	pc: TYPED_POINTER [INTEGER] is
 			-- Access member `pc'
 		require
 			exists: exists
@@ -81,7 +81,7 @@ feature {ANY} -- Member Access
 			result_correct: Result = get_pc_external (item)
 		end
 
-	set_pc (a_value: POINTER) is
+	set_pc (a_value: TYPED_POINTER [INTEGER]) is
 			-- Set member `pc'
 		require
 			exists: exists

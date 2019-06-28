@@ -28,8 +28,8 @@
     <echo message="   geant clean"/>
     <echo message="   geant clobber"/>
     <echo message=""/>
-    <echo message="$${GOBO_EIFFEL} ... Eiffel Compiler (ge|ise)"/>
-    <echo message="$${GOBO_CC}     ... C Compiler (gcc|bcb|msc|lcc)"/>
+    <echo message="$${GOBO_EIFFEL} ... Eiffel Compiler (ise)"/>
+    <echo message="$${GOBO_CC}     ... C Compiler (gcc|msc)"/>
   </target>
 
   <target name="install" depend="init">
@@ -42,23 +42,18 @@
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/struct"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/struct/spec/"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/struct/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/struct/spec/ge"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/union"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/union/spec/"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/union/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/union/spec/ge"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/enum"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/enum/spec"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/enum/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/enum/spec/ge"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/function"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/function/spec"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/function/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/function/spec/ge"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/callback"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/callback/spec"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/external/callback/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/callback/spec/ge"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/abstraction"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/abstraction/struct"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel/abstraction/union"/>
@@ -149,9 +144,7 @@
     <set name="ewg.c_build_library.dir_name" value="${ewg.wrapper_dir}/c/src"/>
     <set name="ewg.c_build_library.lib_name" value="${ewg.library_name}_c_eiffel_glue_library"/>
     <set name="ewg.cpp_header_name" value="${ewg.library_name}_cpp.h"/>
-    <set name="ewg.msc_extensions" value="true" if="${cc}=bcb"/>
     <set name="ewg.msc_extensions" value="true" if="${cc}=msc"/>
-    <set name="ewg.msc_extensions" value="true" if="${cc}=lcc"/>
   </target>
 
   <target name="set_default_options_windows" if="${GOBO_OS}=windows">

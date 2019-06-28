@@ -35,7 +35,7 @@ create
 
 feature {NONE} -- Initialisation
 
-	make_new_unshared (a_capacity: INTEGER) is
+	make_new_unshared (a_capacity: INTEGER)
 			-- Create a new c string wrapper to a new memory area.
 			-- Allocates as `a_capacity' bytes of new memory.
 			-- 'unshared' means if the Current object
@@ -52,7 +52,7 @@ feature {NONE} -- Initialisation
 			is_not_shared: not is_shared
 		end
 
-	make_new_shared (a_capacity: INTEGER) is
+	make_new_shared (a_capacity: INTEGER)
 			-- Create a new c string wrapper to a new memory area.
 			-- Allocates as `a_capacity' bytes of new memory.
 			-- 'shared' means if the Current object
@@ -69,7 +69,7 @@ feature {NONE} -- Initialisation
 			is_shared: is_shared
 		end
 
-	make_unshared (a_item: POINTER) is
+	make_unshared (a_item: POINTER)
 			-- Create a new c string wrapper to an existing memory area.
 			-- `a_item' must be the pointer to the C string to wrap.
 			-- The `capacity' is derived from the string length.
@@ -87,7 +87,7 @@ feature {NONE} -- Initialisation
 			is_not_shared: not is_shared
 		end
 
-	make_shared (a_item: POINTER) is
+	make_shared (a_item: POINTER)
 			-- Create a new pointer wrapper to an existing memory area.
 			-- `a_item' must be the pointer to the C string to wrap.
 			-- The `capacity' is derived from the string length.
@@ -103,7 +103,7 @@ feature {NONE} -- Initialisation
 			is_shared: is_shared
 		end
 
-	make_unshared_with_capacity (a_item: POINTER; a_capacity: INTEGER) is
+	make_unshared_with_capacity (a_item: POINTER; a_capacity: INTEGER)
 			-- Create a new c string wrapper to an existing memory area.
 			-- `a_item' must be the pointer to the memory area to wrap.
 			-- `a_capacity' states how much space has been allocated for the
@@ -124,7 +124,7 @@ feature {NONE} -- Initialisation
 			is_not_shared: not is_shared
 		end
 
-	make_shared_with_capacity (a_item: POINTER; a_capacity: INTEGER) is
+	make_shared_with_capacity (a_item: POINTER; a_capacity: INTEGER)
 			-- Create a new pointer wrapper to an existing memory area.
 			-- `a_item' must be the pointer to the memory area to wrap.
 			-- `a_capacity' states how much space has been allocated for the
@@ -144,7 +144,7 @@ feature {NONE} -- Initialisation
 			is_shared: is_shared
 		end
 
-	make_unshared_from_string (a_string: STRING) is
+	make_unshared_from_string (a_string: STRING)
 			-- Create a new c string wrapper from existing Eiffel string.
 			-- Allocates a new c string and copies the contents of
 			-- `a_string' into it.
@@ -162,7 +162,7 @@ feature {NONE} -- Initialisation
 			is_not_shared: not is_shared
 		end
 
-	make_shared_from_string (a_string: STRING) is
+	make_shared_from_string (a_string: STRING)
 			-- Create a new c string wrapper from existing Eiffel string.
 			-- Allocates a new c string and copies the contents of
 			-- `a_string' into it.
@@ -182,26 +182,26 @@ feature {NONE} -- Initialisation
 
 feature {ANY} -- Access
 
-	item: POINTER is
+	item: POINTER
 			-- Pointer to zero terminated string
 		do
 			Result := managed_data.item
 		end
 
-	capacity: INTEGER is
+	capacity: INTEGER
 			-- Number of characters the wrapped c string has place for
 		do
 			Result := managed_data.capacity
 		end
 
-	count: INTEGER is
+	count: INTEGER
 			-- Number of characters the wrapped c string contains.
 			-- Does not include the terminating NULL character.
 		do
 			Result := external_string.strlen_external (item)
 		end
 
-	is_shared: BOOLEAN is
+	is_shared: BOOLEAN
 			-- Is the contents of `item' referenced by other C or Eiffel code?
 			-- If `is_shared' is `True' then when the current object will be
 			-- collected by the garbage collector, the wrapped memory area will
@@ -213,14 +213,14 @@ feature {ANY} -- Access
 			Result := managed_data.is_shared
 		end
 
-	string: STRING is
+	string: STRING
 			-- Create a new Eiffel string object and copy the
 			-- contents of the wrapped c string into it
 		do
 			Result := external_string.make_copy_from_c_zero_terminated_string (item)
 		end
 
-	substring (a_start_pos, a_end_pos: INTEGER): STRING is
+	substring (a_start_pos, a_end_pos: INTEGER): STRING
 			-- Create a new Eiffel string object and copy the
 			-- contents of the wrapped c string from including
 			-- `a_start_pos' to including `a_end_pos' into it
@@ -232,7 +232,7 @@ feature {ANY} -- Access
 
 feature {ANY} -- Basic Operations
 
-	set_string (a_string: STRING) is
+	set_string (a_string: STRING) 
 			-- Copy content from `a_string' into
 			-- wrapped c string.
 		require

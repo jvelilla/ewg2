@@ -1,16 +1,10 @@
 note
+	description: "Summary description for {EWG_EIFFEL_INLINE_EXTERNAL_FUNCTION_WRAPPER_GENERATOR}."
+	date: "$Date$"
+	revision: "$Revision$"
 
-	description:
-
-		"Generates Eiffel external wrappers for function declarations"
-
-	library: "Eiffel Wrapper Generator Library"
-	copyright: "Copyright (c) 1999, Andreas Leitner and others"
-	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
-	revision: "$Revision: 3 $"
-
-class EWG_EIFFEL_EXTERNAL_FUNCTION_WRAPPER_GENERATOR
+class
+	EWG_EIFFEL_INLINE_FUNCTION_WRAPPER_GENERATOR
 
 inherit
 
@@ -25,6 +19,25 @@ inherit
 create
 
 	make
+
+feature {NONE} -- Initialization
+
+
+	make_printers
+		once
+			create c_to_eiffel_declaration_printer.make (output_stream, eiffel_compiler_mode)
+			create casted_declarator_printer.make (output_stream)
+			create eiffel_to_c_indirection_printer.make (output_stream, eiffel_compiler_mode)
+			create eiffel_to_c_cast_printer.make (output_stream, eiffel_compiler_mode)
+			create declarator_printer.make (output_stream)
+			casted_declarator_printer.add_printer (eiffel_to_c_indirection_printer)
+			casted_declarator_printer.add_printer (eiffel_to_c_cast_printer)
+			casted_declarator_printer.add_printer (declarator_printer)
+			create eiffel_to_c_parameter_list_printer.make (output_stream, casted_declarator_printer)
+			eiffel_to_c_parameter_list_printer.set_declarator_prefix ("$")
+			create c_declaration_printer.make (output_stream)
+			create c_cast_printer.make (output_stream)
+		end
 
 feature -- Generation
 
@@ -59,11 +72,9 @@ feature {NONE} -- Implementation
 			file: KL_TEXT_OUTPUT_FILE
 		do
 			class_name := clone (a_class_name)
-			class_name.append_string ("_EXTERNAL")
+			class_name.append_string ("_INLINE")
 
-			file_name := file_system.pathname (directory_structure.eiffel_external_function_directory_name, "spec")
-			file_name := file_system.pathname (file_name, eiffel_compiler_mode.eiffel_compiler_name)
-			file_name := file_system.pathname (file_name, class_name.as_lower + ".e")
+			file_name := file_system.pathname (directory_structure.eiffel_external_function_directory_name, class_name.as_lower + ".e")
 			create file.make (file_name)
 			file.recursive_open_write
 			if file.is_open_write then
@@ -95,7 +106,6 @@ feature {NONE} -- Implementation
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
 			generate_function_accessor (a_function_wrapper)
-			generate_function_address_accessor (a_function_wrapper)
 		end
 
 	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER)
@@ -108,7 +118,7 @@ feature {NONE} -- Implementation
 			function_type: EWG_C_AST_FUNCTION_TYPE
 		do
 			function_type := a_function_wrapper.function_declaration.function_type
-			output_stream.put_string ("%T" + a_function_wrapper.mapped_eiffel_name + "_external")
+			output_stream.put_string ("%Tc_" + a_function_wrapper.mapped_eiffel_name )
 
 			if function_type.members.count > 0 then
 				output_stream.put_string (" (")
@@ -145,8 +155,6 @@ feature {NONE} -- Implementation
 
 			output_stream.put_line ("%T%Texternal")
 
-
-
 			is_problematic_result := function_type.return_type.skip_consts_and_aliases.is_struct_type or
 				function_type.return_type.skip_consts_and_aliases.is_union_type
 
@@ -166,39 +174,6 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 		end
 
-	generate_se_indirect_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
-		require
-			a_function_wrapper_not_void: a_function_wrapper /= Void
-		do
-			output_stream.put_string ("%T%T%T%"C use <")
-			output_stream.put_string (directory_structure.relative_function_c_glue_header_file_name)
-			output_stream.put_string (">%"")
-			output_stream.put_new_line
-
-			output_stream.put_line ("%T%Talias")
-
-			output_stream.put_string ("%T%T%T%"ewg_function_")
-			output_stream.put_string (a_function_wrapper.function_declaration.declarator)
-			output_stream.put_character ('"')
-			output_stream.put_new_line
-		end
-
-	generate_se_direct_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
-		require
-			a_function_wrapper_not_void: a_function_wrapper /= Void
-		do
-			output_stream.put_string ("%T%T%T%"C use <")
-			output_stream.put_string (a_function_wrapper.header_file_name)
-			output_stream.put_string (">%"")
-			output_stream.put_new_line
-			output_stream.put_line ("%T%Talias")
-
-			output_stream.put_string ("%T%T%T%"")
-			output_stream.put_string (a_function_wrapper.function_declaration.declarator)
-			output_stream.put_character ('"')
-			output_stream.put_new_line
-		end
-
 	generate_ise_indirect_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
@@ -212,32 +187,16 @@ feature {NONE} -- Implementation
 			create declaration_printer.make (output_stream)
 			create declaration_list_printer.make (output_stream, declaration_printer)
 			create return_type_printer.make (output_stream, eiffel_compiler_mode)
-			-- ISE external clause
-			output_stream.put_string ("%T%T%T%"C [macro <")
-			output_stream.put_string (directory_structure.relative_function_c_glue_header_file_name)
-			output_stream.put_string (">] ")
-			if function_type.members.count > 0 then
-				output_stream.put_character ('(')
-				declaration_list_printer.print_declaration_list (function_type.members)
-				output_stream.put_character (')')
-			end
-			if
-				function_type.return_type.skip_consts_and_aliases /=
-				c_system.types.void_type
-			then
-				output_stream.put_character (':')
-				return_type_printer.print_declaration_from_type (function_type.return_type, "")
-			end
-			output_stream.put_character ('"')
+
+				-- ISE external clause
+			generate_inline_function_wrapper (a_function_wrapper)
+
 			output_stream.put_new_line
 
 			output_stream.put_line ("%T%Talias")
-
-			output_stream.put_string ("%T%T%T%"")
-			output_stream.put_string ("ewg_function_")
-			output_stream.put_string (a_function_wrapper.function_declaration.declarator)
-			output_stream.put_string ("()%"")
-			output_stream.put_new_line
+			output_stream.put_line ("%T%T%T%"[")
+			generate_call (a_function_wrapper)
+			output_stream.put_line ("%T%T%T]%"")
 		end
 
   generate_ise_direct_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
@@ -253,77 +212,88 @@ feature {NONE} -- Implementation
 			create declaration_printer.make (output_stream)
 			create declaration_list_printer.make (output_stream, declaration_printer)
 			create return_type_printer.make (output_stream)
-			-- ISE external clause
-			output_stream.put_string ("%T%T%T%"C [macro <")
-			output_stream.put_string (directory_structure.relative_function_c_glue_header_file_name)
-			output_stream.put_string (">] ")
-			if function_type.members.count > 0 then
-				output_stream.put_character ('(')
-				declaration_list_printer.print_declaration_list (function_type.members)
-				output_stream.put_character (')')
-			end
-			if
-				function_type.return_type.skip_consts_and_aliases /=
-				c_system.types.void_type
-			then
-				output_stream.put_character (':')
-				return_type_printer.print_declaration_from_type (function_type.return_type, "")
-			end
-			output_stream.put_character ('"')
-			output_stream.put_new_line
+
+				-- ISE external clause
+			generate_inline_function_wrapper (a_function_wrapper)
 
 			output_stream.put_line ("%T%Talias")
-
-			output_stream.put_string ("%T%T%T%"")
-			output_stream.put_string ("ewg_function_macro_")
-			output_stream.put_string (a_function_wrapper.function_declaration.declarator)
-			output_stream.put_character ('"')
-			output_stream.put_new_line
+			output_stream.put_line ("%T%T%T%"[")
+			generate_call (a_function_wrapper)
+			output_stream.put_line ("%T%T%T]%"")
 		end
 
-	generate_ve_indirect_external_clause (a_function_wrapper: EWG_FUNCTION_WRAPPER)
-		do
-			output_stream.put_line ("%T%T%T%"C%"")
-			output_stream.put_line ("%T%Talias")
-			output_stream.put_string ("%T%T%T%"ewg_function_")
-			output_stream.put_string (a_function_wrapper.function_declaration.declarator)
-			output_stream.put_character ('"')
-			output_stream.put_new_line
-		end
 
-	generate_function_address_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER)
+	generate_inline_function_wrapper (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
-			output_stream.put_string ("%T")
-			output_stream.put_string (a_function_wrapper.mapped_eiffel_name)
-			output_stream.put_string ("_address_external: POINTER is")
+			output_stream.put_string ("%T%T%T%"C inline use <")
+			output_stream.put_string (a_function_wrapper.header_file_name)
+			output_stream.put_string (">%"")
 			output_stream.put_new_line
-
-			output_stream.put_string ("%T%T%T-- Address of C function `")
-			output_stream.put_string (a_function_wrapper.function_declaration.declarator)
-			output_stream.put_string ("'")
-			output_stream.put_new_line
-			output_stream.put_line ("%T%Texternal")
-
-			if eiffel_compiler_mode.is_ise_mode then
-					output_stream.put_string ("%T%T%T%"C [macro <")
-					output_stream.put_string (a_function_wrapper.header_file_name)
-					output_stream.put_string (">]: void*%"")
-					output_stream.put_new_line
-					output_stream.put_line ("%T%Talias")
-					output_stream.put_string ("%T%T%T%"(void*) ")
-					output_stream.put_string (a_function_wrapper.function_declaration.declarator)
-					output_stream.put_string ("%"")
-					output_stream.put_new_line
-				else
-						check
-							dead_end: False
-						end
-				end
-			output_stream.put_line ("%T%Tend")
-			output_stream.put_new_line
-
 		end
+
+
+	generate_call (a_function_wrapper: EWG_FUNCTION_WRAPPER)
+			-- Generate a call to `a_function_wrapper'.
+		require
+			a_function_wrapper_not_void: a_function_wrapper /= Void
+		local
+			function_type: EWG_C_AST_FUNCTION_TYPE
+			needs_return: BOOLEAN
+			pointer: EWG_C_AST_POINTER_TYPE
+		do
+			make_printers
+			function_type := a_function_wrapper.function_declaration.function_type
+			output_stream.put_string ("%T%T%T%T")
+			needs_return := function_type.return_type.skip_consts_and_aliases /= c_system.types.void_type
+			if needs_return then
+				if
+					function_type.return_type.skip_consts_and_aliases.is_struct_type or
+						function_type.return_type.skip_consts_and_aliases.is_union_type
+				then
+					create pointer.make (function_type.return_type.header_file_name, function_type.return_type)
+					c_declaration_printer.print_declaration_from_type (pointer, "result")
+					output_stream.put_string (" = ")
+					c_cast_printer.print_declaration_from_type (pointer, "")
+					output_stream.put_string (" malloc (sizeof(")
+					c_declaration_printer.print_declaration_from_type (function_type.return_type, "")
+					output_stream.put_line ("));")
+					output_stream.put_string ("%T*result = ")
+				else
+					output_stream.put_string ("return ")
+				end
+			end
+			output_stream.put_string (a_function_wrapper.function_declaration.declarator)
+			output_stream.put_string (" (")
+			if function_type.members.count > 0 then
+				eiffel_to_c_parameter_list_printer.print_declaration_list (function_type.members)
+			end
+			output_stream.put_character (')')
+			if needs_return then
+				if
+					function_type.return_type.skip_consts_and_aliases.is_struct_type or
+						function_type.return_type.skip_consts_and_aliases.is_union_type
+				then
+					output_stream.put_line (";")
+					output_stream.put_string ("%Treturn result")
+				end
+			end
+			output_stream.put_character (';')
+			output_stream.put_new_line
+		end
+
+feature {NONE} -- Helper formatters
+
+	c_to_eiffel_declaration_printer: EWG_C_TO_EIFFEL_DECLARATION_PRINTER
+	eiffel_to_c_declaration_printer: EWG_EIFFEL_TO_C_DECLARATION_PRINTER
+	eiffel_to_c_declaration_list_printer: EWG_C_DECLARATION_LIST_PRINTER
+	casted_declarator_printer: EWG_COMPOSITE_DECLARATION_PRINTER
+	eiffel_to_c_indirection_printer: EWG_EIFFEL_TO_C_INDIRECTION_PRINTER
+	eiffel_to_c_cast_printer: EWG_EIFFEL_TO_C_TYPE_CAST_PRINTER
+	declarator_printer: EWG_C_DECLARATOR_PRINTER
+	eiffel_to_c_parameter_list_printer: EWG_C_DECLARATION_LIST_PRINTER
+	c_declaration_printer: EWG_C_DECLARATION_PRINTER
+	c_cast_printer: EWG_C_TYPE_CAST_PRINTER
 
 end

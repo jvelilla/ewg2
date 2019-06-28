@@ -23,7 +23,7 @@ inherit
 
 feature {NONE} -- Initialisation
 
-	make_new_unshared (a_count: INTEGER) is
+	make_new_unshared (a_count: INTEGER)
 			-- Create new C array wrapper with `a_count' items
 			-- each `item_size' bytes big.
 			-- Allocates as much new memory as the array needs.
@@ -43,7 +43,7 @@ feature {NONE} -- Initialisation
 			is_not_shared: not is_shared
 		end
 
-	make_new_shared (a_count: INTEGER) is
+	make_new_shared (a_count: INTEGER)
 			-- Create new C array wrapper with `a_count' items
 			-- each `item_size' bytes big.
 			-- Allocates as much new memory as the array needs.
@@ -63,7 +63,7 @@ feature {NONE} -- Initialisation
 			is_shared: is_shared
 		end
 
-	make_unshared (a_item: POINTER; a_count: INTEGER) is
+	make_unshared (a_item: POINTER; a_count: INTEGER)
 			-- Create a new array wrapper to a given C array starting at `a_item'
 			-- with `a_count' items each item `item_size' big.
 			-- 'unshared' means if the Current object
@@ -82,7 +82,7 @@ feature {NONE} -- Initialisation
 			is_not_shared: not is_shared
 		end
 
-	make_shared (a_item: POINTER; a_count: INTEGER) is
+	make_shared (a_item: POINTER; a_count: INTEGER)
 			-- Create a new array wrapper to a given C array starting at `a_item'
 			-- with `a_count' items each item `item_size' big.
 			-- 'shared' means if the Current object
@@ -101,13 +101,13 @@ feature {NONE} -- Initialisation
 			is_shared: is_shared
 		end
 
-	make_internal is
+	make_internal
 		do
 		end
 
 feature {ANY} -- Access
 
-	array_address: POINTER is
+	array_address: POINTER
 			-- C Address of the array (which is
 			-- also the address of the first item
 			-- in the array)
@@ -119,7 +119,7 @@ feature {ANY} -- Access
 			-- Number of items in the array.
 			-- NOTE: This is a fixed size array.
 
-	is_shared: BOOLEAN is
+	is_shared: BOOLEAN
 			-- Is the contents of `item' referenced by other C or Eiffel code?
 			-- If `is_shared' is `True' then when the current object will be
 			-- collected by the garbage collector, the wrapped array will
@@ -133,13 +133,13 @@ feature {ANY} -- Access
 			Result := managed_data.is_shared
 		end
 
-	exists: BOOLEAN is
+	exists: BOOLEAN
 			-- Does `array_address' point to a valid C array ?
 		do
 			Result := array_address /= default_pointer
 		end
 
-	is_valid_index (i: INTEGER): BOOLEAN is
+	is_valid_index (i: INTEGER): BOOLEAN
 			-- Is `i' a valid index for this array ?
 		do
 			Result := i >= 0 and i < count
@@ -150,7 +150,7 @@ feature {NONE} -- Implementation
 	managed_data: EWG_MANAGED_POINTER
 			-- managed pointer to actual C array
 
-	item_size: INTEGER is
+	item_size: INTEGER 
 			-- Size of one array item in bytes
 			-- Define in concrete array wrapper
 		deferred

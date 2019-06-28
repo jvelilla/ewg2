@@ -31,15 +31,11 @@ feature {NONE} -- Initialization
 
 feature {ANY} -- Eiffel compiler names
 
-	se_name: STRING = "se"
 	ise_name: STRING = "ise"
-	ve_name: STRING = "ve"
 
 feature {ANY} -- Eiffel compiler codes
 
-	se_code: INTEGER = unique
 	ise_code: INTEGER = unique
-	ve_code: INTEGER = unique
 
 feature {ANY} -- Status
 
@@ -98,9 +94,7 @@ feature {NONE} -- Implementation
 		once
 			create Result.make_map (3)
 			Result.set_key_equality_tester (string_equality_tester)
-			Result.put_new (se_code, se_name)
 			Result.put_new (ise_code, ise_name)
-			Result.put_new (ve_code, ve_name)
 		end
 
 end

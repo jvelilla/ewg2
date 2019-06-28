@@ -1,16 +1,10 @@
 note
+	description: "Generates Eiffel external wrappers for C union types"
+	date: "$Date$"
+	revision: "$Revision$"
 
-	description:
-
-		"Generates Eiffel external wrappers for C union types"
-
-	library: "Eiffel Wrapper Generator Library"
-	copyright: "Copyright (c) 1999, Andreas Leitner and others"
-	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
-	revision: "$Revision: 3 $"
-
-class EWG_EIFFEL_EXTERNAL_UNION_WRAPPER_GENERATOR
+class
+	EWG_EIFFEL_INLINE_UNION_WRAPPER_GENERATOR
 
 inherit
 
@@ -46,7 +40,7 @@ feature {NONE} -- Initialization
 			cast_printer.enable_additional_pointer_indirection
 		end
 
-feature
+feature -- Code generation
 
 	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
@@ -60,10 +54,7 @@ feature
 			until
 				cs.off
 			loop
-				file_name := file_system.pathname (directory_structure.eiffel_external_union_directory_name,
-															  "spec")
-				file_name := file_system.pathname (file_name, eiffel_compiler_mode.eiffel_compiler_name)
-				file_name := file_system.pathname (file_name, cs.item.mapped_eiffel_name.as_lower + "_union_external.e")
+				file_name := file_system.pathname (directory_structure.eiffel_external_union_directory_name, cs.item.mapped_eiffel_name.as_lower + "_union_inline.e")
 
 				create file.make (file_name)
 				file.recursive_open_write
@@ -107,7 +98,7 @@ feature {NONE} -- Implementation
 
 			output_stream.put_string ("class ")
 			output_stream.put_string (a_union_wrapper.mapped_eiffel_name)
-			output_stream.put_string ("_UNION_EXTERNAL")
+			output_stream.put_string ("_UNION_INLINE")
 			output_stream.put_new_line
 			output_stream.put_new_line
 
@@ -124,7 +115,7 @@ feature {NONE} -- Implementation
 				-- TODO: Either don't wrap incomplete unions, or add a notion of completeness in wrapper
 				-- that will be a precondition to `sizeof_external'. Or something similar...
 				-- TODO: integrate this into `generate_sizeof_feature'
-				output_stream.put_line ("%Tsizeof_external: INTEGER is")
+				output_stream.put_line ("%Tsizeof_external: INTEGER ")
 				output_stream.put_line ("%T%Tdo")
 				output_stream.put_line ("%T%T%Tcheck")
 				output_stream.put_line ("%T%T%T%Tsize_not_known: False")
@@ -185,29 +176,32 @@ feature {NONE} -- Implementation
 			eiffel_member_name: STRING
 		do
 			eiffel_member_name := eiffel_parameter_name_from_c_parameter_name (a_union_member.declarator)
-			output_stream.put_string ("%Tget_")
+			output_stream.put_string ("%Tc_")
 			output_stream.put_string (eiffel_member_name)
-			output_stream.put_string ("_external (an_item: POINTER): ")
+			output_stream.put_string (" (an_item: POINTER): ")
 			output_stream.put_string (a_union_member.type.corresponding_eiffel_type)
-			output_stream.put_line (" is")
+			output_stream.put_line (" ")
 			output_stream.put_line ("%T%Trequire")
 			output_stream.put_line ("%T%T%Tan_item_not_null: an_item /= default_pointer")
 			output_stream.put_line ("%T%Texternal")
-			if eiffel_compiler_mode.is_ise_mode then
-				output_stream.put_string ("%T%T%T%"C [macro <")
-				output_stream.put_string (directory_structure.relative_union_c_glue_header_file_name)
-				output_stream.put_line (">]%"")
-				output_stream.put_line ("%T%Talias")
-				output_stream.put_string ("%T%T%T%"ewg_union_macro_")
-				output_stream.put_string (an_escaped_union_name)
-				output_stream.put_string ("_member_get_")
-				output_stream.put_string (a_union_member.declarator)
-				output_stream.put_line ("%"")
-			else
-					check
-						dead_end: False
-					end
+
+			generate_inline_union_wrapper (a_header_file_name)
+
+			output_stream.put_line ("%T%Talias")
+			output_stream.put_line ("%T%T%T%"[")
+			output_stream.put_string ("%T%T%T%T")
+			if
+				a_union_member.type.skip_consts_and_aliases.is_struct_type or
+					a_union_member.type.skip_consts_and_aliases.is_union_type
+			then
+				output_stream.put_character ('&')
 			end
+			output_stream.put_string ("(")
+			output_stream.put_string (a_cast_with_one_pointer_indirection)
+			output_stream.put_string ("$an_item)->")
+			output_stream.put_line (a_union_member.declarator)
+			output_stream.put_line ("%T%T%T]%"")
+
 			output_stream.put_line ("%T%Tend")
 			output_stream.put_new_line
 
@@ -226,40 +220,40 @@ feature {NONE} -- Implementation
 			not_array: not a_union_member.type.skip_consts_and_aliases.is_array_type
 		local
 			eiffel_member_name: STRING
+			eiffel_to_c_cast_printer: EWG_EIFFEL_TO_C_TYPE_CAST_PRINTER
 		do
 			eiffel_member_name := eiffel_parameter_name_from_c_parameter_name (a_union_member.declarator)
-			output_stream.put_string ("%Tset_")
+			output_stream.put_string ("%Tset_c_")
 			output_stream.put_string (eiffel_member_name)
-			output_stream.put_string ("_external (an_item: POINTER; a_value: ")
+			output_stream.put_string (" (an_item: POINTER; a_value: ")
 			output_stream.put_string (a_union_member.type.corresponding_eiffel_type)
-			output_stream.put_line (") is")
+			output_stream.put_line (") ")
 			output_stream.put_line ("%T%Trequire")
 			output_stream.put_line ("%T%T%Tan_item_not_null: an_item /= default_pointer")
 			output_stream.put_line ("%T%Texternal")
-			if eiffel_compiler_mode.is_ise_mode then
-				output_stream.put_string ("%T%T%T%"C [macro <")
-				output_stream.put_string (directory_structure.relative_union_c_glue_header_file_name)
-				output_stream.put_line (">]%"")
-				output_stream.put_line ("%T%Talias")
-				output_stream.put_string ("%T%T%T%"ewg_union_macro_")
-				output_stream.put_string (an_escaped_union_name)
-				output_stream.put_string ("_member_set_")
-				output_stream.put_string (a_union_member.declarator)
-				output_stream.put_line ("%"")
-			else
-					check
-						dead_end: False
-					end
-			end
+
+			generate_inline_union_wrapper (a_header_file_name)
+
+				-- To be updated
+			output_stream.put_line ("%T%Talias")
+			output_stream.put_string ("%T%T%T%"[")
+			output_stream.put_string ("%N%T%T%T%T(")
+			output_stream.put_string (a_cast_with_one_pointer_indirection)
+			output_stream.put_string ("$an_item)->")
+			output_stream.put_string (a_union_member.declarator)
+			output_stream.put_string (" = ")
+			output_stream.put_character (' ')
 			if
-				not (a_union_member.type.skip_consts_and_aliases.is_struct_type or
-					  a_union_member.type.skip_consts_and_aliases.is_union_type)
+				a_union_member.type.skip_consts_and_aliases.is_struct_type or
+					a_union_member.type.skip_consts_and_aliases.is_union_type
 			then
-				output_stream.put_line ("%T%Tensure")
-				output_stream.put_string ("%T%T%Ta_value_set: a_value = get_")
-				output_stream.put_string (eiffel_member_name)
-				output_stream.put_line ("_external (an_item)")
+				output_stream.put_character ('*')
 			end
+			create eiffel_to_c_cast_printer.make (output_stream, eiffel_compiler_mode)
+			eiffel_to_c_cast_printer.print_declaration_from_type (a_union_member.type, "")
+			output_stream.put_line ("$a_value;")
+			output_stream.put_line ("%T%T%T]%"")
+
 			output_stream.put_line ("%T%Tend")
 			output_stream.put_new_line
 		end
@@ -272,23 +266,26 @@ feature {NONE} -- Implementation
 			a_type_name_not_void: a_type_name /= Void
 			an_escaped_union_name_not_void: an_escaped_union_name /= Void
 		do
-			output_stream.put_line ("%Tsizeof_external: INTEGER is")
+			output_stream.put_line ("%Tsizeof_external: INTEGER ")
 			output_stream.put_line ("%T%Texternal")
-			if eiffel_compiler_mode.is_ise_mode then
-				output_stream.put_string ("%T%T%T%"C [macro <")
-				output_stream.put_string (a_header_file_name)
-				output_stream.put_line (">]: EIF_INTEGER%"")
 
-				output_stream.put_line ("%T%Talias")
-				output_stream.put_string ("%T%T%T%"sizeof(")
-				output_stream.put_string (a_type_name)
-				output_stream.put_line (")%"")
-			else
-					check
-						dead_end: False
-					end
-			end
+			generate_inline_union_wrapper (a_header_file_name)
+
+			output_stream.put_line ("%T%Talias")
+			output_stream.put_string ("%T%T%T%"sizeof(")
+			output_stream.put_string (a_type_name)
+			output_stream.put_line (")%"")
 			output_stream.put_line ("%T%Tend")
+		end
+
+	generate_inline_union_wrapper (a_header_file_name: STRING)
+		require
+			a_header_file_name_not_void: a_header_file_name /= Void
+		do
+			output_stream.put_string ("%T%T%T%"C inline use <")
+			output_stream.put_string (a_header_file_name)
+			output_stream.put_string (">%"")
+			output_stream.put_new_line
 		end
 
 	cast_printer: EWG_C_TYPE_CAST_PRINTER

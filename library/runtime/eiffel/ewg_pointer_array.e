@@ -25,7 +25,7 @@ create
 
 feature {ANY} -- Access
 
-	item alias "[]" (i: INTEGER): POINTER assign put is
+	item alias "[]" (i: INTEGER): POINTER assign put
 			-- Return the address of the `i'-th item
 		require
 			exists: exists
@@ -36,7 +36,7 @@ feature {ANY} -- Access
 			item_address_not_default_pointer: Result /= Default_pointer
 		end
 
-	put (a_value: POINTER; i: INTEGER) is
+	put (a_value: POINTER; i: INTEGER)
 			-- Put `a_value' at the `i'-th position in the array.
 		require
 			exists: exists
@@ -50,7 +50,7 @@ feature {ANY} -- Access
 
 feature {NONE} -- Implementation
 
-	item_size: INTEGER is
+	item_size: INTEGER 
 			-- Size of one element
 			-- In C thats: sizeof (void*)
 		once

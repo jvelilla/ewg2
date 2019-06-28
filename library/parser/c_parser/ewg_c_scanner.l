@@ -51,7 +51,7 @@ NL    [\r\n
 <SC_FILE>{WS_NON_NEWLINE}*#line{WS}+[0-9]+{WS}+\" {  -- Visual C++ style
 				set_header_line_number ((text_substring (7, text_count - 2)).to_integer)
 			}
-<SC_FILE>{WS_NON_NEWLINE}*#pragma.*\n   {  set_start_condition (INITIAL) } -- eat pragmas
+<SC_FILE>{WS_NON_NEWLINE}*(_+|#)pragma.*\n   {  set_start_condition (INITIAL) } -- eat pragmas
 <SC_FILE>[^"\n]+       { set_header_file_name (text) }
 <SC_FILE>\"{WS_NON_NEWLINE}?.*\n    {set_start_condition (INITIAL) } -- eat misc stuff
 
@@ -143,6 +143,7 @@ NL    [\r\n
 
 "__const"		{ last_token := TOK_CONST; last_string_value := text }
 "__restrict"	{ }	-- eat, shoudn't bother us anyway
+
 "__attribute__" {
 				 -- eat, hopefully this thing is not usefull for us
 					gcc_attribute_bracket_counter := 0

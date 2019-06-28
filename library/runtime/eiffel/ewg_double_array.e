@@ -25,7 +25,7 @@ create
 
 feature {ANY} -- Access
 
-	item alias "[]" (i: INTEGER): DOUBLE assign put is
+	item alias "[]" (i: INTEGER): DOUBLE assign put
 			-- Return the address of the `i'-th item
 		require
 			exists: exists
@@ -34,7 +34,7 @@ feature {ANY} -- Access
 			Result := managed_data.read_double (i * item_size)
 		end
 
-	put (v: DOUBLE; i: INTEGER) is
+	put (v: DOUBLE; i: INTEGER)
 			-- Replace `i'-th entry by `v'
 		require
 			exists: exists
@@ -47,7 +47,7 @@ feature {ANY} -- Access
 
 feature {NONE} -- Implementation
 
-	item_size: INTEGER is
+	item_size: INTEGER 
 		once
 			Result := EXTERNAL_MEMORY_.sizeof_double_external
 		end

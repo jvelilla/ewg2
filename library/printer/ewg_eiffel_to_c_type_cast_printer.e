@@ -33,7 +33,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (an_output_stream: like output_stream; an_eiffel_compiler_mode: like eiffel_compiler_mode) 
+	make (an_output_stream: like output_stream; an_eiffel_compiler_mode: like eiffel_compiler_mode)
 			-- Create new printer with `a_output_stream' as output stream.
 		require
 			an_output_stream_not_void: an_output_stream /= Void
@@ -77,15 +77,6 @@ feature {NONE} -- Implementation
 			type: EWG_C_AST_TYPE
 		do
 			type := a_type
-			if eiffel_compiler_mode.is_ve_mode then
-				if a_type.skip_consts_and_aliases = c_system.types.float_type then
-					if a_type.skip_aliases.is_const_type then
-						type := c_system.types.const_float_type
-					else
-						type := c_system.types.float_type
-					end
-				end
-			end
 			if
 				a_type.skip_consts_and_aliases.is_struct_type or
 					a_type.skip_consts_and_aliases.is_union_type

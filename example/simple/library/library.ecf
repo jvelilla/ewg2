@@ -19,43 +19,15 @@
 		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
 		<library name="ewg" location="C:\home\test\ewg\library\library.ecf"/>
 		<library name="runtime" location="C:\home\test\ewg\library\runtime\eiffel\library.ecf"/>
-		<cluster name="simple_library_wrapper" location="${EWG}\example\simple\library\generated_wrapper\">
-			<cluster name="eiffel" location="$|eiffel\">
-				<cluster name="simple_external_external" location="$|external\">
-					<cluster name="simple_external_struct" location="$|struct\">
-						<cluster name="simple_external_struct_spec" location="$|spec\">
-							<cluster name="simple_external_struct_ise" location="$|ise\"/>
-						</cluster>
-					</cluster>
-					<cluster name="simple_external_enum" location="$|enum\">
-						<cluster name="simple_external_enum_spec" location="$|spec\">
-							<cluster name="simple_external_enum_ise" location="$|ise\"/>
-						</cluster>
-					</cluster>
-					<cluster name="simple_external_union" location="$|union\">
-						<cluster name="simple_external_union_spec" location="$|spec\">
-							<cluster name="simple_external_union_ise" location="$|ise\"/>
-						</cluster>
-					</cluster>
-					<cluster name="simple_external_function" location="$|function\">
-						<cluster name="simple_external_function_spec" location="$|spec\">
-							<cluster name="simple_external_function_ise" location="$|ise\"/>
-						</cluster>
-					</cluster>
-					<cluster name="simple_external_callback_callback" location="$|callback\">
-						<cluster name="simple_external_callback_spec" location="$|spec\">
-							<cluster name="simple_external_callback_ise" location="$|ise\"/>
-						</cluster>
-					</cluster>
-				</cluster>
-				<cluster name="simple_abstraction_abstraction" location="$|abstraction\">
-					<cluster name="simple_abstraction_struct" location="$|struct\"/>
-					<cluster name="simple_abstraction_enum" location="$|enum\"/>
-					<cluster name="simple_abstraction_union" location="$|union\"/>
-					<cluster name="simple_abstraction_function" location="$|function\"/>
-					<cluster name="simple_abstraction_callback" location="$|callback\"/>
-				</cluster>
-			</cluster>
-		</cluster>
+		<library name="base" location="$ISE_LIBRARY/library/base/base.ecf"/>
+		<library name="ewg_library" location="$EWG/library/library.ecf"/>
+		<library name="ewg_runtime" location="$EWG/library/runtime/eiffel/library.ecf"/>
+		<cluster name="src" location="." recursive="true">
+			<file_rule>
+				<exclude>/c$</exclude>
+				<exclude>/include$</exclude>
+				<exclude>/EIFGENs$</exclude>
+			</file_rule>
+		</cluster>			
 	</target>
 </system>

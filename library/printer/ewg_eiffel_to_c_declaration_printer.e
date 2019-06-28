@@ -63,20 +63,11 @@ feature -- Status
 
 feature -- Declaring
 
-	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING) 
+	print_declaration_from_type (a_type: EWG_C_AST_TYPE; a_declarator: STRING)
 		local
 			type: EWG_C_AST_TYPE
 		do
 			type := a_type
-			if eiffel_compiler_mode.is_ve_mode then
-				if a_type.skip_consts_and_aliases = c_system.types.float_type then
-					if a_type.skip_aliases.is_const_type then
-						type := c_system.types.const_double_type
-					else
-						type := c_system.types.double_type
-					end
-				end
-			end
 			if a_type.skip_consts_aliases_and_pointers.is_array_type then
 				type := c_system.types.void_pointer_type
 			end

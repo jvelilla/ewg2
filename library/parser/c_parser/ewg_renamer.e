@@ -398,7 +398,7 @@ feature {NONE} -- Implementation
 	eiffel_keywords: DS_HASH_SET [STRING]
 			-- TODO: Create class like EWG_ANY_FEATURE_NAMES
 		once
-			create Result.make (73)
+			create Result.make (100)
 			Result.set_equality_tester (string_equality_tester)
 				-- Taken from ETL Appendix G
 			Result.put ("alias")

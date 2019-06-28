@@ -75,11 +75,6 @@
     <geant target="tags"/>
   </target>
   
-  <target name="tags_ge" depend="init">
-    <set name="eiffel" value="ge"/>
-    <geant target="tags"/>
-  </target>
-  
   <target name="tags" depend="init">
     <set name="define" value="GOBO_EIFFEL=${eiffel}"/>
     <set name="define" value="${define} GOBO_OS=${GOBO_OS}"/>

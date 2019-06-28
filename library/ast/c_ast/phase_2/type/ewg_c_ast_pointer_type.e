@@ -91,7 +91,11 @@ feature
 
 	corresponding_eiffel_type: STRING
 		do
-			Result := "POINTER"
+			if attached {EWG_C_AST_PRIMITIVE_TYPE} base as l_primitive then
+				Result := "TYPED_POINTER [" + l_primitive.corresponding_eiffel_type	+"]"
+			else
+				Result := "POINTER"
+			end
 		end
 
 	skip_consts_and_pointers: EWG_C_AST_TYPE
@@ -151,7 +155,7 @@ feature -- Visitor Pattern
 
 feature {EWG_C_AST_BASED_TYPE}
 
-	number_of_pointer_or_array_types_between_current_and_type_recursive (a_type: EWG_C_AST_TYPE; a_indirections: INTEGER): INTEGER 
+	number_of_pointer_or_array_types_between_current_and_type_recursive (a_type: EWG_C_AST_TYPE; a_indirections: INTEGER): INTEGER
 		local
 			base_based_type: EWG_C_AST_BASED_TYPE
 		do
