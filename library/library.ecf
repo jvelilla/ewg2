@@ -14,7 +14,7 @@
 			<void_safety support="none" use="none"/>
 		</capability>
 		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
-		<library name="kernel" location="C:\home\dev\Eiffel_dev\contrib\library\gobo\library\kernel\src\library.ecf"/>
+		<library name="kernel" location="$ISE_LIBRARY\\contrib\library\gobo\library\kernel\src\library.ecf"/>
 		<library name="lexical" location="$ISE_LIBRARY\contrib\library\gobo\library\lexical\src\library.ecf"/>
 		<library name="lexical_skl" location="$ISE_LIBRARY\contrib\library\gobo\library\lexical\src\library_skl.ecf"/>
 		<library name="parse" location="$ISE_LIBRARY\contrib\library\gobo\library\parse\src\library.ecf"/>
@@ -25,35 +25,14 @@
 		<library name="tools" location="$ISE_LIBRARY\contrib\library\gobo\library\tools\src\library.ecf"/>
 		<library name="utility" location="$ISE_LIBRARY\contrib\library\gobo\library\utility\src\library.ecf"/>
 		<library name="xml" location="$ISE_LIBRARY\contrib\library\gobo\library\xml\src\library.ecf"/>
-		<cluster name="ewg_library" location="${EWG}\library\">
-			<cluster name="ewg_printer" location="$|printer\"/>
-			<cluster name="ewg_support" location="$|support\"/>
-			<cluster name="ewg_error" location="$|error\"/>
-			<cluster name="ewg_processor" location="$|processor\"/>
-			<cluster name="ewg_ewg_configconfig" location="$|config\">
-				<cluster name="ewg_ewg_configast" location="$|ast\"/>
-				<cluster name="ewg_ewg_configparser" location="$|parser\"/>
-			</cluster>
-			<cluster name="ewg_parser" location="$|parser\">
-				<cluster name="ewg_c_parser" location="$|c_parser\"/>
-				<cluster name="ewg_c_macro_parser" location="$|c_macro_parser\"/>
-			</cluster>
-			<cluster name="ewg_ast" location="$|ast\">
-				<cluster name="ewg_c_ast" location="$|c_ast\">
-					<cluster name="ewg_phase_1" location="$|phase_1\"/>
-					<cluster name="ewg_phase_2" location="$|phase_2\">
-						<cluster name="ewg_type" location="$|type\"/>
-						<cluster name="ewg_declaration" location="$|declaration\"/>
-					</cluster>
-				</cluster>
-				<cluster name="ewg_eiffel_ast" location="$|eiffel_ast\"/>
-			</cluster>
-			<cluster name="ewg_generator" location="$|generator\">
-				<cluster name="ewg_c_glue_code" location="$|c_glue_code\"/>
-				<cluster name="ewg_eiffel_external" location="$|eiffel_external\"/>
-				<cluster name="ewg_eiffel_abstraction" location="$|eiffel_abstraction\"/>
-				<cluster name="ewg_eiffel_api" location="$|eiffel_api\"/>
-			</cluster>
+		<cluster name="ewg_library" location="." recursive="True">
+			<file_rule>
+				<exclude>/\.svn$</exclude>
+				<exclude>/\.git$</exclude>
+				<exclude>/\ge$</exclude>
+				<exclude>/runtime$</exclude>
+				<exclude>/EIFGENs$</exclude>
+			</file_rule>
 		</cluster>
 	</target>
 </system>

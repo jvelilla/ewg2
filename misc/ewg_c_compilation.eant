@@ -78,7 +78,7 @@
 	dir="${ewg.c_compile.dir_name}"
 	filename_directory="${ewg.c_compile.dir_name}"
 	mapped_filename_directory="${ewg.c_compile.dir_name}"
-	include="@(*.c|spec/${eiffel}/*.c)">
+	include="@(*.c)">
 	 <map type="glob" from="*.c" to="*${ewg.obj}"/>
       </fileset>
     </exec>
@@ -91,24 +91,12 @@
 	 dir="${ewg.c_compile.dir_name}"
 	 filename_directory="${ewg.c_compile.dir_name}"
 	 mapped_filename_directory="${ewg.c_compile.dir_name}"
-	 include="@(*.c|spec/${eiffel}/*.c)">
+	 include="@(*.c)">
 	 <map type="glob" from="*.c" to="*${ewg.obj}"/>
       </fileset>
     </exec>
   </target>
 
-  <target name="c_compile_bcb">
-    <geant target="set_default_options"/>
-    <exec executable="${bcb.cc} -g0 ${ewg.c_compile.options.default} ${ewg.c_compile.options} -c -o${fs.mapped_filename} ${fs.filename}">
-      <fileset
-	 dir="${ewg.c_compile.dir_name}"
-	 filename_directory="${ewg.c_compile.dir_name}"
-	 mapped_filename_directory="${ewg.c_compile.dir_name}"
-	 include="@(*.c|spec/${eiffel}/*.c)">
-	 <map type="glob" from="*.c" to="*${ewg.obj}"/>
-      </fileset>
-    </exec>
-  </target>
 
   <target name="c_build_library_all">
     <geant target="c_build_library_ise"/>
@@ -135,7 +123,7 @@
 	 dir="${ewg.c_build_library.dir_name}"
 	 filename_directory="${ewg.c_build_library.dir_name}"
 	 mapped_filename_directory="${ewg.c_build_library.dir_name}"
-	 include="@(*${ewg.obj}|spec/${eiffel}/*${ewg.obj})"/>
+	 include="@(*${ewg.obj})"/>
     </exec>
   </target>
 
@@ -148,28 +136,17 @@
 	 dir="${ewg.c_build_library.dir_name}"
 	 filename_directory="${ewg.c_build_library.dir_name}"
 	 mapped_filename_directory="${ewg.c_build_library.dir_name}"
-	 include="@(*${ewg.obj}|spec/${eiffel}/*${ewg.obj})"/>
+	 include="@(*${ewg.obj})"/>
     </exec>
     <exec executable="lib /nologo ${ewg.c_build_library.lib_name}_${eiffel}_${cc}${ewg.lib} ${fs.filename}">
       <fileset
 	 dir="${ewg.c_build_library.dir_name}"
 	 filename_directory="${ewg.c_build_library.dir_name}"
 	 mapped_filename_directory="${ewg.c_build_library.dir_name}"
-	 include="@(*${ewg.obj}|spec/${eiffel}/*${ewg.obj})"/>
+	 include="@(*${ewg.obj})"/>
     </exec>
   </target>
 
-  <target name="c_build_library_bcb">
-    <geant target="c_compile"/>
-    <!-- /P256 makes tlib use a bigger page size, it would barf otherwise at for example the opengl glue code -->
-    <exec executable="${bcb.lib} /P256 ${ewg.c_build_library.lib_name}_${eiffel}_${cc}${ewg.lib} +${fs.filename}">
-      <fileset
-	 dir="${ewg.c_build_library.dir_name}"
-	 filename_directory="${ewg.c_build_library.dir_name}"
-	 mapped_filename_directory="${ewg.c_build_library.dir_name}"
-	 include="@(*${ewg.obj}|spec/${eiffel}/*${ewg.obj})"/>
-    </exec>
-  </target>
 
   <!-- Implementation -->
 

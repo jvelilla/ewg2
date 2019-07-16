@@ -12,7 +12,7 @@
   </description>
 
   <inherit>
-    <parent location="${GOBO}/misc/eiffel.eant">
+    <parent location="${GOBO}/library/common/config/eiffel.eant">
       <redefine target="init_system"/>
       <redefine target="clean"/>
     </parent>

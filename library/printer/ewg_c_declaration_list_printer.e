@@ -25,6 +25,9 @@ inherit
 	KL_IMPORTED_STRING_ROUTINES
 		export {NONE} all end
 
+	EWG_RENAMER
+		export {NONE} all end
+
 create
 
 	make,
@@ -80,7 +83,7 @@ feature -- Status Setting
 
 feature -- Formatting
 
-	print_declaration_list (a_list: DS_LINEAR [EWG_C_AST_DECLARATION]) 
+	print_declaration_list (a_list: DS_LINEAR [EWG_C_AST_DECLARATION])
 		require
 			a_list_not_void: a_list /= Void
 			a_list_doesnt_have_void: not a_list.has (Void)
@@ -105,7 +108,7 @@ feature -- Formatting
 					parameter_name_generator.set_output_stream (string_stream)
 					parameter_name_generator.generate_new_name
 				else
-					declarator := cs.item.declarator
+					declarator := eiffel_parameter_name_from_c_parameter_name (cs.item.declarator)
 				end
 				declaration_printer.print_declaration_from_type (cs.item.type, declarator_prefix + declarator)
 				cs.forth

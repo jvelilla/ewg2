@@ -52,7 +52,7 @@ feature {ANY} -- Setting
 --			header_file_name_regexp_set: header_file_name_regexp = a_header_file_name_regexp
 		end
 
-	set_c_identifier_regexp (a_c_identifier_regexp: STRING) 
+	set_c_identifier_regexp (a_c_identifier_regexp: STRING)
 		require
 			a_c_identifier_regexp_not_void: a_c_identifier_regexp /= Void
 		do
@@ -103,6 +103,11 @@ feature {ANY} -- Operations
 			elseif construct_type_code = construct_type_names.struct_code then
 				-- Only structs will be accepted
 				if not a_type.based_type_recursive.is_struct_type then
+					Result := False
+				end
+			elseif construct_type_code = construct_type_names.array_code then
+				-- Only structs will be accepted
+				if not a_type.based_type_recursive.is_array_type then
 					Result := False
 				end
 			elseif construct_type_code = construct_type_names.union_code then

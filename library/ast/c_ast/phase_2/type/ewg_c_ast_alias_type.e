@@ -19,10 +19,12 @@ inherit
 			make as make_based_type
 		redefine
 			is_same_type,
+			is_unicode_char_pointer_type,
 			skip_aliases,
 			skip_consts_and_aliases,
 			is_alias_type,
 			corresponding_eiffel_type,
+			corresponding_eiffel_type_api,
 			skip_consts_aliases_and_arrays,
 			skip_consts_aliases_and_pointers
 		end
@@ -94,6 +96,11 @@ feature
 			Result := base.corresponding_eiffel_type
 		end
 
+	corresponding_eiffel_type_api: STRING
+		do
+			Result := base.corresponding_eiffel_type_api
+		end
+
 	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
 		local
 			other_alias: EWG_C_AST_ALIAS_TYPE
@@ -105,9 +112,14 @@ feature
 			end
 		end
 
-	is_alias_type: BOOLEAN 
+	is_alias_type: BOOLEAN
 		do
 			Result := True
+		end
+
+	is_unicode_char_pointer_type: BOOLEAN
+		do
+			Result := name.has_substring ("wchar_t")
 		end
 
 invariant

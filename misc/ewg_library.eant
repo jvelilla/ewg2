@@ -38,28 +38,6 @@
     </description>
     <echo message="Generating wrappers for ${ewg.library_name}" if="${ewg.verbose}=--verbose"/>
     <mkdir directory="${ewg.wrapper_dir}/eiffel"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/struct"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/struct/spec/"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/struct/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/union"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/union/spec/"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/union/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/enum"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/enum/spec"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/enum/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/function"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/function/spec"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/function/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/callback"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/callback/spec"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/external/callback/spec/ise"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/abstraction"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/abstraction/struct"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/abstraction/union"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/abstraction/enum"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/abstraction/function"/>
-    <mkdir directory="${ewg.wrapper_dir}/eiffel/abstraction/callback"/>
     <geant target="copy_ewg_runtime"/>
     <geant target="c_preprocess"/>
     <set name="msc_extensions_flag" value=""/>
@@ -150,13 +128,13 @@
   <target name="set_default_options_windows" if="${GOBO_OS}=windows">
     <precursor/>
     <set name="ewg.c_compile.options.default" value="${ewg.c_compile.options.default} /I${system_dir}\generated_wrapper\c\include"/>
-    <set name="ewg.c_compile.options.default" value="${ewg.c_compile.options.default} /I${system_dir}\generated_wrapper\c\include\spec\${eiffel}"/>
+    <set name="ewg.c_compile.options.default" value="${ewg.c_compile.options.default} /I${system_dir}\generated_wrapper\c\include\"/>
   </target>
 
   <target name="set_default_options_unix" unless="${GOBO_OS}=windows">
     <precursor/>
     <set name="ewg.c_compile.options.default" value="${ewg.c_compile.options.default} -I${system_dir}/generated_wrapper/c/include"/>
-    <set name="ewg.c_compile.options.default" value="${ewg.c_compile.options.default} -I${system_dir}/generated_wrapper/c/include/spec/${eiffel}"/>
+    <set name="ewg.c_compile.options.default" value="${ewg.c_compile.options.default} -I${system_dir}/generated_wrapper/c/include/"/>
   </target>
 
   <target name="other_clean" depend="init">

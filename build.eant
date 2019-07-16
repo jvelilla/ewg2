@@ -27,7 +27,7 @@
 		</description>
 		<geant file="build.eant" target="install" dir="src"/>
 		<geant file="build.eant" target="install" dir="library"/>
-		<geant file="build.eant" target="install" dir="test"/>
+		<!--geant file="build.eant" target="install" dir="test"/>-->
 	</target>
 
 	<target name="install_examples" depend="init">
@@ -41,9 +41,9 @@
 
 		<geant target="remove_backup_files"/>
 		<geant file="build.eant" target="clean" dir="src"/>
-		<geant file="build.eant" target="clean" dir="test"/>
+		<!--geant file="build.eant" target="clean" dir="test"/>-->
 		<geant file="build.eant" target="clean" dir="library"/>
-		<geant file="build.eant" target="clean" dir="example"/>
+		<!--geant file="build.eant" target="clean" dir="example"/>-->
 	</target>
 
 	<target name="compile" depend="init">
@@ -52,8 +52,8 @@
 		</description>
 		<geant file="${EWG}/src/ewg/build.eant" target="compile" dir="bin"/>
 		<geant file="${EWG}/src/ewg/build.eant" target="clean" dir="bin"/>
-		<geant file="${EWG}/src/drc/build.eant" target="compile" dir="bin" if="${EPOSIX}"/>
-		<geant file="${EWG}/src/drc/build.eant" target="clean" dir="bin" if="${EPOSIX}"/>
+		<!--geant file="${EWG}/src/drc/build.eant" target="compile" dir="bin" if="${EPOSIX}"/>
+		<geant file="${EWG}/src/drc/build.eant" target="clean" dir="bin" if="${EPOSIX}"/> -->
 		<geant file="build.eant" target="install" dir="src"/>
 	</target>
 
@@ -65,10 +65,10 @@
 		<geant target="remove_backup_files"/>
 		<geant file="${EWG}/src/build.eant" target="clobber" dir="src"/>
 		<geant file="${EWG}/src/build.eant" target="clobber" dir="bin"/>
-		<geant file="${EWG}/test/build.eant" target="clobber" dir="test"/>
+		<!--geant file="${EWG}/test/build.eant" target="clobber" dir="test"/>-->
 		<geant file="${EWG}/library/build.eant" target="clobber" dir="library"/>
-		<geant file="${EWG}/example/build.eant" target="clobber" dir="example"/>
-		<geant file="${EWG}/doc/build.eant" target="clobber" dir="doc"/>
+		<!--geant file="${EWG}/example/build.eant" target="clobber" dir="example"/>-->
+		<!--geant file="${EWG}/doc/build.eant" target="clobber" dir="doc"/>-->
 	</target>
 
 	<target name="remove_backup_files" depend="init">
@@ -105,7 +105,7 @@
 	</target>
 
 	<target name="init_gobo_eiffel" unless="${GOBO_EIFFEL}">
-		<set name="GOBO_EIFFEL" value="ge"/>
+		<set name="GOBO_EIFFEL" value="ise"/>
 	</target>
 
 </project>

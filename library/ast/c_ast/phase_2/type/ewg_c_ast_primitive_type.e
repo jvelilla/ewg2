@@ -17,6 +17,7 @@ inherit
 	EWG_C_AST_SIMPLE_TYPE
 		redefine
 			corresponding_eiffel_type,
+			corresponding_eiffel_type_api,
 			is_primitive_type
 		end
 
@@ -40,7 +41,7 @@ feature
 			elseif name.has_substring ("char") then
 				Result := "CHARACTER"
 			elseif name.has_substring ("double") then
-				Result := "DOUBLE"
+				Result := "REAL_64"
 			elseif name.has_substring ("float") then
 				Result := "REAL"
 			elseif name.has_substring ("void") then
@@ -50,6 +51,15 @@ feature
 						dead_end: False
 					end
 			end
+
+			if {PLATFORM}.is_windows then
+
+			end
+		end
+
+	corresponding_eiffel_type_api: STRING
+		do
+			Result := corresponding_eiffel_type
 		end
 
 	append_anonymous_hash_string_to_string (a_string: STRING)
@@ -97,7 +107,7 @@ feature
 
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) 
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR)
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_primitive_type (Current)

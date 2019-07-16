@@ -35,7 +35,7 @@ feature
 
 feature -- Generation
 
-	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET) is
+	generate (a_eiffel_wrapper_set: EWG_EIFFEL_WRAPPER_SET)
 		local
 			cs: DS_BILINEAR_CURSOR [EWG_CALLBACK_WRAPPER]
 			file_name: STRING
@@ -48,9 +48,9 @@ feature -- Generation
 				error_handler.report_cannot_write_error (file_name)
 			else
 				output_stream := file
-				output_stream.put_string ("#include <")
+				output_stream.put_string ("#include ")
 				output_stream.put_string (directory_structure.callback_c_glue_header_file_name (eiffel_compiler_mode.eiffel_compiler_mode))
-				output_stream.put_line (">")
+				output_stream.put_line ("")
 				output_stream.put_new_line
 				from
 					cs := a_eiffel_wrapper_set.new_callback_wrapper_cursor
@@ -66,7 +66,7 @@ feature -- Generation
 			end
 		end
 
-	generate_callback_wrapper (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_callback_wrapper (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 			calling_conventions_must_be_cdecl: a_callback_wrapper.c_pointer_type.function_type.calling_convention = cdecl
@@ -101,7 +101,7 @@ feature -- Generation
 			generate_stub_getter (a_callback_wrapper)
 		end
 
-	generate_local_variables (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_local_variables (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		local
@@ -158,7 +158,7 @@ feature -- Generation
 
 		end
 
-	generate_delegation_call (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_delegation_call (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		local
@@ -187,7 +187,7 @@ feature -- Generation
 			output_stream.put_line (");")
 		end
 
-	generate_ffcall_type (a_type: EWG_C_AST_TYPE) is
+	generate_ffcall_type (a_type: EWG_C_AST_TYPE)
 		require
 			a_type_not_void: a_type /= Void
 		local
@@ -243,7 +243,7 @@ feature -- Generation
 
 		end
 
-	generate_stub_getter (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate_stub_getter (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		do

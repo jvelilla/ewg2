@@ -22,6 +22,7 @@ inherit
 			make as make_simple_type
 		redefine
 			corresponding_eiffel_type,
+			corresponding_eiffel_type_api,
 			is_same_type,
 			is_eiffel_object_type
 		end
@@ -76,7 +77,12 @@ feature
 			Result := eiffel_class_name
 		end
 
-	append_anonymous_hash_string_to_string (a_string: STRING) 
+	corresponding_eiffel_type_api: STRING
+		do
+			Result := eiffel_class_name
+		end
+
+	append_anonymous_hash_string_to_string (a_string: STRING)
 		do
 			a_string.append_string (eiffel_class_name)
 		end

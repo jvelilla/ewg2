@@ -11,11 +11,11 @@
   </description>
 
   <inherit>
-    <parent location="${GOBO}/misc/eiffel.eant">
+    <parent location="${GOBO}/library/common/config/eiffel.eant">
       <redefine target="init"/>
       <redefine target="init_windows"/>
       <redefine target="init_unix"/>
-      <redefine target="xace"/>
+      <redefine target="ecf"/>
       <redefine target="clean"/>
     </parent>
   </inherit>
@@ -40,10 +40,10 @@
     <available resource="/usr/include/crt_externs.h" variable="ewg.is_mac_os_x"/>
   </target>
 
-  <target name="xace" depend="init">
-    <argument name="a_compiler"/>
-    <argument name="a_output"/>
-    <description>
+  <target name="ecf" depend="init">
+    <argument name="a_ecf_filename"/>
+    <argument name="a_library_root"/>
+      <description>
       Build Ace file or ESD file for Eiffel compiler ${eiffel}.
       Generate file in ${gexace_output} if specified.
       Pass $DEBUG option to 'gexace' if ${debug} is defined.
@@ -58,7 +58,7 @@
       necessary.
     </description>
 
-    <gexace system="${a_compiler}" output="${a_output}" xace="${system_dir}/system.xace">
+    <!--gexace system="${a_compiler}" output="${a_output}" xace="${system_dir}/system.xace">
       <define name="DEBUG" value="${debug}" if="${debug}"/>
       <define name="BOOTSTRAP" value="${bootstrap}" if="${bootstrap}"/>
       <define name="GOBO_OS" value="${GOBO_OS}"/>
@@ -67,8 +67,24 @@
       <define name="GOBO_XML_EXPAT" value="true" if="${GOBO_XML_EXPAT}"/>
       <define name="GOBO_DOTNET" value="true" if="${GOBO_DOTNET}"/>
       <define name="IS_MAC_OS_X" value="true" if="${ewg.is_mac_os_x}=true"/>
-    </gexace>
+    </gexace>-->
+    <geant target="ecf">
+      <argument name="a_compiler" value="${a_compiler}"/>
+      <argument name="a_ecf_filename" value="${system_dir}/system.ecf"/>
+      <argument name="a_library_root" value=""/>
+      <define name="DEBUG" value="${debug}" if="${debug}"/>
+      <define name="BOOTSTRAP" value="${bootstrap}" if="${bootstrap}"/>
+      <define name="GOBO_OS" value="${GOBO_OS}"/>
+      <define name="GOBO_CC" value="${cc}"/>
+      <define name="GOBO_EIFFEL" value="${eiffel}"/>
+      <define name="GOBO_XML_EXPAT" value="true" if="${GOBO_XML_EXPAT}"/>
+      <define name="GOBO_DOTNET" value="true" if="${GOBO_DOTNET}"/>
+      <define name="IS_MAC_OS_X" value="true" if="${ewg.is_mac_os_x}=true"/>
+    </geant>
   </target>
+
+
+  
 
   <target name="tags_ise" depend="init">
     <set name="eiffel" value="ise"/>

@@ -73,7 +73,7 @@ feature -- Printing
 
  feature {NONE} -- Implentation
 
-	do_format (a_type: EWG_C_AST_TYPE) 
+	do_format (a_type: EWG_C_AST_TYPE)
 			-- Format the cast for  `a_type'.
 		require
 			a_type_not_void: a_type /= Void

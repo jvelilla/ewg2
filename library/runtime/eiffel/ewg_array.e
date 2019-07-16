@@ -14,7 +14,6 @@ deferred class EWG_ARRAY
 
 inherit
 
-	ANY
 
 	EWG_IMPORTED_EXTERNAL_ROUTINES
 		export
@@ -150,7 +149,7 @@ feature {NONE} -- Implementation
 	managed_data: EWG_MANAGED_POINTER
 			-- managed pointer to actual C array
 
-	item_size: INTEGER 
+	item_size: INTEGER
 			-- Size of one array item in bytes
 			-- Define in concrete array wrapper
 		deferred

@@ -13,7 +13,7 @@ class SIMPLE_HELLO_WORLD
 
 inherit
 
-	SIMPLE_HEADER_FUNCTIONS_EXTERNAL
+	SIMPLE_HEADER_FUNCTIONS_INLINE
 
 	COLORS_ENUM_EXTERNAL
 
@@ -51,10 +51,10 @@ feature
 			print ("foo1.a (42): " + foo1.a.out + "%N")
 
 				-- Call external function
-			func1_external (24, 53)
+			c_func1 (24, 53)
 
 				-- Call external function with non 'void' return type
-			print ("func2 (7): " + func2_external (3, 4).out + "%N")
+			print ("func2 (7): " + c_func2 (3, 4).out + "%N")
 
 			-- Output enum values
 			print ("red: " + red.out + "%N")

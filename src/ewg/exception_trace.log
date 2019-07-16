@@ -1,0 +1,65 @@
+
+ewg: system execution failed.
+Following is the set of recorded exceptions:
+
+-------------------------------------------------------------------------------
+Class / Object      Routine                Nature of exception           Effect
+-------------------------------------------------------------------------------
+PLAIN_TEXT_FILE     file_open              No such file or directory:   
+<000001AB5478B6F8>  (From FILE)            Operating system error.       Fail
+-------------------------------------------------------------------------------
+PLAIN_TEXT_FILE     file_open                                           
+<000001AB5478B6F8>  (From FILE)            Routine failure.              Fail
+-------------------------------------------------------------------------------
+PLAIN_TEXT_FILE     open_read_write @2                                  
+<000001AB5478B6F8>  (From FILE)            Routine failure.              Fail
+-------------------------------------------------------------------------------
+PLAIN_TEXT_FILE     make_open_read_write @4
+<000001AB5478B6F8>  (From FILE)            Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWG                 preprocess_file @1                                  
+<000001AB5477A5A8>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWG                 run @8                                              
+<000001AB5477A5A8>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWG                 make @6                                             
+<000001AB5477A5A8>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWG                 root's creation                                     
+<000001AB5477A5A8>                         Routine failure.              Exit
+-------------------------------------------------------------------------------
+
+ewg: system execution failed.
+Following is the set of recorded exceptions:
+
+-------------------------------------------------------------------------------
+Class / Object      Routine                Nature of exception           Effect
+-------------------------------------------------------------------------------
+PLAIN_TEXT_FILE     file_open              No such file or directory:   
+<0000012EC1AE06F8>  (From FILE)            Operating system error.       Fail
+-------------------------------------------------------------------------------
+PLAIN_TEXT_FILE     file_open                                           
+<0000012EC1AE06F8>  (From FILE)            Routine failure.              Fail
+-------------------------------------------------------------------------------
+PLAIN_TEXT_FILE     open_read_write @2                                  
+<0000012EC1AE06F8>  (From FILE)            Routine failure.              Fail
+-------------------------------------------------------------------------------
+PLAIN_TEXT_FILE     make_open_read_write @4
+<0000012EC1AE06F8>  (From FILE)            Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWG                 preprocess_file @1                                  
+<0000012EC1ACF5A8>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWG                 run @8                                              
+<0000012EC1ACF5A8>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWG                 make @6                                             
+<0000012EC1ACF5A8>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWG                 root's creation                                     
+<0000012EC1ACF5A8>                         Routine failure.              Exit
+-------------------------------------------------------------------------------
+
+
+ewg: PANIC: caught signal #21 (Ctrl-Break) -- Giving up...

@@ -24,6 +24,7 @@ inherit
 			skip_const_pointer_and_array_types,
 			is_const_type,
 			corresponding_eiffel_type,
+			corresponding_eiffel_type_api,
 			skip_consts_and_pointers,
 			skip_consts_aliases_and_arrays,
 			skip_consts_aliases_and_pointers
@@ -105,9 +106,15 @@ feature
 			Result := base.corresponding_eiffel_type
 		end
 
+	corresponding_eiffel_type_api: STRING
+		do
+			Result := base.corresponding_eiffel_type_api
+		end
+
+
 feature -- Visitor Pattern
 
-	process (a_processor: EWG_C_AST_TYPE_PROCESSOR) 
+	process (a_processor: EWG_C_AST_TYPE_PROCESSOR)
 			-- Process `Current' using `a_processor'.
 		do
 			a_processor.process_const_type (Current)

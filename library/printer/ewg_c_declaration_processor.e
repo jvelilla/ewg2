@@ -34,7 +34,7 @@ feature -- Acccess
 
 feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 
-	process_primitive_type (a_type: EWG_C_AST_PRIMITIVE_TYPE) 
+	process_primitive_type (a_type: EWG_C_AST_PRIMITIVE_TYPE)
 		do
 			output_stream.put_string (a_type.name)
 			if should_print_const then
@@ -149,7 +149,7 @@ feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 				process (a_type.closest_alias_type)
 			else
 				output_stream.put_string ("struct ")
-				output_stream.put_string (a_type.name)
+				output_stream.put_string (a_type.name.as_lower)
 				if should_print_const then
 					output_stream.put_character (' ')
 					print_const
@@ -170,7 +170,7 @@ feature {EWG_C_AST_TYPE_PROCESSOR} -- Processing
 				process (a_type.closest_alias_type)
 			else
 				output_stream.put_string ("union ")
-				output_stream.put_string (a_type.name)
+				output_stream.put_string (a_type.name.as_lower)
 				if should_print_const then
 					output_stream.put_character (' ')
 					print_const

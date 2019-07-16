@@ -19,14 +19,14 @@ create
 
 feature {NONE} -- Implementation
 
-	sizeof: INTEGER is
+	sizeof: INTEGER
 		do
 			Result := sizeof_external
 		end
 
 feature {ANY} -- Member Access
 
-	get_a_class: POINTER is
+	get_a_class: POINTER
 			-- Access member `class'
 		require
 			exists: exists
@@ -36,7 +36,7 @@ feature {ANY} -- Member Access
 			result_correct: Result = get_a_class_external (item)
 		end
 
-	set_a_class (a_value: POINTER) is
+	set_a_class (a_value: POINTER)
 			-- Set member `class'
 		require
 			exists: exists
@@ -46,7 +46,7 @@ feature {ANY} -- Member Access
 			a_value_set: a_value = get_a_class
 		end
 
-	get_a_feature: POINTER is
+	get_a_feature: POINTER
 			-- Access member `feature'
 		require
 			exists: exists
@@ -56,7 +56,7 @@ feature {ANY} -- Member Access
 			result_correct: Result = get_a_feature_external (item)
 		end
 
-	set_a_feature (a_value: POINTER) is
+	set_a_feature (a_value: POINTER)
 			-- Set member `feature'
 		require
 			exists: exists

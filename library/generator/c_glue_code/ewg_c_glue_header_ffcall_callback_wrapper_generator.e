@@ -29,7 +29,7 @@ create
 
 feature
 
-	make (a_output_stream: KI_TEXT_OUTPUT_STREAM) is
+	make (a_output_stream: KI_TEXT_OUTPUT_STREAM)
 		require
 			a_output_stream_not_void: a_output_stream /= Void
 		do
@@ -40,7 +40,7 @@ feature
 
 feature
 
-	generate (a_callback_wrapper: EWG_CALLBACK_WRAPPER) is
+	generate (a_callback_wrapper: EWG_CALLBACK_WRAPPER)
 			-- TODO: refactore not to use templates (to save memory)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
@@ -54,7 +54,7 @@ feature
 				end
 				--parameters := a_callback_wrapper.c_pointer_type.function_type.parameter_declarations
 				if a_callback_wrapper.c_pointer_type.function_type.members.count > 0 then
-					parameters_with_comma := clone (parameters)
+					parameters_with_comma := parameters.twin
 					parameters_with_comma.prepend (", ")
 				else
 					parameters_with_comma := ""
@@ -84,7 +84,7 @@ feature {NONE}
 
 feature {NONE}
 
-	callback_eiffel_feature_typedef_template: STRING is
+	callback_eiffel_feature_typedef_template: STRING
 			-- $1 ... typedef for eiffel feature callback
 			-- $2 ... callback parameters (type and name)
 			-- $3 ... callback return type
@@ -92,7 +92,7 @@ feature {NONE}
 			Result := "typedef $3 (*$1_eiffel_feature) (void* a_class$2);%N"
 		end
 
-	callback_stub_getter_prototype_template: STRING is
+	callback_stub_getter_prototype_template: STRING
 								-- $1 ... callback eiffel name
 					 once
 								Result := "void* get_$1_stub ();%N"

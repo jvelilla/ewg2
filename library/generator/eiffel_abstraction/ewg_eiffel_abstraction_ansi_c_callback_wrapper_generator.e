@@ -47,7 +47,7 @@ feature -- Generation
 				ansi_c_callback_wrapper ?= cs.item
 				if ansi_c_callback_wrapper /= Void then
 
-					file_name := file_system.pathname (directory_structure.eiffel_abstraction_callback_directory_name,
+					file_name := file_system.pathname (directory_structure.eiffel_directory_name,
 																  (eiffel_class_name_from_c_callback_name (ansi_c_callback_wrapper.mapped_eiffel_name) + "_CALLBACK").as_lower + ".e")
 
 					create file.make (file_name)
@@ -87,7 +87,7 @@ feature {NONE} -- Implementation
 
 feature {NONE} -- Templates
 
-		  callback_class_template: STRING 
+		  callback_class_template: STRING
 								-- $1 ... callback name in upper case
 								-- $2 ... on_callback signature
 					 once

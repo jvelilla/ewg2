@@ -21,7 +21,7 @@ inherit
 
 feature -- Status report
 
-	test (v, u: EWG_C_AST_FUNCTION_TYPE): BOOLEAN is
+	test (v, u: EWG_C_AST_FUNCTION_TYPE): BOOLEAN 
 			-- Are `v' and `u' considered equal?
 		do
 			if v = u then

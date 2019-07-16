@@ -11,10 +11,6 @@
 		revision: "$Revision: 3 $"
 	</description>
 
-	<inherit>
-		<parent location="${GOBO}/misc/ge2e.eant"/>
-	</inherit>
-
 	<target name="help">
 		<echo message="usage:"/>
 		<echo message="   geant install"/>
@@ -27,43 +23,7 @@
 			Install the EWG Runtime Library.
 			Generate Eiffel files from .ge files.
 		</description>
-
-		<geant target="ge2e">
-			<argument name="spec_dir" value="spec"/>
-			<argument name="gepp_dir" value="."/>
-			<argument name="gepp_file" value="ewg_external_string_routines"/>
-		</geant>
-		<geant target="ge2e">
-			<argument name="spec_dir" value="spec"/>
-			<argument name="gepp_dir" value="."/>
-			<argument name="gepp_file" value="ewg_external_garbage_collector_routines"/>
-		</geant>
-		<geant target="ge2e">
-			<argument name="spec_dir" value="spec"/>
-			<argument name="gepp_dir" value="."/>
-			<argument name="gepp_file" value="ewg_external_memory_routines"/>
-		</geant>
-		<geant target="ge2e">
-			<argument name="spec_dir" value="spec"/>
-			<argument name="gepp_dir" value="."/>
-			<argument name="gepp_file" value="ewg_double_math"/>
-		</geant>
-		<geant target="ge2e">
-			<argument name="spec_dir" value="spec"/>
-			<argument name="gepp_dir" value="."/>
-			<argument name="gepp_file" value="ewg_identified"/>
-		</geant>
-		<geant target="ge2e">
-			<argument name="spec_dir" value="ffcall"/>
-			<argument name="gepp_dir" value="ffcall"/>
-			<argument name="gepp_file" value="ewg_callback_entry_struct_external"/>
-		</geant>
-		<geant target="ge2e">
-			<argument name="spec_dir" value="ffcall/spec"/>
-			<argument name="gepp_dir" value="ffcall"/>
-			<argument name="gepp_file" value="ewg_external_ffcall_routines"/>
-		</geant>
-	</target>
+	</target>	
 
 	<target name="clean">
 		<description>
@@ -78,8 +38,6 @@
 		</description>
 
 		<geant target="clean"/>
-		<delete directory="spec"/>
-		<delete directory="ffcall/spec"/>
 	</target>
 
 <!-- Implementation -->

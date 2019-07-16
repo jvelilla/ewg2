@@ -14,8 +14,6 @@ class EWG_CONFIG_VALIDATOR
 
 inherit
 
-	ANY
-
 	EWG_CONFIG_ELEMENT_NAMES
 		export {NONE} all end
 
@@ -369,7 +367,7 @@ feature {NONE} -- Validation
 			end
 		end
 
-	validate_class_name (a_class_name: XM_ELEMENT; a_position_table: XM_POSITION_TABLE) 
+	validate_class_name (a_class_name: XM_ELEMENT; a_position_table: XM_POSITION_TABLE)
 			-- Check whether `a_class_name' is a valid EWG config "class_name" element.
 			-- Set `has_error' to `True' if not.
 		require

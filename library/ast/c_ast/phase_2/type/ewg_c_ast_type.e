@@ -125,7 +125,7 @@ feature {ANY} -- Basic Commands
 feature {ANY} -- Declaration Queries
 
 
-	skip_wrapper_irrelevant_types: EWG_C_AST_TYPE 
+	skip_wrapper_irrelevant_types: EWG_C_AST_TYPE
 			-- Skip types that are not relevant for wrapping such as
 			-- "consts" "aliases", but sometimes also "arrays" and
 			-- "pointers"
@@ -289,6 +289,14 @@ feature
 			-- type name which corresponds with this C type.
 			-- TODO: make feature deferred
 			-- TODO: add `append_corresponding_eiffel_type_to_string' and use that one.
+		do
+			Result := "POINTER"
+		end
+
+	corresponding_eiffel_type_api: STRING
+			-- Returns a string that contains the Eiffel
+			-- type name which corresponds with this C type.
+			-- to be used when we generate high level APIs
 		do
 			Result := "POINTER"
 		end
@@ -507,6 +515,14 @@ feature {ANY} -- Assertion helpers
 
 	is_char_pointer_type: BOOLEAN
 			-- Is the current type a pointer to char ?
+			-- (Note aliases and consts are ignored)
+		do
+			Result := False
+		end
+
+
+	is_unicode_char_pointer_type: BOOLEAN
+			-- Is the current type a pointer to unicode char ?
 			-- (Note aliases and consts are ignored)
 		do
 			Result := False

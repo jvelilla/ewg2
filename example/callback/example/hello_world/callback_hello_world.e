@@ -13,10 +13,10 @@ class CALLBACK_HELLO_WORLD
 
 inherit
 
-	CALLBACK_FUNCTIONS_EXTERNAL
+	CALLBACK_FUNCTIONS_API
 		export {NONE} all end
 
-	EWG_CALLBACK_CALLBACK_C_GLUE_CODE_FUNCTIONS_EXTERNAL
+	EWG_CALLBACK_CALLBACK_C_GLUE_CODE_FUNCTIONS_API
 		export {NONE} all end
 
 	SAMPLE_CALLBACK_TYPE_CALLBACK
@@ -29,7 +29,7 @@ feature
 
 	make is
 		local
-			function_table: FUNCTION_TABLE_STRUCT
+			function_table: FUNCTION_TABLE_STRUCT_API
 			i: INTEGER
 		do
 				-- Create the callback dispatcher and
@@ -41,17 +41,17 @@ feature
 				-- Trigger a callback event without the dispatcher connected
 				-- to the c library. You will notice that `on_callback'
 				-- will not be called.
-			trigger_event_external (27)
+			trigger_event (27)
 				-- Now lets register the dispatcher with the c library.
-			register_callback_external (dispatcher.c_dispatcher, Default_pointer)
+			register_callback (dispatcher.c_dispatcher, Default_pointer)
 				-- This time the triggering will yield a call to `on_callback'.
-			trigger_event_external (28)
+			trigger_event (28)
 
 				-- This demonstrates how to call function pointers as members of structs
 				-- Get a struct with a function pointer member
-			create function_table.make_shared (get_function_table_external)
+			create function_table.make_by_pointer (get_function_table)
 				-- Call it using the appropriate caller
-			i := call_int_int_int_anonymous_callback_external (function_table.callme, 7, 10)
+			i := call_int_int_int_anonymous_callback (function_table.callme, 7, 10)
 				-- The c function we called should have added the integers
 			print ("result of callme: " + i.out + "%N")
 		end

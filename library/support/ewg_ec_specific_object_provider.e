@@ -22,7 +22,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (a_se: G; a_ise: G; a_ve: G; a_mode: EWG_EIFFEL_COMPILER_MODE) is
+	make (a_se: G; a_ise: G; a_ve: G; a_mode: EWG_EIFFEL_COMPILER_MODE)
 		require
 			a_se_not_void: a_se /= Void
 			a_ise_not_void: a_ise /= Void
@@ -42,7 +42,7 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	item: G is
+	item: G 
 		do
 			if mode.eiffel_compiler_mode = eiffel_compiler_names.ise_code then
 				Result := ise

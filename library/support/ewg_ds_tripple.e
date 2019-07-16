@@ -27,7 +27,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (v: G; w: H; x: I) is
+	make (v: G; w: H; x: I)
 			-- Create a new cell containing `v', `w' and `x'.
 		do
 			first := v
@@ -46,7 +46,7 @@ feature -- Access
 
 feature -- Element change
 
-	put_third (x: I) is
+	put_third (x: I) 
 			-- Insert `x' in cell.
 		do
 			third := x

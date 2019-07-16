@@ -23,7 +23,7 @@ create {EWG_SHARED_STRUCT_FEATURE_NAMES}
 
 feature {NONE} -- Initialization
 
-	make 
+	make
 			-- Create new feature name object.
 		do
 		end
@@ -43,14 +43,13 @@ feature {NONE} -- Implementation
 		once
 			create Result.make (8)
 			Result.set_equality_tester (string_equality_tester)
-			Result.put_new ("make_new_shared")
-			Result.put_new ("make_unshared")
-			Result.put_new ("make_shared")
+			Result.put_new ("make")
+			Result.put_new ("make_by_pointer")
 			Result.put_new ("item")
-			Result.put_new ("sizeof")
-			Result.put_new ("is_shared")
+			Result.put_new ("structure_size")
+			Result.put_new ("internal_item")
 			Result.put_new ("exists")
-			Result.put_new ("managed_data")
+			Result.put_new ("managed_pointer")
 		ensure
 			names_not_void: names /= Void
 		end

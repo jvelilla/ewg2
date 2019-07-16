@@ -14,8 +14,6 @@ class EWG_ZERO_TERMINATED_STRING
 
 inherit
 
-	ANY
-
 	KL_IMPORTED_STRING_ROUTINES
 		export {NONE} all end
 
@@ -232,7 +230,7 @@ feature {ANY} -- Access
 
 feature {ANY} -- Basic Operations
 
-	set_string (a_string: STRING) 
+	set_string (a_string: STRING)
 			-- Copy content from `a_string' into
 			-- wrapped c string.
 		require

@@ -27,7 +27,7 @@ inherit
 
 feature
 
-	make (a_header_file_name: STRING) is
+	make (a_header_file_name: STRING)
 			-- Create a new scanner.
 			-- `a_header_file_name' will only be used until
 			-- the first header file name directive has been found.
@@ -47,7 +47,7 @@ feature -- Access
 
 	last_value: ANY
 
-	print_last_token is
+	print_last_token 
 			-- Print to standard error debug information
 			-- about the last token read. Can be redefined
 			-- in descendant classes to print more information.
@@ -84,14 +84,14 @@ feature -- Access
 			std.error.put_string ("%N")
 		end
 
-	set_header_line_number (a_line_number: INTEGER) is
+	set_header_line_number (a_line_number: INTEGER)
 		require
 			a_line_number_greater_zero: a_line_number > 0
 		do
 			last_header_line_numer := a_line_number
 		end
 
-	set_header_file_name (a_file_name: STRING) is
+	set_header_file_name (a_file_name: STRING)
 		require
 			a_file_name_not_void: a_file_name /= Void
 		do

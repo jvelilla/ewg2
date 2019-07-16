@@ -14,8 +14,6 @@ class EWG_EIFFEL_WRAPPER_SET
 
 inherit
 
-	ANY
-
 	EWG_RENAMER
 		export {NONE} all end
 
@@ -208,6 +206,7 @@ feature {ANY} -- Helper queries
 			enum_type ?= a_type
 			struct_type ?= a_type
 			union_type ?= a_type
+
 			if a_type.is_callback then
 				pointer_type ?= a_type.skip_consts_and_aliases
 			end
@@ -353,6 +352,16 @@ feature {ANY} -- Query existing wrappers
 			has_wrapper_for_a_struct_type: has_wrapper_for_type (a_struct_type)
 		do
 			Result := struct_wrapper_table.item (a_struct_type)
+		ensure
+			result_not_void: Result /= Void
+		end
+
+	union_wrapper_from_union_type (a_union_type: EWG_C_AST_UNION_TYPE): EWG_UNION_WRAPPER
+		require
+			a_union_type_not_void: a_union_type /= Void
+			has_wrapper_for_a_union_type: has_wrapper_for_type (a_union_type)
+		do
+			Result := union_wrapper_table.item (a_union_type)
 		ensure
 			result_not_void: Result /= Void
 		end
@@ -537,7 +546,6 @@ feature {NONE} -- Tables that map C AST to wrapper
 			-- Table containing callback wrappers.
 			-- Maps C function callbacks to its wrappers.
 
-
 feature {NONE} -- Grouping of function and callbacks by header file name
 
 	function_wrapper_groups: DS_HASH_TABLE [DS_LINKED_LIST [EWG_FUNCTION_WRAPPER], STRING]
@@ -556,6 +564,7 @@ feature {NONE} -- Implementation Constants
 	Initial_callback_wrapper_groups_size: INTEGER = 800
 	Initial_function_wrapper_groups_size: INTEGER = 800
 	Initial_wrapper_clash_table_size: INTEGER = 80
+	Initial_array_wrapper_table_size: INTEGER = 1000
 
 invariant
 

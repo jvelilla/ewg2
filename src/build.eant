@@ -122,7 +122,7 @@
 		</description>
 
 		<geant file="${EWG}/src/ewg/build.eant" target="${target}" dir="${EWG}/src/ewg"/>
-		<geant file="${EWG}/src/drc/build.eant" target="${target}" dir="${EWG}/src/drc" if="${EPOSIX}"/>
+		<!--geant file="${EWG}/src/drc/build.eant" target="${target}" dir="${EWG}/src/drc" if="${EPOSIX}"/>-->
 	</target>
 
 </project>

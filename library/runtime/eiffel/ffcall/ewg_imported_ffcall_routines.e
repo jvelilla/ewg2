@@ -1,4 +1,4 @@
-indexing
+note
 
 	description:
 
@@ -14,7 +14,7 @@ class EWG_IMPORTED_FFCALL_ROUTINES
 
 feature {ANY} -- Access
 
-	FFCALL_: EWG_EXTERNAL_FFCALL_ROUTINES is
+	FFCALL_: EWG_EXTERNAL_FFCALL_ROUTINES 
 			-- FFCALL external routines
 		once
 			create Result

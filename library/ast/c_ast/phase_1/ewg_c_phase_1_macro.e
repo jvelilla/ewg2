@@ -28,7 +28,7 @@ create
 
 feature
 
-	make (a_name: STRING) is
+	make (a_name: STRING)
 		require
 			a_name_not_void: a_name /= Void
 		do
@@ -38,7 +38,7 @@ feature
 		end
 
 
-	make_with_definition (a_name: STRING; a_definition: STRING) is
+	make_with_definition (a_name: STRING; a_definition: STRING)
 		require
 			a_name_not_void: a_name /= Void
 			a_definition_not_void: a_definition /= Void
@@ -48,7 +48,7 @@ feature
 			create arguments.make
 		end
 
-	make_with_arguments_and_definition (a_name: STRING; a_arguments: DS_LINKED_LIST[STRING]; a_definition: STRING) is
+	make_with_arguments_and_definition (a_name: STRING; a_arguments: DS_LINKED_LIST[STRING]; a_definition: STRING)
 		require
 			a_name_not_void: a_name /= Void
 			a_definition_not_void: a_definition /= Void
@@ -60,7 +60,7 @@ feature
 			definition := a_definition
 		end
 
-	make_with_arguments (a_name: STRING; a_arguments: DS_LINKED_LIST[STRING]) is
+	make_with_arguments (a_name: STRING; a_arguments: DS_LINKED_LIST[STRING])
 		require
 			a_name_not_void: a_name /= Void
 			a_arguments_not_void: a_arguments /= Void
@@ -84,7 +84,7 @@ feature
 
 feature
 
-	out: STRING is
+	out: STRING 
 		local
 			cs: DS_LINKED_LIST_CURSOR [STRING]
 		do

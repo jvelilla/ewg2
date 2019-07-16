@@ -11,41 +11,6 @@
 		<option name="link" value="${EWG}\test\ewg_runtime_test_c_eiffel_glue_library_ge_msc.lib"/>
 		<cluster name="ewg_test_suite_testgen" location="TESTGEN"/>
 	</cluster>
-	<cluster name="library" location="${EWG}/library" prefix="ewg_">
-		<cluster name="printer"/>
-		<cluster name="support"/>
-		<cluster name="error"/>
-		<cluster name="processor"/>
-		<cluster name="config" prefix="ewg_ewg_config">
-			<cluster name="ast"/>
-			<cluster name="parser"/>
-		</cluster>
-		<cluster name="parser">
-			<cluster name="c_parser"/>
-			<cluster name="c_macro_parser"/>
-		</cluster>
-		<cluster name="ast">
-			<cluster name="c_ast">
-				<cluster name="phase_1"/>
-				<cluster name="phase_2">
-					<cluster name="type"/>
-					<cluster name="declaration"/>
-				</cluster>
-			</cluster>
-			<cluster name="eiffel_ast"/>
-		</cluster>
-		<cluster name="generator">
-			<cluster name="c_glue_code"/>
-			<cluster name="eiffel_external"/>
-			<cluster name="eiffel_abstraction"/>
-		</cluster>
-	</cluster>
-	<cluster name="runtime" location="${EWG}/library/runtime/eiffel" prefix="ewg_">
-		<cluster name="spec">
-			<option name="abstract" value="true"/>
-			<cluster name="ge" prefix="ewg_runtime_spec_"/>
-		</cluster>
-	</cluster>
 	<cluster name="ge" location="${GOBO}/library"/>
 	<cluster name="argument" location="${GOBO}/library/argument/src" prefix="ap_"/>
 	<cluster name="kernel" location="${GOBO}/library/kernel/src" prefix="kl_">

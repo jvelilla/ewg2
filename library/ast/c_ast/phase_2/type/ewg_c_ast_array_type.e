@@ -141,7 +141,7 @@ feature -- Visitor Pattern
 
 feature {EWG_C_AST_BASED_TYPE}
 
-	number_of_pointer_or_array_types_between_current_and_type_recursive (a_type: EWG_C_AST_TYPE; a_indirections: INTEGER): INTEGER 
+	number_of_pointer_or_array_types_between_current_and_type_recursive (a_type: EWG_C_AST_TYPE; a_indirections: INTEGER): INTEGER
 		local
 			base_based_type: EWG_C_AST_BASED_TYPE
 		do

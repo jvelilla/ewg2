@@ -14,8 +14,6 @@ class EWG_CONFIG_WRAPPER_TYPE_NAMES
 
 inherit
 
-	ANY
-
 	EWG_SHARED_STRING_EQUALITY_TESTER
 		export {NONE} all end
 
@@ -38,7 +36,7 @@ feature -- Constants
 		end
 
 
-	is_valid_wrapper_type_name (a_value: STRING): BOOLEAN 
+	is_valid_wrapper_type_name (a_value: STRING): BOOLEAN
 		require
 			a_value_not_void: a_value /= Void
 		do

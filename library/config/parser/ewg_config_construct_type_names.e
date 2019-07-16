@@ -29,6 +29,8 @@ feature -- Names
 	function_name: STRING = "function"
 	callback_name: STRING = "callback"
 
+	array_name: STRING = "array"
+
 feature -- Codes
 
 	any_code: INTEGER = unique
@@ -38,6 +40,8 @@ feature -- Codes
 	enum_code: INTEGER = unique
 	function_code: INTEGER = unique
 	callback_code: INTEGER = unique
+
+	array_code: INTEGER = unique
 
 feature -- Status
 
@@ -95,7 +99,7 @@ feature {NONE} -- Implementation
 
 	construct_type_name_table: DS_HASH_TABLE [INTEGER, STRING]
 		once
-			create Result.make_map (7)
+			create Result.make_map (8)
 			Result.set_key_equality_tester (string_equality_tester)
 			Result.put_new (any_code, any_name)
 			Result.put_new (none_code, none_name)
@@ -104,6 +108,7 @@ feature {NONE} -- Implementation
 			Result.put_new (enum_code, enum_name)
 			Result.put_new (function_code, function_name)
 			Result.put_new (callback_code, callback_name)
+			Result.put_new (array_code, array_name)
 		ensure
 			construct_type_name_table_not_void: Result /= Void
 			construct_type_name_table_doesnt_have_void_name: not Result.has (Void)

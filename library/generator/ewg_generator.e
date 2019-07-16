@@ -14,8 +14,6 @@ class EWG_GENERATOR
 
 inherit
 
-	ANY
-
 	EWG_RENAMER
 		export {NONE} all end
 
@@ -90,85 +88,31 @@ feature {NONE} -- Implementation
 	generate_enum_wrappers
 		local
 			eiffel_api_generator: EWG_EIFFEL_API_ENUM_WRAPPER_GENERATOR
-			eiffel_external_generator: EWG_EIFFEL_EXTERNAL_ENUM_WRAPPER_GENERATOR
 		do
-			create eiffel_external_generator.make (error_handler, directory_structure)
-			eiffel_external_generator.generate_for_all_compilers (eiffel_wrapper_set)
 			create eiffel_api_generator.make (error_handler, directory_structure)
 			eiffel_api_generator.generate_for_all_compilers (eiffel_wrapper_set)
 		end
 
 	generate_struct_wrappers
 		local
-			c_glue_header_generator: EWG_C_GLUE_HEADER_STRUCT_WRAPPER_GENERATOR
-			eiffel_external_generator: EWG_EIFFEL_EXTERNAL_STRUCT_WRAPPER_GENERATOR
-			eiffel_abstraction_generator: EWG_EIFFEL_ABSTRACTION_STRUCT_WRAPPER_GENERATOR
-			eiffel_inline_generator: EWG_EIFFEL_INLINE_STRUCT_WRAPPER_GENERATOR
 			eiffel_api_generator: EWG_EIFFEL_API_STRUCT_WRAPPER_GENERATOR
 		do
-			create c_glue_header_generator.make (error_handler, directory_structure)
-			c_glue_header_generator.eiffel_compiler_mode.set_ise_mode
-			c_glue_header_generator.generate (eiffel_wrapper_set)
-
-			create eiffel_external_generator.make (error_handler, directory_structure)
-			eiffel_external_generator.generate_for_all_compilers (eiffel_wrapper_set)
-
-			create eiffel_inline_generator.make (error_handler, directory_structure)
-			eiffel_inline_generator.generate_for_all_compilers (eiffel_wrapper_set)
-
-			create eiffel_abstraction_generator.make (error_handler, directory_structure)
-			eiffel_abstraction_generator.generate (eiffel_wrapper_set)
-
 			create eiffel_api_generator.make (error_handler, directory_structure)
 			eiffel_api_generator.generate (eiffel_wrapper_set)
-
 		end
 
 	generate_union_wrappers
 		local
-			c_glue_header_generator: EWG_C_GLUE_HEADER_UNION_WRAPPER_GENERATOR
-			eiffel_external_generator: EWG_EIFFEL_EXTERNAL_UNION_WRAPPER_GENERATOR
-			eiffel_inline_generator: EWG_EIFFEL_INLINE_UNION_WRAPPER_GENERATOR
-			eiffel_abstraction_generator: EWG_EIFFEL_ABSTRACTION_UNION_WRAPPER_GENERATOR
 			eiffel_api_generator: EWG_EIFFEL_API_UNION_WRAPPER_GENERATOR
 		do
-			create c_glue_header_generator.make (error_handler, directory_structure)
-			c_glue_header_generator.eiffel_compiler_mode.set_ise_mode
-			c_glue_header_generator.generate (eiffel_wrapper_set)
-
-			create eiffel_external_generator.make (error_handler, directory_structure)
-			eiffel_external_generator.generate_for_all_compilers (eiffel_wrapper_set)
-
-			create eiffel_inline_generator.make (error_handler, directory_structure)
-			eiffel_inline_generator.generate_for_all_compilers (eiffel_wrapper_set)
-
-			create eiffel_abstraction_generator.make (error_handler, directory_structure)
-			eiffel_abstraction_generator.generate (eiffel_wrapper_set)
-
 			create eiffel_api_generator.make (error_handler, directory_structure)
 			eiffel_api_generator.generate (eiffel_wrapper_set)
-
 		end
 
 	generate_function_wrappers
 		local
-			c_glue_code_generator: EWG_C_GLUE_CODE_FUNCTION_WRAPPER_GENERATOR
-			c_glue_header_generator: EWG_C_GLUE_HEADER_FUNCTION_WRAPPER_GENERATOR
-			eiffel_external_generator: EWG_EIFFEL_EXTERNAL_FUNCTION_WRAPPER_GENERATOR
-			eiffel_abstraction_generator: EWG_EIFFEL_ABSTRACTION_FUNCTION_WRAPPER_GENERATOR
-			eiffel_inline_generator: EWG_EIFFEL_INLINE_FUNCTION_WRAPPER_GENERATOR
 			eiffel_api_generator: EWG_EIFFEL_API_FUNCTION_WRAPPER_GENERATOR
 		do
-			create eiffel_inline_generator.make (error_handler, directory_structure)
-			eiffel_inline_generator.generate (eiffel_wrapper_set)
-			create c_glue_code_generator.make (error_handler, directory_structure)
-			c_glue_code_generator.generate_for_all_compilers (eiffel_wrapper_set)
-			create c_glue_header_generator.make (error_handler, directory_structure)
-			c_glue_header_generator.generate_for_all_compilers (eiffel_wrapper_set)
-			create eiffel_external_generator.make (error_handler, directory_structure)
-			eiffel_external_generator.generate_for_all_compilers (eiffel_wrapper_set)
-			create eiffel_abstraction_generator.make (error_handler, directory_structure)
-			eiffel_abstraction_generator.generate (eiffel_wrapper_set)
 			create eiffel_api_generator.make (error_handler, directory_structure)
 			eiffel_api_generator.generate (eiffel_wrapper_set)
 		end

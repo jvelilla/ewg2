@@ -47,7 +47,7 @@ feature -- Generation
 				ffcall_callback_wrapper ?= cs.item
 				if ffcall_callback_wrapper /= Void then
 
-					file_name := file_system.pathname (directory_structure.eiffel_abstraction_callback_directory_name,
+					file_name := file_system.pathname (directory_structure.eiffel_directory_name,
 																  (eiffel_class_name_from_c_callback_name (ffcall_callback_wrapper.mapped_eiffel_name) + "_CALLBACK").as_lower + ".e")
 
 					create file.make (file_name)
@@ -70,7 +70,7 @@ feature -- Generation
 
 feature {NONE} -- Implementation
 
-	generate_callback_wrapper (a_callback_wrapper: EWG_FFCALL_CALLBACK_WRAPPER) 
+	generate_callback_wrapper (a_callback_wrapper: EWG_FFCALL_CALLBACK_WRAPPER)
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 		local
@@ -91,12 +91,12 @@ feature {NONE} -- Implementation
 			output_stream.put_line ("%TEWG_IMPORTED_FFCALL_ROUTINES")
 			output_stream.put_line ("%T%Texport {NONE} all end")
 			output_stream.put_new_line
-			output_stream.put_line ("%TEWG_CALLBACK_C_GLUE_CODE_FUNCTIONS_EXTERNAL")
+			output_stream.put_line ("%TEWG_CALLBACK_C_GLUE_CODE_FUNCTIONS_API")
 			output_stream.put_line ("%T%Texport {NONE} all end")
 			output_stream.put_new_line
 			output_stream.put_line ("feature {NONE} -- Initialization")
 			output_stream.put_new_line
-			output_stream.put_line ("%Tmake is")
+			output_stream.put_line ("%Tmake ")
 			output_stream.put_line ("%T%T%T-- Create new (already registered) callback object")
 			output_stream.put_line ("%T%Tdo")
 			output_stream.put_line ("%T%T%Tregister")
@@ -106,7 +106,7 @@ feature {NONE} -- Implementation
 			output_stream.put_new_line
 			output_stream.put_line ("feature {ANY}")
 			output_stream.put_new_line
-			output_stream.put_line ("%Titem: POINTER is")
+			output_stream.put_line ("%Titem: POINTER ")
 			output_stream.put_line ("%T%T%T-- Pointer to register callback on the C side")
 			output_stream.put_line ("%T%Trequire")
 			output_stream.put_line ("%T%T%Tis_registered: is_registered")
@@ -116,13 +116,13 @@ feature {NONE} -- Implementation
 			output_stream.put_line ("%T%T%Titem_not_null: item /= Default_pointer")
 			output_stream.put_line ("%T%Tend")
 			output_stream.put_new_line
-			output_stream.put_line ("%Tis_registered: BOOLEAN is")
-			output_stream.put_line ("%T%T%T-- Is `Current' registered ?")
+			output_stream.put_line ("%Tis_registered: BOOLEAN ")
+			output_stream.put_line ("%T%T%T-- `Current' registered ?")
 			output_stream.put_line ("%T%Tdo")
 			output_stream.put_line ("%T%T%TResult := entry_struct /= Void")
 			output_stream.put_line ("%T%Tend")
 			output_stream.put_new_line
-			output_stream.put_line ("%Tregister is")
+			output_stream.put_line ("%Tregister ")
 			output_stream.put_line ("%T%T%T-- Register this callback.")
 			output_stream.put_line ("%T%T%T-- Note that if the C side tried to call an")
 			output_stream.put_line ("%T%T%T-- unregistered callback the behavior is undefined.")
@@ -140,7 +140,7 @@ feature {NONE} -- Implementation
 			output_stream.put_line ("%T%T%Tis_registered: is_registered")
 			output_stream.put_line ("%T%Tend")
 			output_stream.put_new_line
-			output_stream.put_line ("%Tunregister is")
+			output_stream.put_line ("%Tunregister ")
 			output_stream.put_line ("%T%T%T-- Unregister this callback.")
 			output_stream.put_line ("%T%T%T-- Note that as long as a callback is registered")
 			output_stream.put_line ("%T%T%T-- it will not be collected by the garbage collector.")

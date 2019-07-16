@@ -157,7 +157,7 @@ feature {NONE}
 				end
 		end
 
-	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING 
+	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING
 		do
 				check
 					dead_end: False

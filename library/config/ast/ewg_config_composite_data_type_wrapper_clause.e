@@ -107,6 +107,7 @@ feature {NONE}
 			member_wrapper: EWG_MEMBER_WRAPPER
 			struct_type: EWG_C_AST_STRUCT_TYPE
 			struct_wrapper: EWG_STRUCT_WRAPPER
+			union_wrapper: EWG_UNION_WRAPPER
 			wrappable_type: EWG_C_AST_TYPE
 		do
 			if
@@ -130,22 +131,53 @@ feature {NONE}
 																							  a_member,
 																							  struct_wrapper)
 					a_composite_data_wrapper.add_member (member_wrapper)
+				elseif 	a_member.type.based_type_recursive.is_union_type and
+						a_member.type.total_pointer_indirections = 1 then
+					if attached {EWG_C_AST_UNION_TYPE} a_member.type.based_type_recursive as union_type then
+						a_config_system.force_shallow_wrap_type (a_member.type,
+																							  a_include_header_file_name,
+																							  a_eiffel_wrapper_set)
+											-- we have a pointer to a union (+/- consts and aliases)
+						union_wrapper := a_eiffel_wrapper_set.union_wrapper_from_union_type (union_type)
+						create {EWG_UNION_MEMBER_WRAPPER} member_wrapper.make (eiffel_parameter_name_from_c_parameter_name (a_member.declarator),
+																												  a_include_header_file_name,
+																												  a_member,
+																												  union_wrapper)
+						a_composite_data_wrapper.add_member (member_wrapper)
+					end
+				else
+						-- default mapping
+					wrappable_type := a_member.type.skip_wrapper_irrelevant_types
+					if
+						(wrappable_type.can_be_wrapped or wrappable_type.has_built_in_wrapper)
+					then
+
+						a_config_system.force_shallow_wrap_type (a_member.type,
+																			  a_include_header_file_name,
+																			  a_eiffel_wrapper_set)
+
+						create {EWG_NATIVE_MEMBER_WRAPPER} member_wrapper.make (eiffel_parameter_name_from_c_parameter_name (a_member.declarator),
+																								  a_include_header_file_name,
+																								  a_member)
+						a_composite_data_wrapper.add_member (member_wrapper)
+					end
 				end
-			end
-			-- default mapping
-			wrappable_type := a_member.type.skip_wrapper_irrelevant_types
-			if
-				(wrappable_type.can_be_wrapped or wrappable_type.has_built_in_wrapper)
-			then
+			else
+					-- default mapping
+				wrappable_type := a_member.type.skip_wrapper_irrelevant_types
+				if
+					(wrappable_type.can_be_wrapped or wrappable_type.has_built_in_wrapper)
+				then
 
-				a_config_system.force_shallow_wrap_type (a_member.type,
-																	  a_include_header_file_name,
-																	  a_eiffel_wrapper_set)
+					a_config_system.force_shallow_wrap_type (a_member.type,
+																		  a_include_header_file_name,
+																		  a_eiffel_wrapper_set)
 
-				create {EWG_NATIVE_MEMBER_WRAPPER} member_wrapper.make (eiffel_parameter_name_from_c_parameter_name (a_member.declarator),
-																						  a_include_header_file_name,
-																						  a_member)
-				a_composite_data_wrapper.add_member (member_wrapper)
+					create {EWG_NATIVE_MEMBER_WRAPPER} member_wrapper.make (eiffel_parameter_name_from_c_parameter_name (a_member.declarator),
+																							  a_include_header_file_name,
+																							  a_member)
+					a_composite_data_wrapper.add_member (member_wrapper)
+				end
 			end
 		end
 
@@ -158,7 +190,7 @@ feature {NONE}
 			end
 		end
 
-	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING 
+	default_eiffel_identifier_for_declaration (a_declaration: EWG_C_AST_DECLARATION): STRING
 		do
 				check
 					dead_end: False

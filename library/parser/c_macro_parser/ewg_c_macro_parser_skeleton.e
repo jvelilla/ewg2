@@ -26,7 +26,7 @@ inherit
 
 feature -- Initialization
 
-	make (a_error_handler: like error_handler) is
+	make (a_error_handler: like error_handler)
 			-- Create a new parser.
 		require
 			a_error_handler_not_void: a_error_handler /= Void
@@ -36,7 +36,7 @@ feature -- Initialization
 			error_handler_set: error_handler = a_error_handler
 		end
 
-	parse_buffer (a_buffer: KI_CHARACTER_INPUT_STREAM) is
+	parse_buffer (a_buffer: KI_CHARACTER_INPUT_STREAM) 
 		do
 			set_input_buffer (new_file_buffer (a_buffer))
 			parse

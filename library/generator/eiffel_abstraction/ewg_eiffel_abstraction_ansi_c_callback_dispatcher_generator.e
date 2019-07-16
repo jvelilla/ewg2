@@ -45,7 +45,7 @@ feature -- Generation
 			loop
 				if cs.item /= Void then
 
-					file_name := file_system.pathname (directory_structure.eiffel_abstraction_callback_directory_name, (eiffel_class_name_from_c_callback_name (cs.item.mapped_eiffel_name) + "_DISPATCHER").as_lower + ".e")
+					file_name := file_system.pathname (directory_structure.eiffel_directory_name, (eiffel_class_name_from_c_callback_name (cs.item.mapped_eiffel_name) + "_DISPATCHER").as_lower + ".e")
 
 					create file.make (file_name)
 					file.recursive_open_write
@@ -74,68 +74,69 @@ feature {NONE} -- Implementation
 			class_name: STRING
 			upper_name: STRING
 			ext_class_name: STRING
+			function_name: STRING
 		do
 			class_name := eiffel_class_name_from_c_callback_name (a_callback_wrapper.mapped_eiffel_name) + "_DISPATCHER"
 			upper_name := eiffel_class_name_from_c_callback_name (a_callback_wrapper.mapped_eiffel_name)
 
+			function_name := c_header_file_name_to_eiffel_class_name (a_callback_wrapper.header_file_name)
 			ext_class_name := c_header_file_name_to_eiffel_class_name (directory_structure.relative_callback_c_glue_header_file_name)
+
 			template_expander.expand_into_stream_from_array (output_stream,
 																			 dispatcher_class_template,
 																			 <<upper_name,
 																				a_callback_wrapper.set_entry_struct.mapped_eiffel_name,
 																				on_callback (a_callback_wrapper, "on_callback", "callback.on_callback"), -- TODO: big mem waster (write to stream directly instead of creating temp string!)
 																				ext_class_name,
-																				a_callback_wrapper.get_stub.mapped_eiffel_name>>)
+																				a_callback_wrapper.get_stub.mapped_eiffel_name,
+																				function_name>>)
 		end
 
 feature {NONE} -- Templates
 
-	dispatcher_class_template: STRING 
+	dispatcher_class_template: STRING
 			-- $1 ... callback name in upper case
 			-- $2 ... "set_entry_*_struct" function name
 			-- $3 ... on_callback
 			-- $4 ... class name of external function wrapper for callback glue
 			-- $5 ... "get_*_stub" function name
 		once
-			Result := "class $1_DISPATCHER%N" +
+			Result := "deferred class $1_DISPATCHER%N" +
 				"%N" +
 				"inherit%N" +
 				"%N" +
-				"%TANY%N" +
-				"%N" +
-				"%T$4_FUNCTIONS_EXTERNAL%N" +
+				"%T$1_CALLBACK%N" +
 				"%T%Texport {NONE} all end%N" +
 				"%N" +
-				"create%N" +
+				"%T$4_FUNCTIONS_API%N" +
+				"%T%Texport {NONE} all end%N" +
 				"%N" +
-				"%Tmake%N" +
+				"%T$6_FUNCTIONS_API%N" +
+				"%T%Texport {NONE} all end%N" +
 				"%N" +
-				"feature {NONE}%N" +
+				"feature -- Initialization%N" +
 				"%N" +
-				"%Tmake (a_callback: $1_CALLBACK) is%N" +
-				"%T%Trequire%N" +
-				"%T%T%Ta_callback_not_void: a_callback /= Void%N" +
+				"%Tmake %N" +
+				"%T%T%T%T-- Dispatcher initialization%N" +
 				"%T%Tdo%N" +
-				"%T%T%Tcallback := a_callback%N" +
-				"%T%T%T$2_external (Current, $on_callback)%N" +
+				"%T%T%T$2 (Current, $on_callback)%N" +
+				"%T%T%Tregister_callback (c_dispatcher)%N" +
 				"%T%Tend%N" +
 				"%N" +
 				"feature {ANY}%N" +
 				"%N" +
-				"%Tcallback: $1_CALLBACK%N" +
-				"%N" +
-				"%Tc_dispatcher: POINTER is%N" +
+				"%Tc_dispatcher: POINTER %N" +
 				"%T%Tdo%N" +
-				"%T%T%TResult := $5_external%N" +
+				"%T%T%TResult := $5%N" +
 				"%T%Tend%N" +
 				"%N" +
-				"feature {NONE} -- Implementation%N" +
+				"feature {ANY}%N" +
 				"%N" +
-				"%Tfrozen $3" +
-				"%N" +
-				"invariant%N" +
-				"%N" +
-				"%T callback_not_void: callback /= Void%N" +
+				"%Tregister_callback (a_dispatcher: POINTER)%N" +
+				"%T%T%T%T-- Register callback%N" +
+				"%T%Tdeferred%N" +
+				"%T%T%T-- Register the callback defined in $6_FUNCTIONS_API%N" +
+				"%T%Tend%N" +
 				"%N" +
 				"end%N"
 			end

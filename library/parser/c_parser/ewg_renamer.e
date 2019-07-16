@@ -130,7 +130,7 @@ feature
 			-- cut of file name extension
 			-- NOTE: I am not sure why I have to clone here,
 			--	     but weird things happen if I don't !
-			Result := file_system.basename (clone (a_header_file_name))
+			Result := file_system.basename (a_header_file_name.twin)
 			a_ext := file_system.extension (Result)
 			Result.remove_tail (a_ext.count)
 			Result.to_upper
@@ -160,7 +160,7 @@ feature
 			-- cut of file name extension
 			-- NOTE: I am not sure why I have to clone here,
 			--	     but weird things happen if I don't !
-			Result := file_system.basename (clone (a_header_file_name))
+			Result := file_system.basename (a_header_file_name.twin)
 			a_ext := file_system.extension (Result)
 			Result.remove_tail (a_ext.count)
 			Result.to_upper
@@ -376,18 +376,18 @@ feature {NONE} -- Implementation
 			lower: STRING
 		do
 			Result := a_name
-			lower := clone (a_name)
+			lower := a_name.twin
 			lower.to_lower
 			if eiffel_keywords.has (lower) then
-				Result := clone (Result)
+				Result := Result.twin
 				Result.append_string ("_")
 			end
 			if any_feature_names.has (lower) then
-				Result := clone (Result)
+				Result := Result.twin
 				Result.append_string ("_")
 			end
 			if struct_feature_names.has (lower) then
-				Result := clone (Result)
+				Result := Result.twin
 				Result.append_string ("_")
 			end
 		ensure
@@ -397,25 +397,32 @@ feature {NONE} -- Implementation
 
 	eiffel_keywords: DS_HASH_SET [STRING]
 			-- TODO: Create class like EWG_ANY_FEATURE_NAMES
+		note
+			EIS: "name=Eiffel Reserved words", "src=https://www.eiffel.org/doc/eiffel/Eiffel_programming_language_reserved_words", "protocol=uri"
 		once
 			create Result.make (100)
 			Result.set_equality_tester (string_equality_tester)
 				-- Taken from ETL Appendix G
+			Result.put ("across")
 			Result.put ("alias")
 			Result.put ("all")
 			Result.put ("and")
 			Result.put ("as")
-			Result.put ("bit")
-			Result.put ("boolean")
-			Result.put ("character")
+			Result.put ("assign")
+			Result.put ("attribute")
+--			Result.put ("bit")
+--			Result.put ("boolean")
+--			Result.put ("character")
 			Result.put ("check")
 			Result.put ("class")
-			Result.put ("creation")
+			Result.put ("convert")
+			Result.put ("create")
+--			Result.put ("creation")
 			Result.put ("current")
 			Result.put ("debug")
 			Result.put ("deferred")
 			Result.put ("do")
-			Result.put ("double")
+--			Result.put ("double")
 			Result.put ("else")
 			Result.put ("elseif")
 			Result.put ("end")
@@ -429,25 +436,28 @@ feature {NONE} -- Implementation
 			Result.put ("frozen")
 			Result.put ("if")
 			Result.put ("implies")
-			Result.put ("indexing")
-			Result.put ("infix")
+--			Result.put ("indexing")
+--			Result.put ("infix")
 			Result.put ("inherit")
 			Result.put ("inspect")
-			Result.put ("integer")
+--			Result.put ("integer")
 			Result.put ("invariant")
-			Result.put ("is")
+--			Result.put ("is")
 			Result.put ("like")
 			Result.put ("local")
 			Result.put ("loop")
-			Result.put ("none")
+--			Result.put ("none")
 			Result.put ("not")
+			Result.put ("note")
 			Result.put ("obsolete")
 			Result.put ("old")
 			Result.put ("once")
+			Result.put ("only")
 			Result.put ("or")
-			Result.put ("pointer")
-			Result.put ("prefix")
-			Result.put ("real")
+			Result.put ("precursor")
+--			Result.put ("pointer")
+--			Result.put ("prefix")
+--			Result.put ("real")
 			Result.put ("redefine")
 			Result.put ("rename")
 			Result.put ("require")
@@ -456,27 +466,30 @@ feature {NONE} -- Implementation
 			Result.put ("retry")
 			Result.put ("select")
 			Result.put ("separate")
-			Result.put ("string")
-			Result.put ("strip")
+--			Result.put ("string")
+--			Result.put ("strip")
 			Result.put ("then")
 			Result.put ("true")
+			Result.put ("tuple")
 			Result.put ("undefine")
-			Result.put ("unique")
+--			Result.put ("unique")
 			Result.put ("until")
 			Result.put ("variant")
+			Result.put ("void")
 			Result.put ("when")
 			Result.put ("xor")
 
 			-- Additions
-			Result.put ("create")
-			Result.put ("agent")
-			Result.put ("Precursor")
-			Result.put ("integer_8")
-			Result.put ("integer_16")
-			Result.put ("integer_32")
-			Result.put ("integer_64")
-			Result.put ("reference")
-			Result.put ("note")
+--			Result.put ("create")
+--			Result.put ("agent")
+--			Result.put ("Precursor")
+--			Result.put ("integer_8")
+--			Result.put ("integer_16")
+--			Result.put ("integer_32")
+--			Result.put ("integer_64")
+--			Result.put ("reference")
+--			Result.put ("note")
+
 		end
 
 	upper_lower_to_underscore (a_name: STRING): STRING

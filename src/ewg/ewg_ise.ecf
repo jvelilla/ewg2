@@ -14,7 +14,7 @@
 			<void_safety support="none" use="none"/>
 		</capability>
 		<library name="base" location="${ISE_LIBRARY}\library\base\base.ecf" readonly="true"/>
-		<library name="ewg_library" location="C:\home\test\ewg\library\library.ecf"/>
+		<library name="ewg_library" location="${EWG}\library\library.ecf"/>
 		<library name="kernel" location="$ISE_LIBRARY\contrib\library\gobo\library\kernel\src\library.ecf"/>
 		<library name="regexp" location="$ISE_LIBRARY\contrib\library\gobo\library\regexp\src\library.ecf"/>
 		<library name="time" location="${ISE_LIBRARY}\library\time\time.ecf" readonly="true"/>

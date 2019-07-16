@@ -14,8 +14,6 @@ class EWG_C_AST_DECLARATION
 
 inherit
 
-	ANY
-
 	EWG_SHARED_STRING_EQUALITY_TESTER
 		export {NONE} all end
 
@@ -27,7 +25,7 @@ create
 
 feature {NONE} -- Initialisation
 
-	make (a_declarator: STRING; a_type: EWG_C_AST_TYPE; a_header_file_name: STRING) 
+	make (a_declarator: STRING; a_type: EWG_C_AST_TYPE; a_header_file_name: STRING)
 			-- Create a new declaration with the
 			-- declarator `a_declarator' and the type resp. signature
 			-- `a_type'.

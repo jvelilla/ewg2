@@ -70,8 +70,16 @@ feature -- Access
 			tester_not_void: Result /= Void
 		end
 
-	pointer_equality_tester: EWG_C_AST_TYPE_EQUALITY_TESTER [EWG_C_AST_POINTER_TYPE] 
+	pointer_equality_tester: EWG_C_AST_TYPE_EQUALITY_TESTER [EWG_C_AST_POINTER_TYPE]
 			-- Pointer equality tester
+		once
+		  create Result
+		ensure
+			tester_not_void: Result /= Void
+		end
+
+	array_equality_tester: EWG_C_AST_TYPE_EQUALITY_TESTER [EWG_C_AST_ARRAY_TYPE]
+			-- Array equality tester
 		once
 		  create Result
 		ensure

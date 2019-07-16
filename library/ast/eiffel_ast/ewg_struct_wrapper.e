@@ -46,10 +46,10 @@ feature {NONE} -- Initialization
 
 feature
 
-	c_struct_type: EWG_C_AST_STRUCT_TYPE 
+	c_struct_type: EWG_C_AST_STRUCT_TYPE
 			-- C struct type to wrapp
 		do
-			Result ?= c_composite_data_type
+			Result := if attached {EWG_C_AST_STRUCT_TYPE} c_composite_data_type as l_struct_type then l_struct_type else Void end
 		ensure
 			c_struct_type_not_void: Result /= Void
 			c_struct_type_is_c_type: Result = c_composite_data_type

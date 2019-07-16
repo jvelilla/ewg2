@@ -18,7 +18,7 @@ inherit
 
 feature {ANY} -- Access
 
-	item (i: INTEGER): G is
+	item (i: INTEGER): G
 			-- Address of the `i'-th item
 		require
 			exists: exists
@@ -33,7 +33,7 @@ feature {ANY} -- Access
 feature {NONE} -- Implementation
 
 
-	new_shared_struct_wrapper_from_pointer (a_pointer: POINTER): G is
+	new_shared_struct_wrapper_from_pointer (a_pointer: POINTER): G 
 			-- Define this routine in your concrete struct array wrapper
 			-- Use the `make_shared' create routine to create the struct.
 		require

@@ -185,7 +185,7 @@ feature
 			result_not_void: Result /= Void
 		end
 
-	eiffel_external_struct_directory_name: STRING 
+	eiffel_external_struct_directory_name: STRING
 		do
 			Result := file_system.pathname (wrapper_directory_name, relative_eiffel_external_struct_directory_name)
 		ensure
@@ -418,20 +418,14 @@ feature
 
 	callback_c_glue_header_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
-			Result := file_system.pathname (c_include_directory_name, "spec")
-			Result := file_system.pathname (Result,
-													  eiffel_compiler_names.eiffel_compiler_name_from_code (a_eiffel_compiler))
-			Result := file_system.pathname (Result, relative_callback_c_glue_header_file_name)
+			Result := file_system.pathname (c_include_directory_name, relative_callback_c_glue_header_file_name)
 		ensure
 			result_not_void: Result /= Void
 		end
 
 	callback_c_glue_code_file_name (a_eiffel_compiler: INTEGER): STRING
 		do
-			Result := file_system.pathname (c_src_directory_name, "spec")
-			Result := file_system.pathname (Result,
-													  eiffel_compiler_names.eiffel_compiler_name_from_code (a_eiffel_compiler))
-			Result := file_system.pathname (Result, relative_callback_c_glue_code_file_name)
+			Result := file_system.pathname (c_src_directory_name, relative_callback_c_glue_code_file_name)
 		ensure
 			result_not_void: Result /= Void
 		end

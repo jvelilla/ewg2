@@ -47,8 +47,8 @@ feature {ANY} -- Access
 
 feature {NONE} -- Implementation
 
-	item_size: INTEGER 
+	item_size: INTEGER
 		once
-			Result := EXTERNAL_MEMORY_.sizeof_double_external
+			Result := external_memory.sizeof_double_external
 		end
 end

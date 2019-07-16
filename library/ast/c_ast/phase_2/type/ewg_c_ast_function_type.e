@@ -94,14 +94,11 @@ feature
 			has_ellipsis_parameter_set: has_ellipsis_parameter = a_value
 		end
 
-feature
+feature 
 
 	is_same_type (other: EWG_C_AST_TYPE): BOOLEAN
-		local
-			other_function: EWG_C_AST_FUNCTION_TYPE
 		do
-			other_function ?= other
-			if other_function /= Void then
+			if attached {EWG_C_AST_FUNCTION_TYPE} other as other_function then
 				if is_anonymous then
 					Result := is_same_composite_type (other_function) and
 						return_type = other_function.return_type and
@@ -178,7 +175,7 @@ feature
 
 feature {NONE}
 
-	correct_parameter_types 
+	correct_parameter_types
 			-- Correct parameter types.
 			-- Some C compilers support funcitons as function parameters
 			-- and give the parameter the semantic of a function pointer.

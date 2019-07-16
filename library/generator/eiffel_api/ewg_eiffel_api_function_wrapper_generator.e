@@ -26,7 +26,7 @@ create
 feature {NONE} -- Implementation
 
 	make_printers
-		once
+		do
 			create c_to_eiffel_declaration_printer.make (output_stream, eiffel_compiler_mode)
 			create casted_declarator_printer.make (output_stream)
 			create eiffel_to_c_indirection_printer.make (output_stream, eiffel_compiler_mode)
@@ -120,13 +120,13 @@ feature {NONE} -- Generate Eiffel High Level Access
 		do
 				-- TODO: We ignore functions with struct or union return type for now
 				-- later this problem will be taken care of in the C glue code layer
-			if
-				a_function_wrapper.function_declaration.function_type.return_type.skip_consts_and_aliases.is_struct_type or
-					a_function_wrapper.function_declaration.function_type.return_type.skip_consts_and_aliases.is_union_type
-			then
-				-- For now we do not support unions or structs as return types to functions
-				output_stream.put_line ("-- Ignoring " + a_function_wrapper.mapped_eiffel_name + " since its return type is a composite type")
-			else
+--			if
+--				a_function_wrapper.function_declaration.function_type.return_type.skip_consts_and_aliases.is_struct_type or
+--					a_function_wrapper.function_declaration.function_type.return_type.skip_consts_and_aliases.is_union_type
+--			then
+--				-- For now we do not support unions or structs as return types to functions
+--				output_stream.put_line ("-- Ignoring " + a_function_wrapper.mapped_eiffel_name + " since its return type is a composite type")
+--			else
 				generate_routine_signature (a_function_wrapper)
 
 				generate_locals (a_function_wrapper)
@@ -140,15 +140,23 @@ feature {NONE} -- Generate Eiffel High Level Access
 					a_function_wrapper.function_declaration.function_type.return_type.skip_consts_and_aliases /=
 					c_system.types.void_type
 				then
-					output_stream.put_string ("%T%T%TResult := ")
+					if attached {EWG_C_AST_STRUCT_TYPE} a_function_wrapper.function_declaration.function_type.return_type or
+						attached {EWG_C_AST_UNION_TYPE} a_function_wrapper.function_declaration.function_type.return_type
+					then
+						output_stream.put_string ("%T%T%T create Result.make_by_pointer (")
+						generate_routine_call (a_function_wrapper)
+						output_stream.put_string (")")
+					else
+						output_stream.put_string ("%T%T%TResult := ")
+						generate_routine_call (a_function_wrapper)
+					end
 				else
 					output_stream.put_string ("%T%T%T")
+					generate_routine_call (a_function_wrapper)
 				end
-
-				generate_routine_call (a_function_wrapper)
-
+				output_stream.put_new_line
 				output_stream.put_line ("%T%Tend")
-			end
+--			end
 			output_stream.put_new_line
 		end
 
@@ -189,7 +197,15 @@ feature {NONE} -- Generate Eiffel High Level Access
 
 			if a_function_wrapper.function_declaration.function_type.return_type.skip_consts_and_aliases /= c_system.types.void_type then
 				output_stream.put_string (": ")
-				output_stream.put_string (a_function_wrapper.function_declaration.function_type.return_type.corresponding_eiffel_type)
+				if attached {EWG_C_AST_STRUCT_TYPE} a_function_wrapper.function_declaration.function_type.return_type as l_struct then
+					output_stream.put_string (l_struct.name.as_upper)
+					output_stream.put_string ("_STRUCT_API")
+				elseif attached {EWG_C_AST_UNION_TYPE} a_function_wrapper.function_declaration.function_type.return_type as l_union then
+					output_stream.put_string (l_union.name.as_upper)
+					output_stream.put_string ("_UNION_API")
+				else
+					output_stream.put_string (a_function_wrapper.function_declaration.function_type.return_type.corresponding_eiffel_type)
+				end
 			end
 			output_stream.put_string (" ")
 			output_stream.put_new_line
@@ -199,9 +215,37 @@ feature {NONE} -- Generate Eiffel High Level Access
 		require
 			a_native_member_wrapper_not_void: a_native_member_wrapper /= Void
 		do
-			output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
-			output_stream.put_string (": ")
-			output_stream.put_string (a_native_member_wrapper.eiffel_type)
+				-- TODO add different types of mapping.
+			if attached {EWG_C_AST_ARRAY_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_array then
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (": ")
+					-- TODO check\
+				if attached {EWG_C_AST_PRIMITIVE_TYPE} l_ast_array.base as l_base then
+					if l_base.is_char_type then
+						output_stream.put_string ("STRING")
+					else
+						output_stream.put_string ("ARRAY [")
+						output_stream.put_string (l_base.corresponding_eiffel_type_api)
+						output_stream.put_string ("]")
+					end
+				else
+					output_stream.put_string (a_native_member_wrapper.eiffel_type)
+				end
+			elseif attached {EWG_C_AST_STRUCT_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_struct then
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (": ")
+				output_stream.put_string (l_ast_struct.name.as_upper)
+				output_stream.put_string ("_STRUCT_API")
+			elseif attached {EWG_C_AST_UNION_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_union then
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (": ")
+				output_stream.put_string (l_ast_union.name.as_upper)
+				output_stream.put_string ("_UNION_API")
+			else
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (": ")
+				output_stream.put_string (a_native_member_wrapper.eiffel_type)
+			end
 		end
 
 	generate_signature_parameter_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER)
@@ -249,14 +293,24 @@ feature {NONE} -- Generate Eiffel Routine calls
 				end
 				output_stream.put_character (')')
 			end
-			output_stream.put_new_line
 		end
 
 	generate_routine_call_parameter_for_native_member_wrapper (a_native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER)
 		require
 			a_native_member_wrapper_not_void: a_native_member_wrapper /= Void
 		do
-			output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+			if  attached {EWG_C_AST_STRUCT_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_struct then
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (".item")
+			elseif attached {EWG_C_AST_UNION_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_union then
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (".item")
+			elseif attached {EWG_C_AST_ARRAY_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_array then
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (".area.base_address")
+			else
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+			end
 		end
 
 	generate_routine_call_parameter_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER)
@@ -352,7 +406,24 @@ feature {NONE} -- Generate Eiffel locals
 		require
 			a_native_member_wrapper_not_void: a_native_member_wrapper /= Void
 		do
-			-- Nothing to do
+			-- TODO add different types of mapping.
+--			if attached {EWG_C_AST_ARRAY_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_array then
+--				output_stream.put_string ("%T%T%Tl_" + a_native_member_wrapper.mapped_eiffel_name)
+--				output_stream.put_string (": ")
+--					-- TODO check\
+--				if attached {EWG_C_AST_PRIMITIVE_TYPE} l_ast_array.base as l_base then
+--					if l_base.is_char_type then
+--						output_stream.put_string ("C_STRING")
+--					else
+--						output_stream.put_string ("MANAGED_POINTER")
+
+--					end
+--					output_stream.put_new_line
+--				end
+--			else
+--				-- TODO
+--				-- Nothing to do.
+--			end
 		end
 
 	generate_local_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER)
@@ -380,6 +451,7 @@ feature {NONE} -- Generate Eiffel to C inline code.
 			file: KL_TEXT_OUTPUT_FILE
 		do
 			output_stream.put_line ("feature -- Externals")
+			output_stream.put_new_line
 			from
 				cs := a_function_declaration_list.new_cursor
 				cs.start
@@ -544,7 +616,7 @@ feature {NONE} -- Generate Eiffel to C inline code.
 					output_stream.put_string (" malloc (sizeof(")
 					c_declaration_printer.print_declaration_from_type (function_type.return_type, "")
 					output_stream.put_line ("));")
-					output_stream.put_string ("%T*result = ")
+					output_stream.put_string ("%T%T%T%T*result = ")
 				else
 					output_stream.put_string ("return ")
 				end
@@ -561,7 +633,7 @@ feature {NONE} -- Generate Eiffel to C inline code.
 						function_type.return_type.skip_consts_and_aliases.is_union_type
 				then
 					output_stream.put_line (";")
-					output_stream.put_string ("%Treturn result")
+					output_stream.put_string ("%T%T%T%Treturn result")
 				end
 			end
 			output_stream.put_character (';')

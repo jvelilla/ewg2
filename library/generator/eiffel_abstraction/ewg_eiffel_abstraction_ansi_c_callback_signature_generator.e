@@ -61,7 +61,7 @@ feature
 			Result.append_string ("%N%T%Tend%N")
 		end
 
-	on_callback_signature (a_callback_wrapper: EWG_CALLBACK_WRAPPER; a_feature_name: STRING): STRING 
+	on_callback_signature (a_callback_wrapper: EWG_CALLBACK_WRAPPER; a_feature_name: STRING): STRING
 		require
 			a_callback_wrapper_not_void: a_callback_wrapper /= Void
 			a_feature_name_not_void: a_feature_name /= Void
@@ -104,7 +104,7 @@ feature
 				Result.append_string (": ")
 				Result.append_string (native_member_wrapper.c_declaration.type.corresponding_eiffel_type)
 			end
-			Result.append_string (" is ")
+			Result.append_string ("  ")
 		end
 
 end
