@@ -174,6 +174,7 @@ feature {NONE}
 
 	function_wrapper_clause: EWG_CONFIG_FUNCTION_WRAPPER_CLAUSE
 
+
 invariant
 
 	struct_wrapper_clause_not_void: struct_wrapper_clause /= Void

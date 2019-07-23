@@ -13,8 +13,6 @@ class EWG_CONFIG_SYSTEM
 
 inherit
 
-	ANY
-
 	KL_IMPORTED_STRING_ROUTINES
 		export {NONE} all end
 
@@ -487,7 +485,7 @@ feature {EWG_EIFFEL_WRAPPER_BUILDER}
 			result_not_void: Result /= Void
 		end
 
-	number_of_types_whose_members_have_not_been_wrapped_yet: INTEGER 
+	number_of_types_whose_members_have_not_been_wrapped_yet: INTEGER
 			-- Number of types, whose members have yet to be wrapped
 		local
 			cs: DS_HASH_TABLE_CURSOR [BOOLEAN, EWG_C_AST_TYPE]

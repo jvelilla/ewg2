@@ -105,11 +105,6 @@ feature {ANY} -- Operations
 				if not a_type.based_type_recursive.is_struct_type then
 					Result := False
 				end
-			elseif construct_type_code = construct_type_names.array_code then
-				-- Only structs will be accepted
-				if not a_type.based_type_recursive.is_array_type then
-					Result := False
-				end
 			elseif construct_type_code = construct_type_names.union_code then
 				-- Only unions will be accepted
 				if not a_type.based_type_recursive.is_union_type then
@@ -129,9 +124,9 @@ feature {ANY} -- Operations
 					Result := False
 				end
 			else
-					check
-						dead_end: False
-					end
+				check
+					dead_end: False
+				end
 			end
 
 		end

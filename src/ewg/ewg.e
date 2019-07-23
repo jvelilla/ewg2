@@ -110,6 +110,7 @@ feature
 			c_parser.print_summary
 			c_parser := Void
 
+
 			-- post process C AST
 			post_parser_processor.post_process
 
@@ -217,7 +218,7 @@ feature
 			end
 
 			cpp_header_file_name := next_option_value
-			header_file_name := clone (cpp_header_file_name)
+			header_file_name := cpp_header_file_name.twin
 			consume_option
 
 			if match_long_option ("full-header")  then
@@ -227,7 +228,7 @@ feature
 					Exceptions.die (1)
 				end
 				full_header_file_name := next_option_value
-				header_file_name := clone (full_header_file_name)
+				header_file_name := full_header_file_name.twin
 				consume_option
 			end
 

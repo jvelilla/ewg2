@@ -26,6 +26,9 @@ inherit
 	EWG_RENAMER
 		export {NONE} all end
 
+	EWG_EIFFEL_API_SHARED
+		export {NONE} all end
+
 create
 
 	make
@@ -463,107 +466,294 @@ feature -- Generate Eiffel API
 			eiffel_member_name: STRING
 			escaped_mapped_eiffel_name: STRING
 		do
-			escaped_mapped_eiffel_name := escaped_struct_feature_name (a_mapped_eiffel_name)
-			eiffel_member_name := eiffel_parameter_name_from_c_parameter_name (a_c_declaration.declarator)
-
-			-- the getter
-			output_stream.put_string ("%T")
-			output_stream.put_string (escaped_mapped_eiffel_name)
-			output_stream.put_string (": ")
-
-			output_stream.put_string (a_c_declaration.type.corresponding_eiffel_type_api )
-			output_stream.put_new_line
-
-			output_stream.put_string ("%T%T%T-- Access member `")
-			output_stream.put_string (a_c_declaration.declarator)
-			output_stream.put_string ("`")
-			output_stream.put_new_line
-
-			output_stream.put_line ("%T%Trequire")
-			output_stream.put_line ("%T%T%Texists: exists")
-
-			output_stream.put_line ("%T%Tdo")
-			if a_c_declaration.type.is_char_pointer_type then
-				output_stream.put_string ("%T%T%TResult := (create {C_STRING}.make_by_pointer (c_")
-				output_stream.put_string (eiffel_member_name)
-				output_stream.put_line (" (item))).string")
-				output_stream.put_line ("%T%Tensure")
-				output_stream.put_string ("%T%T%Tresult_correct: Result.same_string ((create {C_STRING}.make_by_pointer (c_")
-				output_stream.put_string (eiffel_member_name)
-				output_stream.put_line (" (item))).string)")
-				output_stream.put_line ("%T%Tend")
-				output_stream.put_new_line
-			elseif a_c_declaration.type.is_unicode_char_pointer_type then
-				output_stream.put_string ("%T%T%TResult := (create {NATIVE_STRING}.make_from_pointer (c_")
-				output_stream.put_string (eiffel_member_name)
-				output_stream.put_line (" (item))).string")
-				output_stream.put_line ("%T%Tensure")
-				output_stream.put_string ("%T%T%Tresult_correct: Result.same_string ((create {NATIVE_STRING}.make_from_pointer (c_")
-				output_stream.put_string (eiffel_member_name)
-				output_stream.put_line (" (item))).string)")
-				output_stream.put_line ("%T%Tend")
-				output_stream.put_new_line
+			if a_c_declaration.type.skip_consts_and_aliases.is_callback then
+					-- the function caller
+				generate_callback_wrapper_member  (a_mapped_eiffel_name, a_composite_wrapper, a_c_declaration, a_header_file_name)
 			else
-				output_stream.put_string ("%T%T%TResult := c_")
-				output_stream.put_string (eiffel_member_name)
-				output_stream.put_line (" (item)")
-				output_stream.put_line ("%T%Tensure")
-				output_stream.put_string ("%T%T%Tresult_correct: Result = c_")
-				output_stream.put_string (eiffel_member_name)
-				output_stream.put_line (" (item)")
-				output_stream.put_line ("%T%Tend")
-				output_stream.put_new_line
-			end
-			if
-				not a_c_declaration.type.skip_consts_and_aliases.is_array_type
-			then
-					-- the setter
-				output_stream.put_string ("%Tset_")
-				output_stream.put_string (a_mapped_eiffel_name)
-				output_stream.put_string (" (a_value: ")
-				output_stream.put_string (a_c_declaration.type.corresponding_eiffel_type_api)
-				output_stream.put_string (") ")
+
+				escaped_mapped_eiffel_name := escaped_struct_feature_name (a_mapped_eiffel_name)
+				eiffel_member_name := eiffel_parameter_name_from_c_parameter_name (a_c_declaration.declarator)
+
+				-- the getter
+				output_stream.put_string ("%T")
+				output_stream.put_string (escaped_mapped_eiffel_name)
+				output_stream.put_string (": ")
+
+				output_stream.put_string (a_c_declaration.type.corresponding_eiffel_type_api )
 				output_stream.put_new_line
 
-				output_stream.put_string ("%T%T%T-- Change the value of member `")
+				output_stream.put_string ("%T%T%T-- Access member `")
 				output_stream.put_string (a_c_declaration.declarator)
-				output_stream.put_string ("` to `a_value`.")
+				output_stream.put_string ("`")
 				output_stream.put_new_line
 
 				output_stream.put_line ("%T%Trequire")
 				output_stream.put_line ("%T%T%Texists: exists")
 
 				output_stream.put_line ("%T%Tdo")
-				if a_c_declaration.type.is_char_pointer_type   then
-					output_stream.put_string ("%T%T%Tset_c_")
+				if is_char_pointer_type (a_c_declaration) then
+					output_stream.put_string ("%T%T%TResult := (create {C_STRING}.make_by_pointer (c_")
 					output_stream.put_string (eiffel_member_name)
-					output_stream.put_line (" (item, (create {C_STRING}.make (a_value)).item )")
-				elseif a_c_declaration.type.is_unicode_char_pointer_type then
-					output_stream.put_string ("%T%T%Tset_c_")
+					output_stream.put_line (" (item))).string")
+					output_stream.put_line ("%T%Tensure")
+					output_stream.put_string ("%T%T%Tresult_correct: Result.same_string ((create {C_STRING}.make_by_pointer (c_")
 					output_stream.put_string (eiffel_member_name)
-					output_stream.put_line (" (item, (create {NATIVE_STRING}.make (a_value)).item )")
+					output_stream.put_line (" (item))).string)")
+					output_stream.put_line ("%T%Tend")
+					output_stream.put_new_line
+				elseif is_unicode_char_pointer_type (a_c_declaration) then
+					output_stream.put_string ("%T%T%TResult := (create {NATIVE_STRING}.make_from_pointer (c_")
+					output_stream.put_string (eiffel_member_name)
+					output_stream.put_line (" (item))).string")
+					output_stream.put_line ("%T%Tensure")
+					output_stream.put_string ("%T%T%Tresult_correct: Result.same_string ((create {NATIVE_STRING}.make_from_pointer (c_")
+					output_stream.put_string (eiffel_member_name)
+					output_stream.put_line (" (item))).string)")
+					output_stream.put_line ("%T%Tend")
+					output_stream.put_new_line
 				else
-					output_stream.put_string ("%T%T%Tset_c_")
+					output_stream.put_string ("%T%T%TResult := c_")
 					output_stream.put_string (eiffel_member_name)
-					output_stream.put_line (" (item, a_value)")
+					output_stream.put_line (" (item)")
+					output_stream.put_line ("%T%Tensure")
+					output_stream.put_string ("%T%T%Tresult_correct: Result = c_")
+					output_stream.put_string (eiffel_member_name)
+					output_stream.put_line (" (item)")
+					output_stream.put_line ("%T%Tend")
+					output_stream.put_new_line
 				end
 				if
-					not (a_c_declaration.type.skip_consts_and_aliases.is_struct_type or
-						  a_c_declaration.type.skip_consts_and_aliases.is_union_type)
+					not a_c_declaration.type.skip_consts_and_aliases.is_array_type
 				then
-					output_stream.put_line ("%T%Tensure")
-					output_stream.put_string ("%T%T%T" + eiffel_member_name + "_set: a_value = ")
-					output_stream.put_line (escaped_mapped_eiffel_name)
+						-- the setter
+					output_stream.put_string ("%Tset_")
+					output_stream.put_string (a_mapped_eiffel_name)
+					output_stream.put_string (" (a_value: ")
+					output_stream.put_string (a_c_declaration.type.corresponding_eiffel_type_api)
+					output_stream.put_string (") ")
+					output_stream.put_new_line
+
+					output_stream.put_string ("%T%T%T-- Change the value of member `")
+					output_stream.put_string (a_c_declaration.declarator)
+					output_stream.put_string ("` to `a_value`.")
+					output_stream.put_new_line
+
+					output_stream.put_line ("%T%Trequire")
+					output_stream.put_line ("%T%T%Texists: exists")
+
+						-- Not ensure clause for STRING types for now
+					output_stream.put_line ("%T%Tdo")
+					if is_char_pointer_type (a_c_declaration)   then
+						output_stream.put_string ("%T%T%Tset_c_")
+						output_stream.put_string (eiffel_member_name)
+						output_stream.put_line (" (item, (create {C_STRING}.make (a_value)).item )")
+					elseif is_unicode_char_pointer_type (a_c_declaration) then
+						output_stream.put_string ("%T%T%Tset_c_")
+						output_stream.put_string (eiffel_member_name)
+						output_stream.put_line (" (item, (create {NATIVE_STRING}.make (a_value)).item )")
+					else
+						output_stream.put_string ("%T%T%Tset_c_")
+						output_stream.put_string (eiffel_member_name)
+						output_stream.put_line (" (item, a_value)")
+						if
+							not (a_c_declaration.type.skip_consts_and_aliases.is_struct_type or
+								  a_c_declaration.type.skip_consts_and_aliases.is_union_type )
+						then
+							output_stream.put_line ("%T%Tensure")
+							output_stream.put_string ("%T%T%T" + eiffel_member_name + "_set: a_value = ")
+							output_stream.put_line (escaped_mapped_eiffel_name)
+						end
+					end
+
+					output_stream.put_line ("%T%Tend")
+					output_stream.put_new_line
+				end
+			end
+		end
+
+	generate_callback_wrapper_member (a_mapped_eiffel_name: STRING;
+											  a_composite_wrapper: EWG_COMPOSITE_WRAPPER;
+											  a_c_declaration: EWG_C_AST_DECLARATION;
+											  a_header_file_name: STRING)
+		require
+			a_mapped_eiffel_name_not_void: a_mapped_eiffel_name /= Void
+			a_mapped_eiffel_name_not_empty: not a_mapped_eiffel_name.is_empty
+			a_composite_wrapper_not_void: a_composite_wrapper /= Void
+			a_c_declaration_not_void: a_c_declaration /= Void
+			a_header_file_name_not_void: a_header_file_name /= Void
+			a_header_file_name_not_empty: not a_header_file_name.is_empty
+		local
+			eiffel_member_name: STRING
+			escaped_mapped_eiffel_name: STRING
+		do
+			if a_c_declaration.type.skip_consts_and_aliases.is_callback then --1
+						-- the function caller
+				if attached {EWG_C_AST_FUNCTION_TYPE} a_c_declaration.type.skip_consts_aliases_and_pointers as l_function_type then --2
+
+					escaped_mapped_eiffel_name := escaped_struct_feature_name (a_mapped_eiffel_name)
+					eiffel_member_name := eiffel_parameter_name_from_c_parameter_name (a_c_declaration.declarator)
+
+						-- the getter
+					output_stream.put_string ("%T")
+					output_stream.put_string (escaped_mapped_eiffel_name)
+					output_stream.put_string (": ")
+
+						-- agent PROCEDURE or FUNCTION signature.
+					output_stream.put_string ("detachable ")
+					output_stream.put_string (generate_agent_callback_signature (l_function_type))
+					output_stream.put_new_line
+
+					output_stream.put_string ("%T%T%T-- Access member `")
+					output_stream.put_string (a_c_declaration.declarator)
+					output_stream.put_string ("`")
+					output_stream.put_new_line
+
+					output_stream.put_line ("%T%Trequire")
+					output_stream.put_line ("%T%T%Texists: exists")
+
+
+					output_stream.put_line ("%T%Tdo")
+					output_stream.put_string ("%T%T%Tif attached dispatcher_table_")
+					output_stream.put_string (escaped_mapped_eiffel_name)
+					output_stream.put_line (" as l_op then")
+					output_stream.put_string ("%T%T%T%Tif c_")
+					output_stream.put_string (escaped_mapped_eiffel_name)
+					output_stream.put_line (" (item).is_equal (l_op.ptr) then")
+					output_stream.put_line ("%T%T%T%T%TResult :=l_op.callback")
+					output_stream.put_line ("%T%T%T%Tend")
+					output_stream.put_line ("%T%T%Tend")
+					output_stream.put_line ("%T%Tend")
+
+						-- the setter
+					output_stream.put_new_line
+					output_stream.put_string ("%Tset_")
+					output_stream.put_string (a_mapped_eiffel_name)
+					output_stream.put_string (" (a_value: ")
+
+						-- agent PROCEDURE or FUNCTION signature
+					output_stream.put_string (generate_agent_callback_signature (l_function_type))
+					output_stream.put_line (") ")
+					output_stream.put_string ("%T%T%T-- Change the value of member `")
+					output_stream.put_string (a_c_declaration.declarator)
+					output_stream.put_string ("` to `a_value`.")
+					output_stream.put_new_line
+
+					output_stream.put_line ("%T%Trequire")
+					output_stream.put_line ("%T%T%Texists: exists")
+					output_stream.put_line ("%T%Tdo")
+					output_stream.put_string ("%T%T%Tdispatcher_table_")
+					output_stream.put_string (eiffel_member_name)
+					output_stream.put_line (" := [a_value, $a_value]")
+					output_stream.put_string ("%T%T%Tset_c_")
+					output_stream.put_string (eiffel_member_name)
+					output_stream.put_line (" (item, $a_value)")
+					output_stream.put_line ("%T%Tend")
+					output_stream.put_new_line
+
+
+						-- the callback register.
+					generate_callback_register (eiffel_member_name, l_function_type)
+
+				end
+			else
+				output_stream.put_string ("%N--  Can't wrap callback for struct memeber: ")
+				output_stream.put_string (escaped_struct_feature_name (a_mapped_eiffel_name))
+			end--1
+		end
+
+	generate_callback_register (a_eiffel_member_name: STRING; a_function_type: EWG_C_AST_FUNCTION_TYPE)
+		do
+			output_stream.put_string ("%Tdispatcher_table_")
+			output_stream.put_string (a_eiffel_member_name)
+			output_stream.put_string (": detachable TUPLE [callback:")
+			output_stream.put_string (generate_agent_callback_signature (a_function_type))
+			output_stream.put_string ("; ptr: TYPED_POINTER [")
+			output_stream.put_string (generate_agent_callback_signature (a_function_type))
+			output_stream.put_string ("]]")
+			output_stream.put_new_line
+			output_stream.put_string ("%T%T -- callback register table for member `")
+			output_stream.put_string (a_eiffel_member_name)
+			output_stream.put_line ("`")
+			output_stream.put_new_line
+		end
+
+	generate_agent_callback_signature (a_function_type: EWG_C_AST_FUNCTION_TYPE): STRING
+		local
+			cs: DS_BILINEAR_CURSOR [EWG_C_AST_DECLARATION]
+		do
+			create Result.make (100)
+			if a_function_type.return_type.skip_consts_and_aliases /= c_system.types.void_type then --5
+				Result.append ("FUNCTION [")
+				if a_function_type.members.count > 0 then
+					Result.append ("TUPLE [")
+					from
+						cs := a_function_type.members.new_cursor
+						cs.start
+					until
+						cs.off
+					loop
+						Result.append (generate_signature_parameter_for_callback (cs.item))
+						if not cs.is_last then
+							Result.append (", ")
+						end
+						cs.forth
+					end
+						Result.append ("], ")
 				end
 
-				output_stream.put_line ("%T%Tend")
-				output_stream.put_new_line
+				if attached {EWG_C_AST_STRUCT_TYPE} a_function_type.return_type as l_struct then
+					Result.append(l_struct.name.as_upper)
+					Result.append ("_STRUCT_API")
+				elseif attached {EWG_C_AST_UNION_TYPE} a_function_type.return_type as l_union then
+					Result.append (l_union.name.as_upper)
+					Result.append ("_UNION_API")
+				elseif a_function_type.return_type.is_char_pointer_type then
+					Result.append ("STRING")
+				elseif a_function_type.return_type.is_unicode_char_pointer_type then
+					Result.append ("STRING_32")
+				else
+					Result.append (a_function_type.return_type.corresponding_eiffel_type)
+				end
+					Result.append ("]")
+			else
+				Result.append (" PROCEDURE [")
+				if a_function_type.members.count > 0 then
+					Result.append ("TUPLE [")
+					from
+						cs := a_function_type.members.new_cursor
+						cs.start
+					until
+						cs.off
+					loop
+						Result.append (generate_signature_parameter_for_callback (cs.item))
+						if not cs.is_last then
+							Result.append (", ")
+						end
+						cs.forth
+					end
+					Result.append ("] ")
+				end
 			end
 
-			if a_c_declaration.type.skip_consts_and_aliases.is_callback then
-				-- the function caller
-				output_stream.put_line ("-- TODO: function pointers not yet callable from")
-				output_stream.put_line ("--%T%Tstruct, use corresponding callback class instead")
+		end
+
+
+
+	generate_signature_parameter_for_callback (a_c_declaration: EWG_C_AST_DECLARATION): STRING
+		do
+			create Result.make (25)
+			if attached {EWG_C_AST_STRUCT_TYPE} a_c_declaration.type as l_struct then
+				Result.append (l_struct.name.as_upper)
+				Result.append ("_STRUCT_API")
+			elseif attached {EWG_C_AST_UNION_TYPE} a_c_declaration.type as l_union then
+				Result.append (l_union.name.as_upper)
+				Result.append ("_UNION_API")
+			elseif is_char_pointer_type (a_c_declaration) then
+				Result.append ("STRING")
+			elseif is_unicode_char_pointer_type (a_c_declaration)	then
+				Result.append ("STRING_32")
+			else
+				Result.append (a_c_declaration.type.corresponding_eiffel_type_api )
 			end
 		end
 
@@ -785,6 +975,7 @@ feature -- Generate Eiffel low level C API
 
 
 	cast_printer: EWG_C_TYPE_CAST_PRINTER
+
 
 invariant
 

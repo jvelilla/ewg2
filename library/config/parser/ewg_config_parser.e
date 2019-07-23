@@ -14,8 +14,6 @@ class EWG_CONFIG_PARSER
 
 inherit
 
-	ANY
-
 	EWG_CONFIG_ELEMENT_NAMES
 		export {NONE} all end
 
@@ -325,7 +323,7 @@ feature {NONE} -- Implementation
 
 		end
 
-	new_callback_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE 
+	new_callback_wrapper_clause (a_config_system: EWG_CONFIG_SYSTEM; a_wrapper_element: XM_ELEMENT; a_position_table: XM_POSITION_TABLE): EWG_CONFIG_WRAPPER_CLAUSE
 			-- New wrapper clause from `a_wrapper_element'
 		require
 			a_config_system_not_void: a_config_system /= Void

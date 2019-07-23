@@ -18,6 +18,10 @@ inherit
 	EWG_RENAMER
 		export {NONE} all end
 
+	EWG_EIFFEL_API_SHARED
+		export {NONE} all end
+
+
 create
 
 	make
@@ -109,10 +113,67 @@ feature {NONE} -- Implementation
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		do
-			generate_function_accessor (a_function_wrapper)
+			if is_function_accessor_simple (a_function_wrapper) then
+				generate_c_inline_function_accessor (a_function_wrapper, False)
+			else
+				generate_function_accessor (a_function_wrapper)
+			end
 		end
 
 feature {NONE} -- Generate Eiffel High Level Access
+
+	is_function_accessor_simple (a_function_wrapper: EWG_FUNCTION_WRAPPER): BOOLEAN
+		require
+			a_function_wrapper_not_void: a_function_wrapper /= Void
+		local
+			cs: DS_BILINEAR_CURSOR [EWG_MEMBER_WRAPPER]
+			native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER
+			pimitive : EWG_C_AST_PRIMITIVE_TYPE
+			flag: BOOLEAN
+			l_item: EWG_MEMBER_WRAPPER
+		do
+			if a_function_wrapper.function_declaration.function_type.members.count > 0 then
+				Result := True
+				from
+					cs := a_function_wrapper.members.new_cursor
+					cs.start
+				until
+					cs.off or flag
+				loop
+					l_item  := cs.item
+					native_member_wrapper ?= cs.item
+					if attached {EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER} l_item then
+						flag := True
+						Result := False
+					elseif attached {EWG_NATIVE_MEMBER_WRAPPER} l_item then
+						Result := is_basic_primitive_type (native_member_wrapper)
+						flag := not Result
+					else
+						flag := True
+						Result := False
+					end
+					cs.forth
+				end
+			else
+				Result := True
+			end
+
+		end
+
+	is_basic_primitive_type (a_native: EWG_NATIVE_MEMBER_WRAPPER): BOOLEAN
+		do
+			 if attached {EWG_C_AST_PRIMITIVE_TYPE} a_native.c_declaration.type.skip_wrapper_irrelevant_types as l_type and then
+			 	not attached {EWG_C_AST_POINTER_TYPE} a_native.c_declaration.type.skip_aliases
+			 then
+				if l_type.is_char_pointer_type or l_type.is_char_type or l_type.is_pointer_type then
+					Result := False
+				else
+					Result := True
+				end
+			else
+				Result := False
+			end
+		end
 
 	generate_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER)
 		require
@@ -120,13 +181,6 @@ feature {NONE} -- Generate Eiffel High Level Access
 		do
 				-- TODO: We ignore functions with struct or union return type for now
 				-- later this problem will be taken care of in the C glue code layer
---			if
---				a_function_wrapper.function_declaration.function_type.return_type.skip_consts_and_aliases.is_struct_type or
---					a_function_wrapper.function_declaration.function_type.return_type.skip_consts_and_aliases.is_union_type
---			then
---				-- For now we do not support unions or structs as return types to functions
---				output_stream.put_line ("-- Ignoring " + a_function_wrapper.mapped_eiffel_name + " since its return type is a composite type")
---			else
 				generate_routine_signature (a_function_wrapper)
 
 				generate_locals (a_function_wrapper)
@@ -231,6 +285,24 @@ feature {NONE} -- Generate Eiffel High Level Access
 				else
 					output_stream.put_string (a_native_member_wrapper.eiffel_type)
 				end
+			elseif attached {EWG_C_AST_ALIAS_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_alias and then
+				attached {EWG_C_AST_POINTER_TYPE} l_ast_alias.base as l_base_type and then
+				attached {EWG_C_AST_POINTER_TYPE} l_base_type.base as l_type then
+					output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+					output_stream.put_string (": ")
+								-- TODO check\
+					if attached {EWG_C_AST_PRIMITIVE_TYPE} l_type.skip_wrapper_irrelevant_types as l_base then
+						output_stream.put_string ("ARRAY [")
+						if l_base.is_char_type then
+							output_stream.put_string ("STRING")
+						else
+							output_stream.put_string (l_base.corresponding_eiffel_type_api)
+						end
+						output_stream.put_string ("]")
+
+					else
+						output_stream.put_string (a_native_member_wrapper.eiffel_type)
+					end
 			elseif attached {EWG_C_AST_STRUCT_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_struct then
 				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
 				output_stream.put_string (": ")
@@ -241,6 +313,14 @@ feature {NONE} -- Generate Eiffel High Level Access
 				output_stream.put_string (": ")
 				output_stream.put_string (l_ast_union.name.as_upper)
 				output_stream.put_string ("_UNION_API")
+			elseif is_char_pointer_type (a_native_member_wrapper.c_declaration) then
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (": ")
+				output_stream.put_string ("STRING")
+			elseif is_unicode_char_pointer_type (a_native_member_wrapper.c_declaration) then
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (": ")
+				output_stream.put_string ("STRING_32")
 			else
 				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
 				output_stream.put_string (": ")
@@ -308,6 +388,23 @@ feature {NONE} -- Generate Eiffel Routine calls
 			elseif attached {EWG_C_AST_ARRAY_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_array then
 				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
 				output_stream.put_string (".area.base_address")
+			elseif attached {EWG_C_AST_ALIAS_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_alias and then  --char **
+				attached {EWG_C_AST_POINTER_TYPE} l_ast_alias.base as l_base_type and then
+				attached {EWG_C_AST_POINTER_TYPE} l_base_type.base as l_type and then
+				attached {EWG_C_AST_PRIMITIVE_TYPE} l_type.skip_wrapper_irrelevant_types as l_primitive and then
+				l_primitive.is_char_type
+			then
+				output_stream.put_string ("l_")
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (".item")
+			elseif is_char_pointer_type (a_native_member_wrapper.c_declaration) then
+				output_stream.put_string (" (create {C_STRING}.make (")
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (")).item")
+			elseif is_unicode_char_pointer_type (a_native_member_wrapper.c_declaration) then
+				output_stream.put_string (" (create {NATIVE_STRING}.make (")
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (")).item")
 			else
 				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
 			end
@@ -355,7 +452,31 @@ feature {NONE} -- Eiffel to C call preparation
 		require
 			a_native_member_wrapper_not_void: a_native_member_wrapper /= Void
 		do
-			-- Nothing to do
+			-- At the moment only supporting char **
+			if attached {EWG_C_AST_ALIAS_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_alias and then
+				attached {EWG_C_AST_POINTER_TYPE} l_ast_alias.base as l_base_type and then
+				attached {EWG_C_AST_POINTER_TYPE} l_base_type.base as l_type and then
+				attached {EWG_C_AST_PRIMITIVE_TYPE} l_type.skip_wrapper_irrelevant_types as l_base
+			then
+				output_stream.put_string ("%T%T%Tcreate l_")
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (".make ( ")
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (".count *")
+				output_stream.put_integer ({PLATFORM}.pointer_bytes)
+				output_stream.put_line (")")
+				output_stream.put_string ("%T%T%Tacross")
+				output_stream.put_string (" ")
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_line (" as ic loop")
+				output_stream.put_string ("%T%T%T%T l_")
+				output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+				output_stream.put_string (".put_pointer (ic.item.area.base_address, (ic.cursor_index - 1) *")
+				output_stream.put_integer ({PLATFORM}.pointer_bytes)
+				output_stream.put_line (")")
+				output_stream.put_string ("%T%T%Tend")
+				output_stream.put_new_line
+			end
 		end
 
 	generate_routine_call_preparation_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER)
@@ -406,24 +527,20 @@ feature {NONE} -- Generate Eiffel locals
 		require
 			a_native_member_wrapper_not_void: a_native_member_wrapper /= Void
 		do
-			-- TODO add different types of mapping.
---			if attached {EWG_C_AST_ARRAY_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_array then
---				output_stream.put_string ("%T%T%Tl_" + a_native_member_wrapper.mapped_eiffel_name)
---				output_stream.put_string (": ")
---					-- TODO check\
---				if attached {EWG_C_AST_PRIMITIVE_TYPE} l_ast_array.base as l_base then
---					if l_base.is_char_type then
---						output_stream.put_string ("C_STRING")
---					else
---						output_stream.put_string ("MANAGED_POINTER")
-
---					end
---					output_stream.put_new_line
---				end
---			else
---				-- TODO
---				-- Nothing to do.
---			end
+				-- TODO add different types of mapping.
+			if attached {EWG_C_AST_ALIAS_TYPE} a_native_member_wrapper.c_declaration.type as l_ast_alias and then
+				attached {EWG_C_AST_POINTER_TYPE} l_ast_alias.base as l_base_type and then
+				attached {EWG_C_AST_POINTER_TYPE} l_base_type.base as l_type
+			then
+					output_stream.put_string ("%T%T%Tl_")
+					output_stream.put_string (a_native_member_wrapper.mapped_eiffel_name)
+					output_stream.put_string (":")
+					output_stream.put_string (" MANAGED_POINTER")
+					output_stream.put_new_line
+			else
+				-- TODO
+				-- Nothing to do.
+			end
 		end
 
 	generate_local_for_zero_terminated_string_member_wrapper (a_zero_terminated_string_member_wrapper: EWG_ZERO_TERMINATED_STRING_MEMBER_WRAPPER)
@@ -458,14 +575,16 @@ feature {NONE} -- Generate Eiffel to C inline code.
 			until
 				cs.off
 			loop
-				generate_c_inline_function_accessor (cs.item)
+				if not is_function_accessor_simple (cs.item) then
+					generate_c_inline_function_accessor (cs.item, True)
+				end
 				cs.forth
 				error_handler.tick
 			end
 		end
 
 
-	generate_c_inline_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER)
+	generate_c_inline_function_accessor (a_function_wrapper: EWG_FUNCTION_WRAPPER; a_need_prefix: BOOLEAN)
 		require
 			a_function_wrapper_not_void: a_function_wrapper /= Void
 		local
@@ -475,7 +594,11 @@ feature {NONE} -- Generate Eiffel to C inline code.
 			function_type: EWG_C_AST_FUNCTION_TYPE
 		do
 			function_type := a_function_wrapper.function_declaration.function_type
-			output_stream.put_string ("%Tc_" + a_function_wrapper.mapped_eiffel_name )
+			output_stream.put_string ("%T")
+			if a_need_prefix then
+				output_stream.put_string ("c_")
+			end
+			output_stream.put_string (a_function_wrapper.mapped_eiffel_name )
 
 			if function_type.members.count > 0 then
 				output_stream.put_string (" (")
