@@ -104,6 +104,8 @@ feature {NONE} -- Templates
 			Result := "deferred class $1_DISPATCHER%N" +
 				"%N" +
 				"inherit%N" +
+				"%N"+
+				"%TANY%N"+
 				"%N" +
 				"%T$1_CALLBACK%N" +
 				"%T%Texport {NONE} all end%N" +

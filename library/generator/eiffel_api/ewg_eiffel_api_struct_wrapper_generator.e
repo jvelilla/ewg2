@@ -801,6 +801,9 @@ feature -- Generate Eiffel low level C API
 				output_stream.put_line ("%T%T%Tcheck")
 				output_stream.put_line ("%T%T%T%Tsize_not_known: False")
 				output_stream.put_line ("%T%T%Tend")
+				output_stream.put_line ("%T%Tensure")
+				output_stream.put_string ("%T%T%Tis_class: ")
+				output_stream.put_line ("class")
 				output_stream.put_line ("%T%Tend")
 			end
 			output_stream.put_new_line
