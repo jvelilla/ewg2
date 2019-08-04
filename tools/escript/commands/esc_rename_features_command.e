@@ -32,6 +32,9 @@ feature -- execute
 			l_content: STRING
 			l_string: STRING
 		do
+			print ("%N" + generator +  " updating class [ " + a_tuple.class_name + "]" )
+			print ("%N --------------------------------------------------------------" )
+			print ("%N Replacing string :"  + a_tuple.search_for.as_string_8 + " with: " + a_tuple.replace_with.as_string_8)
 			l_file_path := a_path.extended (a_tuple.class_name).appended_with_extension ("e")
 			create l_file.make_with_path (l_file_path)
 			create l_tmp.make_open_temporary
@@ -61,7 +64,10 @@ feature -- execute
 				l_file.flush
 				l_file.close
 				l_tmp.close
+				l_tmp.delete
 			end
+			print ("%N --------------------------------------------------------------" )
+
 		end
 
 	has_excluded_name (a_line: READABLE_STRING_GENERAL; exclude: LIST [READABLE_STRING_GENERAL]): BOOLEAN

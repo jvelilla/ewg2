@@ -30,9 +30,12 @@ feature -- execute
 			l_file_path: PATH
 			l_file: RAW_FILE
 			l_tmp: RAW_FILE
-			l_content: STRING
+			l_content, l_feature: STRING
 			i,j: INTEGER
 		do
+			print ("%N" + generator + " Updating class [ " + a_tuple.class_name + "]" )
+			print ("%N --------------------------------------------------------------" )
+
 			l_file_path := a_path.extended (a_tuple.class_name).appended_with_extension ("e")
 			create l_file.make_with_path (l_file_path)
 			create l_tmp.make_open_temporary
@@ -44,7 +47,8 @@ feature -- execute
 					l_file.end_of_file
 				loop
 					l_file.read_line
-					if attached has_feature_name (l_file.last_string, j,  a_tuple.a_features) as l_tuple then
+					l_feature := l_file.last_string.twin
+					if attached has_feature_name (l_feature, j,  a_tuple.a_features) as l_tuple then
 						from
 							i := 1
 						until
@@ -56,6 +60,7 @@ feature -- execute
 						end
 						if l_tuple.action.same_string ("delete") then
 							l_tmp.put_string ("%N")
+							print ("%N Removing feature [ " + l_feature + "]" )
 						else
 							l_tmp.put_string (l_tuple.update.to_string_8)
 							l_tmp.put_string ("%N")
@@ -66,7 +71,6 @@ feature -- execute
 						l_tmp.put_string ("%N")
 					end
 					j := j + 1
-					io.put_new_line
 				end
 				l_file.close
 				l_tmp.close
@@ -78,6 +82,8 @@ feature -- execute
 				l_file.flush
 				l_file.close
 				l_tmp.close
+				l_tmp.delete
+				print ("%N --------------------------------------------------------------" )
 			end
 		end
 

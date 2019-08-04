@@ -91,9 +91,11 @@ feature {NONE} -- Templates
 								-- $1 ... callback name in upper case
 								-- $2 ... on_callback signature
 					 once
-								Result := "deferred class $1_CALLBACK%N" +
+								Result := "class $1_DISPATCHER%N" +
 																		  "%N" +
-																		  "feature {$1_DISPATCHER}%N" +
+																		  "%Tmake" +
+																		  "%N" +
+																		  "feature {ACCESS}%N" +
 																		  "%N" +
 																		  "%T$2%N" +
 																		  "%T%Tdeferred%N" +
@@ -101,5 +103,6 @@ feature {NONE} -- Templates
 																		  "%N" +
 																		  "end%N"
 					 end
+
 
 end

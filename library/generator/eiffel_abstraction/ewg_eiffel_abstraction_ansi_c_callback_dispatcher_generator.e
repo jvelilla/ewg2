@@ -74,22 +74,63 @@ feature {NONE} -- Implementation
 			class_name: STRING
 			upper_name: STRING
 			ext_class_name: STRING
-			function_name: STRING
 		do
 			class_name := eiffel_class_name_from_c_callback_name (a_callback_wrapper.mapped_eiffel_name) + "_DISPATCHER"
 			upper_name := eiffel_class_name_from_c_callback_name (a_callback_wrapper.mapped_eiffel_name)
 
-			function_name := c_header_file_name_to_eiffel_class_name (a_callback_wrapper.header_file_name)
 			ext_class_name := c_header_file_name_to_eiffel_class_name (directory_structure.relative_callback_c_glue_header_file_name)
+			ext_class_name.append_string ("_FUNCTIONS_API")
 
 			template_expander.expand_into_stream_from_array (output_stream,
-																			 dispatcher_class_template,
-																			 <<upper_name,
-																				a_callback_wrapper.set_entry_struct.mapped_eiffel_name,
-																				on_callback (a_callback_wrapper, "on_callback", "callback.on_callback"), -- TODO: big mem waster (write to stream directly instead of creating temp string!)
-																				ext_class_name,
-																				a_callback_wrapper.get_stub.mapped_eiffel_name,
-																				function_name>>)
+																dispatcher_class_template,
+																		<<upper_name,
+																			a_callback_wrapper.set_entry_struct.mapped_eiffel_name,
+																			a_callback_wrapper.get_stub.mapped_eiffel_name,
+																			ext_class_name,
+																			on_callback_agent (a_callback_wrapper),
+																			on_callback_signature (a_callback_wrapper, "on_callback"),
+																			routine_call (a_callback_wrapper)>>
+																				)
+		end
+
+
+
+	routine_call (a_callback_wrapper: EWG_CALLBACK_WRAPPER): STRING
+		require
+			a_callback_wrapper_not_void: a_callback_wrapper /= Void
+		local
+			cs: DS_BILINEAR_CURSOR [EWG_MEMBER_WRAPPER]
+			native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER
+		do
+			create Result.make (50)
+			if a_callback_wrapper.return_type /= Void then
+				Result.append("Result := ")
+			end
+			Result.append ("routine (")
+			if a_callback_wrapper.members.count > 0 then
+				from
+					cs := a_callback_wrapper.members.new_cursor
+					cs.start
+				until
+					cs.off
+				loop
+					native_member_wrapper ?= cs.item
+					check
+						no_other_wrapper_supported_yet: native_member_wrapper /= Void
+					end
+					Result.append_string ("a_")
+					Result.append_string(native_member_wrapper.mapped_eiffel_name)
+
+					if not cs.is_last then
+						Result.append_string (", ")
+					end
+					cs.forth
+				end
+			else
+			  Result.append ("[]")
+			end
+			Result.append (")")
+
 		end
 
 feature {NONE} -- Templates
@@ -97,48 +138,52 @@ feature {NONE} -- Templates
 	dispatcher_class_template: STRING
 			-- $1 ... callback name in upper case
 			-- $2 ... "set_entry_*_struct" function name
-			-- $3 ... on_callback
+			-- $3 ... "get_*_stub" function name
 			-- $4 ... class name of external function wrapper for callback glue
-			-- $5 ... "get_*_stub" function name
+			-- $5 ... routine definition PROCEDURE | FUNCTION
+			-- $6 ... on_callback signature
+			-- $7 ... agent call
 		once
-			Result := "deferred class $1_DISPATCHER%N" +
-				"%N" +
+			Result := "class $1_DISPATCHER%N" +
+				"%N"+
 				"inherit%N" +
 				"%N"+
-				"%TANY%N"+
+				"%T$4%N" +
+				"%T%Texport {NONE} all end"+
 				"%N" +
-				"%T$1_CALLBACK%N" +
-				"%T%Texport {NONE} all end%N" +
+				"create" +
 				"%N" +
-				"%T$4_FUNCTIONS_API%N" +
-				"%T%Texport {NONE} all end%N" +
+				"%Tmake" +
 				"%N" +
-				"%T$6_FUNCTIONS_API%N" +
-				"%T%Texport {NONE} all end%N" +
 				"%N" +
 				"feature -- Initialization%N" +
 				"%N" +
-				"%Tmake %N" +
+				"%Tmake (a_routine: like routine) %N" +
 				"%T%T%T%T-- Dispatcher initialization%N" +
 				"%T%Tdo%N" +
+				"%T%T%Troutine := a_routine%N" +
 				"%T%T%T$2 (Current, $on_callback)%N" +
-				"%T%T%Tregister_callback (c_dispatcher)%N" +
 				"%T%Tend%N" +
 				"%N" +
-				"feature {ANY}%N" +
+				"feature --Access: Routine %N" +
+				"%N" +
+				"%Troutine: $5 %N" +
+				"%T%T%T--Eiffel routine to be call on callback." +
+				"%N" +
+				"%N" +
+				"feature --Access: Dispatcher%N" +
 				"%N" +
 				"%Tc_dispatcher: POINTER %N" +
 				"%T%Tdo%N" +
-				"%T%T%TResult := $5%N" +
+				"%T%T%TResult := $3%N" +
 				"%T%Tend%N" +
 				"%N" +
-				"feature {ANY}%N" +
+				"feature --Access: Callback%N" +
 				"%N" +
-				"%Tregister_callback (a_dispatcher: POINTER)%N" +
-				"%T%T%T%T-- Register callback%N" +
-				"%T%Tdeferred%N" +
-				"%T%T%T-- Register the callback defined in $6_FUNCTIONS_API%N" +
-				"%T%Tend%N" +
+				"%T$6%N"+
+				"%T%Tdo%N"+
+				"%T%T%T$7%N"+
+				"%T%Tend%N"+
 				"%N" +
 				"end%N"
 			end

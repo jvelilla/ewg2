@@ -18,13 +18,14 @@
       <redefine target="init_ewg"/>
       <redefine target="help"/>
     </parent>
-     
   </inherit>
 
   <target name="help">
     <echo message="usage:"/>
     <echo message="   geant install"/>
     <echo message="   geant c_build_library_ise"/>
+    <echo message="   geant wrap_c"/>
+    <echo message="   geant post_process"/>
     <echo message="   geant clean"/>
     <echo message="   geant clobber"/>
     <echo message=""/>
@@ -33,6 +34,19 @@
   </target>
 
   <target name="install" depend="init">
+    <description>
+      Generate ewg wrappers for ${ewg.full_header_file_name}.
+      Post process code 
+      C build
+   </description>
+    <echo message="Generating wrappers for ${ewg.library_name}, Post proccess, C build" if="${ewg.verbose}=--verbose"/>
+    <geant target="wrap_c"/>
+    <geant target="post_process"/>
+    <geant target="c_build_library_ise"/>
+  </target>
+
+ 
+  <target name="wrap_c" depend="init">
     <description>
       Generate ewg wrappers for ${ewg.full_header_file_name}.
     </description>
@@ -52,6 +66,13 @@
       Generate wrapper files
     </description>
     <exec executable="ewg ${ewg.verbose} ${msc_extensions_flag} --output-dir=${ewg.wrapper_dir} --cpp-full-header=${ewg.cpp_header_name} --include-header=${ewg.short_header_name} ${ewg.config_file_option}"/>
+  </target>
+
+  <target name="post_process" depend="init">
+    <description>
+      Post progress Eiffel wrapped code.
+    </description>
+    <exec executable="escript"/>
   </target>
 
   <target name="copy_ewg_runtime" depend="init">

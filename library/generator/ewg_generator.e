@@ -131,8 +131,8 @@ feature {NONE} -- Implementation
 			create c_glue_header_generator.make (error_handler, directory_structure)
 			c_glue_header_generator.generate_for_all_compilers (eiffel_wrapper_set)
 
-			create eiffel_abstraction_ansi_wrapper_generator.make (error_handler, directory_structure)
-			eiffel_abstraction_ansi_wrapper_generator.generate (eiffel_wrapper_set)
+--			create eiffel_abstraction_ansi_wrapper_generator.make (error_handler, directory_structure)
+--			eiffel_abstraction_ansi_wrapper_generator.generate (eiffel_wrapper_set)
 
 			create eiffel_abstraction_ffcall_wrapper_generator.make (error_handler, directory_structure)
 			eiffel_abstraction_ffcall_wrapper_generator.generate (eiffel_wrapper_set)

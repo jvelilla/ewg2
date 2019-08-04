@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<project name="simple_library" default="help">
+
+  <description>
+    description: "ewg template library: simple template library"
+    copyright: "Copyright (c) 2002, Andreas Leitner and others"
+    license: "Eiffel Forum License v2 (see forum.txt)"
+    date: "$Date: 2008-05-14 22:48:16 +0900 (Wed, 14 May 2008) $"
+    revision: "$Revision: 3 $"
+  </description>
+
+  <inherit>
+    <parent location="${EWG}/misc/ewg_library.eant">
+      <redefine target="init_ewg"/>
+    </parent>
+  </inherit>
+
+  <!-- Implementation -->
+
+  <target name="init_ewg">
+    <set name="system_dir" value="${EWG}/example/template/library"/>
+    <set name="ewg.library_name" value="template"/>
+    <set name="ewg.full_header_name" value="$EWG/example/simple/library/manual_wrapper/c/include/template_header.h"/>
+    <set name="ewg.short_header_name" value="template_header.h"/>
+    <set name="ewg.use_config_file" value="True"/>
+  </target>
+
+</project>

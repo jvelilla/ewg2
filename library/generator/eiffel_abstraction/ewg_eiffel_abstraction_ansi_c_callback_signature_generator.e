@@ -107,4 +107,65 @@ feature
 			Result.append_string ("  ")
 		end
 
+	on_callback_agent (a_callback_wrapper: EWG_CALLBACK_WRAPPER): STRING
+		require
+			a_callback_wrapper_not_void: a_callback_wrapper /= Void
+		local
+			cs: DS_BILINEAR_CURSOR [EWG_MEMBER_WRAPPER]
+			native_member_wrapper: EWG_NATIVE_MEMBER_WRAPPER
+			l_routine: STRING
+		do
+			create Result.make (100)
+			create l_routine.make (15)
+
+			if a_callback_wrapper.members.count > 0 then
+				Result.append ("[")
+				Result.append_string ("TUPLE [")
+				from
+					cs := a_callback_wrapper.members.new_cursor
+					cs.start
+				until
+					cs.off
+				loop
+					native_member_wrapper ?= cs.item
+						check
+							no_other_wrapper_supported_yet: native_member_wrapper /= Void
+						end
+					Result.append_string ("a_")
+					Result.append_string(native_member_wrapper.mapped_eiffel_name)
+					Result.append_string (": ")
+					Result.append_string (native_member_wrapper.c_declaration.type.corresponding_eiffel_type)
+
+					if not cs.is_last then
+						Result.append_string ("; ")
+					end
+					cs.forth
+				end
+				Result.append_string ("]")
+			end
+			if a_callback_wrapper.return_type /= Void then
+				l_routine.append ("FUNCTION ")
+				native_member_wrapper ?= a_callback_wrapper.return_type
+					check
+						no_other_wrapper_supported_yet: native_member_wrapper /= Void
+					end
+				if a_callback_wrapper.members.count > 0	then
+					Result.append_string (", ")
+					Result.append_string (native_member_wrapper.c_declaration.type.corresponding_eiffel_type)
+					Result.append_string ("] ")
+				else
+					Result.append_string ("[ ")
+					Result.append_string (native_member_wrapper.c_declaration.type.corresponding_eiffel_type)
+					Result.append_string ("] ")
+				end
+			else
+				if a_callback_wrapper.members.count > 0 then
+					Result.append_string ("] ")
+				end
+				l_routine.append ("PROCEDURE ")
+			end
+			Result.prepend_string (l_routine)
+		end
+
+
 end
